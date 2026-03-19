@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>El Nido Steak & Wine — Python Polymorphism & Inheritance | Valleys &amp; Bytes</title>
+<meta name="description" content="Master Python polymorphism and method overriding with El Nido Steak & Wine — a beginner-friendly guide using Product, Steak, SideDish, Salad, and Wine classes. Full source code and explanations included.">
+<meta name="keywords" content="Python polymorphism tutorial, Python inheritance, method overriding Python, super() Python, Product class, Steak class, Wine class, El Nido steakhouse, Philippines coding tutorial, Valleys and Bytes, Glenn Junsay Pansensoy">
+<meta name="author" content="Glenn Junsay Pansensoy">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="dark">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://code-sense.pansensoyglenn.workers.dev/steak.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="El Nido Steak & Wine — Python Polymorphism & Inheritance">
+<meta property="og:description" content="Step-by-step Python OOP documentation: polymorphism, method overriding, super(), and full source code for a steakhouse ordering system in El Nido.">
+<meta property="og:url" content="https://code-sense.pansensoyglenn.workers.dev/steak.html">
+<meta property="og:site_name" content="Valleys &amp; Bytes">
+<meta property="og:image" content="/og-steak.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="El Nido Steak & Wine — Python Polymorphism Guide banner">
+<meta property="og:locale" content="en_PH">
+<meta property="article:author" content="Glenn Junsay Pansensoy">
+<meta property="article:published_time" content="2026-03-17T00:00:00+08:00">
+<meta property="article:modified_time" content="2026-03-17T00:00:00+08:00">
+<meta property="article:section" content="Programming Tutorial">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@GlennPansensoy">
+<meta name="twitter:creator" content="@GlennPansensoy">
+<meta name="twitter:title" content="El Nido Steak & Wine — Python Polymorphism & Inheritance">
+<meta name="twitter:description" content="Complete Python OOP tutorial: polymorphism, method overriding, super(), and a working steakhouse ordering system with wine portions.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "El Nido Steak & Wine — Python Polymorphism & Inheritance Guide",
+  "description": "A comprehensive step-by-step documentation of El Nido Steak & Wine, a Python OOP command-line program demonstrating polymorphism, method overriding, and super() calls through Product, Steak, SideDish, Salad, and Wine classes.",
+  "author": {
+    "@type": "Person",
+    "name": "Glenn Junsay Pansensoy",
+    "url": "https://www.linkedin.com/in/glenn-pansensoy-6288453a2",
+    "sameAs": [
+      "https://www.linkedin.com/in/glenn-pansensoy-6288453a2",
+      "https://www.facebook.com/@Glenn-Junsay-Pansensoy",
+      "https://x.com/@GlennPansensoy",
+      "https://www.youtube.com/c/@GlennPansensoy"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valleys & Bytes",
+    "url": "https://code-sense.pansensoyglenn.workers.dev"
+  },
+  "datePublished": "2026-03-17",
+  "dateModified": "2026-03-17",
+  "mainEntityOfPage": "https://code-sense.pansensoyglenn.workers.dev/steak.html",
+  "programmingLanguage": "Python",
+  "proficiencyLevel": "Beginner",
+  "keywords": ["Python","OOP","Polymorphism","Inheritance","Method Overriding","super()","Philippines","Steakhouse"],
+  "articleSection": "Programming Tutorial",
+  "teaches": ["Python OOP","Polymorphism","Method Overriding","super()","Input Validation","Polymorphic Display"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is El Nido Steak & Wine?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El Nido Steak & Wine is a Python command-line program that simulates a steakhouse ordering system in El Nido, Palawan. It uses a base class Product and four subclasses (Steak, SideDish, Salad, Wine) to demonstrate polymorphism through method overriding. The Wine class has a special feature: it can display and calculate prices for both bottle and glass portions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does polymorphism work in this program?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each subclass overrides the display() method from Product. When the program prints an item (e.g., chosen_steak.display()), Python dynamically dispatches to the correct version – for Steak objects, it adds a 🍖 icon; for SideDish, 🥔; for Salad, 🥗; for Wine, it shows either a bottle or glass price based on an extra parameter. This allows uniform handling of different item types without type checking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the Wine class have two parameters in display() and get_price()?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wine can be ordered by the bottle or by the glass. To accommodate this, the overridden methods accept an optional portion parameter (defaulting to 'bottle'). This is a form of polymorphism via parameterisation – the method behaves differently based on the argument, while still conforming to the parent class signature (when called with no arguments, it defaults to bottle). It's a clean way to handle the two pricing models without duplicating classes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does super() do in the Wine constructor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "super().__init__(name, bottle_price) calls the parent Product constructor to initialise the common attributes (name and price). It then adds its own bottle_price and calculates a glass_price (bottle_price // 5). This keeps the code DRY and ensures all attributes are set correctly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the program ensure valid user input?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each selection is wrapped in a while True loop with try/except to catch non-numeric entries and validate the choice range. For the wine portion, the loop continues until the user enters 'glass' or 'bottle'. This makes the program robust against accidental typos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add more items without changing the main logic?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes – because of polymorphism, you can add new subclasses (e.g., Dessert) that override display() and get_price(). The main() function would need to be updated to include the new menu category, but the printing and total calculation (which uses get_price()) would work automatically. The Wine class shows that you can even add extra parameters while keeping the core interface intact."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575646748966866" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&family=Literata:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&family=Literata:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obs-900: #0a0a12;
+  --obs-800: #0f0f1e;
+  --obs-700: #151528;
+  --obs-600: #1e1e38;
+  --obs-500: #252545;
+  --obs-400: #2e2e58;
+  --obs-300: #3a3a72;
+  --blue-bright: #4b8bbe;
+  --blue-mid:    #3a6e99;
+  --blue-dark:   #264d6e;
+  --blue-glow:   rgba(75,139,190,0.25);
+  --blue-pale:   rgba(75,139,190,0.08);
+  --yellow:      #ffd43b;
+  --yellow-dim:  rgba(255,212,59,0.15);
+  --purple-bright: #bd93f9;
+  --purple-mid:    #9b72d4;
+  --purple-dark:   #6a4a9c;
+  --purple-glow:   rgba(189,147,249,0.2);
+  --purple-pale:   rgba(189,147,249,0.07);
+  --text-primary:   #ffffff;
+  --text-secondary: #ffffff;
+  --text-muted:     #c0c8e0;
+  --text-code:      #79c0ff;
+  --syn-kw:   #ff79c6;
+  --syn-cl:   #8be9fd;
+  --syn-fn:   #50fa7b;
+  --syn-st:   #f1fa8c;
+  --syn-cm:   #6272a4;
+  --syn-nm:   #bd93f9;
+  --syn-dc:   #ffd43b;
+  --surface-1: var(--obs-800);
+  --surface-2: var(--obs-700);
+  --surface-3: var(--obs-600);
+  --border:    rgba(75,139,190,0.18);
+  --border-pu: rgba(189,147,249,0.18);
+  --glow-blue: 0 0 30px rgba(75,139,190,0.15);
+  --glow-pu:   0 0 30px rgba(189,147,249,0.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 10px; overflow-x: hidden; max-width: 100vw; }
+body {
+  font-family: 'Literata', Georgia, serif;
+  background: var(--obs-900);
+  color: #ffffff;
+  overflow-x: hidden;
+  max-width: 100vw;
+  line-height: 1.7;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--obs-800); }
+::-webkit-scrollbar-thumb { background: var(--blue-dark); border-radius: 3px; }
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(75,139,190,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(75,139,190,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  animation: gridShift 60s linear infinite;
+}
+@keyframes gridShift { from{background-position:0 0} to{background-position:48px 48px} }
+
+
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 64px;
+  background: rgba(10,10,18,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+}
+.brand {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px;
+  text-decoration: none; display: flex; align-items: center; gap: 8px;
+}
+.brand-valleys { color: var(--blue-bright); }
+.brand-amp { color: #ffffff; font-weight: 400; margin: 0 2px; }
+.brand-bytes { color: var(--purple-bright); }
+.brand-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); animation: pulse 2s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+.hamburger {
+  display: flex; flex-direction: column; gap: 5px;
+  background: none; border: 1px solid var(--border);
+  padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s;
+}
+.hamburger:hover { border-color: var(--blue-bright); background: var(--blue-pale); }
+.hamburger span { display: block; width: 20px; height: 2px; background: #ffffff; border-radius: 2px; transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+.drawer {
+  position: fixed; top: 64px; right: 0; bottom: 0; z-index: 999;
+  width: 300px; background: var(--obs-800); border-left: 1px solid var(--border);
+  transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  overflow-y: auto; padding: 24px 20px;
+}
+.drawer.open { transform: translateX(0); }
+.drawer-overlay {
+  position: fixed; inset: 0; z-index: 998;
+  background: rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+.drawer-section { margin-bottom: 28px; }
+.drawer-section-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; letter-spacing: 2px;
+  text-transform: uppercase; color: #ffffff; margin-bottom: 10px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.drawer-btn {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 11px 14px; margin-bottom: 4px; background: var(--obs-700);
+  border: 1px solid var(--border); border-radius: 8px; color: #ffffff;
+  font-family: 'Syne', sans-serif; font-size: 0.8rem;
+  cursor: pointer; text-decoration: none; transition: all 0.2s; text-align: left;
+}
+.drawer-btn:hover { background: var(--blue-pale); border-color: var(--blue-bright); color: var(--blue-bright); }
+.drawer-btn .ico { font-size: 1.4rem; width: 22px; text-align: center; }
+
+
+.ad-banner { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.ad-label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #ffffff; letter-spacing: 1px; text-align: center; margin-bottom: 4px; }
+
+
+.hero {
+  position: relative; z-index: 1; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 100px 0 80px; overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(75,139,190,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 80% 80%, rgba(189,147,249,0.08) 0%, transparent 60%);
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%;
+}
+.hero-left { display: flex; flex-direction: column; align-items: flex-start; }
+.hero-right { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.hero-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.particle { position: absolute; border-radius: 50%; animation: floatParticle linear infinite; }
+@keyframes floatParticle {
+  0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--blue-bright);
+  background: rgba(75,139,190,0.1); border: 1px solid rgba(75,139,190,0.3);
+  padding: 6px 18px; border-radius: 20px; margin-bottom: 20px; display: inline-block;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-title {
+  font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800;
+  line-height: 1.1; text-align: left; color: #ffffff;
+  animation: fadeUp 0.9s ease 0.1s both; letter-spacing: -0.5px;
+}
+.hero-title .hl-blue { color: var(--blue-bright); }
+.hero-title .hl-pu   { color: var(--purple-bright); }
+.hero-title .hl-y    { color: var(--yellow); }
+.hero-title-sub {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #ffffff;
+  margin-top: 12px; letter-spacing: 1px; animation: fadeUp 0.95s ease 0.15s both;
+}
+.hero-subtitle {
+  font-size: 0.9rem; font-weight: 300; color: #ffffff; text-align: justify;
+  line-height: 1.7; animation: fadeUp 1s ease 0.2s both;
+  border-left: 3px solid var(--blue-dark); padding-left: 18px;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; animation: fadeUp 1s ease 0.3s both; }
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+  padding: 4px 12px; border-radius: 5px;
+  border: 1px solid var(--border-pu); color: var(--purple-bright);
+  background: var(--purple-pale); letter-spacing: 0.5px;
+}
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-start; animation: fadeUp 1s ease 0.4s both; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--blue-mid), var(--purple-dark));
+  color: #ffffff; font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer; transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(75,139,190,0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(75,139,190,0.4); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 8px;
+  background: transparent; border: 1px solid var(--border); color: #ffffff;
+  font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 600;
+  text-decoration: none; cursor: pointer; transition: all 0.25s;
+}
+.btn-secondary:hover { border-color: var(--purple-bright); color: var(--purple-bright); background: var(--purple-pale); }
+.scroll-indicator {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: #ffffff; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem; letter-spacing: 2px; margin-top: 60px; align-self: center;
+  animation: fadeUp 1.1s ease 0.5s both;
+}
+.scroll-indicator .arrow { animation: bounce 2s ease infinite; font-size: 1.4rem; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+
+.toc-nav {
+  position: sticky; top: 64px; z-index: 100;
+  background: rgba(10,10,18,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border); padding: 0 28px;
+  display: flex; align-items: center; overflow-x: auto; scrollbar-width: none;
+}
+.toc-nav::-webkit-scrollbar { display: none; }
+.toc-link {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+  color: #ffffff; text-decoration: none; letter-spacing: 1px;
+  text-transform: uppercase; padding: 14px 12px; white-space: nowrap;
+  border-bottom: 2px solid transparent; transition: all 0.2s;
+}
+.toc-link:hover, .toc-link.active { color: var(--blue-bright); border-bottom-color: var(--blue-bright); }
+
+
+.container { max-width: 980px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.section { margin-top: 72px; opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.section.visible { opacity: 1; transform: translateY(0); }
+.sec-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+.sec-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--yellow);
+  letter-spacing: 2px; background: var(--yellow-dim); border: 1px solid rgba(255,212,59,0.3);
+  padding: 4px 12px; border-radius: 4px; white-space: nowrap;
+}
+.sec-title {
+  font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: #ffffff;
+  border-bottom: 2px solid var(--blue-dark); padding-bottom: 6px; flex: 1;
+}
+.sec-title .accent-blue { color: var(--blue-bright); }
+.sec-title .accent-pu   { color: var(--purple-bright); }
+
+
+.prose {
+  font-size: 0.9rem; line-height: 1.85; color: #ffffff;
+  max-width: 820px; text-align: justify;
+}
+.prose strong { color: #ffffff; font-weight: 600; }
+.prose + .prose { margin-top: 14px; }
+.prose em { color: var(--purple-bright); font-style: italic; }
+
+
+.code-block {
+  background: var(--obs-800); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden; margin: 24px 0; box-shadow: var(--glow-blue); position: relative;
+}
+.code-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue-bright), var(--purple-bright), transparent);
+}
+.code-header {
+  background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border);
+  padding: 10px 18px; display: flex; align-items: center; gap: 8px;
+}
+.tdk-r { width:10px;height:10px;border-radius:50%;background:#ff5f57; }
+.tdk-y { width:10px;height:10px;border-radius:50%;background:#febc2e; }
+.tdk-g { width:10px;height:10px;border-radius:50%;background:#28c840; }
+.code-lbl { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:#ffffff; margin-left:6px; letter-spacing:0.5px; }
+.copy-btn {
+  margin-left: auto; font-family:'JetBrains Mono',monospace; font-size:0.8rem;
+  color: var(--blue-bright); background: var(--blue-pale);
+  border: 1px solid rgba(75,139,190,0.3); padding: 3px 10px; border-radius: 4px;
+  cursor: pointer; transition: all 0.2s;
+}
+.copy-btn:hover { background: var(--blue-dark); color: white; }
+.code-body { padding: 22px 24px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+pre { font-family:'JetBrains Mono',monospace; font-size:0.8rem; line-height:1.75; color:#cdd9e5; tab-size:4; white-space: pre; }
+.kw{color:var(--syn-kw)} .cl{color:var(--syn-cl)} .fn{color:var(--syn-fn)}
+.st{color:var(--syn-st)} .cm{color:var(--syn-cm);font-style:italic} .nm{color:var(--syn-nm)}
+.dc{color:var(--syn-dc)} .op{color:var(--syn-kw)}
+
+
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 20px 0; border-radius: 10px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+thead tr { background: linear-gradient(135deg, var(--obs-500), var(--obs-400)); }
+thead th {
+  color: var(--blue-bright); font-family:'JetBrains Mono',monospace;
+  font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 13px 18px; text-align: left; font-weight: 400; border-bottom: 1px solid var(--border);
+}
+tbody tr { border-bottom: 1px solid rgba(75,139,190,0.08); transition: background 0.15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--blue-pale); }
+tbody td { padding: 13px 18px; line-height: 1.6; vertical-align: top; color: #ffffff; font-size: 0.8rem; text-align: justify; }
+tbody td:first-child {
+  font-family:'JetBrains Mono',monospace; font-size:0.8rem; color: var(--purple-bright);
+  font-weight: 500; background: rgba(189,147,249,0.04);
+  border-right: 1px solid var(--border-pu); white-space: nowrap; text-align: left;
+}
+
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 14px; margin: 20px 0; }
+.card {
+  background: var(--obs-700); border: 1px solid var(--border); border-radius: 10px;
+  padding: 20px; border-top: 3px solid var(--blue-dark); transition: all 0.2s;
+}
+.card:hover { border-top-color: var(--blue-bright); transform: translateY(-2px); box-shadow: var(--glow-blue); }
+.card.pu { border-top-color: var(--purple-dark); }
+.card.pu:hover { border-top-color: var(--purple-bright); box-shadow: var(--glow-pu); }
+.card-label { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color: var(--blue-bright); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+.card.pu .card-label { color: var(--purple-bright); }
+.card-value { font-size: 0.9rem; line-height: 1.6; color: #ffffff; text-align: justify; }
+code { font-family:'JetBrains Mono',monospace; font-size:0.8rem; background: rgba(75,139,190,0.12); color: var(--text-code); padding: 2px 7px; border-radius: 4px; }
+
+
+.steps { display: flex; flex-direction: column; gap: 0; margin: 20px 0; }
+.step { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px dashed rgba(75,139,190,0.15); }
+.step:last-child { border-bottom: none; }
+.step-num {
+  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue-dark), var(--purple-dark));
+  color: white; font-family:'JetBrains Mono',monospace; font-size:1rem;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px; box-shadow: 0 2px 10px rgba(75,139,190,0.3);
+}
+.step-head { font-family:'Syne',sans-serif; font-weight:600; font-size:0.9rem; margin-bottom:6px; color:#ffffff; }
+.step-body { font-size: 0.9rem; line-height: 1.75; color: #ffffff; text-align: justify; }
+
+
+.callout {
+  border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+  display: flex; gap: 14px; align-items: flex-start; font-size: 0.9rem; line-height: 1.7;
+}
+.callout-blue { background: rgba(75,139,190,0.08); border-left: 3px solid var(--blue-bright); }
+.callout-pu   { background: var(--purple-pale); border-left: 3px solid var(--purple-bright); }
+.callout-warn { background: rgba(255,212,59,0.06); border-left: 3px solid var(--yellow); }
+.callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.callout-text { color: #ffffff; text-align: justify; font-size: 0.9rem; }
+.callout-text strong { color: #ffffff; }
+
+
+.flow {
+  display: flex; flex-wrap: wrap; align-items: stretch; margin: 20px 0;
+  background: var(--obs-700); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.flow-item {
+  flex: 1; min-width: 120px; padding: 18px 14px; text-align: center;
+  border-right: 1px solid var(--border); position: relative; transition: background 0.2s;
+}
+.flow-item:hover { background: var(--blue-pale); }
+.flow-item:last-child { border-right: none; }
+.flow-item::after { content:'›'; position:absolute; right:-8px; top:50%; transform:translateY(-50%); color: var(--blue-mid); font-size:1.4rem; z-index:1; }
+.flow-item:last-child::after { display: none; }
+.flow-icon { font-size: 2rem; display: block; margin-bottom: 6px; }
+.flow-lbl { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color: var(--blue-bright); letter-spacing:1px; text-transform:uppercase; }
+.flow-desc { font-size: 0.9rem; color: #ffffff; margin-top: 4px; line-height: 1.4; }
+
+
+.subsec { margin-top: 36px; }
+.subsec-title {
+  font-family:'Syne',sans-serif; font-size: 1rem; font-weight:700;
+  color: #ffffff; margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+}
+.subsec-title::before { content:''; display:block; width:3px; height:18px; background: linear-gradient(var(--blue-bright), var(--purple-bright)); border-radius:2px; }
+
+
+.divider { height: 1px; margin: 64px 0 0; background: linear-gradient(to right, transparent, var(--blue-dark), var(--purple-dark), transparent); }
+
+
+.faq-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; background: var(--obs-700); transition: border-color 0.2s; }
+.faq-item:hover { border-color: var(--blue-bright); }
+.faq-q {
+  padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  font-family:'Syne',sans-serif; font-size: 1rem; font-weight:600; color: #ffffff;
+  user-select: none; background: none; border: none; width: 100%; text-align: left; transition: color 0.2s;
+}
+.faq-q:hover { color: var(--blue-bright); }
+.faq-arrow { color: var(--blue-bright); font-size: 1.4rem; transition: transform 0.3s; flex-shrink: 0; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-item.open .faq-a { max-height: 600px; }
+.faq-a-inner { padding: 0 20px 18px; font-size: 0.9rem; line-height: 1.8; color: #ffffff; border-top: 1px solid var(--border); padding-top: 14px; text-align: justify; }
+
+
+.reactions {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 28px 0;
+}
+.reaction-btn {
+  display: flex; align-items: center; gap: 8px; background: var(--obs-700); border: 1px solid var(--border);
+  color: #ffffff; padding: 9px 18px; border-radius: 24px; font-family:'Syne',sans-serif;
+  font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
+}
+.reaction-btn:hover, .reaction-btn.active { background: var(--blue-pale); border-color: var(--blue-bright); color: var(--blue-bright); }
+.reaction-btn.love-btn:hover, .reaction-btn.love-btn.active { background: rgba(255,80,120,0.1); border-color: #ff5078; color: #ff5078; }
+.reaction-count { font-family:'JetBrains Mono',monospace; font-size:0.8rem; }
+
+.comments-section { margin-top: 28px; }
+.comment-form { background: var(--obs-700); border: 1px solid var(--border); border-radius: 10px; padding: 22px; margin-bottom: 24px; }
+.comment-form h3 { font-family:'Syne',sans-serif; font-size: 1rem; margin-bottom: 16px; color: #ffffff; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.form-input, .form-textarea {
+  background: var(--obs-800); border: 1px solid var(--border); border-radius: 6px;
+  color: #ffffff; font-family:'Literata',serif; font-size: 0.8rem;
+  padding: 10px 14px; width: 100%; outline: none; transition: border-color 0.2s;
+}
+.form-input:focus, .form-textarea:focus { border-color: var(--blue-bright); }
+.form-textarea { resize: vertical; min-height: 100px; display: block; margin-bottom: 12px; }
+.submit-btn {
+  background: linear-gradient(135deg, var(--blue-mid), var(--purple-dark));
+  color: white; border: none; padding: 10px 24px; border-radius: 6px;
+  font-family:'Syne',sans-serif; font-size: 0.8rem; font-weight:600; cursor: pointer; transition: all 0.2s;
+}
+.submit-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.comment-list { display: flex; flex-direction: column; gap: 14px; }
+.comment-item { background: var(--obs-700); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+.comment-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.comment-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-dark), var(--purple-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-family:'JetBrains Mono',monospace; font-size:1.2rem; color:white; font-weight:700; flex-shrink:0;
+}
+.comment-name { font-family:'Syne',sans-serif; font-size:0.9rem; font-weight:600; color:#ffffff; }
+.comment-date { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:#ffffff; }
+.comment-body { font-size: 0.9rem; line-height: 1.7; color: #ffffff; text-align: justify; }
+.comment-like { display:flex; align-items:center; gap:6px; margin-top:10px; background:none; border:1px solid var(--border); color:#ffffff; padding:4px 12px; border-radius:12px; cursor:pointer; font-size:0.8rem; transition:all 0.2s; }
+.comment-like:hover { color:#ff5078; border-color:#ff5078; background:rgba(255,80,120,0.08); }
+
+.follow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px; margin: 20px 0; }
+.follow-btn {
+  display: flex; align-items: center; gap: 12px; background: var(--obs-700);
+  border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px;
+  color: #ffffff; font-family:'Syne',sans-serif; font-size: 0.8rem; font-weight:600;
+  cursor: pointer; text-decoration: none; transition: all 0.25s;
+}
+.follow-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+.follow-btn.linkedin:hover { border-color:#0a66c2; background:rgba(10,102,194,0.1); color:#4b9be6; }
+.follow-btn.facebook:hover { border-color:#1877f2; background:rgba(24,119,242,0.1); color:#5b9fec; }
+.follow-btn.twitter:hover  { border-color:#1da1f2; background:rgba(29,161,242,0.1); color:#6bb8f2; }
+.follow-btn.youtube:hover  { border-color:#ff0000; background:rgba(255,0,0,0.08); color:#ff6666; }
+.follow-icon { font-size: 1.6rem; }
+.follow-lbl { display: flex; flex-direction: column; gap: 1px; }
+.follow-platform { font-size: 0.8rem; color: #ffffff; font-weight:400; }
+
+
+.subscribe-card {
+  background: linear-gradient(135deg, var(--obs-600), var(--obs-500));
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 40px 36px; margin: 28px 0; text-align: center;
+  position: relative; overflow: hidden;
+}
+.subscribe-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, var(--blue-bright), var(--purple-bright));
+}
+.subscribe-title { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; margin-bottom:8px; color:#ffffff; }
+.subscribe-sub { color:#ffffff; margin-bottom:24px; font-size:0.9rem; text-align:justify; max-width:500px; margin-left:auto; margin-right:auto; }
+.sub-form { display:flex; gap:10px; max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center; }
+.sub-input {
+  flex:1; min-width:200px; background: var(--obs-800); border:1px solid var(--border);
+  border-radius:8px; color:#ffffff; font-family:'Literata',serif; font-size:0.8rem;
+  padding:11px 16px; outline:none; transition:border-color 0.2s;
+}
+.sub-input:focus { border-color: var(--blue-bright); }
+.sub-btn {
+  background: linear-gradient(135deg, var(--blue-mid), var(--purple-dark));
+  color:white; border:none; padding:11px 24px; border-radius:8px;
+  font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:600;
+  cursor:pointer; transition:all 0.2s; white-space:nowrap;
+}
+.sub-btn:hover { opacity:0.85; transform:translateY(-1px); }
+.sub-note { font-size:0.8rem; color:#ffffff; margin-top:12px; }
+
+
+.share-row { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0; }
+.share-btn {
+  display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:8px;
+  font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:600;
+  border:1px solid var(--border); background: var(--obs-700); color:#ffffff;
+  cursor:pointer; text-decoration:none; transition:all 0.2s;
+}
+.share-btn:hover { transform:translateY(-2px); }
+.share-btn.fb:hover { border-color:#1877f2; background:rgba(24,119,242,0.1); color:#6bb1ff; }
+.share-btn.tw:hover { border-color:#1da1f2; background:rgba(29,161,242,0.1); color:#80ccff; }
+.share-btn.li:hover { border-color:#0a66c2; background:rgba(10,102,194,0.1); color:#6baff5; }
+.share-btn.cp:hover { border-color:var(--yellow); background:var(--yellow-dim); color:var(--yellow); }
+
+
+.outro-card {
+  background: linear-gradient(135deg, var(--obs-600) 0%, var(--obs-700) 100%);
+  border: 1px solid var(--border-pu); border-radius: 14px; padding: 48px 36px;
+  text-align: center; margin: 48px 0; position: relative; overflow: hidden;
+}
+.outro-card::after {
+  content: '</>'; position:absolute; right:32px; bottom:16px;
+  font-family:'JetBrains Mono',monospace; font-size:5rem;
+  color: rgba(189,147,249,0.06); font-weight:700; user-select:none; pointer-events:none;
+}
+.outro-title { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800; color:#ffffff; margin-bottom:14px; }
+.outro-body { color:#ffffff; font-size:0.9rem; max-width:620px; margin:0 auto 14px; line-height:1.8; text-align:justify; }
+
+
+footer { background: var(--obs-800); border-top: 1px solid var(--border); padding: 60px 24px 32px; margin-top: 80px; }
+.footer-inner { max-width: 980px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-brand { font-family:'Syne',sans-serif; font-size:1rem; font-weight:800; margin-bottom:10px; }
+.footer-tagline { font-size: 0.9rem; color: #ffffff; line-height:1.6; text-align:justify; }
+.footer-col-title { font-family:'JetBrains Mono',monospace; font-size:0.8rem; letter-spacing:2px; color: var(--blue-bright); text-transform:uppercase; margin-bottom:14px; }
+.footer-btn {
+  display:flex; align-items:center; gap:8px; background:none; border:1px solid transparent;
+  color:#ffffff; padding:7px 10px; border-radius:6px; font-family:'Syne',sans-serif; font-size:0.8rem;
+  cursor:pointer; text-decoration:none; width:100%; margin-bottom:2px; transition:all 0.2s; text-align:left;
+}
+.footer-btn:hover { border-color: var(--border); color:#ffffff; background: var(--obs-700); }
+.footer-btn .ico { font-size:1.2rem; width:18px; }
+.footer-bottom { border-top:1px solid var(--border); padding-top:24px; display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; }
+.footer-copy { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:#ffffff; }
+.footer-links-row { display:flex; gap:8px; flex-wrap:wrap; }
+.footer-link-btn {
+  background: var(--obs-700); border:1px solid var(--border); color:#ffffff;
+  padding:5px 12px; border-radius:5px; font-family:'JetBrains Mono',monospace;
+  font-size:0.8rem; letter-spacing:0.5px; cursor:pointer; text-decoration:none; transition:all 0.2s;
+}
+.footer-link-btn:hover { border-color: var(--blue-bright); color: var(--blue-bright); }
+
+
+.sticky-share { position:fixed; right:16px; top:50%; transform:translateY(-50%); z-index:200; display:flex; flex-direction:column; gap:8px; }
+.ss-btn {
+  width:40px; height:40px; border-radius:8px; background: var(--obs-700);
+  border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:1.4rem; transition:all 0.2s; text-decoration:none; color:#ffffff;
+}
+.ss-btn:hover { transform:scale(1.12); border-color: var(--blue-bright); background: var(--blue-pale); color: var(--blue-bright); }
+
+
+#progress-bar {
+  position:fixed; top:64px; left:0; height:2px; z-index:1001;
+  background: linear-gradient(90deg, var(--blue-bright), var(--purple-bright));
+  width:0%; transition:width 0.1s linear;
+}
+
+
+.toast {
+  position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(60px);
+  background: var(--obs-600); border:1px solid var(--blue-bright);
+  color:#ffffff; padding:10px 22px; border-radius:8px;
+  font-family:'JetBrains Mono',monospace; font-size:0.8rem;
+  transition:transform 0.3s ease; z-index:2000; pointer-events:none;
+}
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; text-align: center; }
+  .hero-left { align-items: center; }
+  .hero-right { align-items: center; }
+  .hero-title { text-align: center; }
+  .hero-subtitle { text-align: justify; border-left: none; padding-left: 0; border-top: 3px solid var(--blue-dark); padding-top: 16px; }
+  .hero-tags { justify-content: center; }
+  .hero-cta { justify-content: center; }
+  .scroll-indicator { margin-top: 36px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .card-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .navbar { padding: 0 16px; }
+  .hero { padding: 90px 0 60px; }
+  .toc-nav { padding: 0 8px; }
+  .toc-link { font-size: 0.7rem; padding: 10px 8px; letter-spacing: 0.5px; }
+  .container { padding: 0 16px; }
+  .section { margin-top: 48px; }
+  .footer-top { grid-template-columns: 1fr; gap: 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .sticky-share { display: none; }
+  .card-grid { grid-template-columns: 1fr; }
+  .flow-item { min-width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+  .flow-item::after { content: '↓'; right: 50%; bottom: -10px; top: unset; transform: translateX(50%); }
+  .step { gap: 12px; }
+  .step-num { width: 28px; height: 28px; font-size: 11px; }
+  .follow-grid { grid-template-columns: 1fr 1fr; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .reactions { flex-wrap: wrap; gap: 8px; }
+  .share-row { gap: 8px; }
+  .code-body { padding: 14px 12px; }
+  .subscribe-card { padding: 28px 18px; }
+  .sub-form { flex-direction: column; }
+  .sub-input, .sub-btn { width: 100%; }
+  .outro-card { padding: 28px 18px; }
+  .btn-primary, .btn-secondary { width: 100%; max-width: 280px; justify-content: center; }
+}
+@media (max-width: 480px) {
+  .navbar { padding: 0 12px; }
+  .container { padding: 0 12px; }
+  .hero-inner { padding: 0 16px; }
+  .drawer { width: 280px; }
+  .hero-cta { flex-direction: column; align-items: center; }
+  .follow-grid { grid-template-columns: 1fr; }
+  .comment-form { padding: 16px; }
+  .table-wrap { font-size: 0.75rem; }
+  thead th { font-size: 0.75rem; padding: 8px 10px; }
+  tbody td { padding: 8px 10px; font-size: 0.75rem; }
+}
+
+.ai-share-section { background: var(--obs-700); border: 1px solid var(--border-pu); border-radius: 14px; padding: 28px; margin: 28px 0; }
+.ai-share-title { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:#ffffff; margin-bottom:8px; }
+.ai-share-desc { font-size:0.9rem; color:#ffffff; margin-bottom:16px; text-align:justify; }
+.ai-share-input-row { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+.ai-share-select { flex:1; min-width:140px; background:var(--obs-800); border:1px solid var(--border); border-radius:8px; color:#ffffff; font-family:'Syne',sans-serif; font-size:0.8rem; padding:10px 14px; outline:none; cursor:pointer; }
+.ai-share-select:focus { border-color:var(--blue-bright); }
+.ai-share-gen-btn { background:linear-gradient(135deg,var(--blue-mid),var(--purple-dark)); color:#ffffff; border:none; padding:10px 22px; border-radius:8px; font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:600; cursor:pointer; transition:all 0.2s; white-space:nowrap; }
+.ai-share-gen-btn:hover { opacity:0.85; transform:translateY(-1px); }
+.ai-share-output { background:var(--obs-800); border:1px solid var(--border); border-radius:8px; padding:16px; min-height:70px; font-size:0.9rem; color:#ffffff; line-height:1.7; white-space:pre-wrap; word-break:break-word; margin-bottom:12px; display:none; text-align:justify; }
+.ai-share-output.visible { display:block; }
+.ai-share-loading { display:none; align-items:center; gap:10px; color:#ffffff; font-size:0.8rem; margin-bottom:12px; }
+.ai-share-loading.visible { display:flex; }
+.ai-share-spinner { width:18px; height:18px; border:2px solid var(--border); border-top-color:var(--blue-bright); border-radius:50%; animation:spin 0.8s linear infinite; }
+@keyframes spin { to{transform:rotate(360deg)} }
+.ai-share-action-row { display:flex; gap:8px; flex-wrap:wrap; }
+.ai-share-action-btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:600; border:1px solid var(--border); background:var(--obs-700); color:#ffffff; cursor:pointer; text-decoration:none; transition:all 0.2s; }
+.ai-share-action-btn:hover { transform:translateY(-1px); }
+.ai-share-action-btn.fb:hover { border-color:#1877f2; background:rgba(24,119,242,0.1); color:#6bb1ff; }
+.ai-share-action-btn.tw:hover { border-color:#1da1f2; background:rgba(29,161,242,0.1); color:#80ccff; }
+.ai-share-action-btn.li:hover { border-color:#0a66c2; background:rgba(10,102,194,0.1); color:#6baff5; }
+.ai-share-action-btn.cp:hover { border-color:var(--yellow); background:var(--yellow-dim); color:var(--yellow); }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav class="navbar">
+  <a href="https://code-sense.pansensoyglenn.workers.dev" class="brand">
+    <span class="brand-valleys">VALLEYS</span>
+    <span class="brand-amp">&amp;</span>
+    <span class="brand-bytes">BYTES</span>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer" role="navigation" aria-label="Site menu">
+  <div class="drawer-section">
+    <div class="drawer-section-label">Navigate</div>
+    <a class="drawer-btn" href="#intro"><span class="ico">📖</span>Introduction</a>
+    <a class="drawer-btn" href="#s1"><span class="ico">🗂️</span>Program Overview</a>
+    <a class="drawer-btn" href="#s2"><span class="ico">⚙️</span>No Imports</a>
+    <a class="drawer-btn" href="#s3"><span class="ico">🏷️</span>Product Class</a>
+    <a class="drawer-btn" href="#s4"><span class="ico">🍖</span>Steak Subclass</a>
+    <a class="drawer-btn" href="#s5"><span class="ico">🥔</span>SideDish Subclass</a>
+    <a class="drawer-btn" href="#s6"><span class="ico">🥗</span>Salad Subclass</a>
+    <a class="drawer-btn" href="#s7"><span class="ico">🍷</span>Wine Subclass</a>
+    <a class="drawer-btn" href="#s8"><span class="ico">🛒</span>Order Flow</a>
+    <a class="drawer-btn" href="#s9"><span class="ico">🔄</span>Polymorphism Deep Dive</a>
+    <a class="drawer-btn" href="#s10"><span class="ico">🔧</span>Method Overriding & super()</a>
+    <a class="drawer-btn" href="#bestpractices"><span class="ico">⚠️</span>Best Practices</a>
+    <a class="drawer-btn" href="#extend"><span class="ico">🧪</span>Challenges</a>
+    <a class="drawer-btn" href="#source"><span class="ico">💻</span>Full Source</a>
+    <a class="drawer-btn" href="#faq"><span class="ico">❓</span>FAQ</a>
+  </div>
+  <div class="drawer-section">
+    <div class="drawer-section-label">Community</div>
+    <a class="drawer-btn" href="#comments"><span class="ico">💬</span>Comments</a>
+    <a class="drawer-btn" href="#follow"><span class="ico">👥</span>Follow</a>
+    <a class="drawer-btn" href="#subscribe"><span class="ico">✉️</span>Subscribe</a>
+  </div>
+  <div class="drawer-section">
+    <div class="drawer-section-label">Site Pages</div>
+    <a class="drawer-btn" href="about-guide.html"><span class="ico">📄</span>About this Page</a>
+    <a class="drawer-btn" href="about-author.html"><span class="ico">🧑‍💻</span>About the Author</a>
+    <a class="drawer-btn" href="oop-contact.html"><span class="ico">📬</span>Contact</a>
+    <a class="drawer-btn" href="oop-privacy.html"><span class="ico">🔒</span>Privacy Policy</a>
+    <a class="drawer-btn" href="oop-terms.html"><span class="ico">📜</span>Terms of Service</a>
+    <a class="drawer-btn" href="oop-cookie.html"><span class="ico">🍪</span>Cookie Policy</a>
+  </div>
+</div>
+<div style="padding:78px 24px 0;position:relative;z-index:1;">
+  <div class="ad-banner">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="4226674403" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+<section class="hero" id="top">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Python · Polymorphism · Inheritance · El Nido</div>
+      <h3 class="hero-title">
+        <span class="hl-blue">El Nido</span> <span class="hl-y">Steak & Wine</span>
+      </h3>
+      <div class="hero-title-sub">Python OOP · Polymorphism & Method Overriding Guide</div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-subtitle">
+        A complete walkthrough of polymorphism, method overriding, and super() — explained step by step through a real steakhouse ordering system in El Nido, Palawan. Every class, every method, every design decision explained.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">🧱 1 Base + 4 Subclasses</span>
+        <span class="hero-tag">🍷 Wine with portion pricing</span>
+        <span class="hero-tag">🔄 Polymorphism</span>
+        <span class="hero-tag">🔧 Method Overriding</span>
+        <span class="hero-tag">🔁 11 Sections</span>
+        <span class="hero-tag">🐍 Python 3</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#intro" class="btn-primary">📖 Start Reading</a>
+        <a href="#source" class="btn-secondary">💻 View Source Code</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>SCROLL TO EXPLORE</span>
+    <span class="arrow">↓</span>
+  </div>
+</section>
+<nav class="toc-nav" id="toc">
+  <a class="toc-link" href="#intro">Intro</a>
+  <a class="toc-link" href="#s1">Overview</a>
+  <a class="toc-link" href="#s2">Imports</a>
+  <a class="toc-link" href="#s3">Product</a>
+  <a class="toc-link" href="#s4">Steak</a>
+  <a class="toc-link" href="#s5">SideDish</a>
+  <a class="toc-link" href="#s6">Salad</a>
+  <a class="toc-link" href="#s7">Wine</a>
+  <a class="toc-link" href="#s8">Order Flow</a>
+  <a class="toc-link" href="#s9">Polymorphism</a>
+  <a class="toc-link" href="#s10">super()</a>
+  <a class="toc-link" href="#bestpractices">Best Practices</a>
+  <a class="toc-link" href="#extend">Challenges</a>
+  <a class="toc-link" href="#source">Code</a>
+  <a class="toc-link" href="#faq">FAQ</a>
+</nav>
+<div class="container">
+  <div class="section" id="intro">
+    <div class="sec-header">
+      <span class="sec-num">INTRODUCTION</span>
+      <h2 class="sec-title">What Is <span class="accent-blue">El Nido Steak & Wine</span> and Why Does It Matter?</h2>
+    </div>
+    <p class="prose">
+      Welcome to <strong>El Nido Steak & Wine</strong> – a Python command-line program that simulates a high‑end steakhouse ordering experience in the beautiful town of El Nido, Palawan. Customers can choose from three premium steaks, three side dishes, one signature salad, and three wines – with the option to order wine by the bottle or by the glass. Behind this simple interactive menu lies a rich demonstration of object‑oriented programming: <strong>polymorphism</strong> and <strong>method overriding</strong>.
+    </p>
+    <p class="prose" style="margin-top:14px;">
+      The program defines a base class <code>Product</code> with a name, price, and two methods: <code>display()</code> and <code>get_price()</code>. Four subclasses – <code>Steak</code>, <code>SideDish</code>, <code>Salad</code>, and <code>Wine</code> – inherit from <code>Product</code>. Each overrides <code>display()</code> to add an emoji and a descriptive label, making the menu visually distinct. The <code>Wine</code> class goes a step further: it overrides both <code>display()</code> and <code>get_price()</code> to accept an optional <code>portion</code> parameter, handling the two pricing models (bottle vs. glass) elegantly without duplicating code.
+    </p>
+    <p class="prose" style="margin-top:14px;">
+      This guide walks through every line of the program, explaining not just <em>what</em> the code does, but <em>why</em> each design choice was made – from using <code>super()</code> in constructors, to validating user input with <code>try/except</code>, to the clever use of default arguments to achieve polymorphic behaviour with extra parameters.
+    </p>
+    <div class="callout callout-blue" style="margin-top:24px;">
+      <span class="callout-icon">🐍</span>
+      <div class="callout-text">
+        <strong>What you will learn from this guide:</strong> Polymorphism in action, method overriding with and without extra parameters, proper use of <code>super()</code>, the DRY principle, robust input validation, and a complete order flow – all in one concise, real‑world program.
+      </div>
+    </div>
+    <div class="callout callout-warn" style="margin-top:16px;">
+      <span class="callout-icon">💡</span>
+      <div class="callout-text">
+        <strong>Who this guide is for:</strong> Python learners comfortable with basic classes and ready to understand how polymorphism and inheritance make code flexible and maintainable. No external libraries – only core Python.
+      </div>
+    </div>
+  </div>
+  <div class="ad-banner" style="margin-top:40px;padding:0;">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="4226674403" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s1">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 01</span>
+      <h2 class="sec-title">Program <span class="accent-pu">Overview</span></h2>
+    </div>
+    <p class="prose">
+      The program consists of one base class (<code>Product</code>) and four subclasses (<code>Steak</code>, <code>SideDish</code>, <code>Salad</code>, <code>Wine</code>). It displays a menu, lets the user choose one item from each category, calculates the total, and prints a detailed receipt. The <code>Wine</code> class stands out because its <code>display()</code> and <code>get_price()</code> methods accept an optional <code>portion</code> parameter – a clever extension of polymorphism.
+    </p>
+    <div class="card-grid" style="margin-top:20px;">
+      <div class="card"><div class="card-label">Class 1 — Product</div><div class="card-value">Base class with <code>name</code>, <code>price</code>, <code>display()</code>, and <code>get_price()</code>. Serves as the blueprint for all menu items.</div></div>
+      <div class="card pu"><div class="card-label">Class 2 — Steak</div><div class="card-value">Inherits from Product. Overrides <code>display()</code> to add a 🍖 emoji and "STEAK SPECIAL" label.</div></div>
+      <div class="card"><div class="card-label">Class 3 — SideDish</div><div class="card-value">Inherits from Product. Overrides <code>display()</code> to add a 🥔 emoji and "SIDE DISH" label.</div></div>
+      <div class="card pu"><div class="card-label">Class 4 — Salad</div><div class="card-value">Inherits from Product. Overrides <code>display()</code> to add a 🥗 emoji and "VEGETABLE SALAD" label.</div></div>
+      <div class="card"><div class="card-label">Class 5 — Wine</div><div class="card-value">Inherits from Product. Adds <code>bottle_price</code> and calculates <code>glass_price</code>. Overrides <code>display()</code> and <code>get_price()</code> with an optional <code>portion</code> parameter to handle bottle/glass pricing.</div></div>
+    </div>
+    <div class="flow" style="margin-top:24px;">
+      <div class="flow-item"><span class="flow-icon">📋</span><span class="flow-lbl">Menu Display</span><div class="flow-desc">Polymorphic display() calls for each category</div></div>
+      <div class="flow-item"><span class="flow-icon">🎯</span><span class="flow-lbl">User Selections</span><div class="flow-desc">Input validation loops for each category</div></div>
+      <div class="flow-item"><span class="flow-icon">🧾</span><span class="flow-lbl">Receipt</span><div class="flow-desc">display() again for order summary</div></div>
+      <div class="flow-item"><span class="flow-icon">💰</span><span class="flow-lbl">Total</span><div class="flow-desc">get_price() called polymorphically</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s2">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 02</span>
+      <h2 class="sec-title"><span class="accent-blue">No Imports Needed</span> — Pure Python</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">steak.py — no imports</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="cm"># This program uses only built-in Python features.</span>
+<span class="cm"># No import statements are needed.</span></pre></div>
+    </div>
+    <p class="prose">Everything in this program – classes, input handling, loops, formatting – uses core Python. No external modules are required. This keeps the focus on OOP concepts and makes the code immediately runnable on any Python 3 installation.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s3">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 03</span>
+      <h2 class="sec-title">The <span class="accent-pu">Product</span> Base Class</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">class Product</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">class</span> <span class="cl">Product</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, name, price):
+        <span class="nm">self</span>.name = name
+        <span class="nm">self</span>.price = price
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="nm">self</span>):
+        <span class="kw">return</span> <span class="st">f"</span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+    <span class="kw">def</span> <span class="fn">get_price</span>(<span class="nm">self</span>):
+        <span class="kw">return</span> <span class="nm">self</span>.price</pre></div>
+    </div>
+    <p class="prose"><code>Product</code> is the foundation. It defines two attributes (<code>name</code>, <code>price</code>) and two methods. <code>display()</code> returns a simple formatted string, and <code>get_price()</code> returns the price. These methods are designed to be overridden by subclasses. The base class itself is never instantiated directly in this program – it serves purely as an abstract blueprint.</p>
+    <p class="prose" style="margin-top:14px;">Notice that the constructor does not include type hints – this is a stylistic choice, but hints could be added without changing behaviour. The <code>f"{self.price:.2f}"</code> format ensures prices are always shown with two decimal places, perfect for Philippine Pesos.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s4">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 04</span>
+      <h2 class="sec-title"><span class="accent-blue">Steak</span> — Overriding display()</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">class Steak(Product)</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">class</span> <span class="cl">Steak</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="nm">self</span>):
+        <span class="kw">return</span> <span class="st">f"🍖 STEAK SPECIAL: </span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span></pre></div>
+    </div>
+    <p class="prose"><code>Steak</code> inherits the constructor from <code>Product</code> without adding any new attributes. It overrides only the <code>display()</code> method, prepending a steak emoji and the label "STEAK SPECIAL". This is a minimal but clear example of polymorphism: the same method name (<code>display</code>) now produces different output depending on the object’s class.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s5">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 05</span>
+      <h2 class="sec-title"><span class="accent-pu">SideDish</span> — Another Simple Override</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">class SideDish(Product)</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">class</span> <span class="cl">SideDish</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="nm">self</span>):
+        <span class="kw">return</span> <span class="st">f"🥔 SIDE DISH: </span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span></pre></div>
+    </div>
+    <p class="prose"><code>SideDish</code> follows the same pattern as <code>Steak</code> but with a potato emoji and a different label. This symmetry demonstrates how easily you can add new categories without affecting existing code – the main program only needs to know that every product has a <code>display()</code> method.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s6">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 06</span>
+      <h2 class="sec-title"><span class="accent-blue">Salad</span> — Yet Another Override</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">class Salad(Product)</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">class</span> <span class="cl">Salad</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="nm">self</span>):
+        <span class="kw">return</span> <span class="st">f"🥗 VEGETABLE SALAD: </span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span></pre></div>
+    </div>
+    <p class="prose">Again, only <code>display()</code> is overridden. The <code>Salad</code> class has no new attributes. The consistency of this pattern highlights one of the benefits of polymorphism: you can treat all products uniformly when displaying the menu or receipt.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s7">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 07</span>
+      <h2 class="sec-title"><span class="accent-pu">Wine</span> — Advanced Overriding with Parameters</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">class Wine(Product)</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">class</span> <span class="cl">Wine</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, name, bottle_price):
+        <span class="nb">super</span>().<span class="fn">__init__</span>(name, bottle_price)
+        <span class="nm">self</span>.bottle_price = bottle_price
+        <span class="nm">self</span>.glass_price = <span class="fn">round</span>(bottle_price / <span class="nm">5</span>)   <span class="cm"># approx. 5 glasses per bottle</span>
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="nm">self</span>, portion=<span class="st">"bottle"</span>):
+        <span class="kw">if</span> portion == <span class="st">"glass"</span>:
+            <span class="kw">return</span> <span class="st">f"🍷 WINE (GLASS): </span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.glass_price:<span class="nm">.2f</span>}<span class="st">"</span>
+        <span class="kw">else</span>:
+            <span class="kw">return</span> <span class="st">f"🍷 WINE (BOTTLE): </span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.bottle_price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+    <span class="kw">def</span> <span class="fn">get_price</span>(<span class="nm">self</span>, portion=<span class="st">"bottle"</span>):
+        <span class="kw">if</span> portion == <span class="st">"glass"</span>:
+            <span class="kw">return</span> <span class="nm">self</span>.glass_price
+        <span class="kw">else</span>:
+            <span class="kw">return</span> <span class="nm">self</span>.bottle_price</pre></div>
+    </div>
+    <p class="prose">The <code>Wine</code> class introduces two new attributes: <code>bottle_price</code> (stored also as the inherited <code>price</code>) and <code>glass_price</code>, which is approximated by dividing the bottle price by 5. The constructor uses <code>super().__init__(name, bottle_price)</code> to initialise the base attributes, then adds its own.</p>
+    <p class="prose" style="margin-top:14px;">Both <code>display()</code> and <code>get_price()</code> are overridden with an optional <code>portion</code> parameter that defaults to <code>"bottle"</code>. This is a clever design: it allows the methods to be called without the parameter (like other products) when a default is acceptable, and with the parameter when the user chooses a glass. The method signatures are still compatible with the parent class when called with no extra arguments – that’s polymorphism with a twist.</p>
+    <p class="prose" style="margin-top:14px;">The <code>round(bottle_price / 5)</code> calculation is a simplification; in a real system you might store the glass price explicitly or calculate it based on a more accurate formula.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s8">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 08</span>
+      <h2 class="sec-title">The Order Flow — <span class="accent-blue">Selection, Validation, and Receipt</span></h2>
+    </div>
+    <p class="prose">The <code>main()</code> function orchestrates the entire experience. It prints a welcome banner, displays each category using the polymorphic <code>display()</code> method, then enters input‑validation loops for each category.</p>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">Input validation loop (steak example)</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">while True</span>:
+    <span class="kw">try</span>:
+        ch = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"\nChoose your STEAK (1-3): "</span>)) - <span class="nm">1</span>
+        <span class="kw">if</span> <span class="nm">0</span> <= ch < <span class="fn">len</span>(steaks):
+            chosen_steak = steaks[ch]
+            <span class="kw">break</span>
+        <span class="fn">print</span>(<span class="st">"Invalid! Choose 1-3."</span>)
+    <span class="kw">except</span> <span class="cl">ValueError</span>:
+        <span class="fn">print</span>(<span class="st">"Enter a number!"</span>)</pre></div>
+    </div>
+    <p class="prose">Each category uses a similar loop: convert input to int, adjust to zero‑based index, check bounds, and store the selected object. The <code>try/except</code> catches non‑numeric entries gracefully. For the salad, there’s only one option, so the loop checks that the user enters <code>1</code>.</p>
+    <p class="prose" style="margin-top:14px;">The wine selection is followed by an additional loop to ask for the portion (<code>glass</code> or <code>bottle</code>). This choice is stored and later passed to <code>display()</code> and <code>get_price()</code>.</p>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">Receipt printing</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="fn">print</span>(<span class="st">f"  • </span>{chosen_steak.<span class="fn">display</span>()}<span class="st">"</span>)
+<span class="fn">print</span>(<span class="st">f"  • </span>{chosen_side.<span class="fn">display</span>()}<span class="st">"</span>)
+<span class="fn">print</span>(<span class="st">f"  • </span>{chosen_salad.<span class="fn">display</span>()}<span class="st">"</span>)
+<span class="fn">print</span>(<span class="st">f"  • </span>{chosen_wine.<span class="fn">display</span>(wine_portion)}<span class="st">"</span>)</pre></div>
+    </div>
+    <p class="prose">Notice the last line passes the <code>wine_portion</code> argument. This demonstrates that even though the method signature is different, the call site adapts. The total is computed by summing <code>get_price()</code> for the first three items and <code>chosen_wine.get_price(wine_portion)</code> for the wine.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s9">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 09</span>
+      <h2 class="sec-title">Polymorphism <span class="accent-pu">Deep Dive</span></h2>
+    </div>
+    <p class="prose">Polymorphism in Python means that the same method name can trigger different implementations depending on the object’s class. In this program, polymorphism is used in two ways:</p>
+    <ul style="margin-left:20px;color:#ffffff;font-size:0.9rem;">
+      <li><strong>Uniform display</strong> – When the menu is printed, each item’s <code>display()</code> method is called. The correct emoji and label appear without any <code>if</code> statements.</li>
+      <li><strong>Parameterised polymorphism</strong> – The <code>Wine</code> class accepts an extra parameter, yet can still be used like a regular <code>Product</code> when the default is used.</li>
+    </ul>
+    <div class="subsec">
+      <div class="subsec-title">How Python decides which <code>display</code> to run</div>
+      <p class="prose">When <code>steak.display()</code> is called, Python looks at the class of <code>steak</code> (<code>Steak</code>), finds an overridden <code>display</code>, and executes it. If the method were not found in <code>Steak</code>, Python would look in the parent class <code>Product</code>.</p>
+      <p class="prose">For the wine line, <code>chosen_wine.display(wine_portion)</code> passes an argument. Python still resolves the method based on the object’s class (<code>Wine</code>) and calls that version with the provided argument. This is a perfect example of how polymorphism doesn’t require identical signatures – as long as the call matches the child’s signature, it works.</p>
+    </div>
+    <div class="callout callout-blue" style="margin-top:16px;">
+      <span class="callout-icon">📌</span>
+      <div class="callout-text"><strong>Liskov Substitution Principle:</strong> Any subclass must be usable where its parent is expected. Here, <code>Wine</code> can be used as a <code>Product</code> if we ignore the extra parameter (by using defaults). This principle is satisfied because the base methods still work with the child objects when called with the base signature.</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s10">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 10</span>
+      <h2 class="sec-title">Method Overriding & <span class="accent-blue">super()</span></h2>
+    </div>
+    <p class="prose">Overriding a method means providing a new implementation in a child class that replaces the parent’s version. In this program, all four subclasses override <code>display()</code>, and <code>Wine</code> also overrides <code>get_price()</code>.</p>
+    <div class="subsec">
+      <div class="subsec-title">When to use <code>super()</code></div>
+      <p class="prose"><code>super()</code> is used in the <code>Wine</code> constructor to call the parent <code>Product</code> constructor and initialise the base attributes. This avoids repeating the assignment of <code>self.name</code> and <code>self.price</code>. If you forget <code>super().__init__</code>, those attributes will never be set, leading to an <code>AttributeError</code> later.</p>
+      <p class="prose" style="margin-top:14px;">In the overridden methods themselves, we don’t call <code>super()</code> because we are completely replacing the parent’s behaviour. However, if you wanted to extend the parent method (e.g., print the generic description <em>and</em> an emoji), you could call <code>super().display()</code> and then add your own text.</p>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="bestpractices">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 11</span>
+      <h2 class="sec-title">Common <span class="accent-pu">Mistakes</span> &amp; Best Practices</h2>
+    </div>
+    <div class="steps" style="margin-top:20px;">
+      <div class="step">
+        <div class="step-num">✗</div>
+        <div>
+          <div class="step-head">Forgetting to call <code>super().__init__</code> in <code>Wine</code></div>
+          <p class="step-body">If you omit the parent constructor call, the base attributes (<code>name</code>, <code>price</code>) are never set. Always call <code>super().__init__(...)</code> when you override the constructor.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">✗</div>
+        <div>
+          <div class="step-head">Changing the method signature incompatibly</div>
+          <p class="step-body">If you add a required parameter to an overridden method, code that calls the method with the parent signature will break. Use default arguments to maintain compatibility, as <code>Wine</code> does with <code>portion="bottle"</code>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">✓</div>
+        <div>
+          <div class="step-head">Validate user input with <code>try/except</code></div>
+          <p class="step-body">Wrapping <code>int(input())</code> in a try block catches non‑numeric entries gracefully. Always provide a helpful error message and continue the loop.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">✓</div>
+        <div>
+          <div class="step-head">Use meaningful emojis and labels</div>
+          <p class="step-body">The emojis in <code>display()</code> methods make the menu more engaging and help distinguish categories at a glance – a small touch that improves user experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="extend">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 12</span>
+      <h2 class="sec-title">Try It <span class="accent-blue">Yourself</span> — Extension Challenges</h2>
+    </div>
+    <p class="prose">Solidify your understanding by extending the program:</p>
+    <div class="card-grid" style="margin-top:20px;">
+      <div class="card">
+        <div class="card-label">🟢 Beginner — Add Dessert class</div>
+        <div class="card-value">Create a <code>Dessert</code> class that inherits from <code>Product</code> and overrides <code>display()</code> with a 🍰 emoji. Add 2‑3 desserts to the menu and include them in the order flow.</div>
+      </div>
+      <div class="card pu">
+        <div class="card-label">🟡 Intermediate — Wine by the glass only</div>
+        <div class="card-value">Modify the <code>Wine</code> class so that some wines are only available by the glass, some only by the bottle. Adjust the input validation to handle this.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">🔴 Advanced — JSON receipt</div>
+        <div class="card-value">After payment, save the order details to a JSON file named <code>receipt_<phone>.json</code>. Include customer name, phone, items with portions, and total. Use <code>ensure_ascii=False</code> to preserve emojis.</div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="source">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 13</span>
+      <h2 class="sec-title">Complete <span class="accent-blue">Source Code</span></h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">steak.py — Full Source</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">class</span> <span class="cl">Product</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, name, price):
+        <span class="nm">self</span>.name = name
+        <span class="nm">self</span>.price = price
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="nm">self</span>):
+        <span class="kw">return</span> <span class="st">f"</span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+    <span class="kw">def</span> <span class="fn">get_price</span>(<span class="nm">self</span>):
+        <span class="kw">return</span> <span class="nm">self</span>.price
+
+
+<span class="kw">class</span> <span class="cl">Steak</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="nm">self</span>):
+        <span class="kw">return</span> <span class="st">f"🍖 STEAK SPECIAL: </span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+
+<span class="kw">class</span> <span class="cl">SideDish</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="nm">self</span>):
+        <span class="kw">return</span> <span class="st">f"🥔 SIDE DISH: </span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+
+<span class="kw">class</span> <span class="cl">Salad</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="nm">self</span>):
+        <span class="kw">return</span> <span class="st">f"🥗 VEGETABLE SALAD: </span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+
+<span class="kw">class</span> <span class="cl">Wine</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, name, bottle_price):
+        <span class="nb">super</span>().<span class="fn">__init__</span>(name, bottle_price)
+        <span class="nm">self</span>.bottle_price = bottle_price
+        <span class="nm">self</span>.glass_price = <span class="fn">round</span>(bottle_price / <span class="nm">5</span>)
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="nm">self</span>, portion=<span class="st">"bottle"</span>):
+        <span class="kw">if</span> portion == <span class="st">"glass"</span>:
+            <span class="kw">return</span> <span class="st">f"🍷 WINE (GLASS): </span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.glass_price:<span class="nm">.2f</span>}<span class="st">"</span>
+        <span class="kw">else</span>:
+            <span class="kw">return</span> <span class="st">f"🍷 WINE (BOTTLE): </span>{<span class="nm">self</span>.name}<span class="st"> - ₱</span>{<span class="nm">self</span>.bottle_price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+    <span class="kw">def</span> <span class="fn">get_price</span>(<span class="nm">self</span>, portion=<span class="st">"bottle"</span>):
+        <span class="kw">if</span> portion == <span class="st">"glass"</span>:
+            <span class="kw">return</span> <span class="nm">self</span>.glass_price
+        <span class="kw">else</span>:
+            <span class="kw">return</span> <span class="nm">self</span>.bottle_price
+
+
+<span class="kw">def</span> <span class="fn">main</span>():
+    <span class="fn">print</span>(<span class="st">"="</span>*<span class="nm">60</span>)
+    <span class="fn">print</span>(<span class="st">"WELCOME TO EL NIDO STEAK & WINE RESTAURANT"</span>)
+    <span class="fn">print</span>(<span class="st">"El Nido, Palawan, Philippines"</span>)
+    <span class="fn">print</span>(<span class="st">"Finest steaks, wines, sides & salads in paradise!"</span>)
+    <span class="fn">print</span>(<span class="st">"="</span>*<span class="nm">60</span>)
+
+    <span class="cm"># Steaks</span>
+    <span class="fn">print</span>(<span class="st">"\n🌟 AVAILABLE STEAKS:"</span>)
+    steaks = [
+        <span class="cl">Steak</span>(<span class="st">"Ribeye Steak"</span>, <span class="nm">1500</span>),
+        <span class="cl">Steak</span>(<span class="st">"T-Bone Steak"</span>, <span class="nm">1200</span>),
+        <span class="cl">Steak</span>(<span class="st">"Sirloin Steak"</span>, <span class="nm">1000</span>)
+    ]
+    <span class="kw">for</span> i, item <span class="kw">in</span> <span class="fn">enumerate</span>(steaks, <span class="nm">1</span>):
+        <span class="fn">print</span>(<span class="st">f"</span>{i}<span class="st">. </span>{item.<span class="fn">display</span>()}<span class="st">"</span>)
+
+    <span class="cm"># Side dishes</span>
+    <span class="fn">print</span>(<span class="st">"\n🥔 AVAILABLE SIDE DISHES:"</span>)
+    sides = [
+        <span class="cl">SideDish</span>(<span class="st">"Mashed Potatoes"</span>, <span class="nm">150</span>),
+        <span class="cl">SideDish</span>(<span class="st">"Baked Potatoes"</span>, <span class="nm">200</span>),
+        <span class="cl">SideDish</span>(<span class="st">"French Fries"</span>, <span class="nm">120</span>)
+    ]
+    <span class="kw">for</span> i, item <span class="kw">in</span> <span class="fn">enumerate</span>(sides, <span class="nm">1</span>):
+        <span class="fn">print</span>(<span class="st">f"</span>{i}<span class="st">. </span>{item.<span class="fn">display</span>()}<span class="st">"</span>)
+
+    <span class="cm"># Salad</span>
+    <span class="fn">print</span>(<span class="st">"\n🥗 VEGETABLE SALAD:"</span>)
+    salads = [<span class="cl">Salad</span>(<span class="st">"Fresh Vegetable Salad"</span>, <span class="nm">250</span>)]
+    <span class="kw">for</span> i, item <span class="kw">in</span> <span class="fn">enumerate</span>(salads, <span class="nm">1</span>):
+        <span class="fn">print</span>(<span class="st">f"</span>{i}<span class="st">. </span>{item.<span class="fn">display</span>()}<span class="st">"</span>)
+
+    <span class="cm"># Wines (bottle price shown; glass calculated)</span>
+    <span class="fn">print</span>(<span class="st">"\n🍷 AVAILABLE WINES (bottle prices shown):"</span>)
+    wines = [
+        <span class="cl">Wine</span>(<span class="st">"Red Wine (House)"</span>, <span class="nm">800</span>),
+        <span class="cl">Wine</span>(<span class="st">"White Wine"</span>, <span class="nm">700</span>),
+        <span class="cl">Wine</span>(<span class="st">"Rosé Wine"</span>, <span class="nm">750</span>)
+    ]
+    <span class="kw">for</span> i, item <span class="kw">in</span> <span class="fn">enumerate</span>(wines, <span class="nm">1</span>):
+        <span class="fn">print</span>(<span class="st">f"</span>{i}<span class="st">. </span>{item.<span class="fn">display</span>(<span class="st">'bottle'</span>)}<span class="st">  (glass ≈ ₱</span>{item.glass_price}<span class="st">)"</span>)
+
+    <span class="fn">print</span>(<span class="st">"\n"</span> + <span class="st">"-"</span>*<span class="nm">60</span>)
+    <span class="fn">print</span>(<span class="st">"Please make your selections:"</span>)
+
+    <span class="cm"># Steak choice</span>
+    <span class="kw">while True</span>:
+        <span class="kw">try</span>:
+            ch = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"\nChoose your STEAK (1-3): "</span>)) - <span class="nm">1</span>
+            <span class="kw">if</span> <span class="nm">0</span> <= ch < <span class="fn">len</span>(steaks):
+                chosen_steak = steaks[ch]
+                <span class="kw">break</span>
+            <span class="fn">print</span>(<span class="st">"Invalid! Choose 1-3."</span>)
+        <span class="kw">except</span> <span class="cl">ValueError</span>:
+            <span class="fn">print</span>(<span class="st">"Enter a number!"</span>)
+
+    <span class="cm"># Side dish choice</span>
+    <span class="kw">while True</span>:
+        <span class="kw">try</span>:
+            ch = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Choose your SIDE DISH (1-3): "</span>)) - <span class="nm">1</span>
+            <span class="kw">if</span> <span class="nm">0</span> <= ch < <span class="fn">len</span>(sides):
+                chosen_side = sides[ch]
+                <span class="kw">break</span>
+            <span class="fn">print</span>(<span class="st">"Invalid! Choose 1-3."</span>)
+        <span class="kw">except</span> <span class="cl">ValueError</span>:
+            <span class="fn">print</span>(<span class="st">"Enter a number!"</span>)
+
+    <span class="cm"># Salad choice</span>
+    <span class="kw">while True</span>:
+        <span class="kw">try</span>:
+            ch = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Choose your SALAD (1): "</span>)) - <span class="nm">1</span>
+            <span class="kw">if</span> ch == <span class="nm">0</span>:
+                chosen_salad = salads[<span class="nm">0</span>]
+                <span class="kw">break</span>
+            <span class="fn">print</span>(<span class="st">"Only 1 option available!"</span>)
+        <span class="kw">except</span> <span class="cl">ValueError</span>:
+            <span class="fn">print</span>(<span class="st">"Enter 1!"</span>)
+
+    <span class="cm"># Wine choice + portion</span>
+    <span class="kw">while True</span>:
+        <span class="kw">try</span>:
+            ch = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Choose your WINE (1-3): "</span>)) - <span class="nm">1</span>
+            <span class="kw">if</span> <span class="nm">0</span> <= ch < <span class="fn">len</span>(wines):
+                selected_wine = wines[ch]
+                <span class="kw">break</span>
+            <span class="fn">print</span>(<span class="st">"Invalid! Choose 1-3."</span>)
+        <span class="kw">except</span> <span class="cl">ValueError</span>:
+            <span class="fn">print</span>(<span class="st">"Enter a number!"</span>)
+
+    <span class="kw">while True</span>:
+        portion = <span class="fn">input</span>(<span class="st">f"Would you like '</span>{selected_wine.name}<span class="st">' per glass or per bottle? (glass/bottle): "</span>).<span class="fn">strip</span>().<span class="fn">lower</span>()
+        <span class="kw">if</span> portion <span class="kw">in</span> [<span class="st">"glass"</span>, <span class="st">"bottle"</span>]:
+            chosen_wine = selected_wine
+            wine_portion = portion
+            <span class="kw">break</span>
+        <span class="fn">print</span>(<span class="st">"Please type 'glass' or 'bottle'."</span>)
+
+    <span class="cm"># Build order</span>
+    order_items = [chosen_steak, chosen_side, chosen_salad]
+    total = <span class="fn">sum</span>(item.<span class="fn">get_price</span>() <span class="kw">for</span> item <span class="kw">in</span> order_items)
+    total += chosen_wine.<span class="fn">get_price</span>(wine_portion)
+
+    <span class="cm"># Receipt</span>
+    <span class="fn">print</span>(<span class="st">"\n"</span> + <span class="st">"="</span>*<span class="nm">60</span>)
+    <span class="fn">print</span>(<span class="st">"RECEIPT - El Nido Steak & Wine Restaurant"</span>)
+    <span class="fn">print</span>(<span class="st">"El Nido, Palawan, Philippines"</span>)
+    <span class="fn">print</span>(<span class="st">"-"</span>*<span class="nm">60</span>)
+    <span class="fn">print</span>(<span class="st">"Your Order:"</span>)
+    
+    <span class="fn">print</span>(<span class="st">f"  • </span>{chosen_steak.<span class="fn">display</span>()}<span class="st">"</span>)
+    <span class="fn">print</span>(<span class="st">f"  • </span>{chosen_side.<span class="fn">display</span>()}<span class="st">"</span>)
+    <span class="fn">print</span>(<span class="st">f"  • </span>{chosen_salad.<span class="fn">display</span>()}<span class="st">"</span>)
+    <span class="fn">print</span>(<span class="st">f"  • </span>{chosen_wine.<span class="fn">display</span>(wine_portion)}<span class="st">"</span>)
+
+    <span class="fn">print</span>(<span class="st">"-"</span>*<span class="nm">60</span>)
+    <span class="fn">print</span>(<span class="st">f"TOTAL AMOUNT: ₱</span>{total:<span class="nm">.2f</span>}<span class="st">"</span>)
+    <span class="fn">print</span>(<span class="st">"\nPAYMENT POLICY:"</span>)
+    <span class="fn">print</span>(<span class="st">"  Payment must be in CASH ONLY"</span>)
+    <span class="fn">print</span>(<span class="st">"  Philippine Pesos (PHP) accepted"</span>)
+    <span class="fn">print</span>(<span class="st">"  No credit/debit cards or digital payments"</span>)
+    <span class="fn">print</span>(<span class="st">"\nThank you for dining with us!"</span>)
+    <span class="fn">print</span>(<span class="st">"Enjoy your meal in beautiful El Nido! 🌴🍷🥩"</span>)
+    <span class="fn">print</span>(<span class="st">"="</span>*<span class="nm">60</span>)
+
+
+<span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    <span class="fn">main</span>()</pre></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section visible" id="reactions" style="margin-top:40px;">
+    <div class="reactions">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:#ffffff;">Was this helpful?</span>
+      <button class="reaction-btn love-btn" id="loveBtn" onclick="react('love')" aria-label="Love reaction">❤️ <span class="reaction-count" id="loveCount">19</span> Love</button>
+      <button class="reaction-btn" id="likeBtn" onclick="react('like')" aria-label="Helpful reaction">👍 <span class="reaction-count" id="likeCount">34</span> Helpful</button>
+      <button class="reaction-btn" id="mindBlownBtn" onclick="react('mindBlown')" aria-label="Mind-blown reaction">🤯 <span class="reaction-count" id="mindBlownCount">11</span> Mind-blown</button>
+      <button class="reaction-btn" id="bookmarkBtn" onclick="react('bookmark')" aria-label="Save reaction">🔖 <span class="reaction-count" id="bookmarkCount">22</span> Saved</button>
+    </div>
+  </div>
+  <div class="section visible" style="margin-top:8px;">
+    <div class="subsec-title" style="margin-bottom:14px;">Share This Guide</div>
+    <div class="share-row">
+      <a class="share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=https://code-sense.pansensoyglenn.workers.dev/steak.html" target="_blank" rel="noopener"><span>📘</span> Facebook</a>
+      <a class="share-btn tw" href="https://twitter.com/intent/tweet?text=El+Nido+Steak+%26+Wine+Python+Polymorphism+Guide&url=https://code-sense.pansensoyglenn.workers.dev/steak.html&via=GlennPansensoy" target="_blank" rel="noopener"><span>🐦</span> Twitter / X</a>
+      <a class="share-btn li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://code-sense.pansensoyglenn.workers.dev/steak.html" target="_blank" rel="noopener"><span>💼</span> LinkedIn</a>
+      <button class="share-btn cp" onclick="copyLink()" aria-label="Copy page link"><span>🔗</span> Copy Link</button>
+    </div>
+  </div>
+  <div class="ad-banner" style="margin-top:40px;padding:0;">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="4226674403" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="faq">
+    <div class="sec-header">
+      <span class="sec-num">FAQ</span>
+      <h2 class="sec-title">Frequently Asked <span class="accent-pu">Questions</span></h2>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">What is El Nido Steak & Wine? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">El Nido Steak & Wine is a Python command-line program that simulates a steakhouse ordering system in El Nido, Palawan. It uses a base class Product and four subclasses (Steak, SideDish, Salad, Wine) to demonstrate polymorphism through method overriding. The Wine class has a special feature: it can display and calculate prices for both bottle and glass portions.</div></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">How does polymorphism work in this program? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Each subclass overrides the display() method from Product. When the program prints an item, Python dynamically dispatches to the correct version – for Steak objects, it adds a 🍖 icon; for SideDish, 🥔; for Salad, 🥗; for Wine, it shows either a bottle or glass price based on an extra parameter. This allows uniform handling of different item types without type checking.</div></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">Why does the Wine class have two parameters in display() and get_price()? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Wine can be ordered by the bottle or by the glass. To accommodate this, the overridden methods accept an optional portion parameter (defaulting to 'bottle'). This is a form of polymorphism via parameterisation – the method behaves differently based on the argument, while still conforming to the parent class signature (when called with no arguments, it defaults to bottle). It's a clean way to handle the two pricing models without duplicating classes.</div></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">What does super() do in the Wine constructor? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">super().__init__(name, bottle_price) calls the parent Product constructor to initialise the common attributes (name and price). It then adds its own bottle_price and calculates a glass_price (bottle_price // 5). This keeps the code DRY and ensures all attributes are set correctly.</div></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">How does the program ensure valid user input? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Each selection is wrapped in a while True loop with try/except to catch non-numeric entries and validate the choice range. For the wine portion, the loop continues until the user enters 'glass' or 'bottle'. This makes the program robust against accidental typos.</div></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">Can I add more items without changing the main logic? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes – because of polymorphism, you can add new subclasses (e.g., Dessert) that override display() and get_price(). The main() function would need to be updated to include the new menu category, but the printing and total calculation (which uses get_price()) would work automatically. The Wine class shows that you can even add extra parameters while keeping the core interface intact.</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="comments">
+    <div class="sec-header">
+      <span class="sec-num">COMMUNITY</span>
+      <h2 class="sec-title">Comments &amp; <span class="accent-blue">Discussion</span></h2>
+    </div>
+    <div class="comments-section">
+      <div class="comment-form">
+        <h3>💬 Leave a Comment</h3>
+        <div class="form-row">
+          <input class="form-input" type="text" id="c-name" placeholder="Your name" maxlength="50">
+          <input class="form-input" type="email" id="c-email" placeholder="Email (not published)" maxlength="100">
+        </div>
+        <textarea class="form-textarea" id="c-body" placeholder="Share your thoughts, questions, or experiences with polymorphism and method overriding..." maxlength="1000"></textarea>
+        <button class="submit-btn" onclick="postComment()" aria-label="Post comment">Post Comment →</button>
+        <p style="font-size:0.8rem;color:#ffffff;margin-top:10px;">💡 Comments are stored locally in this session. Be respectful and constructive.</p>
+      </div>
+      <div class="comment-list" id="commentList">
+        <div class="comment-item">
+          <div class="comment-meta"><div class="comment-avatar">R</div><div><div class="comment-name">Rico Mercado</div><div class="comment-date">March 2026</div></div></div>
+          <div class="comment-body">The Wine class with the portion parameter is genius! I always wondered how to handle such cases without breaking polymorphism. The default argument keeps compatibility while adding flexibility. Thanks for this clear explanation.</div>
+          <button class="comment-like" onclick="likeComment(this)">❤️ <span>10</span></button>
+        </div>
+        <div class="comment-item">
+          <div class="comment-meta"><div class="comment-avatar" style="background:linear-gradient(135deg,#2d7a35,#1a4d1e)">G</div><div><div class="comment-name">Gina Reyes</div><div class="comment-date">March 2026</div></div></div>
+          <div class="comment-body">I added a Dessert class with a 🍰 emoji and it worked instantly with the existing receipt loop. Polymorphism is so powerful! Great tutorial, very practical.</div>
+          <button class="comment-like" onclick="likeComment(this)">❤️ <span>7</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="follow">
+    <div class="sec-header">
+      <span class="sec-num">CONNECT</span>
+      <h2 class="sec-title">Follow <span class="accent-pu">Glenn Junsay Pansensoy</span></h2>
+    </div>
+    <p class="prose" style="margin-bottom:20px;">Stay connected for more Python guides, OOP tutorials, and tech content from the Philippines. Follow on your preferred platform:</p>
+    <div class="follow-grid">
+      <a class="follow-btn linkedin" href="https://www.linkedin.com/in/glenn-pansensoy-6288453a2" target="_blank" rel="noopener"><span class="follow-icon">💼</span><div class="follow-lbl"><span>Follow</span><span class="follow-platform">LinkedIn</span></div></a>
+      <a class="follow-btn facebook" href="https://www.facebook.com/@Glenn-Junsay-Pansensoy" target="_blank" rel="noopener"><span class="follow-icon">📘</span><div class="follow-lbl"><span>Follow</span><span class="follow-platform">Facebook</span></div></a>
+      <a class="follow-btn twitter" href="https://x.com/@GlennPansensoy" target="_blank" rel="noopener"><span class="follow-icon">🐦</span><div class="follow-lbl"><span>Follow</span><span class="follow-platform">X / Twitter</span></div></a>
+      <a class="follow-btn youtube" href="https://www.youtube.com/c/@GlennPansensoy" target="_blank" rel="noopener"><span class="follow-icon">▶️</span><div class="follow-lbl"><span>Subscribe</span><span class="follow-platform">YouTube</span></div></a>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="subscribe">
+    <div class="subscribe-card">
+      <div class="subscribe-title">📬 Stay in the Loop</div>
+      <p class="subscribe-sub">Get new Python tutorials, OOP guides, and tech articles from Valleys &amp; Bytes delivered to your inbox — no spam, ever.</p>
+      <div class="sub-form">
+        <input class="sub-input" type="email" id="subEmail" placeholder="your@email.com">
+        <button class="sub-btn" onclick="subscribe()" aria-label="Subscribe to newsletter">Subscribe Free →</button>
+      </div>
+      <p class="sub-note">🔒 No spam. Unsubscribe anytime. Your email is never shared.</p>
+    </div>
+  </div>
+  <div class="ad-banner" style="padding:0;margin-top:32px;">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="4226674403" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="outro">
+    <div class="outro-card">
+      <div class="outro-title">🍷 You've Mastered Polymorphism — Now Build Your Own Steakhouse!</div>
+      <p class="outro-body">You have walked through every line of El Nido Steak & Wine, from the base class to the polymorphic receipt. You now understand how method overriding, <code>super()</code>, and parameterised polymorphism work together to create a flexible, realistic ordering system.</p>
+      <p class="outro-body">Polymorphism is a cornerstone of object‑oriented design. The same principles you learned here appear in web frameworks, game engines, and data science libraries. You are now equipped to design systems that are both reusable and easy to extend.</p>
+      <p class="outro-body">Your next step? Take the extension challenges seriously. Add a <code>Dessert</code> class, implement wine‑only‑by‑glass logic, or save orders to JSON. Each challenge will deepen your understanding and give you code you can proudly show off.</p>
+      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="#intro" class="btn-primary">🔁 Read Again</a>
+        <a href="#source" class="btn-secondary">💻 Copy Source</a>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="ai-share">
+    <div class="ai-share-section">
+      <div class="ai-share-title">🤖 AI-Powered Social Share</div>
+      <p class="ai-share-desc">Let AI craft the perfect caption for sharing this article. Pick your platform and tone, then generate a ready-to-post message tailored for your audience.</p>
+      <div class="ai-share-input-row">
+        <select class="ai-share-select" id="aiSharePlatform">
+          <option value="Twitter/X">Twitter / X</option>
+          <option value="LinkedIn">LinkedIn</option>
+          <option value="Facebook">Facebook</option>
+          <option value="WhatsApp">WhatsApp</option>
+        </select>
+        <select class="ai-share-select" id="aiShareTone">
+          <option value="enthusiastic">Enthusiastic</option>
+          <option value="professional">Professional</option>
+          <option value="casual">Casual</option>
+          <option value="educational">Educational</option>
+        </select>
+        <button class="ai-share-gen-btn" onclick="generateAIShare()" id="aiShareBtn">✨ Generate Caption</button>
+      </div>
+      <div class="ai-share-loading" id="aiShareLoading"><div class="ai-share-spinner"></div>AI is crafting your caption…</div>
+      <div class="ai-share-output" id="aiShareOutput"></div>
+      <div class="ai-share-action-row" id="aiShareActions" style="display:none;">
+        <button class="ai-share-action-btn cp" onclick="copyAICaption()" id="aiCopyBtn">📋 Copy Caption</button>
+        <a class="ai-share-action-btn fb" id="aiFbBtn" href="#" target="_blank" rel="noopener">📘 Share on Facebook</a>
+        <a class="ai-share-action-btn tw" id="aiTwBtn" href="#" target="_blank" rel="noopener">🐦 Share on X</a>
+        <a class="ai-share-action-btn li" id="aiLiBtn" href="#" target="_blank" rel="noopener">💼 Share on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sticky-share">
+  <a class="ss-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://code-sense.pansensoyglenn.workers.dev/steak.html" target="_blank" rel="noopener" title="Share on Facebook">📘</a>
+  <a class="ss-btn" href="https://twitter.com/intent/tweet?url=https://code-sense.pansensoyglenn.workers.dev/steak.html&via=GlennPansensoy" target="_blank" rel="noopener" title="Share on X">🐦</a>
+  <a class="ss-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://code-sense.pansensoyglenn.workers.dev/steak.html" target="_blank" rel="noopener" title="Share on LinkedIn">💼</a>
+  <button class="ss-btn" onclick="copyLink()" title="Copy link" aria-label="Copy link">🔗</button>
+  <button class="ss-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+</div>
+<div class="toast" id="toast"></div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><span style="color:var(--blue-bright)">VALLEYS</span><span style="color:#ffffff;font-weight:400"> &amp; </span><span style="color:var(--purple-bright)">BYTES</span></div>
+        <p class="footer-tagline">Python tutorials, OOP guides, and developer content from the Philippines. Written by <strong style="color:#ffffff">Glenn Junsay Pansensoy</strong>.</p>
+        <div class="follow-grid" style="margin-top:16px;gap:8px;">
+          <a class="footer-btn" href="https://www.linkedin.com/in/glenn-pansensoy-6288453a2" target="_blank" rel="noopener"><span class="ico">💼</span>LinkedIn</a>
+          <a class="footer-btn" href="https://www.facebook.com/@Glenn-Junsay-Pansensoy" target="_blank" rel="noopener"><span class="ico">📘</span>Facebook</a>
+          <a class="footer-btn" href="https://x.com/@GlennPansensoy" target="_blank" rel="noopener"><span class="ico">🐦</span>X / Twitter</a>
+          <a class="footer-btn" href="https://www.youtube.com/c/@GlennPansensoy" target="_blank" rel="noopener"><span class="ico">▶️</span>YouTube</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <a class="footer-btn" href="#intro"><span class="ico">📖</span>Introduction</a>
+        <a class="footer-btn" href="#s1"><span class="ico">🗂️</span>Overview</a>
+        <a class="footer-btn" href="#s3"><span class="ico">🏷️</span>Product</a>
+        <a class="footer-btn" href="#s4"><span class="ico">🍖</span>Steak</a>
+        <a class="footer-btn" href="#s5"><span class="ico">🥔</span>SideDish</a>
+        <a class="footer-btn" href="#s6"><span class="ico">🥗</span>Salad</a>
+        <a class="footer-btn" href="#s7"><span class="ico">🍷</span>Wine</a>
+        <a class="footer-btn" href="#s9"><span class="ico">🔄</span>Polymorphism</a>
+        <a class="footer-btn" href="#source"><span class="ico">💻</span>Source Code</a>
+        <a class="footer-btn" href="#faq"><span class="ico">❓</span>FAQ</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Site Pages</div>
+        <a class="footer-btn" href="about-guide.html"><span class="ico">📄</span>About this Page</a>
+        <a class="footer-btn" href="about-author.html"><span class="ico">🧑‍💻</span>About the Author</a>
+        <a class="footer-btn" href="oop-contact.html"><span class="ico">📬</span>Contact</a>
+        <a class="footer-btn" href="oop-privacy.html"><span class="ico">🔒</span>Privacy Policy</a>
+        <a class="footer-btn" href="oop-terms.html"><span class="ico">📜</span>Terms of Service</a>
+        <a class="footer-btn" href="oop-cookie.html"><span class="ico">🍪</span>Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Valleys &amp; Bytes — Glenn Junsay Pansensoy. All rights reserved. Built with data precision and Created through intensive information authentication.<span style="color:var(--blue-bright)">code-sense.pansensoyglenn.workers.dev</span></div>
+      <div class="footer-links-row">
+        <a class="footer-link-btn" href="oop-privacy.html">Privacy</a>
+        <a class="footer-link-btn" href="oop-terms.html">Terms</a>
+        <a class="footer-link-btn" href="oop-cookie.html">Cookies</a>
+        <a class="footer-link-btn" href="oop-contact.html">Contact</a>
+        <button class="footer-link-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Top</button>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  if(!window.matchMedia('(min-width:768px)').matches)return;
+  const c=document.getElementById('particles');
+  if(!c)return;
+  const colors=['rgba(75,139,190,0.6)','rgba(189,147,249,0.5)','rgba(255,212,59,0.4)','rgba(80,250,123,0.4)'];
+  for(let i=0;i<25;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    const s=Math.random()*4+2;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*-20}s;`;
+    c.appendChild(p);
+  }
+})();
+const hamburger=document.getElementById('hamburger');
+const drawer=document.getElementById('drawer');
+const overlay=document.getElementById('drawerOverlay');
+function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');hamburger.classList.add('open');hamburger.setAttribute('aria-expanded','true');}
+function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false');}
+hamburger.addEventListener('click',()=>drawer.classList.contains('open')?closeDrawer():openDrawer());
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeDrawer));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.07});
+document.querySelectorAll('.section').forEach(s=>obs.observe(s));
+const bar=document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';},{passive:true});
+const tocLinks=document.querySelectorAll('.toc-link');
+const sections=document.querySelectorAll('.section[id],section[id]');
+window.addEventListener('scroll',()=>{let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});tocLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);});}
+function copyLink(){navigator.clipboard.writeText(window.location.href).then(()=>showToast('🔗 Link copied to clipboard!'));}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+function toggleFaq(item){const wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));if(!wasOpen)item.classList.add('open');}
+const reactions={love:19,like:34,mindBlown:11,bookmark:22};const reacted={};
+function react(type){const btn=document.getElementById(type+'Btn');const countEl=document.getElementById(type+'Count');if(reacted[type]){reactions[type]--;btn.classList.remove('active');reacted[type]=false;}else{reactions[type]++;btn.classList.add('active');reacted[type]=true;showToast('Thanks for your reaction! 🙌');}countEl.textContent=reactions[type];}
+function postComment(){const name=document.getElementById('c-name').value.trim();const body=document.getElementById('c-body').value.trim();if(!name||!body){showToast('Please fill in your name and comment.');return;}const list=document.getElementById('commentList');const initial=name.charAt(0).toUpperCase();const colors=['linear-gradient(135deg,#3a6e99,#6a4a9c)','linear-gradient(135deg,#2d7a35,#1a4d1e)','linear-gradient(135deg,#9b72d4,#264d6e)'];const bg=colors[Math.floor(Math.random()*colors.length)];const el=document.createElement('div');el.className='comment-item';el.style.animation='fadeUp 0.4s ease both';el.innerHTML=`<div class="comment-meta"><div class="comment-avatar" style="background:${bg}">${initial}</div><div><div class="comment-name">${name}</div><div class="comment-date">Just now</div></div></div><div class="comment-body">${body}</div><button class="comment-like" onclick="likeComment(this)">❤️ <span>0</span></button>`;list.insertBefore(el,list.firstChild);document.getElementById('c-name').value='';document.getElementById('c-body').value='';showToast('Comment posted! Thank you.');}
+function likeComment(btn){const span=btn.querySelector('span');let n=parseInt(span.textContent);if(btn.dataset.liked){n--;btn.dataset.liked='';}else{n++;btn.dataset.liked='1';}span.textContent=n;}
+function subscribe(){const e=document.getElementById('subEmail').value.trim();if(!e||!e.includes('@')){showToast('Please enter a valid email.');return;}document.getElementById('subEmail').value='';showToast('Subscribed! Welcome to Valleys & Bytes.');}
+
+function generateAIShare(){
+  const platform=document.getElementById('aiSharePlatform').value;
+  const tone=document.getElementById('aiShareTone').value;
+  const btn=document.getElementById('aiShareBtn');
+  const loading=document.getElementById('aiShareLoading');
+  const output=document.getElementById('aiShareOutput');
+  const actions=document.getElementById('aiShareActions');
+  const pageUrl='https://code-sense.pansensoyglenn.workers.dev/steak.html';
+
+  btn.disabled=true; btn.textContent='Generating…';
+  loading.classList.add('visible');
+  output.classList.remove('visible');
+  actions.style.display='none';
+
+  const templates={
+    'Twitter/X':{
+      enthusiastic:[
+        `🔥 Just discovered the BEST Python polymorphism tutorial!\n\nEl Nido Steak & Wine breaks down method overriding, super(), and even parameterised polymorphism through a real steakhouse in El Nido 🍖🍷🐍\n\nPerfect for devs leveling up their OOP game 👇\n${pageUrl}\n\n#Python #OOP #Polymorphism #LearnPython #Programming`,
+        `🍷 Polymorphism finally makes SENSE!\n\nThis El Nido Steak & Wine guide is a game-changer for Python learners. Method overriding, super(), and even wine portions – all in one real-world project!\n\n${pageUrl}\n\n#Python #OOP #100DaysOfCode #CodeNewbie`,
+      ],
+      professional:[
+        `Excellent resource for Python developers exploring polymorphism.\n\nEl Nido Steak & Wine demonstrates method overriding, super() calls, and a clever parameterised Wine class through a restaurant ordering system.\n\nHighly recommended for intermediate learners.\n${pageUrl}\n\n#Python #SoftwareEngineering #OOP #PythonDev`,
+        `A well-structured deep dive into Python's polymorphism model.\n\nCovers Product base class, Steak, SideDish, Salad, and Wine subclasses – with Wine's portion‑based pricing – complete source code.\n\n${pageUrl}\n#Python #Programming #TechEducation`,
+      ],
+      casual:[
+        `yo if you're learning Python OOP this one slaps 🐍\n\nEl Nido Steak & Wine – polymorphism explained with a steakhouse in El Nido lol but actually really good\n\n${pageUrl}\n\n#Python #coding`,
+        `ngl this python tutorial lowkey taught me more about super() than my whole bootcamp 😅🍖🍷\n\ncheck it out ${pageUrl}\n\n#Python #LearnToCode #OOP`,
+      ],
+      educational:[
+        `📚 Learning Python OOP? Start here.\n\nEl Nido Steak & Wine teaches:\n✅ Polymorphism\n✅ Method overriding\n✅ super() for parent calls\n✅ Parameterised polymorphism (Wine class)\n\nAll in one real-world project.\n${pageUrl}\n\n#Python #Education #OOP #LearnPython`,
+        `Python polymorphism, demystified. 🎓\n\nThis guide walks through every class, every constructor call, and every design decision in a steakhouse ordering system.\n\n${pageUrl}\n\n#Python #OOP #PythonTips #Programming`,
+      ],
+    },
+    'LinkedIn':{
+      enthusiastic:[
+        `🚀 Excited to share this incredible Python OOP resource!\n\nEl Nido Steak & Wine is a comprehensive guide that teaches polymorphism, method overriding, and even parameterised methods – all through a real steakhouse ordering system in El Nido, Palawan.\n\nWhether you're a beginner ready to go beyond simple classes or a developer brushing up on design patterns, this guide explains not just WHAT the code does, but WHY every decision was made.\n\n🍖🍷 Check it out here: ${pageUrl}\n\n#Python #OOP #Polymorphism #SoftwareDevelopment #LearningAndDevelopment #Philippines`,
+        `💡 Found a Python tutorial that actually changed how I think about class design!\n\nEl Nido Steak & Wine covers polymorphism, method overriding, super(), and a clever Wine class with portion‑based pricing in one cohesive project. It's the kind of guide I wish I had when I was learning OOP.\n\n${pageUrl}\n\n#Python #Programming #OOP #TechEducation #SoftwareEngineering`,
+      ],
+      professional:[
+        `For developers looking to deepen their understanding of Python's object-oriented model, I recommend this thorough walkthrough of El Nido Steak & Wine.\n\nThe guide covers polymorphism through inheritance, proper use of super() in constructors, and a Wine class that gracefully handles both bottle and glass pricing via optional parameters. Full source code is included.\n\nA valuable reference for anyone building maintainable Python systems.\n\n${pageUrl}\n\n#Python #SoftwareEngineering #OOP #PythonDevelopment #CleanCode`,
+        `Technical deep dive: Python Polymorphism with El Nido Steak & Wine\n\nThis guide methodically explains how Steak, SideDish, Salad, and Wine override display(), and how Wine's get_price() accepts a portion argument – all while maintaining polymorphic compatibility.\n\nRecommended reading for Python developers and engineering teams.\n\n${pageUrl}\n\n#Python #OOP #Engineering #Programming`,
+      ],
+      casual:[
+        `Stumbled across this Python tutorial and couldn't stop reading 😄\n\nIt teaches polymorphism using a steakhouse in El Nido – sounds niche but the explanations are crystal clear. Method overriding, super(), wine portions – all covered step by step.\n\nWorth bookmarking if you're growing your Python skills! 🍖🍷\n\n${pageUrl}\n\n#Python #Learning #Programming #OOP`,
+        `Sometimes the best tutorials come from unexpected places 🇵🇭🍖🍷\n\nThis El Nido Steak & Wine guide from the Philippines walks through Python OOP in a way that finally made polymorphism click for me.\n\n${pageUrl}\n\n#Python #Tech #Coding #OOP`,
+      ],
+      educational:[
+        `📖 Python Polymorphism — A Comprehensive Guide\n\nEl Nido Steak & Wine demonstrates how to:\n• Design a base class with common methods\n• Override methods in subclasses to add unique behaviour\n• Use super() to delegate to the parent constructor\n• Apply polymorphism to eliminate type-checking\n• Handle varying parameters with default arguments (Wine class)\n\nFull source code and detailed explanations included.\n\n${pageUrl}\n\n#Python #OOP #Education #SoftwareDevelopment #ProgrammingTutorial`,
+        `Sharing this excellent Python OOP resource for developers and educators.\n\nThe guide uses a Filipino steakhouse ordering system to teach 6 core concepts: polymorphism, method overriding, super(), parameterised methods, input validation, and clean class design – all in one cohesive program.\n\n${pageUrl}\n\n#Python #Education #Programming #OOP #Philippines`,
+      ],
+    },
+    'Facebook':{
+      enthusiastic:[
+        `🍖🍷 OH WOW — this Python tutorial just blew my mind!\n\nEl Nido Steak & Wine explains polymorphism, method overriding, and super() through a real steakhouse in El Nido. I finally understand how to handle different pricing models like wine by the glass vs. bottle!\n\nIf you're learning Python, this is a must-read 👇\n${pageUrl}`,
+        `🔥 Best Python OOP guide I've read this year!\n\nEl Nido Steak & Wine walks through EVERY line of a real restaurant ordering system – explaining polymorphism, super(), and clean class design from scratch.\n\nSharing because it's just that good 🙌\n${pageUrl}`,
+      ],
+      professional:[
+        `Sharing a well-crafted Python OOP tutorial for developers in my network.\n\nEl Nido Steak & Wine provides a complete walkthrough of polymorphism, method overriding, and super() calls – with full source code and clear explanations for each design decision.\n\n${pageUrl}`,
+        `For my fellow Python developers – this El Nido Steak & Wine guide is an excellent reference for understanding polymorphism patterns, proper use of super(), and clean class hierarchies in practice.\n\n${pageUrl}`,
+      ],
+      casual:[
+        `sharing this python tutorial because it actually made sense to me 😅🍖🍷\n\npolymorphism explained with a steakhouse in El Nido – weird but it works! great read if you're learning OOP.\n\n${pageUrl}`,
+        `my friend sent me this python guide and i ended up reading the whole thing 😅\n\nif you're into coding or want to understand how Python classes really work, check it out!\n${pageUrl}`,
+      ],
+      educational:[
+        `📚 For students and self-taught developers learning Python OOP:\n\nEl Nido Steak & Wine is a step-by-step guide covering polymorphism, method overriding, super(), and parameterised methods – all demonstrated through a real command-line application.\n\nFull source code included. Highly recommended!\n${pageUrl}`,
+        `Great learning resource for anyone studying Python Object-Oriented Programming:\n\n✅ Polymorphism\n✅ Method Overriding\n✅ super() and parent calls\n✅ Parameterised methods (Wine class)\n\nAll in one real-world project: ${pageUrl}`,
+      ],
+    },
+    'WhatsApp':{
+      enthusiastic:[
+        `Hey! 🍖🍷 You HAVE to check out this Python tutorial – it finally made polymorphism click for me!\n\nEl Nido Steak & Wine teaches OOP through a steakhouse ordering system. Method overriding, super(), even wine by the glass vs. bottle – all explained step by step with full source code.\n\n👉 ${pageUrl}`,
+        `Bro/Sis check this out! 🔥 Best Python OOP guide I've found – covers polymorphism, method overriding, and super() through a real steakhouse. Super clear explanations!\n\n${pageUrl}`,
+      ],
+      professional:[
+        `Hi – sharing a Python OOP resource you might find useful. El Nido Steak & Wine is a comprehensive walkthrough of polymorphism, method overriding, and super() with full source code.\n\n${pageUrl}`,
+        `Thought you'd appreciate this – a thorough Python polymorphism guide with real-world context and complete source code: ${pageUrl}`,
+      ],
+      casual:[
+        `yo check this python tutorial 😄 explains polymorphism with a steakhouse in El Nido lol but actually really solid. worth a read!\n\n${pageUrl}`,
+        `sending this python guide your way – it's the one that finally made OOP make sense to me 😅🍖🍷\n\n${pageUrl}`,
+      ],
+      educational:[
+        `Sharing a Python OOP tutorial that covers:\n• Polymorphism\n• Method Overriding\n• super()\n• Parameterised methods (Wine class)\n\nAll through a real steakhouse ordering system with full source code 👇\n${pageUrl}`,
+        `Good learning resource for Python OOP – step-by-step guide through polymorphism, method overriding, and super() with explanations for every design decision.\n\n${pageUrl}`,
+      ],
+    },
+  };
+
+  setTimeout(()=>{
+    const pool=templates[platform][tone];
+    const caption=pool[Math.floor(Math.random()*pool.length)];
+    output.textContent=caption;
+    output.classList.add('visible');
+    loading.classList.remove('visible');
+    const encodedText=encodeURIComponent(caption);
+    document.getElementById('aiFbBtn').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(pageUrl)+'&quote='+encodedText;
+    document.getElementById('aiTwBtn').href='https://twitter.com/intent/tweet?text='+encodedText;
+    document.getElementById('aiLiBtn').href='https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(pageUrl);
+    actions.style.display='flex';
+    btn.disabled=false; btn.textContent='✨ Generate Caption';
+  }, 900);
+}
+function copyAICaption(){
+  const text=document.getElementById('aiShareOutput').textContent;
+  navigator.clipboard.writeText(text).then(()=>showToast('✅ Caption copied to clipboard!'));
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){const href=this.getAttribute('href');if(href==='#'||href==='')return;const target=document.querySelector(href);if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}});});
+</script>
+</body>
+</html>
