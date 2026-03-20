@@ -1,0 +1,2902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poetic Codes | Articles by Glenn Junsay Pansensoy</title>
+  <meta name="description" content="Poetic Codes — Articles on technology, current events, culture, and more by Glenn Junsay Pansensoy. Thoughtful writing updated daily." />
+  <meta name="keywords" content="Glenn Junsay Pansensoy, Poetic Codes, articles, technology, current events, blog, journals, tech advances, culture" />
+  <meta name="author" content="Glenn Junsay Pansensoy" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pansensoyglenn-dev.github.io/articles/" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title"        content="Poetic Codes | Articles by Glenn Junsay Pansensoy" />
+  <meta property="og:description"  content="Thoughtful articles on technology, current events, culture, and the human condition by Glenn Junsay Pansensoy." />
+  <meta property="og:type"         content="website" />
+  <meta property="og:url"          content="https://pansensoyglenn-dev.github.io/articles/" />
+  <meta property="og:image"        content="https://pansensoyglenn-dev.github.io/articles/og-image.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name"    content="Poetic Codes" />
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Poetic Codes | Articles by Glenn Junsay Pansensoy" />
+  <meta name="twitter:description" content="Thoughtful articles on technology, current events, culture, and the human condition." />
+  <meta name="twitter:image"       content="https://pansensoyglenn-dev.github.io/articles/og-image.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Poetic Codes",
+    "url": "https://pansensoyglenn-dev.github.io/articles/",
+    "author": {
+      "@type": "Person",
+      "name": "Glenn Junsay Pansensoy"
+    },
+    "description": "Articles on technology, current events, culture, and more.",
+    "inLanguage": "en"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --python-blue: #306998;
+      --python-blue-light: #4b8bbe;
+      --python-blue-bright: #5ba3d9;
+      --purple: #3a7bd5;
+      --purple-mid: #4b8bbe;
+      --purple-light: #74b9e8;
+      --fuchsia: #306998;
+      --fuchsia-glow: #7ec8e3;
+      --obsidian: #181c24;
+      --obsidian-mid: #1e2430;
+      --obsidian-card: #232c3b;
+      --obsidian-border: #2d3a4f;
+      --text-primary: #ffffff;
+      --text-muted: #b8cfe0;
+      --text-accent: var(--python-blue-bright);
+      --title-size: 1.2rem;
+      --subtitle-size: 1rem;
+      --para-size: 0.8rem;
+      --gradient-hero: linear-gradient(135deg, #0d1520 0%, #112240 40%, #0a1628 100%);
+      --gradient-accent: linear-gradient(90deg, #a8d8f0, #7ec8e3, var(--python-blue-bright));
+      --gradient-card: linear-gradient(145deg, var(--obsidian-card), #1a2535);
+      --shadow-glow: 0 0 30px rgba(48, 105, 152, 0.25), 0 0 60px rgba(75, 139, 190, 0.15);
+      --shadow-card: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--obsidian);
+      color: #ffffff;
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: var(--para-size);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--obsidian); }
+    ::-webkit-scrollbar-thumb { background: #306998; border-radius: 3px; }
+    h1, h2, h3 { font-family: 'Cinzel Decorative', serif; font-weight: 700; letter-spacing: 0.03em; }
+    h1 { font-size: var(--title-size); }
+    h2 { font-size: var(--subtitle-size); }
+    p { font-size: var(--para-size); text-align: justify; }
+    a { color: inherit; text-decoration: none; }
+    .gradient-text {
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 2rem;
+      background: rgba(13, 13, 20, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--obsidian-border);
+      transition: box-shadow 0.3s;
+    }
+    #navbar.scrolled { box-shadow: 0 4px 30px rgba(107,13,173,0.25); }
+    .brand {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      cursor: pointer;
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 6px;
+      transition: background 0.2s;
+      z-index: 1100;
+    }
+    .hamburger:hover { background: rgba(139, 92, 246, 0.15); }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(.77,0,.175,1);
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    #nav-menu {
+      position: fixed;
+      top: 0; right: -320px;
+      width: 300px; height: 100vh;
+      background: rgba(20, 14, 35, 0.98);
+      backdrop-filter: blur(24px);
+      border-left: 1px solid var(--obsidian-border);
+      padding: 5rem 1.5rem 2rem;
+      transition: right 0.4s cubic-bezier(.77,0,.175,1);
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      overflow-y: auto;
+    }
+    #nav-menu.open { right: 0; }
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-primary);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-align: left;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-btn::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--gradient-accent);
+      border-radius: 0 3px 3px 0;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .nav-btn:hover::after { opacity: 1; }
+    .nav-btn i { width: 18px; color: var(--purple-light); font-size: 0.8rem; flex-shrink: 0; }
+    .nav-btn span { flex: 1; }
+    .nav-btn:hover {
+      background: rgba(139, 92, 246, 0.12);
+      border-color: var(--purple-mid);
+      color: var(--fuchsia-glow);
+      transform: translateX(4px);
+    }
+    .nav-btn:hover i { color: var(--fuchsia); }
+    #nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1040;
+    }
+    #nav-overlay.open { display: block; }
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--gradient-hero);
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .orb-1 { width: 400px; height: 400px; background: rgba(107,13,173,0.25); top: -100px; left: -100px; animation: drift 8s ease-in-out infinite alternate; }
+    .orb-2 { width: 300px; height: 300px; background: rgba(217,70,239,0.18); bottom: -50px; right: -50px; animation: drift 10s ease-in-out infinite alternate-reverse; }
+    .orb-3 { width: 250px; height: 250px; background: rgba(48,105,152,0.2); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: pulse-orb 6s ease-in-out infinite; }
+    @keyframes drift { 0% { transform: translate(0,0); } 100% { transform: translate(40px, 30px); } }
+    @keyframes pulse-orb { 0%,100% { opacity: 0.4; transform: translate(-50%,-50%) scale(1); } 50% { opacity: 0.7; transform: translate(-50%,-50%) scale(1.15); } }
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--fuchsia);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .hero-subtitle {
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      color: #b8cfe0;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      font-style: italic;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-width: 210px;
+      padding: 0.7rem 1.4rem;
+      background: linear-gradient(135deg, var(--purple), var(--fuchsia));
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.67rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(217,70,239,0.3);
+      letter-spacing: 0.07em;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(217,70,239,0.5); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-width: 210px;
+      padding: 0.7rem 1.4rem;
+      background: transparent;
+      border: 1px solid var(--purple-mid);
+      border-radius: 50px;
+      color: var(--purple-light);
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.67rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 0.07em;
+    }
+    .btn-outline:hover { background: rgba(139,92,246,0.15); border-color: var(--fuchsia); color: var(--fuchsia-glow); transform: translateY(-2px); }
+    .btn-hero-share {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-width: 210px;
+      padding: 0.7rem 1.4rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(174,214,241,0.45);
+      border-radius: 50px;
+      color: #aed6f1;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.67rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 0.07em;
+      backdrop-filter: blur(6px);
+      text-decoration: none;
+    }
+    .btn-hero-share:hover {
+      background: rgba(174,214,241,0.12);
+      border-color: #aed6f1;
+      color: #d6eaf8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(174,214,241,0.2);
+    }
+    .btn-hero-articles {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-width: 210px;
+      padding: 0.7rem 1.4rem;
+      background: linear-gradient(135deg, rgba(91,163,217,0.25), rgba(48,105,152,0.35));
+      border: 1px solid rgba(91,163,217,0.5);
+      border-radius: 50px;
+      color: #aed6f1;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.67rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 0.07em;
+      text-decoration: none;
+    }
+    .btn-hero-articles:hover {
+      background: linear-gradient(135deg, rgba(91,163,217,0.4), rgba(48,105,152,0.5));
+      border-color: #7ec8e3;
+      color: #d6eaf8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(91,163,217,0.3);
+    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    section { position: relative; z-index: 1; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .section-header h2 {
+      font-size: var(--subtitle-size);
+      margin-bottom: 0.5rem;
+    }
+    .section-header p {
+      color: #b8cfe0;
+      font-style: italic;
+      text-align: center;
+    }
+    .divider {
+      width: 60px; height: 2px;
+      background: var(--gradient-accent);
+      margin: 0.75rem auto;
+      border-radius: 2px;
+    }
+    #introduction {
+      padding: 5rem 0;
+      background: linear-gradient(180deg, var(--obsidian) 0%, var(--obsidian-mid) 100%);
+    }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .intro-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .intro-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .intro-card:hover::before { opacity: 1; }
+    .intro-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-glow); border-color: var(--purple-mid); }
+    .intro-card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .intro-card h3 { font-size: var(--subtitle-size); margin-bottom: 0.5rem; color: var(--purple-light); }
+    #articles {
+      padding: 5rem 0;
+      background: var(--obsidian-mid);
+    }
+    .article-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .filter-btn {
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--obsidian-border);
+      border-radius: 50px;
+      background: transparent;
+      color: #b8cfe0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      letter-spacing: 0.05em;
+    }
+    .filter-btn.active, .filter-btn:hover { background: rgba(139,92,246,0.2); border-color: var(--purple-mid); color: var(--purple-light); }
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: 1.5rem;
+    }
+    .article-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .article-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-glow); border-color: var(--purple-mid); }
+    .article-card-img {
+      height: 140px;
+      background: linear-gradient(135deg, var(--purple) 0%, var(--python-blue) 50%, var(--fuchsia) 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .article-card-img i { font-size: 2.5rem; color: rgba(255,255,255,0.25); }
+    .article-card-cat {
+      position: absolute;
+      top: 10px; left: 10px;
+      background: rgba(13,13,20,0.8);
+      border: 1px solid var(--fuchsia);
+      border-radius: 50px;
+      padding: 0.2rem 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--fuchsia-glow);
+      letter-spacing: 0.08em;
+    }
+    .article-card-body { padding: 1.2rem; }
+    .article-card-body h3 { font-size: var(--subtitle-size); margin-bottom: 0.4rem; line-height: 1.3; color: var(--text-primary); }
+    .article-card-body p { color: #b8cfe0; margin-bottom: 0.75rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .article-meta {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: #b8cfe0;
+    }
+    .article-meta i { color: var(--purple-light); }
+    .share-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 2rem auto;
+      max-width: 320px;
+    }
+    .share-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 220px;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      border: 1px solid var(--obsidian-border);
+      background: rgba(26,26,46,0.7);
+      color: var(--text-primary);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-align: left;
+    }
+    .share-btn i { width: 20px; text-align: center; font-size: 0.85rem; flex-shrink: 0; }
+    .share-btn:hover { transform: translateX(4px); border-color: var(--purple-mid); background: rgba(139,92,246,0.12); }
+    .share-btn.fb i { color: #1877f2; }
+    .share-btn.li i { color: #0a66c2; }
+    .share-btn.tw i { color: #1da1f2; }
+    .share-btn.wa i { color: #25d366; }
+    .share-btn.yt i { color: #ff0000; }
+    .share-btn.tg i { color: #26a5e4; }
+    .share-btn.ig i { color: #e4405f; }
+    .share-btn.qu i { color: #b92b27; }
+    .share-btn.di i { color: #ff4500; }
+    .share-btn.rd i { color: #ff4500; }
+    #follow {
+      padding: 4rem 0;
+      background: var(--obsidian);
+    }
+    .follow-grid {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .follow-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid var(--obsidian-border);
+      border-radius: 12px;
+      background: var(--gradient-card);
+      cursor: pointer;
+      transition: all 0.3s;
+      min-width: 110px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .follow-card i { font-size: 1.5rem; transition: transform 0.3s; }
+    .follow-card span { font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; }
+    .follow-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-glow); border-color: var(--purple-mid); }
+    .follow-card:hover i { transform: scale(1.2); }
+    .follow-card.fb i { color: #1877f2; }
+    .follow-card.li i { color: #0a66c2; }
+    .follow-card.tw i { color: #1da1f2; }
+    .follow-card.yt i { color: #ff0000; }
+    .follow-card.ig i { color: #e4405f; }
+    #subscribe {
+      padding: 4rem 0;
+      background: linear-gradient(135deg, rgba(107,13,173,0.15) 0%, rgba(217,70,239,0.08) 100%);
+      border-top: 1px solid var(--obsidian-border);
+      border-bottom: 1px solid var(--obsidian-border);
+    }
+    .subscribe-box {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .subscribe-form {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .subscribe-form input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.65rem 1rem;
+      background: rgba(26,26,46,0.9);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.8rem;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .subscribe-form input:focus { border-color: var(--purple-mid); }
+    .subscribe-form input::placeholder { color: #b8cfe0; }
+    #archive {
+      padding: 4rem 0;
+      background: var(--obsidian-mid);
+    }
+    .archive-search {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 480px;
+      margin: 0 auto 1.5rem;
+    }
+    .archive-search input {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      background: rgba(26,26,46,0.9);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.8rem;
+      outline: none;
+    }
+    .archive-search input:focus { border-color: var(--purple-mid); }
+    .archive-search button {
+      padding: 0.6rem 1rem;
+      background: linear-gradient(135deg, var(--purple), var(--fuchsia));
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .archive-list { list-style: none; }
+    .archive-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--obsidian-border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .archive-list li:hover { color: var(--fuchsia-glow); padding-left: 0.5rem; }
+    .archive-list li i { color: var(--purple-light); font-size: 0.7rem; }
+    .archive-list li span { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: #b8cfe0; margin-left: auto; }
+    #add-content {
+      padding: 4rem 0;
+      background: var(--obsidian);
+    }
+    .editor-box {
+      background: var(--gradient-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .editor-box label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: #b8cfe0;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+    }
+    .editor-box input, .editor-box select, .editor-box textarea {
+      width: 100%;
+      margin-bottom: 0.9rem;
+      padding: 0.6rem 0.9rem;
+      background: rgba(13,13,20,0.8);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.8rem;
+      outline: none;
+      transition: border-color 0.25s;
+      resize: vertical;
+    }
+    .editor-box input:focus, .editor-box select:focus, .editor-box textarea:focus { border-color: var(--purple-mid); }
+    .editor-box select option { background: var(--obsidian-card); }
+    #comments {
+      padding: 4rem 0;
+      background: var(--obsidian-mid);
+    }
+    .comment-form {
+      background: var(--gradient-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    .comment-form input, .comment-form textarea {
+      width: 100%;
+      margin-bottom: 0.75rem;
+      padding: 0.6rem 0.9rem;
+      background: rgba(13,13,20,0.8);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.8rem;
+      outline: none;
+      transition: border-color 0.25s;
+      resize: vertical;
+    }
+    .comment-form input:focus, .comment-form textarea:focus { border-color: var(--purple-mid); }
+    .comment-list { max-width: 700px; margin: 0 auto; }
+    .comment-item {
+      background: var(--gradient-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .comment-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+    .comment-avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--fuchsia));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .comment-name { font-size: 0.75rem; color: var(--purple-light); font-weight: 600; }
+    .comment-date { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: #b8cfe0; margin-left: auto; }
+    #outro {
+      padding: 5rem 0;
+      background: linear-gradient(180deg, var(--obsidian) 0%, #0a0a12 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #outro .hero-orb { opacity: 0.5; }
+    .outro-quote {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      color: #b8cfe0;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .outro-attribution {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--fuchsia);
+      letter-spacing: 0.15em;
+    }
+    #footer {
+      background: #0f1520;
+      border-top: 1px solid var(--obsidian-border);
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand h3 { font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .footer-brand p { color: #b8cfe0; line-height: 1.6; text-align: left; }
+    .footer-col h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 0.75rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li {
+      padding: 0.25rem 0;
+      font-size: 0.78rem;
+      color: #b8cfe0;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .footer-col ul li:hover { color: var(--fuchsia-glow); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--obsidian-border);
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .footer-bottom p { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: #b8cfe0; text-align: left; }
+    .footer-socials {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .footer-socials a {
+      width: 30px; height: 30px;
+      border: 1px solid var(--obsidian-border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: #b8cfe0;
+      transition: all 0.25s;
+    }
+    .footer-socials a:hover { border-color: var(--purple-mid); color: var(--fuchsia-glow); background: rgba(139,92,246,0.1); }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--obsidian-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 600px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeUp 0.3s forwards;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none;
+      border: none;
+      color: #b8cfe0;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--fuchsia); }
+    .modal h2 { font-size: var(--subtitle-size); margin-bottom: 1rem; }
+    .modal p { margin-bottom: 0.75rem; }
+    .toast {
+      position: fixed;
+      bottom: 1.5rem; right: 1.5rem;
+      background: linear-gradient(135deg, var(--purple), var(--fuchsia));
+      color: white;
+      padding: 0.75rem 1.2rem;
+      border-radius: 8px;
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.85rem;
+      z-index: 3000;
+      box-shadow: 0 8px 24px rgba(217,70,239,0.4);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(.77,0,.175,1);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    #back-top {
+      position: fixed;
+      bottom: 1.5rem; left: 1.5rem;
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--purple), var(--fuchsia));
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 900;
+      box-shadow: 0 4px 15px rgba(217,70,239,0.4);
+    }
+    #back-top.show { opacity: 1; }
+    #back-top:hover { transform: translateY(-3px); }
+    @media (max-width: 768px) {
+      .intro-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      #navbar { padding: 0.75rem 1rem; }
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      z-index: 2000;
+      transition: width 0.1s;
+    }
+    #valuable-1, #valuable-2 {
+      padding: 5rem 0;
+    }
+    #valuable-1 { background: var(--obsidian); }
+    #valuable-2 { background: var(--obsidian-mid); }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+    .tip-card {
+      border: 1px solid var(--obsidian-border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      background: var(--gradient-card);
+      transition: all 0.3s;
+    }
+    .tip-card:hover { border-color: var(--purple-mid); transform: translateY(-3px); box-shadow: var(--shadow-glow); }
+    .tip-card .tip-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.4rem;
+    }
+    .tip-card h4 { font-size: var(--subtitle-size); margin-bottom: 0.4rem; color: var(--purple-light); }
+    .quote-callout {
+      border-left: 3px solid var(--fuchsia);
+      padding: 1rem 1.5rem;
+      background: rgba(217,70,239,0.05);
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+    .quote-callout p { font-style: italic; color: #b8cfe0; text-align: left; }
+    .quote-callout cite { display: block; margin-top: 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--fuchsia); letter-spacing: 0.08em; }
+    .stats-row {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .stat-box {
+      text-align: center;
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--obsidian-border);
+      border-radius: 10px;
+      background: var(--gradient-card);
+      min-width: 130px;
+    }
+    .stat-num {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.4rem;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: #b8cfe0; letter-spacing: 0.08em; }
+
+    /* ── Weather Widget ── */
+    .weather-widget {
+      width: 180px;
+      min-height: 180px;
+      background: var(--gradient-card);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 14px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .weather-widget::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      border-radius: 14px 14px 0 0;
+    }
+    .weather-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--fuchsia);
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .weather-input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--obsidian-border);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      padding: 0.3rem 0.5rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .weather-input:focus { border-color: var(--purple-mid); }
+    .weather-go {
+      background: var(--gradient-accent);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.6rem;
+      padding: 0.3rem 0.5rem;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      transition: opacity 0.2s;
+    }
+    .weather-go:hover { opacity: 0.85; }
+    .weather-icon { font-size: 2rem; text-align: center; line-height: 1; margin: 0.2rem 0; }
+    .weather-temp {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+    .weather-desc {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      color: #b8cfe0;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+    .weather-city {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--purple-light);
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .weather-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.3rem;
+      border-top: 1px solid var(--obsidian-border);
+      padding-top: 0.4rem;
+    }
+    .weather-meta span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.52rem;
+      color: #b8cfe0;
+      text-align: center;
+      flex: 1;
+    }
+    .weather-meta span b { display: block; color: var(--purple-light); font-size: 0.58rem; }
+    .weather-error {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--fuchsia);
+      text-align: center;
+      padding: 0.5rem 0;
+    }
+    .weather-loading {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      color: #b8cfe0;
+      text-align: center;
+      padding: 0.5rem 0;
+      animation: pulse-orb 1.5s ease-in-out infinite;
+    }
+    .footer-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .footer-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.8rem;
+      background: transparent;
+      border: 1px solid var(--obsidian-border);
+      border-radius: 6px;
+      color: #b8cfe0;
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.22s;
+      text-align: left;
+      width: 100%;
+    }
+    .footer-btn i { color: var(--purple-light); font-size: 0.7rem; width: 14px; flex-shrink: 0; }
+    .footer-btn:hover {
+      background: rgba(139,92,246,0.12);
+      border-color: var(--purple-mid);
+      color: var(--fuchsia-glow);
+      transform: translateX(3px);
+    }
+    .footer-btn:hover i { color: var(--fuchsia); }
+    /* ── TABLET  (≤ 768px) ── */
+    @media (max-width: 768px) {
+      /* Navbar */
+      #navbar { padding: 0.75rem 1rem; }
+      .brand { font-size: 0.78rem; letter-spacing: 0.08em; }
+
+      /* Hero */
+      #hero { padding: 5.5rem 1.2rem 3.5rem; }
+      .hero-title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+      .hero-subtitle { font-size: 0.82rem; max-width: 100%; padding: 0 0.5rem; }
+      .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.2em; }
+      .hero-cta { gap: 0.65rem; flex-wrap: wrap; justify-content: center; }
+      .hero-orb { display: none; }
+
+      /* Buttons */
+      .btn-primary, .btn-outline,
+      .btn-hero-share, .btn-hero-articles {
+        min-width: 180px;
+        padding: 0.65rem 1.1rem;
+        font-size: 0.63rem;
+      }
+
+      /* Layout */
+      .container { padding: 0 1rem; }
+      section { padding: 3rem 0 !important; }
+
+      /* Intro */
+      .intro-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .intro-card { padding: 1.1rem; }
+
+      /* Stats + weather */
+      .stats-row { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+      .stat-box { min-width: 90px; padding: 0.7rem 0.9rem; }
+      .stat-num { font-size: 1.1rem; }
+      .weather-widget { width: 100%; max-width: 360px; margin: 0 auto; }
+
+      /* Articles */
+      .article-filters { gap: 0.35rem; }
+      .filter-btn { font-size: 0.6rem; padding: 0.3rem 0.7rem; }
+      .articles-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .article-card-img { height: 120px; }
+
+      /* Tips */
+      .tips-grid { grid-template-columns: 1fr; gap: 0.85rem; }
+
+      /* Follow */
+      .follow-grid { gap: 0.6rem; }
+      .follow-card { min-width: 85px; padding: 0.85rem 1rem; }
+
+      /* Subscribe */
+      .subscribe-form { flex-direction: column; }
+      .subscribe-form input { min-width: unset; width: 100%; }
+      .subscribe-box { padding: 0 0.5rem; }
+
+      /* Archive */
+      .archive-search { flex-direction: column; gap: 0.5rem; }
+      .archive-search input, .archive-search button { width: 100%; }
+      .archive-list li { flex-wrap: wrap; gap: 0.3rem; font-size: 0.72rem; }
+      .archive-list li span { font-size: 0.55rem; }
+
+      /* Editor */
+      .editor-box { padding: 1rem; }
+      .editor-box div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+
+      /* Comments */
+      .comment-form { padding: 1rem; }
+
+      /* Modal */
+      .modal { padding: 1.2rem; max-height: 92vh; margin: 1rem; }
+      .modal-overlay { padding: 0.5rem; }
+      .share-section { max-width: 100%; }
+      .share-btn { width: 100%; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+      .footer-grid .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; gap: 0.4rem; }
+      .footer-bottom p { text-align: center !important; }
+
+      /* Misc */
+      #back-top { bottom: 1rem; left: 1rem; width: 34px; height: 34px; font-size: 0.75rem; }
+      .toast { right: 1rem; left: 1rem; bottom: 1rem; text-align: center; width: auto; }
+      .section-header h2 { font-size: 0.95rem; }
+      .divider { margin: 0.6rem auto; }
+    }
+
+    /* ── SMALL MOBILE  (≤ 480px) ── */
+    @media (max-width: 480px) {
+      /* Navbar */
+      #navbar { padding: 0.65rem 0.85rem; }
+      .brand { font-size: 0.68rem; letter-spacing: 0.06em; }
+
+      /* Hero — stack buttons vertically */
+      #hero { padding: 5rem 1rem 3rem; }
+      .hero-title { font-size: clamp(1.4rem, 9vw, 2rem); line-height: 1.2; }
+      .hero-subtitle { font-size: 0.78rem; }
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 0.6rem;
+      }
+      .btn-primary, .btn-outline,
+      .btn-hero-share, .btn-hero-articles {
+        width: 100%;
+        max-width: 280px;
+        min-width: unset;
+        justify-content: center;
+        font-size: 0.62rem;
+        padding: 0.7rem 1rem;
+      }
+
+      /* Nav menu full-width on very small screens */
+      #nav-menu { width: 88vw; right: -88vw; padding: 4rem 1rem 1.5rem; }
+      #nav-menu.open { right: 0; }
+      .nav-btn { font-size: 0.8rem; padding: 0.65rem 0.85rem; }
+
+      /* Section titles */
+      .section-header h2 { font-size: 0.88rem; }
+      .section-header p { font-size: 0.75rem; }
+
+      /* Stats: 2-column grid on tiny screens */
+      .stats-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        justify-items: center;
+      }
+      .stat-box { min-width: unset; width: 100%; text-align: center; padding: 0.65rem 0.5rem; }
+      .stat-num { font-size: 1rem; }
+      .stat-label { font-size: 0.55rem; }
+
+      /* Weather widget */
+      .weather-widget { width: 100%; }
+
+      /* Article filters: horizontal scroll */
+      .article-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.4rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+      .article-filters::-webkit-scrollbar { height: 2px; }
+      .article-filters::-webkit-scrollbar-thumb { background: var(--purple-mid); border-radius: 2px; }
+      .filter-btn { white-space: nowrap; flex-shrink: 0; }
+
+      /* Article cards */
+      .article-card-body h3 { font-size: 0.88rem; }
+      .article-card-body p { font-size: 0.72rem; }
+      .article-card-img { height: 110px; }
+
+      /* Tips */
+      .tip-card { padding: 1rem; }
+      .tip-num { font-size: 1.8rem; }
+
+      /* Follow cards: compact row */
+      .follow-grid { gap: 0.5rem; justify-content: center; }
+      .follow-card { min-width: 72px; padding: 0.7rem 0.75rem; }
+      .follow-card i { font-size: 1.2rem; }
+      .follow-card span { font-size: 0.6rem; }
+
+      /* Archive */
+      .archive-list li span:last-child { display: none; }
+      .archive-list li { font-size: 0.7rem; }
+
+      /* Editor / forms */
+      .editor-box textarea { font-size: 0.75rem; }
+      .editor-box input, .editor-box select { font-size: 0.75rem; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .footer-col { border-top: 1px solid var(--obsidian-border); padding-top: 1rem; }
+      .footer-col h4 { font-size: 0.72rem; }
+      .footer-btn { font-size: 0.72rem; }
+
+      /* Comparison table */
+      .comparison-table { font-size: 0.65rem; }
+      .comparison-table th, .comparison-table td { padding: 0.4rem 0.5rem; }
+
+      /* Modal */
+      .modal { padding: 1rem; border-radius: 10px; }
+      .modal h2 { font-size: 0.9rem; }
+      .share-btn { font-size: 0.72rem; }
+
+      /* Toast */
+      .toast { font-size: 0.72rem; padding: 0.6rem 1rem; }
+
+      /* Intro cards */
+      .intro-card h3 { font-size: 0.82rem; }
+      .intro-card p { font-size: 0.73rem; }
+    }
+
+    /* ── EXTRA SMALL (≤ 360px) ── */
+    @media (max-width: 360px) {
+      .brand { font-size: 0.6rem; }
+      .hero-title { font-size: clamp(1.2rem, 10vw, 1.7rem); }
+      .btn-primary, .btn-outline,
+      .btn-hero-share, .btn-hero-articles {
+        font-size: 0.58rem;
+        padding: 0.65rem 0.8rem;
+      }
+      .follow-card { min-width: 62px; padding: 0.6rem; }
+      .follow-card i { font-size: 1rem; }
+      .stat-num { font-size: 0.9rem; }
+    }
+    #submit-article p, #submit-article label, #submit-article h2,
+    #comments p, #comments label, #comments h2,
+    #outro p, #outro h2,
+    #footer p, #footer h4, #footer li, #footer ul li {
+      color: #ffffff !important;
+    }
+    #submit-article .section-header p,
+    #comments .section-header p,
+    #outro .outro-quote {
+      color: rgba(255,255,255,0.85) !important;
+    }
+    #submit-article .editor-box label {
+      color: #ffffff !important;
+    }
+    #submit-article p[style*="text-muted"],
+    #comments p[style*="text-muted"] {
+      color: rgba(255,255,255,0.7) !important;
+    }
+    .comment-name { color: #ffffff !important; }
+    .comment-date { color: rgba(255,255,255,0.6) !important; }
+    .comment-item p { color: rgba(255,255,255,0.85) !important; }
+    .footer-brand p { color: rgba(255,255,255,0.85) !important; }
+    .footer-bottom p { color: rgba(255,255,255,0.7) !important; }
+    .footer-btn { color: #ffffff !important; }
+    .archive-list li { color: #ffffff !important; }
+    .archive-list li span { color: rgba(255,255,255,0.6) !important; }
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="toast" id="toast"></div>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="brand" onclick="scrollTo({top:0,behavior:'smooth'})">POETIC CODES</div>
+  <div class="hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div id="nav-overlay" onclick="closeMenu()"></div>
+<div id="nav-menu" role="menu">
+  <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--fuchsia);margin-bottom:0.75rem;padding:0 0.5rem;">NAVIGATION</p>
+  <button class="nav-btn" onclick="goTo('hero')"><i class="fas fa-home"></i><span>Home</span></button>
+  <button class="nav-btn" onclick="goTo('introduction')"><i class="fas fa-newspaper"></i><span>Introduction</span></button>
+  <button class="nav-btn" onclick="goTo('articles')"><i class="fas fa-book-open"></i><span>Articles</span></button>
+  <button class="nav-btn" onclick="goTo('valuable-1')"><i class="fas fa-lightbulb"></i><span>Insights</span></button>
+  <button class="nav-btn" onclick="goTo('follow')"><i class="fas fa-users"></i><span>Follow</span></button>
+  <button class="nav-btn" onclick="goTo('valuable-2')"><i class="fas fa-star"></i><span>Deep Reads</span></button>
+  <button class="nav-btn" onclick="goTo('subscribe')"><i class="fas fa-envelope"></i><span>Subscribe</span></button>
+  <button class="nav-btn" onclick="goTo('archive')"><i class="fas fa-archive"></i><span>Archive</span></button>
+  <button class="nav-btn" onclick="goTo('add-content')"><i class="fas fa-plus-circle"></i><span>Add Article</span></button>
+  <button class="nav-btn" onclick="goTo('submit-article')"><i class="fas fa-pen-nib"></i><span>Submit Article</span></button>
+  <button class="nav-btn" onclick="goTo('comments')"><i class="fas fa-comments"></i><span>Comments</span></button>
+  <button class="nav-btn" onclick="goTo('outro')"><i class="fas fa-feather-alt"></i><span>Outro</span></button>
+  <button class="nav-btn" onclick="goTo('footer')"><i class="fas fa-info-circle"></i><span>About</span></button>
+  <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid var(--obsidian-border);display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">
+    <a href="https://facebook.com" target="_blank" rel="noopener" style="width:34px;height:34px;border:1px solid var(--obsidian-border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#1877f2;font-size:0.85rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#1877f2';this.style.background='rgba(24,119,242,0.1)'" onmouseout="this.style.borderColor='var(--obsidian-border)';this.style.background='transparent'"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener" style="width:34px;height:34px;border:1px solid var(--obsidian-border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#0a66c2;font-size:0.85rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#0a66c2';this.style.background='rgba(10,102,194,0.1)'" onmouseout="this.style.borderColor='var(--obsidian-border)';this.style.background='transparent'"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://x.com" target="_blank" rel="noopener" style="width:34px;height:34px;border:1px solid var(--obsidian-border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#e8e4f0;font-size:0.85rem;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--purple-mid)';this.style.background='rgba(139,92,246,0.1)'" onmouseout="this.style.borderColor='var(--obsidian-border)';this.style.background='transparent'"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://youtube.com" target="_blank" rel="noopener" style="width:34px;height:34px;border:1px solid var(--obsidian-border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#ff0000;font-size:0.85rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#ff0000';this.style.background='rgba(255,0,0,0.1)'" onmouseout="this.style.borderColor='var(--obsidian-border)';this.style.background='transparent'"><i class="fab fa-youtube"></i></a>
+    <a href="https://instagram.com" target="_blank" rel="noopener" style="width:34px;height:34px;border:1px solid var(--obsidian-border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#e4405f;font-size:0.85rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#e4405f';this.style.background='rgba(228,64,95,0.1)'" onmouseout="this.style.borderColor='var(--obsidian-border)';this.style.background='transparent'"><i class="fab fa-instagram"></i></a>
+  </div>
+</div>
+<section id="hero">
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="hero-orb orb-3"></div>
+  <div class="hero-eyebrow">Glenn Junsay Pansensoy &bull; Est. 2026</div>
+  <h1 class="hero-title gradient-text">Poetic Codes</h1>
+  <p class="hero-subtitle">Where technology meets thought. Articles on AI, current events, science, culture, and the ever-shifting human experience — written with curiosity and depth.</p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="goTo('articles')">Read Articles</button>
+    <button class="btn-outline" onclick="goTo('subscribe')">Subscribe</button>
+  </div>
+  <div class="hero-cta" style="margin-top:1rem;opacity:0;animation:fadeUp 0.8s 1s forwards;">
+    <button class="btn-hero-share" onclick="goTo('submit-article')">
+      <i class="fas fa-pen-nib"></i> You Can Share Your Thoughts
+    </button>
+    <a href="https://pansensoyglenn-dev.github.io/articles/" target="_blank" rel="noopener" class="btn-hero-articles">
+      <i class="fas fa-book-open"></i> Click To Read All Articles
+    </a>
+  </div>
+</section>
+<section id="introduction">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="gradient-text">A World in Motion</h2>
+      <div class="divider"></div>
+      <p>Comprehensive dispatches from the frontlines of technology, society, and human thought.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-start;justify-content:center;">
+      <div class="stats-row" style="flex:1;min-width:260px;">
+        <div class="stat-box"><div class="stat-num" id="stat-articles">0</div><div class="stat-label">Articles</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-topics">0</div><div class="stat-label">Topics</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-readers">0</div><div class="stat-label">Readers</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-months">0</div><div class="stat-label">Months Active</div></div>
+      </div>
+      <!-- Weather Widget -->
+      <div class="weather-widget">
+        <div class="weather-title">⛅ Weather</div>
+        <div style="display:flex;gap:0.3rem;">
+          <input class="weather-input" id="weather-city-input" type="text" placeholder="City name..." onkeydown="if(event.key==='Enter')fetchWeather()"/>
+          <button class="weather-go" onclick="fetchWeather()">Go</button>
+        </div>
+        <div id="weather-result"><div class="weather-loading">Enter a city above</div></div>
+      </div>
+    </div>
+    <div class="intro-grid">
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-microchip"></i></div>
+        <h3>The Age of Artificial Intelligence</h3>
+        <p>We live at the threshold of perhaps the most transformative era in human history. Artificial intelligence has ceased to be a distant theoretical promise — it is now woven into the fabric of everyday life. From large language models reshaping how we write, code, and think, to autonomous systems making decisions that once required human judgment, the pace of change is staggering. Poetic Codes tracks these shifts with honesty and depth, cutting through hype to deliver insight you can trust. We explore not just what AI can do, but what it means — for labor, for creativity, for the future of human purpose itself.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-globe-asia"></i></div>
+        <h3>Current Events & Global Currents</h3>
+        <p>Geopolitics, climate, economic upheaval, and social movements are reshaping nations and communities at a speed rarely seen before. The post-pandemic world has accelerated inequalities, re-drawn alliances, and given rise to new forms of civic participation. This publication examines those currents without partisan blinders, drawing on data, lived experience, and careful analysis to help readers navigate a complex, contested world with greater clarity. From election cycles to supply chain crises, from protest movements to diplomatic realignments — nothing is too large or too nuanced to examine.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-dna"></i></div>
+        <h3>Science, Health & the Body</h3>
+        <p>Breakthroughs in genomics, quantum computing, climate science, and neuroscience are expanding the frontier of what humanity knows and what it can do. This section demystifies the cutting edge — explaining what gene-editing means for medicine, why quantum supremacy matters for encryption, and how our understanding of the brain is being fundamentally rewritten. Science is not a distant institution; it is the shared effort of our civilization to understand reality. We translate complexity into clarity without sacrificing accuracy or depth.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-book"></i></div>
+        <h3>Culture, Language & the Arts</h3>
+        <p>Technology and culture are not separate domains — they are deeply entangled. The rise of algorithmic content curation, AI-generated art, and digital social spaces is redefining creativity, identity, and community. Poetic Codes explores the intersection of the human and the digital: what we lose, what we gain, and what remains irreducibly ours even in an automated age. Literature, film, music, and philosophy all find a home here — examined with the conviction that culture is not decoration but the very substance of civilized life.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-balance-scale"></i></div>
+        <h3>Philosophy, Ethics & the Examined Life</h3>
+        <p>In an era of rapid change, the oldest questions become the most urgent. What do we owe each other? What makes a life meaningful? How should power be distributed, and who gets to decide? Philosophy is not an academic exercise — it is the discipline of thinking carefully about what matters most. Poetic Codes brings philosophical rigor to contemporary dilemmas: the ethics of AI, the politics of attention, the meaning of work, and the obligations of the privileged toward the vulnerable. Thinking clearly is itself a form of action.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-code"></i></div>
+        <h3>Programming & the Builder's Mind</h3>
+        <p>Code is the closest thing to pure thought made tangible. To write software is to impose logic on chaos, to build systems that outlast their creators, to communicate with machines in a language that is also, somehow, a form of art. This section is for those who build — developers, engineers, tinkerers, and learners who understand that technology is not merely consumed but constructed. From algorithms and data structures to software philosophy and the culture of open source, Poetic Codes speaks the builder's language with the writer's voice.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-flag"></i></div>
+        <h3>Domestic Realities & Local Truths</h3>
+        <p>Global narratives often obscure the particular — the local struggles, triumphs, and contradictions that define daily life for most people. This section grounds the conversation in domestic realities: the politics of housing and education, the economics of ordinary households, the social fabric of communities under pressure. Great writing has always begun with the specific and moved toward the universal. Poetic Codes believes that the most honest journalism starts at home — with the streets, institutions, and people that shape lived experience before any abstract force arrives to reshape them.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-globe"></i></div>
+        <h3>International Paradigms & World Orders</h3>
+        <p>The international order built after 1945 is under extraordinary stress. New powers are rising, old institutions are straining, and the assumptions that governed decades of relative stability are being questioned from every direction. Poetic Codes examines the shifting architecture of global power — trade wars and tech competition, migration and sovereignty, climate diplomacy and the weaponization of information. Understanding the world beyond one's borders is not a luxury but a necessity for any citizen who wishes to understand the forces shaping their own life from the outside in.</p>
+      </div>
+    </div>
+    <div class="quote-callout" style="margin-top:2rem;">
+      <p>The measure of intelligence is the ability to change. In an age of perpetual disruption, the most valuable skill is not expertise — it is the capacity for perpetual curiosity. Poetic Codes exists for those who refuse to stop asking why.</p>
+      <cite>— Glenn Junsay Pansensoy, Poetic Codes</cite>
+    </div>
+  </div>
+</section>
+<section id="articles">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="gradient-text">Latest Articles</h2>
+      <div class="divider"></div>
+      <p>Curated dispatches across technology, culture, science, and society.</p>
+    </div>
+    <div class="article-filters">
+      <button class="filter-btn active" onclick="filterArticles('all',this)">All</button>
+      <button class="filter-btn" onclick="filterArticles('technology',this)">Technology</button>
+      <button class="filter-btn" onclick="filterArticles('culture',this)">Culture</button>
+      <button class="filter-btn" onclick="filterArticles('science',this)">Science</button>
+      <button class="filter-btn" onclick="filterArticles('society',this)">Society</button>
+      <button class="filter-btn" onclick="filterArticles('philosophy',this)">Philosophy</button>
+      <button class="filter-btn" onclick="filterArticles('domestic',this)">Domestic</button>
+      <button class="filter-btn" onclick="filterArticles('international',this)">International</button>
+      <button class="filter-btn" onclick="filterArticles('programming',this)">Programming</button>
+    </div>
+    <div class="articles-grid" id="articles-grid"></div>
+  </div>
+</section>
+<div class="modal-overlay" id="article-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    <div id="modal-content"></div>
+    <div style="margin-top:1.5rem; border-top:1px solid var(--obsidian-border); padding-top:1rem;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:0.75rem;text-align:center;">SHARE THIS ARTICLE</p>
+      <div class="share-section" id="modal-share-section"></div>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="success-modal">
+  <div class="modal" style="max-width:460px;text-align:center;">
+    <div style="font-size:2.5rem;margin-bottom:1rem;">✦</div>
+    <h2 style="font-size:var(--title-size);margin-bottom:0.5rem;" class="gradient-text">Article Published!</h2>
+    <p id="success-title-display" style="color:var(--text-muted);font-style:italic;margin-bottom:1.5rem;font-size:0.85rem;"></p>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);letter-spacing:0.08em;margin-bottom:1rem;">WHERE TO FIND IT</p>
+    <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem;">
+      <div style="display:flex;align-items:center;gap:0.75rem;padding:0.7rem 1rem;border:1px solid var(--obsidian-border);border-radius:8px;background:rgba(26,26,46,0.6);">
+        <i class="fas fa-th-large" style="color:var(--purple-light);width:18px;"></i>
+        <div style="text-align:left;">
+          <p style="font-size:0.78rem;color:var(--text-primary);">Latest Articles Grid</p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);">First card at the top — newest first</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;padding:0.7rem 1rem;border:1px solid var(--obsidian-border);border-radius:8px;background:rgba(26,26,46,0.6);">
+        <i class="fas fa-archive" style="color:var(--purple-light);width:18px;"></i>
+        <div style="text-align:left;">
+          <p style="font-size:0.78rem;color:var(--text-primary);">Archive Section</p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);">Searchable by title or category</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;padding:0.7rem 1rem;border:1px solid var(--obsidian-border);border-radius:8px;background:rgba(26,26,46,0.6);">
+        <i class="fas fa-book-open" style="color:var(--purple-light);width:18px;"></i>
+        <div style="text-align:left;">
+          <p style="font-size:0.78rem;color:var(--text-primary);">Full Reader Modal</p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);">Click the card to read the full article</p>
+        </div>
+      </div>
+    </div>
+    <div id="success-modal-actions" style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <button class="btn-outline" onclick="closeSuccessModal()" style="flex:1;border-radius:8px;padding:0.65rem;">
+        Close
+      </button>
+      <button class="btn-primary" onclick="viewPublishedArticle()" style="flex:1;border-radius:8px;padding:0.65rem;">
+        <i class="fas fa-eye"></i> &nbsp;Read It Now
+      </button>
+    </div>
+  </div>
+</div>
+<section id="valuable-1">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="gradient-text">Essential Insights</h2>
+      <div class="divider"></div>
+      <p>Frameworks and ideas that change how you see the world.</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-num">01</div>
+        <h4>The Attention Economy</h4>
+        <p>Every digital platform is engaged in a fierce competition for your attention. Understanding how algorithms are engineered to maximize engagement — not enlightenment — is the first step toward digital sovereignty. Reclaiming your attention is an act of profound self-determination in the modern age.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">02</div>
+        <h4>Second-Order Thinking</h4>
+        <p>Most decisions are evaluated by their immediate, first-order consequences. Exceptional thinkers ask "and then what?" Tracing the cascading implications of a technological change, policy shift, or cultural trend two and three steps forward is a rare and enormously valuable skill.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">03</div>
+        <h4>The Latency of Ideas</h4>
+        <p>The most important ideas in any era are usually not the newest ones. They are old ideas whose time has finally arrived — because the infrastructure, the audience, or the adjacent concept needed to make them actionable finally exists. History rewards patience and synthesis.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">04</div>
+        <h4>Digital Literacy as Survival</h4>
+        <p>In a world saturated with synthetic media, manipulated statistics, and algorithmic curation, the ability to evaluate sources, detect bias, and reason probabilistically is no longer optional. It is as fundamental as reading and arithmetic were to previous generations. Teach it aggressively.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">05</div>
+        <h4>Compounding Knowledge</h4>
+        <p>Albert Einstein allegedly called compound interest the eighth wonder of the world. The same principle applies to knowledge. Twenty minutes of deep reading daily compounds over a decade into a cognitive advantage that no algorithm can replicate. Consistency, not brilliance, is the operative variable.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">06</div>
+        <h4>Embrace Productive Discomfort</h4>
+        <p>Growth, intellectual and personal, occurs precisely at the boundary of competence — in the zone where effort is required and failure is possible. AI can do increasingly more of the comfortable cognitive work. What it cannot replicate is the gritty, uncertain experience of genuinely not knowing and pressing through.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="follow">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="gradient-text">Follow the Journey</h2>
+      <div class="divider"></div>
+      <p>Stay connected across platforms. New ideas, discussions, and updates — every day.</p>
+    </div>
+    <div class="follow-grid">
+      <a class="follow-card fb" href="https://facebook.com/@GlennPansensoy" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i><span>Facebook</span>
+      </a>
+      <a class="follow-card li" href="www.linkedin.com/in/Glenn-Junsay-Pansensoy" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i><span>LinkedIn</span>
+      </a>
+      <a class="follow-card tw" href="https://x.com/@GlennPansensoy" target="_blank" rel="noopener">
+        <i class="fab fa-x-twitter"></i><span>X / Twitter</span>
+      </a>
+      <a class="follow-card yt" href="https://youtube.com/c/@GlennPansensoy" target="_blank" rel="noopener">
+        <i class="fab fa-youtube"></i><span>YouTube</span>
+      </a>
+      <a class="follow-card ig" href="https://instagram.com/@glennpansensoy" target="_blank" rel="noopener">
+        <i class="fab fa-instagram"></i><span>Instagram</span>
+      </a>
+    </div>
+  </div>
+</section>
+<section id="valuable-2">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="gradient-text">Deep Reads</h2>
+      <div class="divider"></div>
+      <p>Longform explorations for those who want more than a headline.</p>
+    </div>
+    <div class="intro-grid">
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-robot"></i></div>
+        <h3>The Alignment Problem, Explained</h3>
+        <p>The alignment problem refers to the challenge of ensuring that advanced artificial intelligence systems act in accordance with human values and intentions. As AI systems grow more capable, the gap between what we instruct them to do and what we actually want them to do — given all our complex, sometimes contradictory values — becomes increasingly dangerous. Researchers at OpenAI, Anthropic, and DeepMind are racing to solve a problem that, if left unaddressed, could have civilizational consequences. This piece walks through the core technical and philosophical dimensions of the challenge in plain language.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-city"></i></div>
+        <h3>The Future of Cities After Remote Work</h3>
+        <p>The COVID-19 pandemic triggered the largest involuntary experiment in remote work in human history. Now, years later, the data reveals something nuanced: remote work has not killed cities, but it has fundamentally changed their center of gravity. Downtown commercial districts continue to struggle. Suburban towns and secondary cities are seeing renaissance. Housing markets have been upended. The winners are places that offer quality of life, not just proximity to jobs. What does this mean for urban planning, public transit, and the social fabric of metropolitan life?</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-seedling"></i></div>
+        <h3>Regenerative Agriculture & Climate Hope</h3>
+        <p>While much of the climate conversation focuses on reducing emissions, a quieter revolution is exploring how agriculture can actively remove carbon from the atmosphere. Regenerative farming practices — cover cropping, no-till cultivation, integrated livestock management, and holistic land management — have the potential to sequester gigatons of carbon annually while simultaneously improving soil health, water retention, and biodiversity. The technology is not exotic; it is a return to ancestral wisdom armed with modern ecological science.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-card-icon"><i class="fas fa-brain"></i></div>
+        <h3>Neuroplasticity and the Learnable Mind</h3>
+        <p>For most of the 20th century, neuroscientists believed the adult brain was largely fixed — that the neurons you had at twenty were largely the ones you would die with. The discovery of neuroplasticity overturned this assumption entirely. The brain rewires itself in response to experience throughout the lifespan. This has profound implications for education, therapy, recovery from injury, and simply for how we choose to spend our attention. The mind is not a container; it is a process — and it can be deliberately shaped.</p>
+      </div>
+    </div>
+    <div class="quote-callout" style="margin-top:2rem;">
+      <p>Every great advance in science has issued from a new audacity of the imagination. The facts are never quite enough. It takes a poet to see the pattern.</p>
+      <cite>— John Dewey, adapted for the digital age</cite>
+    </div>
+  </div>
+</section>
+<section id="subscribe">
+  <div class="container">
+    <div class="subscribe-box">
+      <div class="section-header">
+        <h2 class="gradient-text">Stay in the Loop</h2>
+        <div class="divider"></div>
+        <p>New articles, curated ideas, and dispatches from Glenn Junsay Pansensoy — delivered directly to your inbox. No spam. Unsubscribe anytime.</p>
+      </div>
+      <div class="subscribe-form">
+        <input type="text" id="sub-name" placeholder="Your name" />
+        <input type="email" id="sub-email" placeholder="Your email address" />
+        <button class="btn-primary" onclick="subscribe()" style="border-radius:8px;">Subscribe</button>
+      </div>
+      <p style="margin-top:0.75rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);text-align:center;">✦ Join <span id="sub-count">0</span> thoughtful readers</p>
+    </div>
+  </div>
+</section>
+<section id="archive">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="gradient-text">Article Archive</h2>
+      <div class="divider"></div>
+      <p>Browse and retrieve every article published on Poetic Codes.</p>
+    </div>
+    <div class="archive-search">
+      <input type="text" id="archive-search-input" placeholder="Search archive…" oninput="searchArchive()" />
+      <button onclick="searchArchive()"><i class="fas fa-search"></i></button>
+    </div>
+    <ul class="archive-list" id="archive-list"></ul>
+  </div>
+</section>
+<section id="add-content">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="gradient-text">Add New Article</h2>
+      <div class="divider"></div>
+      <p>Paste your raw HTML file below — the site will automatically extract and render it as a beautiful article.</p>
+    </div>
+    <div class="editor-box" style="max-width:800px;">
+      <div style="display:flex;gap:0.5rem;margin-bottom:1.2rem;">
+        <button id="mode-html" onclick="setMode('html')" style="flex:1;padding:0.5rem;border-radius:8px;border:1px solid var(--fuchsia);background:rgba(217,70,239,0.15);color:var(--fuchsia-glow);font-family:'JetBrains Mono',monospace;font-size:0.65rem;cursor:pointer;letter-spacing:0.05em;">
+          <i class="fas fa-code"></i> &nbsp;PASTE HTML
+        </button>
+        <button id="mode-text" onclick="setMode('text')" style="flex:1;padding:0.5rem;border-radius:8px;border:1px solid var(--obsidian-border);background:transparent;color:var(--text-muted);font-family:'JetBrains Mono',monospace;font-size:0.65rem;cursor:pointer;letter-spacing:0.05em;">
+          <i class="fas fa-align-left"></i> &nbsp;PLAIN TEXT
+        </button>
+      </div>
+      <div id="html-mode-panel">
+        <label>Paste Your Full HTML File Here *</label>
+        <textarea id="html-paste" rows="12"
+          placeholder="Paste your entire HTML file here — including &lt;!DOCTYPE html&gt;, &lt;head&gt;, &lt;body&gt; and all content. The site will extract the title, paragraphs, author, description and publish it automatically."
+          oninput="livePreviewExtract()"
+          style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;line-height:1.6;"></textarea>
+        <div id="extract-preview" style="display:none;margin-bottom:1rem;padding:1rem;border:1px solid var(--purple-mid);border-radius:10px;background:rgba(107,13,173,0.08);">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--fuchsia);letter-spacing:0.1em;margin-bottom:0.6rem;">✦ EXTRACTED CONTENT PREVIEW</p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);margin-bottom:0.25rem;">TITLE</p>
+          <p id="preview-title" style="color:var(--purple-light);margin-bottom:0.75rem;font-size:0.85rem;"></p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);margin-bottom:0.25rem;">DESCRIPTION / EXCERPT</p>
+          <p id="preview-excerpt" style="color:var(--text-muted);font-style:italic;margin-bottom:0.75rem;font-size:0.78rem;"></p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);margin-bottom:0.25rem;">PARAGRAPHS FOUND</p>
+          <p id="preview-count" style="color:var(--fuchsia-glow);font-size:0.78rem;"></p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div>
+            <label>Override Title (optional)</label>
+            <input type="text" id="html-title-override" placeholder="Leave blank to auto-extract…" />
+          </div>
+          <div>
+            <label>Category *</label>
+            <select id="html-category">
+              <option value="">— Select category —</option>
+              <option value="technology">Technology</option>
+              <option value="culture">Culture</option>
+              <option value="science">Science</option>
+              <option value="society">Society</option>
+              <option value="philosophy">Philosophy</option>
+              <option value="domestic">Domestic Articles</option>
+              <option value="international">International Paradigm</option>
+              <option value="programming">Programming</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div>
+            <label>Override Author (optional)</label>
+            <input type="text" id="html-author-override" placeholder="Glenn Junsay Pansensoy" />
+          </div>
+          <div>
+            <label>Override Excerpt (optional)</label>
+            <input type="text" id="html-excerpt-override" placeholder="Leave blank to auto-extract…" />
+          </div>
+        </div>
+        <div style="display:flex;gap:0.75rem;margin-top:0.5rem;">
+          <button class="btn-outline" onclick="extractAndPreview()" style="border-radius:8px;padding:0.65rem 1.2rem;font-size:0.75rem;">
+            <i class="fas fa-eye"></i> &nbsp;Preview Extraction
+          </button>
+          <button class="btn-primary" onclick="publishFromHTML()" style="flex:1;border-radius:8px;padding:0.65rem;font-size:0.8rem;">
+            <i class="fas fa-paper-plane"></i> &nbsp;Extract & Publish
+          </button>
+        </div>
+      </div>
+      <div id="text-mode-panel" style="display:none;">
+        <label>Article Title *</label>
+        <input type="text" id="new-title" placeholder="Enter a compelling title…" />
+        <label>Category *</label>
+        <select id="new-category">
+          <option value="">— Select category —</option>
+          <option value="technology">Technology</option>
+          <option value="culture">Culture</option>
+          <option value="science">Science</option>
+          <option value="society">Society</option>
+          <option value="philosophy">Philosophy</option>
+          <option value="domestic">Domestic Articles</option>
+          <option value="international">International Paradigm</option>
+          <option value="programming">Programming</option>
+        </select>
+        <label>Excerpt (short description)</label>
+        <input type="text" id="new-excerpt" placeholder="A concise 1–2 sentence summary…" />
+        <label>Full Article Content * <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);">(press Enter twice between paragraphs)</span></label>
+        <textarea id="new-body" rows="10" placeholder="Write your article here. Press Enter twice between paragraphs to separate them…"></textarea>
+        <label>Author</label>
+        <input type="text" id="new-author" value="Glenn Junsay Pansensoy" />
+        <button class="btn-primary" onclick="publishArticle()" style="width:100%;border-radius:8px;padding:0.75rem;font-size:0.8rem;">
+          <i class="fas fa-paper-plane"></i> &nbsp;Publish Article
+        </button>
+      </div>
+      <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--obsidian-border);">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--fuchsia);letter-spacing:0.1em;margin-bottom:0.5rem;">&#10022; SEO TOOLS</p>
+        <p style="color:var(--text-muted);font-size:0.78rem;margin-bottom:0.75rem;">Generate a <code style="font-family:'JetBrains Mono',monospace;color:var(--purple-light);font-size:0.72rem;">sitemap.xml</code> For all the article pages.</p>
+        <button class="btn-outline" onclick="downloadSitemap()" style="border-radius:8px;padding:0.65rem 1.4rem;font-size:0.78rem;">
+          <i class="fas fa-sitemap"></i> &nbsp;Download sitemap.xml
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="submit-article" style="padding:5rem 0;background:var(--obsidian-mid);">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="gradient-text">Submit Your Article</h2>
+      <div class="divider"></div>
+      <p>Share your thoughts with the Poetic Codes community. Your article will be reviewed and published if it fits the spirit of thoughtful writing.</p>
+    </div>
+    <div class="editor-box" style="max-width:800px;margin:0 auto;">
+      <label>Article Title *</label>
+      <input type="text" id="submit-title" placeholder="A compelling title..." />
+      <label>Category *</label>
+      <select id="submit-category">
+        <option value="">— Select category —</option>
+        <option value="technology">Technology</option>
+        <option value="culture">Culture</option>
+        <option value="science">Science</option>
+        <option value="society">Society</option>
+        <option value="philosophy">Philosophy</option>
+        <option value="domestic">Domestic</option>
+        <option value="international">International</option>
+        <option value="programming">Programming</option>
+      </select>
+      <label>Your Name / Author Name *</label>
+      <input type="text" id="submit-author" placeholder="Your full name" />
+      <label>Short Excerpt / Description</label>
+      <input type="text" id="submit-excerpt" placeholder="One or two sentences summary..." />
+      <label>Full Article Content * <span style="font-size:0.65rem;color:var(--text-muted);">(Press Enter twice between paragraphs)</span></label>
+      <textarea id="submit-body" rows="14" placeholder="Write your article here..."></textarea>
+      <button class="btn-primary" onclick="submitGuestArticle()" style="width:100%;margin-top:1rem;padding:0.8rem;">
+        <i class="fas fa-paper-plane"></i> &nbsp;Submit Article for Review
+      </button>
+      <p style="font-size:0.7rem;color:var(--text-muted);text-align:center;margin-top:1rem;">
+        Your article will be reviewed by Glenn. If approved, it will be published with proper formatting and a shareable link.
+      </p>
+    </div>
+  </div>
+</section>
+<section id="comments">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="gradient-text">Join the Conversation</h2>
+      <div class="divider"></div>
+      <p>Share your thoughts, reactions, and questions below.</p>
+    </div>
+    <div class="comment-form">
+      <input type="text" id="comment-name" placeholder="Your name" />
+      <textarea id="comment-body" rows="4" placeholder="Your thoughts on this article…"></textarea>
+      <button class="btn-primary" onclick="postComment()" style="border-radius:8px;padding:0.6rem 1.5rem;">Post Comment</button>
+    </div>
+    <div class="comment-list" id="comment-list"></div>
+  </div>
+</section>
+<section id="outro">
+  <div class="hero-orb orb-1" style="width:300px;height:300px;top:-80px;left:-80px;"></div>
+  <div class="hero-orb orb-2" style="width:200px;height:200px;bottom:20px;right:20px;"></div>
+  <div class="container" style="position:relative;z-index:1;text-align:center;">
+    <div class="section-header">
+      <h2 class="gradient-text">Until the Next Dispatch</h2>
+      <div class="divider"></div>
+    </div>
+    <p class="outro-quote">
+      "In a world drowning in information and starved of wisdom, the most radical act is to slow down, read carefully, and think for yourself. Poetic Codes exists to be a companion in that effort — not a voice of authority, but a fellow traveler on the long, uncertain, magnificent road of inquiry."
+    </p>
+    <p class="outro-attribution">— Glenn Junsay Pansensoy</p>
+    <div style="margin-top:2.5rem;">
+      <p style="color:var(--text-muted);font-style:italic;margin-bottom:1.5rem;text-align:center;">Every ending is the beginning of the next question. Thank you for reading.</p>
+      <div class="hero-cta" style="opacity:1;animation:none;">
+        <button class="btn-primary" onclick="goTo('articles')">Read More</button>
+        <button class="btn-outline" onclick="goTo('subscribe')">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3 class="gradient-text">Poetic Codes</h3>
+        <p>A publication by Glenn Junsay Pansensoy. Articles on technology, current events, science, culture, and philosophy — updated regularly with insight and care.</p>
+        <div class="footer-socials" style="margin-top:1rem;">
+          <a href="https://facebook.com/@GlennPansensoy" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://linkedin.com/in/Glenn-Junsay-Pansensoy" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://x.com/@GlennPansensoylennpansensoy" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://youtube.com/c/@GlennPansensoy" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+          <a href="https://instagram.com/@glennpansensoy" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <div class="footer-btn-group">
+          <button class="footer-btn" onclick="goTo('hero')"><i class="fas fa-home"></i> Home</button>
+          <button class="footer-btn" onclick="goTo('introduction')"><i class="fas fa-newspaper"></i> Introduction</button>
+          <button class="footer-btn" onclick="goTo('articles')"><i class="fas fa-book-open"></i> Articles</button>
+          <button class="footer-btn" onclick="goTo('archive')"><i class="fas fa-archive"></i> Archive</button>
+          <button class="footer-btn" onclick="goTo('add-content')"><i class="fas fa-plus-circle"></i> Add Article</button>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Topics</h4>
+        <div class="footer-btn-group">
+          <button class="footer-btn" onclick="filterArticles('technology',document.querySelector('.filter-btn'));goTo('articles')"><i class="fas fa-microchip"></i> Technology</button>
+          <button class="footer-btn" onclick="filterArticles('science',document.querySelector('.filter-btn'));goTo('articles')"><i class="fas fa-dna"></i> Science</button>
+          <button class="footer-btn" onclick="filterArticles('culture',document.querySelector('.filter-btn'));goTo('articles')"><i class="fas fa-palette"></i> Culture</button>
+          <button class="footer-btn" onclick="filterArticles('society',document.querySelector('.filter-btn'));goTo('articles')"><i class="fas fa-city"></i> Society</button>
+          <button class="footer-btn" onclick="filterArticles('philosophy',document.querySelector('.filter-btn'));goTo('articles')"><i class="fas fa-brain"></i> Philosophy</button>
+          <button class="footer-btn" onclick="filterArticles('domestic',document.querySelector('.filter-btn'));goTo('articles')"><i class="fas fa-flag"></i> Domestic Articles</button>
+          <button class="footer-btn" onclick="filterArticles('international',document.querySelector('.filter-btn'));goTo('articles')"><i class="fas fa-globe"></i> International Paradigm</button>
+          <button class="footer-btn" onclick="filterArticles('programming',document.querySelector('.filter-btn'));goTo('articles')"><i class="fas fa-code"></i> Programming</button>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="footer-btn-group">
+          <button class="footer-btn" onclick="goTo('subscribe')"><i class="fas fa-envelope"></i> Newsletter</button>
+          <button class="footer-btn" onclick="goTo('comments')"><i class="fas fa-comments"></i> Comments</button>
+          <button class="footer-btn" onclick="goTo('follow')"><i class="fas fa-users"></i> Social</button>
+          <button class="footer-btn" onclick="goTo('add-content')"><i class="fas fa-pen"></i> Write</button>
+          <button class="footer-btn" onclick="window.location.href='mailto:glennpansensoy@gmail.com'"><i class="fas fa-paper-plane"></i> Contact</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Poetic Codes &bull; Glenn Junsay Pansensoy &bull; <a href="https://pansensoyglenn-dev.github.io/articles/" style="color:var(--purple-light);">pansensoyglenn-dev.github.io/articles</a></p>
+      <p style="text-align:right;">Built with data precision and Created with intensive information authentication. &bull; All rights reserved</p>
+    </div>
+  </div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── Claude Persistent Storage DB ──────────────────────────────────────────────
+const DB = {
+  _cache: {},
+  async init() {
+    const keys = ['articles','comments','subscribers'];
+    for (const key of keys) {
+      try {
+        const result = await window.storage.get(key, true);
+        this._cache[key] = result ? JSON.parse(result.value) : null;
+      } catch(e) {
+        this._cache[key] = null;
+      }
+    }
+  },
+  get(key) {
+    return this._cache[key] || [];
+  },
+  async set(key, val) {
+    this._cache[key] = val;
+    try {
+      await window.storage.set(key, JSON.stringify(val), true);
+    } catch(e) { console.warn('Storage set error:', e); }
+  }
+};
+const SEED = [
+  {
+    id: 1,
+    title: "The Rise of Agentic AI: Beyond Chatbots",
+    category: "technology",
+    excerpt: "How autonomous AI agents are redefining what software can do — and what it means for every industry.",
+    body: [
+      "We have grown comfortable with AI that answers questions. Type a prompt, receive a response — clean, bounded, predictable. But the next wave of artificial intelligence operates on an entirely different logic. Agentic AI does not wait to be asked. It plans, acts, evaluates, and adapts — pursuing goals across multiple steps, using tools, browsing the web, writing and executing code, and even coordinating with other AI agents to accomplish tasks that would once have required an entire team of humans.",
+      "The shift is profound. A conversational AI is like a brilliant consultant you can call for advice. An agentic AI is more like an autonomous employee — one that can take your high-level objective and decompose it into a sequence of concrete actions, executing each one without requiring your hand-holding at every turn. Companies like Anthropic, OpenAI, and Google DeepMind have all released early versions of such systems, and the results are already reshaping software development, scientific research, and business operations.",
+      "Consider what this means in practice. A researcher can instruct an agentic system to survey the last five years of published literature on a given topic, synthesize the findings, identify gaps, and draft a research proposal — a task that would take a human postdoc weeks. A developer can ask an agent to find and fix bugs in a codebase, write unit tests, and open a pull request. A business analyst can have an agent pull data from multiple APIs, clean it, model it, and produce a board-ready presentation.",
+      "But agentic AI also introduces new risks that are not present in simpler systems. When an AI can take real actions in the world — sending emails, executing transactions, modifying files — the consequences of errors compound in ways that a chatbot's hallucination never could. The field of AI safety is scrambling to develop new frameworks for what researchers call 'minimal footprint' principles: the idea that an AI agent should request only necessary permissions, prefer reversible actions, and escalate to human oversight when uncertainty is high.",
+      "We are at the very beginning of this transition. The agentic AI systems of today are impressive but brittle — they fail in unexpected ways, struggle with long-horizon planning, and cannot yet be trusted with fully autonomous operation in high-stakes domains. But the trajectory is unmistakable. Within this decade, the software industry will be transformed not by AI that assists programmers, but by AI that programs itself. The question is not whether this will happen, but whether our institutions, our laws, and our ethical frameworks will be ready when it does."
+    ].join("|PARA|"),
+    author: "Glenn Junsay Pansensoy",
+    date: "2026-03-15"
+  },
+  {
+    id: 2,
+    title: "Geopolitics of Semiconductors: The New Oil",
+    category: "society",
+    excerpt: "Why the global struggle for chip supremacy is reshaping international alliances and trade policy.",
+    body: [
+      "In the 20th century, nations went to war over oil. In the 21st century, the resource that will define power, prosperity, and military supremacy is far smaller — measured not in barrels but in nanometers. The semiconductor has become the oil of our era: a resource so strategically critical that its production, distribution, and control are reshaping international alliances, trade policy, and the doctrine of national security.",
+      "The numbers clarify the stakes. Modern economies run on chips. Automobiles, smartphones, medical devices, military systems, power grids, financial networks — all depend on a continuous supply of semiconductors, most of which are manufactured by a handful of companies concentrated in a few small geographies. Taiwan Semiconductor Manufacturing Company alone produces more than 90 percent of the world's most advanced chips, making a single island the linchpin of the global technology supply chain.",
+      "The United States recognized this vulnerability and responded with the CHIPS and Science Act, committing over $52 billion to revitalize domestic semiconductor manufacturing. The European Union followed with its own Chips Act, targeting a doubling of its global market share by 2030. Meanwhile, China has poured hundreds of billions of yuan into its own domestic semiconductor industry, determined to achieve self-sufficiency in chip production after years of US export controls targeting its most advanced technology companies.",
+      "These are not merely economic decisions. They are strategic ones. The export controls the United States has placed on advanced chip manufacturing equipment — preventing companies like ASML and NVIDIA from selling their most capable products to Chinese customers — represent a form of technological containment with no clear historical precedent. The goal is to slow China's progress in AI and military computing by denying it access to the hardware on which those capabilities depend.",
+      "The semiconductor race will define the geopolitical order of the coming decades. Nations that can design and manufacture leading-edge chips will have decisive advantages in artificial intelligence, quantum computing, electronic warfare, and economic productivity. Those that cannot will face a form of technological dependency that constrains their strategic autonomy in profound ways. Glenn Junsay Pansensoy argues that understanding this race is not optional for the informed citizen — it is as essential as understanding energy politics was for the previous generation."
+    ].join("|PARA|"),
+    author: "Glenn Junsay Pansensoy",
+    date: "2026-03-10"
+  },
+  {
+    id: 3,
+    title: "What Neuroscience Reveals About Creativity",
+    category: "science",
+    excerpt: "The default mode network, divergent thinking, and what brain imaging tells us about where ideas come from.",
+    body: [
+      "For most of human history, creativity was attributed to the divine — a muse, a spirit, a gift from the gods. Even in the secular modern era, we have tended to treat it as a mysterious property of certain exceptional individuals: the genius artist, the visionary scientist, the inspired entrepreneur. Neuroscience is dismantling this mythology, not by making creativity seem less wondrous, but by revealing that it is a process — one that can be understood, cultivated, and deliberately enhanced.",
+      "Brain imaging studies over the past two decades have identified a network of regions that activate during creative thought: the default mode network (DMN), which is most active during mind-wandering and internal reflection; the executive control network (ECN), which governs focused attention and working memory; and the salience network, which monitors both external stimuli and internal states. Remarkably, these three networks typically inhibit each other. During creative insight, however, they activate in an unusual coordinated pattern — a neural signature that distinguishes genuinely creative thinking from routine problem-solving.",
+      "The 'aha!' moment — the sudden insight after a period of struggle — has its own distinct neural fingerprint. Studies using electroencephalography have shown that the moment of creative breakthrough is accompanied by a burst of gamma-wave activity in the right anterior temporal lobe, occurring about 300 milliseconds before the person is consciously aware of the insight. The brain, in other words, has the answer before the mind knows it.",
+      "Perhaps the most counterintuitive finding is that the brain is most creatively productive not during intense focused effort, but during relaxed, defocused states — walking, showering, drifting between sleep and wakefulness. This is when the default mode network is most active, making the unexpected associations between distant concepts that characterize original thought. The implication for how we structure our work and our lives is significant: the relentless busyness of the modern knowledge worker is, ironically, an enemy of the very creativity that modern economies most reward.",
+      "There is also strong evidence that creativity is substantially domain-general and learnable. Practices that strengthen the default mode network — meditation, regular exercise, exposure to diverse experiences, sufficient sleep — measurably enhance creative output. The brain is plastic. Creativity is not a fixed trait. It is a skill, and like all skills, it responds to practice, environment, and the deliberate cultivation of conditions that allow it to flourish."
+    ].join("|PARA|"),
+    author: "Glenn Junsay Pansensoy",
+    date: "2026-03-05"
+  },
+  {
+    id: 4,
+    title: "The Philosophy of Impermanence in a Permanent Internet",
+    category: "philosophy",
+    excerpt: "Buddhist impermanence meets digital immortality — a meditation on memory, forgetting, and what should persist.",
+    body: [
+      "The Buddhist concept of anicca — impermanence — holds that all conditioned phenomena are transient, that clinging to permanence is a fundamental source of suffering, and that wisdom lies in accepting the fluid, ever-changing nature of existence. For most of human history, the world seemed to confirm this teaching. Empires fell. Languages died. Memories faded. Even stone eroded. The natural order of things was impermanence.",
+      "The internet has fundamentally disrupted this order. Every post, photograph, comment, and transaction is potentially archived forever — in data centers, in the Wayback Machine, in the cached memory of search engines, in the backup drives of intelligence agencies. The digital self is, in principle, immortal. And this immortality is creating new forms of suffering that no ancient philosophy was designed to address.",
+      "Consider the practical consequences. A teenager's most embarrassing moment, once confined to the mercy of fading human memory, is now potentially indexed and retrievable in perpetuity. A political opinion expressed at twenty may haunt a person at fifty. A photograph taken without consent can circulate indefinitely across platforms, jurisdictions, and decades. The elimination of forgetting — that essential mercy of the pre-digital world — has made us simultaneously more accountable and more fragile.",
+      "Legal systems are beginning to grapple with this through the 'right to be forgotten' — the principle, recognized in European law, that individuals have a right to request the deletion of personal information from search engine results and databases. But the right to be forgotten is in direct tension with the right to historical accuracy, the public interest in transparency, and the technical reality that truly deleting information from distributed systems is extraordinarily difficult.",
+      "Perhaps the deeper question is not legal but existential. What kind of beings do we become when nothing is forgotten? When every version of ourselves — the uncertain adolescent, the angry commenter, the person we have worked hard to move beyond — persists in searchable form? The Buddhist answer might be that the problem is not the internet's permanence, but our attachment to a fixed, coherent self that the internet's archive contradicts at every turn. The self was always fluid. The internet simply makes that fluidity visible — and unbearable."
+    ].join("|PARA|"),
+    author: "Glenn Junsay Pansensoy",
+    date: "2026-02-28"
+  },
+  {
+    id: 5,
+    title: "Lo-Fi Culture and the Aesthetics of Slowness",
+    category: "culture",
+    excerpt: "Why a generation raised on instant streaming is choosing deliberately degraded aesthetics as an act of resistance.",
+    body: [
+      "There is a paradox at the heart of contemporary youth culture. The generation that grew up with 4K screens, lossless audio, and instant-everything streaming is choosing, with increasing deliberateness, to consume and create in degraded formats. Lo-fi hip hop playlists accumulate billions of plays on YouTube. Film photographers are driving a vinyl-record-style revival of analog photography. VHS aesthetics saturate independent film and music videos. The cassette tape — a format that objectively sounds worse than virtually every digital alternative — is a growth market.",
+      "This is not nostalgia in the conventional sense. Most of these creators and consumers have no personal memory of the eras they are aesthetically referencing. A 22-year-old shooting on a disposable camera did not grow up with disposable cameras as their primary medium. They are not reclaiming a lost past — they are constructing an alternative present, one defined by imperfection, limitation, and the visible trace of human hands.",
+      "The cultural logic becomes clearer when set against the dominant aesthetic of the algorithmic internet: hyper-optimized, A/B-tested, frictionless, and identical across contexts. Instagram filters have converged toward the same warm, high-contrast palette. YouTube thumbnails follow predictable emotional templates. Streaming music production has been shaped by the acoustic properties of earbuds and the listening habits of distracted consumers. The result is a vast, technically excellent, deeply homogenized aesthetic landscape.",
+      "Lo-fi culture is, in this reading, a form of resistance — an insistence that the imperfection is the point, that the crackle in the record and the grain in the photograph are not defects to be corrected but signals of authenticity to be preserved. They mark the presence of the human: the limitation of the medium, the physical reality of the recording, the evidence that someone was actually there with a camera or an instrument rather than a render farm.",
+      "What this cultural moment reveals is a deep hunger for friction, for slowness, for the experience of things that resist immediate optimization. In an age when everything is designed to be maximally frictionless, the rough edge has become the luxury. The willingness to wait — for the film to be developed, for the record to warm up, for the lo-fi beat to settle — is a form of intentionality that fast culture has made rare enough to feel profound."
+    ].join("|PARA|"),
+    author: "Glenn Junsay Pansensoy",
+    date: "2026-02-20"
+  },
+  {
+    id: 6,
+    title: "Climate Models in 2025: How Accurate Have They Been?",
+    category: "science",
+    excerpt: "A retrospective look at the predictive power — and limitations — of climate science over the past three decades.",
+    body: [
+      "In 1990, the Intergovernmental Panel on Climate Change released its First Assessment Report, projecting that continued greenhouse gas emissions would produce a global mean temperature increase of roughly 0.2 to 0.3 degrees Celsius per decade under a business-as-usual scenario. Three and a half decades later, the observed warming has tracked this projection with a fidelity that is, by the standards of complex Earth systems modeling, remarkable. The core physics of climate science — established by Svante Arrhenius in the 1890s and refined across the following century — has proven empirically durable.",
+      "This is not a trivial point. Climate models are extraordinarily complex simulations of coupled atmospheric, oceanic, land-surface, and sea-ice systems, run on the most powerful computers in the world. They depend on parameterizations — simplified representations of processes too small-scale to model directly — that require constant refinement. That they have successfully predicted multi-decadal global temperature trends is a powerful validation of the underlying science.",
+      "Yet the story is not one of complete success. Climate models have systematically underestimated several phenomena. Arctic sea ice has declined faster than virtually all model projections. Sea-level rise has accelerated beyond projections, driven by ice sheet dynamics that models have historically struggled to capture. The frequency and intensity of extreme precipitation events — floods, atmospheric rivers, record rainfall — have exceeded what models forecast. In each case, reality has proven more alarming than the model.",
+      "The latest generation of climate models — increasingly augmented by machine learning and trained on vastly larger datasets — is beginning to close these gaps. AI-enhanced models can now resolve atmospheric dynamics at spatial scales previously impossible, capturing the fine-grained processes that drive extreme weather. They are also beginning to model tipping points: the nonlinear thresholds in the Earth system — the collapse of ice sheets, the dieback of the Amazon, the destabilization of permafrost — where incremental warming produces discontinuous, potentially irreversible change.",
+      "The lesson of three decades of climate modeling is not that the science is uncertain in ways that counsel inaction. It is that the science has been, if anything, too conservative — that the risks of climate change are at the high end of projected ranges, not the low end. The uncertainty in climate projections is not symmetric. We are far more likely to have underestimated the danger than to have overestimated it. That asymmetry should inform every policy decision made in the years ahead."
+    ].join("|PARA|"),
+    author: "Glenn Junsay Pansensoy",
+    date: "2026-02-14"
+  },
+  {
+    id: 7,
+    title: "The Quiet Revolution of Open Source AI",
+    category: "technology",
+    excerpt: "How freely shared models are democratizing artificial intelligence — and threatening the dominance of Big Tech.",
+    body: [
+      "In April 2023, Meta released LLaMA — a family of large language models — to the research community under a restricted license. Within days, the weights had been leaked to the open internet. Within weeks, a global community of developers, researchers, and hobbyists had fine-tuned, quantized, and deployed versions of the model on hardware ranging from cloud servers to consumer laptops. A technology that had cost hundreds of millions of dollars to train was now running on a MacBook.",
+      "This moment crystallized what many in the AI industry had suspected: the moat around large language models was shallower than it appeared. The architectures were published in academic papers. The training techniques were largely known. The primary barrier was compute — and compute costs were falling rapidly. Once a sufficiently capable open model existed, the community could iterate on it faster than any single company could.",
+      "The open-source AI ecosystem has since exploded. Models like Mistral, Falcon, Phi, and the successive LLaMA generations have approached and in some domains matched the performance of proprietary systems, while being freely available for anyone to use, study, modify, and deploy. This has profound implications for accessibility: a researcher in Manila or Nairobi with a GPU and an internet connection now has access to AI capabilities that were the exclusive province of the largest technology companies just three years ago.",
+      "The implications for the competitive landscape are equally significant. If capable AI models are freely available, the competitive advantage shifts from model capability to data, fine-tuning, distribution, and trust. Companies that have built their strategies around proprietary model moats are being forced to reckon with a world in which the model itself is a commodity. The real value, as in the early days of the internet, will accrue to those who build the best products and services on top of the underlying technology.",
+      "Open source AI is not without its risks. Freely available capable models can be fine-tuned to remove safety guardrails, to generate disinformation, or to assist in harmful activities. The same accessibility that empowers researchers in developing countries also empowers bad actors. The governance question — how to preserve the benefits of openness while mitigating its risks — is one of the defining challenges of this technological moment, and no one has yet found a satisfying answer."
+    ].join("|PARA|"),
+    author: "Glenn Junsay Pansensoy",
+    date: "2026-03-19"
+  },
+  {
+    id: 8,
+    title: "Reading in the Age of Infinite Distraction",
+    category: "culture",
+    excerpt: "What the collapse of sustained reading attention means for democracy, empathy, and the life of the mind.",
+    body: [
+      "There is a particular quality of attention that deep reading produces — one that is different in kind, not merely degree, from the attention we bring to a social media feed, a short-form video, or even a well-written news article. It is an attention that sustains itself across time, that tolerates ambiguity, that constructs complex mental models, that feels — and this is not merely metaphor — like exercise for the mind. It is the attention that long-form literature, serious nonfiction, and dense philosophical argument both require and reward.",
+      "This quality of attention is becoming rare. Multiple large-scale studies have documented a decline in sustained reading among adults and young people across wealthy nations over the past two decades. The mechanism is well understood: the attention economy of smartphones and social media platforms is engineered to maximize engagement through novelty, reward, and social validation — neural triggers that pull attention away from slow, demanding, unrewarding tasks like reading a long book.",
+      "The consequences extend well beyond the personal. Democratic self-governance depends on citizens who can evaluate complex arguments, resist emotional manipulation, and hold contradictory information in mind simultaneously. These are precisely the cognitive capacities that sustained reading develops and that distracted consumption atrophies. The decline of reading is not merely a cultural loss — it is a democratic risk.",
+      "Empathy, too, is implicated. Substantial research demonstrates that reading literary fiction — with its demand that we inhabit other minds, interpret ambiguous motivations, and sit with unresolved moral complexity — measurably enhances theory of mind and empathic capacity. A society that reads less fiction is, on this evidence, a society that is becoming measurably less capable of understanding people unlike itself.",
+      "None of this is to say that digital culture is without value, or that the solution is a reactionary return to pre-digital reading practices. The question is how to preserve and transmit the particular cognitive and moral gifts of deep reading in a world that has made distraction the default state of consciousness. The answer will require institutional will — in schools, libraries, and families — and a cultural reclamation of slowness as a value. It will require us to decide, deliberately, that some things are worth the effort they demand."
+    ].join("|PARA|"),
+    author: "Glenn Junsay Pansensoy",
+    date: "2026-03-12"
+  },
+];
+async function initDB() {
+  await DB.init();
+  const stored = DB.get('articles');
+  if (!stored.length) await DB.set('articles', SEED);
+  if (!DB.get('subscribers').length) await DB.set('subscribers', []);
+  if (!DB.get('comments').length) await DB.set('comments', [
+    { name: "Maria Santos", body: "This is exactly the kind of writing I've been looking for. Thoughtful, deep, and honest.", date: "2025-03-18" },
+    { name: "James Reyes", body: "The article on AI alignment blew my mind. Please write more on this topic!", date: "2026-03-16" },
+  ]);
+}
+const ICONS = { technology:'fa-microchip', culture:'fa-palette', science:'fa-dna', society:'fa-city', philosophy:'fa-brain', domestic:'fa-flag', international:'fa-globe', programming:'fa-code' };
+const GRAD  = { technology:'135deg, #306998, #6a0dad', culture:'135deg, #d946ef, #8b5cf6', science:'135deg, #06b6d4, #306998', society:'135deg, #8b5cf6, #d946ef', philosophy:'135deg, #6a0dad, #d946ef', domestic:'135deg, #1e4a6e, #306998', international:'135deg, #065f46, #0891b2', programming:'135deg, #1e1b4b, #4338ca' };
+function renderArticles(filter='all') {
+  const grid = document.getElementById('articles-grid');
+  const arts = DB.get('articles').filter(a => filter === 'all' || a.category === filter);
+  grid.innerHTML = arts.map(a => `
+    <article class="article-card" data-category="${a.category}" onclick="openArticle(${a.id})">
+      <div class="article-card-img" style="background:linear-gradient(${GRAD[a.category]||'135deg,#306998,#6a0dad'})">
+        <i class="fas ${ICONS[a.category]||'fa-file-alt'}"></i>
+        <span class="article-card-cat">${a.category.toUpperCase()}</span>
+      </div>
+      <div class="article-card-body">
+        <h3>${a.title}</h3>
+        <p>${a.excerpt}</p>
+        <div class="article-meta">
+          <span><i class="fas fa-user"></i> ${a.author}</span>
+          <span><i class="fas fa-calendar"></i> ${a.date}</span>
+        </div>
+      </div>
+    </article>`).join('');
+}
+function filterArticles(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderArticles(cat);
+}
+/* ── Smart body formatter: keeps fenced code blocks intact ── */
+function smartBodyFormat(text) {
+  const parts = [];
+  let rest = text;
+  const fenceRe = /```[\w]*\n[\s\S]*?```/g;
+  let lastIdx = 0;
+  let m;
+  fenceRe.lastIndex = 0;
+  while ((m = fenceRe.exec(text)) !== null) {
+    const before = text.slice(lastIdx, m.index);
+    before.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean).forEach(p => parts.push(p));
+    parts.push(m[0]); // keep the fenced block whole
+    lastIdx = m.index + m[0].length;
+  }
+  const after = text.slice(lastIdx);
+  after.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean).forEach(p => parts.push(p));
+  return parts.join('|PARA|');
+}
+
+/* ── Smart body renderer: handles fenced code blocks, inline code, and prose ── */
+function renderBodyHTML(rawBody, forModal) {
+  // Split the raw body on |PARA| separators
+  const parts = rawBody.includes('|PARA|') ? rawBody.split('|PARA|') : [rawBody];
+
+  // We need to re-join first so we can handle multi-line fenced blocks
+  // that were split across |PARA| delimiters
+  const fullText = parts.join('\n\n');
+
+  // Regex to extract fenced code blocks: ```lang\n...\n```
+  const segments = [];
+  let lastIndex = 0;
+  const fenceRe = /```[\w]*\n?([\s\S]*?)```/g;
+  let match;
+  while ((match = fenceRe.exec(fullText)) !== null) {
+    // Text before this code fence
+    if (match.index > lastIndex) {
+      segments.push({ type: 'text', content: fullText.slice(lastIndex, match.index) });
+    }
+    segments.push({ type: 'code', content: match[1] });
+    lastIndex = match.index + match[0].length;
+  }
+  // Remaining text after last fence
+  if (lastIndex < fullText.length) {
+    segments.push({ type: 'text', content: fullText.slice(lastIndex) });
+  }
+  // If no fences found at all, treat everything as text
+  if (segments.length === 0) {
+    segments.push({ type: 'text', content: fullText });
+  }
+
+  const codeStyle = forModal
+    ? `style="background:rgba(13,13,20,0.9);border:1px solid var(--obsidian-border);border-radius:8px;padding:1rem 1.2rem;overflow-x:auto;margin-bottom:1.2rem;"`
+    : ``;
+  const codeInnerStyle = forModal
+    ? `style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;line-height:1.75;color:var(--fuchsia-glow);white-space:pre;display:block;"`
+    : `style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;line-height:1.75;white-space:pre;display:block;"`;
+  const pStyle = forModal
+    ? `style="margin-bottom:1rem;line-height:1.85;"`
+    : ``;
+
+  const html = segments.map(seg => {
+    if (seg.type === 'code') {
+      return `<pre ${codeStyle}><code ${codeInnerStyle}>${escHtml(seg.content.replace(/^\n|\n$/g,''))}</code></pre>`;
+    }
+    // For text segments: split into paragraphs and detect indented code blocks
+    return seg.content.split(/\n{2,}/).map(para => {
+      const trimmed = para.trim();
+      if (!trimmed) return '';
+      // Detect indented code (4-space or tab) or Python-like code patterns
+      const lines = trimmed.split('\n');
+      const looksLikeCode =
+        (lines.length > 1 && lines.every(l => /^(    |\t)/.test(l) || l.trim() === '')) ||
+        (lines.length > 2 && lines.filter(l => /^(class |def |import |from |    |if |for |while |return |print\()/.test(l.trim())).length >= 2);
+      if (looksLikeCode) {
+        const dedented = trimmed.replace(/^(    |\t)/mg, '');
+        return `<pre ${codeStyle}><code ${codeInnerStyle}>${escHtml(dedented)}</code></pre>`;
+      }
+      // Render inline code: `backtick` → <code>
+      const withInlineCode = escHtml(trimmed).replace(/`([^`]+)`/g, '<code style="font-family:\'JetBrains Mono\',monospace;font-size:0.8em;background:rgba(75,139,190,0.15);color:var(--fuchsia-glow);padding:1px 5px;border-radius:3px;">$1</code>');
+      return `<p ${pStyle}>${withInlineCode}</p>`;
+    }).join('');
+  }).join('');
+
+  return html;
+}
+
+function openArticle(id) {
+  const art = DB.get('articles').find(a => a.id === id);
+  if (!art) return;
+  const articleUrl = `https://pansensoyglenn-dev.github.io/articles/article-${id}.html`;
+  const url   = encodeURIComponent(articleUrl);
+  const title = encodeURIComponent(art.title);
+  const wordCount  = art.body.replace(/\|PARA\|/g,' ').split(/\s+/).length;
+  const readTime   = Math.max(1, Math.ceil(wordCount / 220));
+  const bodyHTML   = renderBodyHTML(art.body, true);
+  document.getElementById('og-title').setAttribute('content', art.title);
+  document.getElementById('og-description').setAttribute('content', art.excerpt);
+  document.getElementById('og-url').setAttribute('content', articleUrl);
+  document.getElementById('og-type').setAttribute('content', 'article');
+  document.getElementById('tw-title').setAttribute('content', art.title);
+  document.getElementById('tw-description').setAttribute('content', art.excerpt);
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.setAttribute('href', articleUrl);
+  document.title = `${art.title} | Poetic Codes`;
+  document.getElementById('modal-content').innerHTML = `
+    <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;margin-bottom:0.75rem;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--fuchsia);letter-spacing:0.1em;">${art.category.toUpperCase()}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);">${art.date}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--purple-light);margin-left:auto;">&#128214; ${readTime} min read</span>
+    </div>
+    <h2 style="font-size:var(--title-size);margin-bottom:0.75rem;line-height:1.3;">${art.title}</h2>
+    <p style="color:var(--text-muted);font-style:italic;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--obsidian-border);">${art.excerpt}</p>
+    ${bodyHTML}
+    <p style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--obsidian-border);font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--purple-light);">— ${art.author}</p>`;
+  document.getElementById('modal-share-section').innerHTML = buildShareButtons(url, title, art);
+  document.getElementById('article-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('article-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('og-title').setAttribute('content', 'Poetic Codes | Articles by Glenn Junsay Pansensoy');
+  document.getElementById('og-description').setAttribute('content', 'Thoughtful articles on technology, current events, culture, and the human condition by Glenn Junsay Pansensoy.');
+  document.getElementById('og-url').setAttribute('content', 'https://pansensoyglenn-dev.github.io/articles/');
+  document.getElementById('og-type').setAttribute('content', 'website');
+  document.getElementById('tw-title').setAttribute('content', 'Poetic Codes | Articles by Glenn Junsay Pansensoy');
+  document.getElementById('tw-description').setAttribute('content', 'Thoughtful articles on technology, current events, culture, and the human condition.');
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.setAttribute('href', 'https://pansensoyglenn-dev.github.io/articles/');
+  document.title = 'Poetic Codes | Articles by Glenn Junsay Pansensoy';
+}
+function buildShareButtons(url, title, art) {
+  const shares = [
+    { cls:'fb',  icon:'fab fa-facebook-f',   label:'Facebook',    href:`https://www.facebook.com/sharer/sharer.php?u=${url}` },
+    { cls:'li',  icon:'fab fa-linkedin-in',  label:'LinkedIn',    href:`https://www.linkedin.com/sharing/share-offsite/?url=${url}` },
+    { cls:'tw',  icon:'fab fa-x-twitter',    label:'X / Twitter', href:`https://twitter.com/intent/tweet?url=${url}&text=${title}` },
+    { cls:'wa',  icon:'fab fa-whatsapp',     label:'WhatsApp',    href:`https://wa.me/?text=${title}%20${url}` },
+    { cls:'tg',  icon:'fab fa-telegram',     label:'Telegram',    href:`https://t.me/share/url?url=${url}&text=${title}` },
+    { cls:'rd',  icon:'fab fa-reddit-alien', label:'Reddit',      href:`https://reddit.com/submit?url=${url}&title=${title}` },
+  ];
+  const btns = shares.map(s => `
+    <button class="share-btn ${s.cls}" onclick="shareAI('${s.href}','${s.label}')">
+      <i class="${s.icon}"></i>${s.label}
+    </button>`).join('');
+  const articleUrl = `https://pansensoyglenn-dev.github.io/articles/article-${art.id}.html`;
+  const downloadBtn = `
+    <button class="share-btn" style="border-color:var(--fuchsia);color:var(--fuchsia-glow);"
+      onclick="downloadArticlePage(${art.id})">
+      <i class="fas fa-download"></i>Save article page (for Facebook)
+    </button>
+    <button class="share-btn" id="copy-url-btn-${art.id}" style="border-color:var(--purple-mid);color:var(--purple-light);"
+      onclick="copyArticleUrl('${articleUrl}', ${art.id})">
+      <i class="fas fa-link"></i>Copy Article URL
+    </button>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--text-muted);text-align:center;margin-top:0.25rem;">
+      Download &rarr; upload <code style="color:var(--fuchsia);">article-${art.id}.html</code> to GitHub &rarr; click Copy URL &rarr; paste in <a href="https://developers.facebook.com/tools/debug" target="_blank" rel="noopener" style="color:var(--purple-light);">Facebook Debugger</a>
+    </p>`;
+  return btns + downloadBtn;
+}
+function shareAI(href, platform) {
+  window.open(href, '_blank', 'width=600,height=500,noopener');
+  showToast(`Sharing on ${platform}…`);
+}
+function copyArticleUrl(url, id) {
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById(`copy-url-btn-${id}`);
+    if (btn) {
+      btn.innerHTML = '<i class="fas fa-check"></i>URL Copied!';
+      btn.style.borderColor = '#25d366';
+      btn.style.color = '#25d366';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-link"></i>Copy Article URL';
+        btn.style.borderColor = 'var(--purple-mid)';
+        btn.style.color = 'var(--purple-light)';
+      }, 2500);
+    }
+    showToast('Article URL copied to clipboard!');
+  }).catch(() => {
+    prompt('Copy this URL:', url);
+  });
+}
+function downloadArticlePage(id) {
+  const art = DB.get('articles').find(a => a.id === id);
+  if (!art) return;
+  const articleUrl = `https://pansensoyglenn-dev.github.io/articles/article-${id}.html`;
+  const paragraphs = art.body.includes('|PARA|') ? art.body.split('|PARA|') : [art.body];
+  const bodyHTML   = renderBodyHTML(art.body, false);
+  const GRAD  = { technology:'135deg, #306998, #6a0dad', culture:'135deg, #d946ef, #8b5cf6', science:'135deg, #06b6d4, #306998', society:'135deg, #8b5cf6, #d946ef', philosophy:'135deg, #6a0dad, #d946ef', domestic:'135deg, #1e4a6e, #306998', international:'135deg, #065f46, #0891b2', programming:'135deg, #1e1b4b, #4338ca' };
+  const grad = GRAD[art.category] || '135deg, #306998, #6a0dad';
+  const shareUrl = encodeURIComponent(articleUrl);
+  const shareTitle = encodeURIComponent(art.title);
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${escHtml(art.title)} | Poetic Codes</title>
+  <meta name="description" content="${escHtml(art.excerpt)}" />
+  <meta name="author" content="${escHtml(art.author)}" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="${articleUrl}" />
+  <meta property="og:type"        content="article" />
+  <meta property="og:title"       content="${escHtml(art.title)}" />
+  <meta property="og:description" content="${escHtml(art.excerpt)}" />
+  <meta property="og:url"         content="${articleUrl}" />
+  <meta property="og:image"       content="https://pansensoyglenn-dev.github.io/articles/og-image.png" />
+  <meta property="article:author" content="${escHtml(art.author)}" />
+  <meta property="article:published_time" content="${art.date}" />
+  <meta property="article:section" content="${escHtml(art.category)}" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="${escHtml(art.title)}" />
+  <meta name="twitter:description" content="${escHtml(art.excerpt)}" />
+  <meta name="twitter:image"       content="https://pansensoyglenn-dev.github.io/articles/og-image.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --purple:#306998; --purple-mid:#4b8bbe; --purple-light:#74b9e8;
+      --fuchsia:#2a5f8a; --fuchsia-glow:#7ec8e3;
+      --obsidian:#181c24; --obsidian-mid:#1e2430; --obsidian-card:#232c3b; --obsidian-border:#2d3a4f;
+      --text-primary:#ffffff; --text-muted:#b8cfe0;
+      --gradient-accent:linear-gradient(90deg,#5ba3d9,#306998,#1a4f7a);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--obsidian);color:#ffffff;font-family:'Crimson Pro',Georgia,serif;font-size:1rem;line-height:1.8;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    h1,h2,h3{font-family:'Cinzel Decorative',serif;font-weight:700;letter-spacing:.03em}
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;background:rgba(13,13,20,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--obsidian-border)}
+    .brand{font-family:'Cinzel Decorative',serif;font-size:.95rem;font-weight:700;letter-spacing:.15em;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .back-link{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-muted);letter-spacing:.08em;display:flex;align-items:center;gap:.4rem;transition:color .2s}
+    .back-link:hover{color:var(--fuchsia-glow)}
+    /* HERO BANNER */
+    .article-hero{min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem 3rem;background:linear-gradient(${grad});position:relative;overflow:hidden}
+    .article-hero::after{content:'';position:absolute;inset:0;background:rgba(13,13,20,.55)}
+    .article-hero>*{position:relative;z-index:1}
+    .article-cat{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--fuchsia-glow);text-transform:uppercase;margin-bottom:.75rem}
+    .article-hero h1{font-size:clamp(1.4rem,4vw,2.4rem);line-height:1.2;max-width:760px;margin-bottom:1rem;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .article-meta-bar{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:rgba(232,228,240,.7)}
+    .article-meta-bar i{color:var(--purple-light);margin-right:.3rem}
+    /* BODY */
+    .article-body{max-width:760px;margin:0 auto;padding:3rem 1.5rem 5rem}
+    .article-excerpt{font-style:italic;color:#b8cfe0;font-size:1.05rem;border-left:3px solid var(--fuchsia);padding:.75rem 1.25rem;background:rgba(217,70,239,.05);border-radius:0 8px 8px 0;margin-bottom:2.5rem}
+    .article-body p{margin-bottom:1.4rem;font-size:1rem;text-align:justify}
+    .article-author{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--obsidian-border);font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--purple-light)}
+    pre{background:rgba(13,13,20,.95);border:1px solid var(--obsidian-border);border-radius:8px;padding:1rem 1.2rem;overflow-x:auto;margin-bottom:1.4rem}
+    pre code{font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.7;color:var(--fuchsia-glow);white-space:pre}
+    /* SHARE */
+    .share-wrap{background:var(--obsidian-card);border:1px solid var(--obsidian-border);border-radius:14px;padding:1.5rem;max-width:760px;margin:0 auto 4rem;text-align:center}
+    .share-wrap h3{font-size:.85rem;margin-bottom:1rem;background:var(--gradient-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .share-row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
+    .s-btn{display:flex;align-items:center;gap:.6rem;padding:.55rem 1rem;border-radius:8px;border:1px solid var(--obsidian-border);background:rgba(26,26,46,.7);color:var(--text-primary);font-family:'Crimson Pro',serif;font-size:.82rem;cursor:pointer;transition:all .25s}
+    .s-btn:hover{border-color:var(--purple-mid);background:rgba(139,92,246,.12);transform:translateY(-2px)}
+    .s-btn.fb i{color:#1877f2}.s-btn.li i{color:#0a66c2}.s-btn.tw i{color:#1da1f2}
+    .s-btn.wa i{color:#25d366}.s-btn.tg i{color:#26a5e4}.s-btn.rd i{color:#ff4500}
+    /* FOOTER */
+    footer{background:#0f1520;border-top:1px solid var(--obsidian-border);padding:2rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-muted)}
+    footer a{color:var(--purple-light);transition:color .2s}
+    footer a:hover{color:var(--fuchsia-glow)}
+    /* CTA SECTION */
+    .cta-section{max-width:760px;margin:0 auto 3rem;padding:2rem 1.5rem;text-align:center}
+    .cta-section h3{font-family:'Cinzel Decorative',serif;font-size:.9rem;margin-bottom:1.5rem;color:#ffffff;letter-spacing:.05em}
+    .cta-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+    .cta-btn{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:1.2rem 2rem;border-radius:14px;border:none;cursor:pointer;text-decoration:none;transition:all .3s;min-width:200px;position:relative;overflow:hidden}
+    .cta-btn::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s}
+    .cta-btn:hover::before{opacity:.12}
+    .cta-btn:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,0,0,.4)}
+    .cta-btn i{font-size:1.6rem;margin-bottom:.2rem}
+    .cta-label{font-family:'Cinzel Decorative',serif;font-size:.72rem;font-weight:700;letter-spacing:.05em;color:#ffffff}
+    .cta-sub{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.08em;opacity:.8;color:#b8cfe0}
+    .cta-thoughts{background:linear-gradient(135deg,#1a4f7a,#306998);box-shadow:0 4px 18px rgba(48,105,152,.35)}
+    .cta-thoughts i{color:#7ec8e3}
+    .cta-thoughts::before{background:#7ec8e3}
+    .cta-articles{background:linear-gradient(135deg,#0d2a45,#1a4f7a);box-shadow:0 4px 18px rgba(26,79,122,.35);border:1px solid rgba(75,139,190,.3)}
+    .cta-articles i{color:#5ba3d9}
+    .cta-articles::before{background:#5ba3d9}
+    @media(max-width:600px){
+      nav{padding:.7rem 1rem}
+      .article-body{padding:2rem 1rem 3rem}
+      .article-hero{padding:3rem 1rem 2rem}
+      .cta-buttons{flex-direction:column;align-items:center}
+      .cta-btn{min-width:unset;width:100%;max-width:320px}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="brand" href="https://pansensoyglenn-dev.github.io/articles/">POETIC CODES</a>
+  <a class="back-link" href="https://pansensoyglenn-dev.github.io/articles/">
+    <i class="fas fa-arrow-left"></i> All Articles
+  </a>
+</nav>
+<header class="article-hero">
+  <div class="article-cat">${escHtml(art.category)}</div>
+  <h1>${escHtml(art.title)}</h1>
+  <div class="article-meta-bar">
+    <span><i class="fas fa-user"></i>${escHtml(art.author)}</span>
+    <span><i class="fas fa-calendar"></i>${art.date}</span>
+  </div>
+</header>
+<main class="article-body">
+  <p class="article-excerpt">${escHtml(art.excerpt)}</p>
+  ${bodyHTML}
+  <p class="article-author">— ${escHtml(art.author)}</p>
+</main>
+<section class="share-wrap">
+  <h3>Share This Article</h3>
+  <div class="share-row">
+    <button class="s-btn fb" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${shareUrl}','_blank','width=600,height=500')"><i class="fab fa-facebook-f"></i>Facebook</button>
+    <button class="s-btn li" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}','_blank','width=600,height=500')"><i class="fab fa-linkedin-in"></i>LinkedIn</button>
+    <button class="s-btn tw" onclick="window.open('https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}','_blank','width=600,height=500')"><i class="fab fa-x-twitter"></i>X / Twitter</button>
+    <button class="s-btn wa" onclick="window.open('https://wa.me/?text=${shareTitle}%20${shareUrl}','_blank')"><i class="fab fa-whatsapp"></i>WhatsApp</button>
+    <button class="s-btn tg" onclick="window.open('https://t.me/share/url?url=${shareUrl}&text=${shareTitle}','_blank')"><i class="fab fa-telegram"></i>Telegram</button>
+    <button class="s-btn rd" onclick="window.open('https://reddit.com/submit?url=${shareUrl}&title=${shareTitle}','_blank','width=600,height=500')"><i class="fab fa-reddit-alien"></i>Reddit</button>
+  </div>
+</section>
+<section class="cta-section">
+  <h3>What would you like to do next?</h3>
+  <div class="cta-buttons">
+    <a class="cta-btn cta-thoughts" href="https://pansensoyglenn-dev.github.io/articles/#comments">
+      <i class="fas fa-comment-dots"></i>
+      <span class="cta-label">You Can Share Your Thoughts</span>
+      <span class="cta-sub">Join the conversation</span>
+    </a>
+    <a class="cta-btn cta-articles" href="https://pansensoyglenn-dev.github.io/articles/">
+      <i class="fas fa-book-open"></i>
+      <span class="cta-label">You Can Read All Articles</span>
+      <span class="cta-sub">Explore Poetic Codes</span>
+    </a>
+  </div>
+</section>
+<footer>
+  <p>&copy; ${new Date(art.date).getFullYear()} <a href="https://pansensoyglenn-dev.github.io/articles/">Poetic Codes</a> &mdash; ${escHtml(art.author)}</p>
+</footer>
+</body>
+</html>`;
+  const blob = new Blob([html], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `article-${id}.html`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast(`Downloaded article-${id}.html — upload it to your GitHub repo!`);
+}
+function downloadSitemap() {
+  const arts = DB.get('articles');
+  const base = 'https://pansensoyglenn-dev.github.io/articles';
+  const today = new Date().toISOString().split('T')[0];
+  const urls = [
+    `  <url>
+    <loc>${base}/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>`,
+    ...arts.map(a => `  <url>
+    <loc>${base}/article-${a.id}.html</loc>
+    <lastmod>${a.date}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`)
+  ].join('\n');
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`;
+  const blob = new Blob([xml], { type: 'application/xml' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'sitemap.xml';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast(`Downloaded sitemap.xml — upload it to your GitHub repo root!`);
+}
+function renderArchive(filter='') {
+  const arts = DB.get('articles').filter(a =>
+    !filter || a.title.toLowerCase().includes(filter.toLowerCase()) ||
+    a.category.toLowerCase().includes(filter.toLowerCase()));
+  document.getElementById('archive-list').innerHTML = arts.map(a => `
+    <li onclick="openArticle(${a.id})">
+      <i class="fas fa-file-alt"></i>
+      <span style="flex:1;">${a.title}</span>
+      <span>${a.category}</span>
+      <span>${a.date}</span>
+    </li>`).join('') || '<li style="color:var(--text-muted);border:none;">No articles found.</li>';
+}
+function searchArchive() {
+  renderArchive(document.getElementById('archive-search-input').value);
+}
+function setMode(mode) {
+  const htmlPanel = document.getElementById('html-mode-panel');
+  const textPanel = document.getElementById('text-mode-panel');
+  const btnHTML   = document.getElementById('mode-html');
+  const btnText   = document.getElementById('mode-text');
+  if (mode === 'html') {
+    htmlPanel.style.display = 'block';
+    textPanel.style.display = 'none';
+    btnHTML.style.borderColor  = 'var(--fuchsia)';
+    btnHTML.style.background   = 'rgba(217,70,239,0.15)';
+    btnHTML.style.color        = 'var(--fuchsia-glow)';
+    btnText.style.borderColor  = 'var(--obsidian-border)';
+    btnText.style.background   = 'transparent';
+    btnText.style.color        = 'var(--text-muted)';
+  } else {
+    htmlPanel.style.display = 'none';
+    textPanel.style.display = 'block';
+    btnText.style.borderColor  = 'var(--fuchsia)';
+    btnText.style.background   = 'rgba(217,70,239,0.15)';
+    btnText.style.color        = 'var(--fuchsia-glow)';
+    btnHTML.style.borderColor  = 'var(--obsidian-border)';
+    btnHTML.style.background   = 'transparent';
+    btnHTML.style.color        = 'var(--text-muted)';
+  }
+}
+function extractFromHTML(rawHTML) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(rawHTML, 'text/html');
+  let title =
+    (doc.querySelector('meta[property="og:title"]') || {}).content ||
+    (doc.querySelector('title') || {}).textContent ||
+    (doc.querySelector('h1') || {}).textContent ||
+    '';
+  title = title.replace(/\s+/g, ' ').trim();
+  let excerpt =
+    (doc.querySelector('meta[name="description"]') || {}).content ||
+    (doc.querySelector('meta[property="og:description"]') || {}).content ||
+    '';
+  excerpt = excerpt.replace(/\s+/g, ' ').trim();
+  let author =
+    (doc.querySelector('meta[name="author"]') || {}).content ||
+    'Glenn Junsay Pansensoy';
+  author = author.trim();
+  ['script','style','nav','header','footer','aside','noscript','.navbar','.drawer','.toc-nav','.sticky-share','.reactions','.comment-form','.ai-share-section','.subscribe-card'].forEach(tag => {
+    doc.querySelectorAll(tag).forEach(el => el.remove());
+  });
+  const paragraphs = [];
+  // Walk the body in document order so prose and code stay in sequence
+  const body = doc.querySelector('body') || doc.documentElement;
+  const walker = document.createTreeWalker(body, NodeFilter.SHOW_ELEMENT);
+  const seen = new Set();
+  let node = walker.nextNode();
+  while (node) {
+    if (seen.has(node)) { node = walker.nextNode(); continue; }
+    // Code blocks: pre > code  OR  .code-block  OR  .code-body pre
+    if (node.matches('pre') || node.matches('.code-block') || node.matches('.code-body')) {
+      const codeEl = node.querySelector('code') || node.querySelector('pre') || node;
+      const codeText = codeEl.innerText || codeEl.textContent || '';
+      const cleaned = codeText.replace(/^\n|\n$/g, '');
+      if (cleaned.trim().length > 0) {
+        paragraphs.push('```\n' + cleaned + '\n```');
+      }
+      // Mark all descendants as seen
+      node.querySelectorAll('*').forEach(d => seen.add(d));
+      seen.add(node);
+    } else if (node.matches('p, li, blockquote, h2, h3, h4, dd') && !node.closest('pre, .code-block, .code-body, .code-header, nav, header, footer, .toc-nav')) {
+      const text = (node.innerText || node.textContent || '').replace(/\s+/g, ' ').trim();
+      if (text.length > 40 && !text.toLowerCase().includes('©') && !text.toLowerCase().startsWith('made with') && !text.toLowerCase().startsWith('copy') && !text.toLowerCase().startsWith('advertisement')) {
+        paragraphs.push(text);
+        node.querySelectorAll('*').forEach(d => seen.add(d));
+        seen.add(node);
+      }
+    }
+    node = walker.nextNode();
+  }
+  if (paragraphs.length === 0) {
+    const bodyText = (body.innerText || body.textContent || '');
+    bodyText.split(/\n{2,}/).forEach(chunk => {
+      const t = chunk.replace(/\s+/g,' ').trim();
+      if (t.length > 60) paragraphs.push(t);
+    });
+  }
+  if (!excerpt && paragraphs.length > 0) {
+    const firstProse = paragraphs.find(p => !p.startsWith('```'));
+    excerpt = (firstProse || paragraphs[0]).substring(0, 160).trim() + '…';
+  }
+  return { title, excerpt, author, paragraphs };
+}
+function livePreviewExtract() {
+  const raw = document.getElementById('html-paste').value.trim();
+  const preview = document.getElementById('extract-preview');
+  if (raw.length < 50) { preview.style.display = 'none'; return; }
+  const { title, excerpt, paragraphs } = extractFromHTML(raw);
+  preview.style.display = 'block';
+  document.getElementById('preview-title').textContent   = title   || '(no title found — use Override Title)';
+  document.getElementById('preview-excerpt').textContent = excerpt || '(no description found — use Override Excerpt)';
+  document.getElementById('preview-count').textContent   = `${paragraphs.length} paragraph${paragraphs.length !== 1 ? 's' : ''} extracted`;
+}
+function extractAndPreview() {
+  livePreviewExtract();
+  showToast('Extraction preview updated ✦');
+}
+function generateAndDownloadStaticArticle(art) {
+  downloadArticlePage(art.id);
+}
+async function publishFromHTML() {
+  const raw      = document.getElementById('html-paste').value.trim();
+  const category = document.getElementById('html-category').value;
+  if (!raw)      { showToast('Please paste your HTML content first.'); return; }
+  if (!category) { showToast('Please select a category.'); return; }
+  const extracted = extractFromHTML(raw);
+  const titleOverride  = document.getElementById('html-title-override').value.trim();
+  const authorOverride = document.getElementById('html-author-override').value.trim();
+  const excerptOverride= document.getElementById('html-excerpt-override').value.trim();
+  const title  = titleOverride  || extracted.title  || 'Untitled Article';
+  const author = authorOverride || extracted.author || 'Glenn Junsay Pansensoy';
+  const excerpt= excerptOverride|| extracted.excerpt|| '';
+  if (extracted.paragraphs.length === 0) {
+    showToast('Could not extract content. Try the Plain Text mode instead.');
+    return;
+  }
+  const body = extracted.paragraphs.join('|PARA|');
+  const arts = DB.get('articles');
+  const newId = Date.now();
+  const newArticle = {
+    id: newId, title, category, excerpt, body, author,
+    date: new Date().toISOString().split('T')[0]
+  };
+  arts.unshift(newArticle);
+  await DB.set('articles', arts);
+  generateAndDownloadStaticArticle(newArticle);
+  document.getElementById('html-paste').value           = '';
+  document.getElementById('html-title-override').value  = '';
+  document.getElementById('html-author-override').value = '';
+  document.getElementById('html-excerpt-override').value= '';
+  document.getElementById('html-category').value        = '';
+  document.getElementById('extract-preview').style.display = 'none';
+  renderArticles();
+  renderArchive();
+  updateStats();
+  showSuccessModal(title, newId);
+}
+async function publishArticle() {
+  const title    = document.getElementById('new-title').value.trim();
+  const category = document.getElementById('new-category').value;
+  const excerpt  = document.getElementById('new-excerpt').value.trim();
+  const bodyText = document.getElementById('new-body').value.trim();
+  const author   = document.getElementById('new-author').value.trim() || 'Glenn Junsay Pansensoy';
+  if (!title || !category || !bodyText) { showToast('Please fill in Title, Category, and Content.'); return; }
+  const arts = DB.get('articles');
+  const newId = Date.now();
+  // Smart body formatter: preserve ``` fenced blocks across blank lines
+  const bodyFormatted = smartBodyFormat(bodyText);
+  const newArticle = {
+    id: newId, title, category,
+    excerpt: excerpt || bodyText.substring(0, 160) + '…',
+    body: bodyFormatted, author,
+    date: new Date().toISOString().split('T')[0]
+  };
+  arts.unshift(newArticle);
+  await DB.set('articles', arts);
+  generateAndDownloadStaticArticle(newArticle);
+  document.getElementById('new-title').value    = '';
+  document.getElementById('new-category').value = '';
+  document.getElementById('new-excerpt').value  = '';
+  document.getElementById('new-body').value     = '';
+  renderArticles();
+  renderArchive();
+  updateStats();
+  showSuccessModal(title, newId);
+}
+let _lastPublishedId = null;
+function showSuccessModal(title, id) {
+  _lastPublishedId = id;
+  document.getElementById('success-title-display').textContent = `"${title}"`;
+  document.getElementById('success-modal-actions').innerHTML = `
+    <div style="width:100%;background:rgba(107,13,173,0.12);border:1px solid var(--obsidian-border);border-radius:10px;padding:0.85rem 1rem;margin-bottom:0.5rem;text-align:left;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--fuchsia-glow);letter-spacing:0.08em;margin-bottom:0.5rem;">
+        <i class="fas fa-circle-info"></i> &nbsp;TO SHARE ON FACEBOOK:
+      </p>
+      <p style="font-size:0.75rem;color:var(--text-muted);line-height:1.6;">
+        1. An HTML file was downloaded — upload it to your GitHub repo<br>
+        2. Copy the link below and paste it on Facebook
+      </p>
+    </div>
+    <div style="display:flex;gap:0.5rem;width:100%;flex-wrap:wrap;">
+      <button class="btn-outline" onclick="closeSuccessModal()" style="flex:1;border-radius:8px;padding:0.65rem;">
+        Close
+      </button>
+      <button id="copy-link-btn-${id}" class="btn-primary" onclick="copyShareableLink(${id})" style="flex:1;border-radius:8px;padding:0.65rem;">
+        <i class="fas fa-link"></i> &nbsp;Copy Link
+      </button>
+      <button class="btn-primary" onclick="viewPublishedArticle()" style="flex:1;border-radius:8px;padding:0.65rem;">
+        <i class="fas fa-eye"></i> &nbsp;Read It Now
+      </button>
+    </div>`;
+  document.getElementById('success-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function copyShareableLink(id) {
+  const articleUrl = `https://pansensoyglenn-dev.github.io/articles/article-${id}.html`;
+  navigator.clipboard.writeText(articleUrl).then(() => {
+    showToast('Shareable link copied! Upload the downloaded file to GitHub first, then paste on Facebook.');
+    const btn = document.getElementById(`copy-link-btn-${id}`);
+    if (btn) {
+      btn.innerHTML = '<i class="fas fa-check"></i> &nbsp;Link Copied!';
+      btn.style.background = 'linear-gradient(135deg, #25d366, #128c7e)';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-link"></i> &nbsp;Copy Link';
+        btn.style.background = '';
+      }, 2500);
+    }
+  }).catch(() => {
+    prompt('Copy this shareable link:', articleUrl);
+  });
+}
+function closeSuccessModal() {
+  document.getElementById('success-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  goTo('articles');
+}
+function viewPublishedArticle() {
+  document.getElementById('success-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  goTo('articles');
+  setTimeout(() => {
+    if (_lastPublishedId) openArticle(_lastPublishedId);
+  }, 600);
+}
+function submitGuestArticle() {
+  const title    = document.getElementById('submit-title').value.trim();
+  const category = document.getElementById('submit-category').value;
+  const author   = document.getElementById('submit-author').value.trim();
+  const excerpt  = document.getElementById('submit-excerpt').value.trim();
+  const bodyText = document.getElementById('submit-body').value.trim();
+  if (!title || !category || !author || !bodyText) {
+    showToast('Please fill in Title, Category, Author Name, and Content.');
+    return;
+  }
+  const bodyFormatted = bodyText.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean).join('|PARA|');
+  const newArticle = {
+    id: Date.now(),
+    title, category,
+    excerpt: excerpt || bodyText.substring(0, 160) + '...',
+    body: bodyFormatted,
+    author: author + ' (Guest)',
+    date: new Date().toISOString().split('T')[0]
+  };
+  generateAndDownloadStaticArticle(newArticle);
+  document.getElementById('submit-title').value    = '';
+  document.getElementById('submit-category').value = '';
+  document.getElementById('submit-author').value   = '';
+  document.getElementById('submit-excerpt').value  = '';
+  document.getElementById('submit-body').value     = '';
+  showToast(`Thank you, ${author}! Glenn will review and publish your article soon.`);
+  setTimeout(() => { goTo('hero'); }, 1800);
+}
+async function postComment() {
+  const name = document.getElementById('comment-name').value.trim();
+  const body = document.getElementById('comment-body').value.trim();
+  if (!name || !body) { showToast('Please enter your name and comment.'); return; }
+  const comments = DB.get('comments');
+  comments.unshift({ name, body, date: new Date().toISOString().split('T')[0] });
+  await DB.set('comments', comments);
+  document.getElementById('comment-name').value = '';
+  document.getElementById('comment-body').value = '';
+  renderComments();
+  showToast('Comment posted!');
+}
+function renderComments() {
+  const comments = DB.get('comments');
+  document.getElementById('comment-list').innerHTML = comments.map(c => `
+    <div class="comment-item">
+      <div class="comment-meta">
+        <div class="comment-avatar">${c.name.charAt(0).toUpperCase()}</div>
+        <span class="comment-name">${escHtml(c.name)}</span>
+        <span class="comment-date">${c.date}</span>
+      </div>
+      <p>${escHtml(c.body)}</p>
+    </div>`).join('');
+}
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+async function subscribe() {
+  const name  = document.getElementById('sub-name').value.trim();
+  const email = document.getElementById('sub-email').value.trim();
+  if (!email || !email.includes('@')) { showToast('Please enter a valid email.'); return; }
+  const subs = DB.get('subscribers');
+  if (subs.find(s => s.email === email)) { showToast('You are already subscribed!'); return; }
+  subs.push({ name, email, date: new Date().toISOString() });
+  await DB.set('subscribers', subs);
+  document.getElementById('sub-name').value = '';
+  document.getElementById('sub-email').value = '';
+  document.getElementById('sub-count').textContent = subs.length;
+  showToast(`Welcome aboard, ${name || 'reader'}!`);
+}
+function updateSubCount() {
+  document.getElementById('sub-count').textContent = DB.get('subscribers').length;
+}
+function updateStats() {
+  animateCount('stat-articles', DB.get('articles').length);
+  animateCount('stat-topics', 5);
+  animateCount('stat-readers', DB.get('subscribers').length + 847);
+  animateCount('stat-months', 6);
+}
+function animateCount(id, target) {
+  const el = document.getElementById(id);
+  let current = 0;
+  const step = Math.max(1, Math.floor(target / 40));
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current.toLocaleString();
+    if (current >= target) clearInterval(timer);
+  }, 30);
+}
+let hamburger, navMenu, navOverlay;
+function toggleMenu() {
+  const open = navMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  navOverlay.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+function closeMenu() {
+  navMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  navOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function goTo(id) {
+  closeMenu();
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+async function fetchWeather() {
+  const city = document.getElementById('weather-city-input').value.trim();
+  if (!city) return;
+  const result = document.getElementById('weather-result');
+  result.innerHTML = '<div class="weather-loading">Fetching...</div>';
+  try {
+    // Step 1: Geocode city using Open-Meteo geocoding API (no token needed)
+    const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`);
+    const geoData = await geoRes.json();
+    if (!geoData.results || geoData.results.length === 0) {
+      result.innerHTML = '<div class="weather-error">City not found.</div>'; return;
+    }
+    const { latitude, longitude, name, country } = geoData.results[0];
+    // Step 2: Fetch weather
+    const wRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&temperature_unit=celsius&wind_speed_unit=kmh&timezone=auto`);
+    const wData = await wRes.json();
+    const c = wData.current;
+    const icon = weatherIcon(c.weather_code);
+    const desc = weatherDesc(c.weather_code);
+    result.innerHTML = `
+      <div class="weather-city">${name}, ${country}</div>
+      <div class="weather-icon">${icon}</div>
+      <div class="weather-temp">${Math.round(c.temperature_2m)}°C</div>
+      <div class="weather-desc">${desc}</div>
+      <div class="weather-meta">
+        <span><b>${c.relative_humidity_2m}%</b>Humidity</span>
+        <span><b>${Math.round(c.wind_speed_10m)} km/h</b>Wind</span>
+      </div>`;
+  } catch(e) {
+    result.innerHTML = '<div class="weather-error">Could not load weather.</div>';
+  }
+}
+function weatherIcon(code) {
+  if (code === 0) return '☀️';
+  if (code <= 2) return '⛅';
+  if (code <= 3) return '☁️';
+  if (code <= 49) return '🌫️';
+  if (code <= 59) return '🌦️';
+  if (code <= 69) return '🌧️';
+  if (code <= 79) return '🌨️';
+  if (code <= 82) return '🌧️';
+  if (code <= 86) return '❄️';
+  if (code <= 99) return '⛈️';
+  return '🌡️';
+}
+function weatherDesc(code) {
+  if (code === 0) return 'Clear sky';
+  if (code === 1) return 'Mainly clear';
+  if (code === 2) return 'Partly cloudy';
+  if (code === 3) return 'Overcast';
+  if (code <= 49) return 'Foggy';
+  if (code <= 59) return 'Drizzle';
+  if (code <= 69) return 'Rainy';
+  if (code <= 79) return 'Snowy';
+  if (code <= 82) return 'Rain showers';
+  if (code <= 86) return 'Snow showers';
+  if (code <= 99) return 'Thunderstorm';
+  return 'Unknown';
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  document.getElementById('back-top').classList.toggle('show', window.scrollY > 400);
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+document.addEventListener('DOMContentLoaded', async () => {
+  hamburger  = document.getElementById('hamburger');
+  navMenu    = document.getElementById('nav-menu');
+  navOverlay = document.getElementById('nav-overlay');
+  hamburger.addEventListener('click', toggleMenu);
+  hamburger.addEventListener('keydown', e => { if (e.key === 'Enter') toggleMenu(); });
+  // Show loading state while fetching from cloud storage
+  document.getElementById('articles-grid').innerHTML = '<p style="text-align:center;color:var(--text-muted);font-family:\'JetBrains Mono\',monospace;font-size:0.7rem;letter-spacing:0.1em;padding:3rem 0;">⟳ Loading articles from cloud...</p>';
+  await initDB();
+  renderArticles();
+  renderArchive();
+  renderComments();
+  updateStats();
+  updateSubCount();
+  const statSection = document.querySelector('.stats-row');
+  let counted = false;
+  new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !counted) { counted = true; updateStats(); }
+  }, { threshold: 0.5 }).observe(statSection);
+});
+</script>
+</body>
+</html>
