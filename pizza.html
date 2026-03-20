@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Pasta & Pizza Hub — Python Inheritance & Polymorphism | Valleys &amp; Bytes</title>
+<meta name="description" content="Master Python inheritance and polymorphism with Pasta & Pizza Hub — a beginner-friendly guide using Product, Pizza, and Pasta classes. Full source code and explanations included.">
+<meta name="keywords" content="Python polymorphism tutorial, Python inheritance, method overriding Python, super() Python, Product class, Pizza class, Pasta class, El Nido Italian restaurant, Philippines coding tutorial, Valleys and Bytes, Glenn Junsay Pansensoy">
+<meta name="author" content="Glenn Junsay Pansensoy">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="dark">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://code-sense.pansensoyglenn.workers.dev/pizza.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pasta & Pizza Hub — Python Inheritance & Polymorphism">
+<meta property="og:description" content="Step-by-step Python OOP documentation: inheritance, polymorphism, method overriding, super(), and full source code for an Italian restaurant ordering system in El Nido.">
+<meta property="og:url" content="https://code-sense.pansensoyglenn.workers.dev/pizza.html">
+<meta property="og:site_name" content="Valleys &amp; Bytes">
+<meta property="og:image" content="/og-pizza.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Pasta & Pizza Hub — Python Inheritance & Polymorphism Guide banner">
+<meta property="og:locale" content="en_PH">
+<meta property="article:author" content="Glenn Junsay Pansensoy">
+<meta property="article:published_time" content="2026-03-16T00:00:00+08:00">
+<meta property="article:modified_time" content="2026-03-16T00:00:00+08:00">
+<meta property="article:section" content="Programming Tutorial">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@GlennPansensoy">
+<meta name="twitter:creator" content="@GlennPansensoy">
+<meta name="twitter:title" content="Pasta & Pizza Hub — Python Inheritance & Polymorphism">
+<meta name="twitter:description" content="Complete Python OOP tutorial: inheritance, polymorphism, method overriding, super(), and a working Italian restaurant ordering system.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Pasta & Pizza Hub — Python Inheritance & Polymorphism Guide",
+  "description": "A comprehensive step-by-step documentation of Pasta & Pizza Hub, a Python OOP command-line program demonstrating inheritance, polymorphism, method overriding, and super() calls through Product, Pizza, and Pasta classes.",
+  "author": {
+    "@type": "Person",
+    "name": "Glenn Junsay Pansensoy",
+    "url": "https://www.linkedin.com/in/glenn-pansensoy-6288453a2",
+    "sameAs": [
+      "https://www.linkedin.com/in/glenn-pansensoy-6288453a2",
+      "https://www.facebook.com/@Glenn-Junsay-Pansensoy",
+      "https://x.com/@GlennPansensoy",
+      "https://www.youtube.com/c/@GlennPansensoy"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valleys & Bytes",
+    "url": "https://code-sense.pansensoyglenn.workers.dev"
+  },
+  "datePublished": "2026-03-16",
+  "dateModified": "2026-03-16",
+  "mainEntityOfPage": "https://code-sense.pansensoyglenn.workers.dev/pizza.html",
+  "programmingLanguage": "Python",
+  "proficiencyLevel": "Beginner",
+  "keywords": ["Python","OOP","Inheritance","Polymorphism","Method Overriding","super()","Philippines","Restaurant Ordering"],
+  "articleSection": "Programming Tutorial",
+  "teaches": ["Python OOP","Inheritance","Polymorphism","Method Overriding","super()","Input Validation"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Pasta & Pizza Hub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pasta & Pizza Hub is a Python command-line program that simulates an Italian restaurant ordering system in El Nido, Palawan. It uses a base class Product and two subclasses Pizza and Pasta to demonstrate inheritance, polymorphism, and method overriding. Customers can choose from 20 pizzas and 20 pastas, place an order, and see polymorphic order preparation messages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does polymorphism work in this program?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both Pizza and Pasta override the process_order method from Product. When the program loops through the cart and calls item.process_order(qty), Python dynamically dispatches to the correct version – for Pizza objects, it prints a baking message 🍕; for Pasta objects, it prints a boiling message 🍝. No type checking is needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why override get_info in both subclasses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each subclass adds a unique attribute (crust_type for Pizza, sauce_type for Pasta). By overriding get_info, they can include these details in the product description while still reusing the base name and price via super() calls in __init__. This keeps the output informative and avoids duplicating code."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does super() do in the Pizza and Pasta constructors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "super().__init__(name, price) calls the parent Product constructor to initialise the common attributes (name and price). This follows the DRY principle – the child classes only need to add their own specific attributes (crust_type or sauce_type) without repeating the base assignment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are product codes generated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pizzas get codes PIZ01 to PIZ20, pastas get codes PAS01 to PAS20. They are stored in a dictionary with the code as key, enabling O(1) lookup when the user enters a code. This is a simple and efficient way to manage a menu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why use random to generate an order code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "After payment, a random 6-digit order code is generated using random.randint(100000, 999999). This simulates a real‑world order confirmation code that can be shown to the staff when picking up the food. It adds a touch of realism to the simulation."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575646748966866" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&family=Literata:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&family=Literata:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obs-900: #0a0a12;
+  --obs-800: #0f0f1e;
+  --obs-700: #151528;
+  --obs-600: #1e1e38;
+  --obs-500: #252545;
+  --obs-400: #2e2e58;
+  --obs-300: #3a3a72;
+  --blue-bright: #4b8bbe;
+  --blue-mid:    #3a6e99;
+  --blue-dark:   #264d6e;
+  --blue-glow:   rgba(75,139,190,0.25);
+  --blue-pale:   rgba(75,139,190,0.08);
+  --yellow:      #ffd43b;
+  --yellow-dim:  rgba(255,212,59,0.15);
+  --purple-bright: #bd93f9;
+  --purple-mid:    #9b72d4;
+  --purple-dark:   #6a4a9c;
+  --purple-glow:   rgba(189,147,249,0.2);
+  --purple-pale:   rgba(189,147,249,0.07);
+  --text-primary:   #ffffff;
+  --text-secondary: #ffffff;
+  --text-muted:     #c0c8e0;
+  --text-code:      #79c0ff;
+  --syn-kw:   #ff79c6;
+  --syn-cl:   #8be9fd;
+  --syn-fn:   #50fa7b;
+  --syn-st:   #f1fa8c;
+  --syn-cm:   #6272a4;
+  --syn-nm:   #bd93f9;
+  --syn-dc:   #ffd43b;
+  --surface-1: var(--obs-800);
+  --surface-2: var(--obs-700);
+  --surface-3: var(--obs-600);
+  --border:    rgba(75,139,190,0.18);
+  --border-pu: rgba(189,147,249,0.18);
+  --glow-blue: 0 0 30px rgba(75,139,190,0.15);
+  --glow-pu:   0 0 30px rgba(189,147,249,0.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 10px; overflow-x: hidden; max-width: 100vw; }
+body {
+  font-family: 'Literata', Georgia, serif;
+  background: var(--obs-900);
+  color: #ffffff;
+  overflow-x: hidden;
+  max-width: 100vw;
+  line-height: 1.7;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--obs-800); }
+::-webkit-scrollbar-thumb { background: var(--blue-dark); border-radius: 3px; }
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(75,139,190,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(75,139,190,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  animation: gridShift 60s linear infinite;
+}
+@keyframes gridShift { from{background-position:0 0} to{background-position:48px 48px} }
+
+
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 64px;
+  background: rgba(10,10,18,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+}
+.brand {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px;
+  text-decoration: none; display: flex; align-items: center; gap: 8px;
+}
+.brand-valleys { color: var(--blue-bright); }
+.brand-amp { color: #ffffff; font-weight: 400; margin: 0 2px; }
+.brand-bytes { color: var(--purple-bright); }
+.brand-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); animation: pulse 2s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+.hamburger {
+  display: flex; flex-direction: column; gap: 5px;
+  background: none; border: 1px solid var(--border);
+  padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s;
+}
+.hamburger:hover { border-color: var(--blue-bright); background: var(--blue-pale); }
+.hamburger span { display: block; width: 20px; height: 2px; background: #ffffff; border-radius: 2px; transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+.drawer {
+  position: fixed; top: 64px; right: 0; bottom: 0; z-index: 999;
+  width: 300px; background: var(--obs-800); border-left: 1px solid var(--border);
+  transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  overflow-y: auto; padding: 24px 20px;
+}
+.drawer.open { transform: translateX(0); }
+.drawer-overlay {
+  position: fixed; inset: 0; z-index: 998;
+  background: rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+.drawer-section { margin-bottom: 28px; }
+.drawer-section-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; letter-spacing: 2px;
+  text-transform: uppercase; color: #ffffff; margin-bottom: 10px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.drawer-btn {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 11px 14px; margin-bottom: 4px; background: var(--obs-700);
+  border: 1px solid var(--border); border-radius: 8px; color: #ffffff;
+  font-family: 'Syne', sans-serif; font-size: 0.8rem;
+  cursor: pointer; text-decoration: none; transition: all 0.2s; text-align: left;
+}
+.drawer-btn:hover { background: var(--blue-pale); border-color: var(--blue-bright); color: var(--blue-bright); }
+.drawer-btn .ico { font-size: 1.4rem; width: 22px; text-align: center; }
+
+
+.ad-banner { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.ad-label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #ffffff; letter-spacing: 1px; text-align: center; margin-bottom: 4px; }
+
+
+.hero {
+  position: relative; z-index: 1; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 100px 0 80px; overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(75,139,190,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 80% 80%, rgba(189,147,249,0.08) 0%, transparent 60%);
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%;
+}
+.hero-left { display: flex; flex-direction: column; align-items: flex-start; }
+.hero-right { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.hero-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.particle { position: absolute; border-radius: 50%; animation: floatParticle linear infinite; }
+@keyframes floatParticle {
+  0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--blue-bright);
+  background: rgba(75,139,190,0.1); border: 1px solid rgba(75,139,190,0.3);
+  padding: 6px 18px; border-radius: 20px; margin-bottom: 20px; display: inline-block;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-title {
+  font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800;
+  line-height: 1.1; text-align: left; color: #ffffff;
+  animation: fadeUp 0.9s ease 0.1s both; letter-spacing: -0.5px;
+}
+.hero-title .hl-blue { color: var(--blue-bright); }
+.hero-title .hl-pu   { color: var(--purple-bright); }
+.hero-title .hl-y    { color: var(--yellow); }
+.hero-title-sub {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #ffffff;
+  margin-top: 12px; letter-spacing: 1px; animation: fadeUp 0.95s ease 0.15s both;
+}
+.hero-subtitle {
+  font-size: 0.9rem; font-weight: 300; color: #ffffff; text-align: justify;
+  line-height: 1.7; animation: fadeUp 1s ease 0.2s both;
+  border-left: 3px solid var(--blue-dark); padding-left: 18px;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; animation: fadeUp 1s ease 0.3s both; }
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+  padding: 4px 12px; border-radius: 5px;
+  border: 1px solid var(--border-pu); color: var(--purple-bright);
+  background: var(--purple-pale); letter-spacing: 0.5px;
+}
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-start; animation: fadeUp 1s ease 0.4s both; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--blue-mid), var(--purple-dark));
+  color: #ffffff; font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer; transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(75,139,190,0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(75,139,190,0.4); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 8px;
+  background: transparent; border: 1px solid var(--border); color: #ffffff;
+  font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 600;
+  text-decoration: none; cursor: pointer; transition: all 0.25s;
+}
+.btn-secondary:hover { border-color: var(--purple-bright); color: var(--purple-bright); background: var(--purple-pale); }
+.scroll-indicator {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: #ffffff; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem; letter-spacing: 2px; margin-top: 60px; align-self: center;
+  animation: fadeUp 1.1s ease 0.5s both;
+}
+.scroll-indicator .arrow { animation: bounce 2s ease infinite; font-size: 1.4rem; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+
+.toc-nav {
+  position: sticky; top: 64px; z-index: 100;
+  background: rgba(10,10,18,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border); padding: 0 28px;
+  display: flex; align-items: center; overflow-x: auto; scrollbar-width: none;
+}
+.toc-nav::-webkit-scrollbar { display: none; }
+.toc-link {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+  color: #ffffff; text-decoration: none; letter-spacing: 1px;
+  text-transform: uppercase; padding: 14px 12px; white-space: nowrap;
+  border-bottom: 2px solid transparent; transition: all 0.2s;
+}
+.toc-link:hover, .toc-link.active { color: var(--blue-bright); border-bottom-color: var(--blue-bright); }
+
+
+.container { max-width: 980px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.section { margin-top: 72px; opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.section.visible { opacity: 1; transform: translateY(0); }
+.sec-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+.sec-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--yellow);
+  letter-spacing: 2px; background: var(--yellow-dim); border: 1px solid rgba(255,212,59,0.3);
+  padding: 4px 12px; border-radius: 4px; white-space: nowrap;
+}
+.sec-title {
+  font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: #ffffff;
+  border-bottom: 2px solid var(--blue-dark); padding-bottom: 6px; flex: 1;
+}
+.sec-title .accent-blue { color: var(--blue-bright); }
+.sec-title .accent-pu   { color: var(--purple-bright); }
+
+
+.prose {
+  font-size: 0.9rem; line-height: 1.85; color: #ffffff;
+  max-width: 820px; text-align: justify;
+}
+.prose strong { color: #ffffff; font-weight: 600; }
+.prose + .prose { margin-top: 14px; }
+.prose em { color: var(--purple-bright); font-style: italic; }
+
+
+.code-block {
+  background: var(--obs-800); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden; margin: 24px 0; box-shadow: var(--glow-blue); position: relative;
+}
+.code-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue-bright), var(--purple-bright), transparent);
+}
+.code-header {
+  background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border);
+  padding: 10px 18px; display: flex; align-items: center; gap: 8px;
+}
+.tdk-r { width:10px;height:10px;border-radius:50%;background:#ff5f57; }
+.tdk-y { width:10px;height:10px;border-radius:50%;background:#febc2e; }
+.tdk-g { width:10px;height:10px;border-radius:50%;background:#28c840; }
+.code-lbl { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:#ffffff; margin-left:6px; letter-spacing:0.5px; }
+.copy-btn {
+  margin-left: auto; font-family:'JetBrains Mono',monospace; font-size:0.8rem;
+  color: var(--blue-bright); background: var(--blue-pale);
+  border: 1px solid rgba(75,139,190,0.3); padding: 3px 10px; border-radius: 4px;
+  cursor: pointer; transition: all 0.2s;
+}
+.copy-btn:hover { background: var(--blue-dark); color: white; }
+.code-body { padding: 22px 24px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+pre { font-family:'JetBrains Mono',monospace; font-size:0.8rem; line-height:1.75; color:#cdd9e5; tab-size:4; white-space: pre; }
+.kw{color:var(--syn-kw)} .cl{color:var(--syn-cl)} .fn{color:var(--syn-fn)}
+.st{color:var(--syn-st)} .cm{color:var(--syn-cm);font-style:italic} .nm{color:var(--syn-nm)}
+.dc{color:var(--syn-dc)} .op{color:var(--syn-kw)}
+
+
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 20px 0; border-radius: 10px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+thead tr { background: linear-gradient(135deg, var(--obs-500), var(--obs-400)); }
+thead th {
+  color: var(--blue-bright); font-family:'JetBrains Mono',monospace;
+  font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 13px 18px; text-align: left; font-weight: 400; border-bottom: 1px solid var(--border);
+}
+tbody tr { border-bottom: 1px solid rgba(75,139,190,0.08); transition: background 0.15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--blue-pale); }
+tbody td { padding: 13px 18px; line-height: 1.6; vertical-align: top; color: #ffffff; font-size: 0.8rem; text-align: justify; }
+tbody td:first-child {
+  font-family:'JetBrains Mono',monospace; font-size:0.8rem; color: var(--purple-bright);
+  font-weight: 500; background: rgba(189,147,249,0.04);
+  border-right: 1px solid var(--border-pu); white-space: nowrap; text-align: left;
+}
+
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 14px; margin: 20px 0; }
+.card {
+  background: var(--obs-700); border: 1px solid var(--border); border-radius: 10px;
+  padding: 20px; border-top: 3px solid var(--blue-dark); transition: all 0.2s;
+}
+.card:hover { border-top-color: var(--blue-bright); transform: translateY(-2px); box-shadow: var(--glow-blue); }
+.card.pu { border-top-color: var(--purple-dark); }
+.card.pu:hover { border-top-color: var(--purple-bright); box-shadow: var(--glow-pu); }
+.card-label { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color: var(--blue-bright); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+.card.pu .card-label { color: var(--purple-bright); }
+.card-value { font-size: 0.9rem; line-height: 1.6; color: #ffffff; text-align: justify; }
+code { font-family:'JetBrains Mono',monospace; font-size:0.8rem; background: rgba(75,139,190,0.12); color: var(--text-code); padding: 2px 7px; border-radius: 4px; }
+
+
+.steps { display: flex; flex-direction: column; gap: 0; margin: 20px 0; }
+.step { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px dashed rgba(75,139,190,0.15); }
+.step:last-child { border-bottom: none; }
+.step-num {
+  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue-dark), var(--purple-dark));
+  color: white; font-family:'JetBrains Mono',monospace; font-size:1rem;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px; box-shadow: 0 2px 10px rgba(75,139,190,0.3);
+}
+.step-head { font-family:'Syne',sans-serif; font-weight:600; font-size:0.9rem; margin-bottom:6px; color:#ffffff; }
+.step-body { font-size: 0.9rem; line-height: 1.75; color: #ffffff; text-align: justify; }
+
+
+.callout {
+  border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+  display: flex; gap: 14px; align-items: flex-start; font-size: 0.9rem; line-height: 1.7;
+}
+.callout-blue { background: rgba(75,139,190,0.08); border-left: 3px solid var(--blue-bright); }
+.callout-pu   { background: var(--purple-pale); border-left: 3px solid var(--purple-bright); }
+.callout-warn { background: rgba(255,212,59,0.06); border-left: 3px solid var(--yellow); }
+.callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.callout-text { color: #ffffff; text-align: justify; font-size: 0.9rem; }
+.callout-text strong { color: #ffffff; }
+
+
+.flow {
+  display: flex; flex-wrap: wrap; align-items: stretch; margin: 20px 0;
+  background: var(--obs-700); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.flow-item {
+  flex: 1; min-width: 120px; padding: 18px 14px; text-align: center;
+  border-right: 1px solid var(--border); position: relative; transition: background 0.2s;
+}
+.flow-item:hover { background: var(--blue-pale); }
+.flow-item:last-child { border-right: none; }
+.flow-item::after { content:'›'; position:absolute; right:-8px; top:50%; transform:translateY(-50%); color: var(--blue-mid); font-size:1.4rem; z-index:1; }
+.flow-item:last-child::after { display: none; }
+.flow-icon { font-size: 2rem; display: block; margin-bottom: 6px; }
+.flow-lbl { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color: var(--blue-bright); letter-spacing:1px; text-transform:uppercase; }
+.flow-desc { font-size: 0.9rem; color: #ffffff; margin-top: 4px; line-height: 1.4; }
+
+
+.subsec { margin-top: 36px; }
+.subsec-title {
+  font-family:'Syne',sans-serif; font-size: 1rem; font-weight:700;
+  color: #ffffff; margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+}
+.subsec-title::before { content:''; display:block; width:3px; height:18px; background: linear-gradient(var(--blue-bright), var(--purple-bright)); border-radius:2px; }
+
+
+.divider { height: 1px; margin: 64px 0 0; background: linear-gradient(to right, transparent, var(--blue-dark), var(--purple-dark), transparent); }
+
+
+.faq-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; background: var(--obs-700); transition: border-color 0.2s; }
+.faq-item:hover { border-color: var(--blue-bright); }
+.faq-q {
+  padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  font-family:'Syne',sans-serif; font-size: 1rem; font-weight:600; color: #ffffff;
+  user-select: none; background: none; border: none; width: 100%; text-align: left; transition: color 0.2s;
+}
+.faq-q:hover { color: var(--blue-bright); }
+.faq-arrow { color: var(--blue-bright); font-size: 1.4rem; transition: transform 0.3s; flex-shrink: 0; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-item.open .faq-a { max-height: 600px; }
+.faq-a-inner { padding: 0 20px 18px; font-size: 0.9rem; line-height: 1.8; color: #ffffff; border-top: 1px solid var(--border); padding-top: 14px; text-align: justify; }
+
+
+.reactions {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 28px 0;
+}
+.reaction-btn {
+  display: flex; align-items: center; gap: 8px; background: var(--obs-700); border: 1px solid var(--border);
+  color: #ffffff; padding: 9px 18px; border-radius: 24px; font-family:'Syne',sans-serif;
+  font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
+}
+.reaction-btn:hover, .reaction-btn.active { background: var(--blue-pale); border-color: var(--blue-bright); color: var(--blue-bright); }
+.reaction-btn.love-btn:hover, .reaction-btn.love-btn.active { background: rgba(255,80,120,0.1); border-color: #ff5078; color: #ff5078; }
+.reaction-count { font-family:'JetBrains Mono',monospace; font-size:0.8rem; }
+
+.comments-section { margin-top: 28px; }
+.comment-form { background: var(--obs-700); border: 1px solid var(--border); border-radius: 10px; padding: 22px; margin-bottom: 24px; }
+.comment-form h3 { font-family:'Syne',sans-serif; font-size: 1rem; margin-bottom: 16px; color: #ffffff; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.form-input, .form-textarea {
+  background: var(--obs-800); border: 1px solid var(--border); border-radius: 6px;
+  color: #ffffff; font-family:'Literata',serif; font-size: 0.8rem;
+  padding: 10px 14px; width: 100%; outline: none; transition: border-color 0.2s;
+}
+.form-input:focus, .form-textarea:focus { border-color: var(--blue-bright); }
+.form-textarea { resize: vertical; min-height: 100px; display: block; margin-bottom: 12px; }
+.submit-btn {
+  background: linear-gradient(135deg, var(--blue-mid), var(--purple-dark));
+  color: white; border: none; padding: 10px 24px; border-radius: 6px;
+  font-family:'Syne',sans-serif; font-size: 0.8rem; font-weight:600; cursor: pointer; transition: all 0.2s;
+}
+.submit-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.comment-list { display: flex; flex-direction: column; gap: 14px; }
+.comment-item { background: var(--obs-700); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+.comment-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.comment-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-dark), var(--purple-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-family:'JetBrains Mono',monospace; font-size:1.2rem; color:white; font-weight:700; flex-shrink:0;
+}
+.comment-name { font-family:'Syne',sans-serif; font-size:0.9rem; font-weight:600; color:#ffffff; }
+.comment-date { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:#ffffff; }
+.comment-body { font-size: 0.9rem; line-height: 1.7; color: #ffffff; text-align: justify; }
+.comment-like { display:flex; align-items:center; gap:6px; margin-top:10px; background:none; border:1px solid var(--border); color:#ffffff; padding:4px 12px; border-radius:12px; cursor:pointer; font-size:0.8rem; transition:all 0.2s; }
+.comment-like:hover { color:#ff5078; border-color:#ff5078; background:rgba(255,80,120,0.08); }
+
+.follow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px; margin: 20px 0; }
+.follow-btn {
+  display: flex; align-items: center; gap: 12px; background: var(--obs-700);
+  border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px;
+  color: #ffffff; font-family:'Syne',sans-serif; font-size: 0.8rem; font-weight:600;
+  cursor: pointer; text-decoration: none; transition: all 0.25s;
+}
+.follow-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+.follow-btn.linkedin:hover { border-color:#0a66c2; background:rgba(10,102,194,0.1); color:#4b9be6; }
+.follow-btn.facebook:hover { border-color:#1877f2; background:rgba(24,119,242,0.1); color:#5b9fec; }
+.follow-btn.twitter:hover  { border-color:#1da1f2; background:rgba(29,161,242,0.1); color:#6bb8f2; }
+.follow-btn.youtube:hover  { border-color:#ff0000; background:rgba(255,0,0,0.08); color:#ff6666; }
+.follow-icon { font-size: 1.6rem; }
+.follow-lbl { display: flex; flex-direction: column; gap: 1px; }
+.follow-platform { font-size: 0.8rem; color: #ffffff; font-weight:400; }
+
+
+.subscribe-card {
+  background: linear-gradient(135deg, var(--obs-600), var(--obs-500));
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 40px 36px; margin: 28px 0; text-align: center;
+  position: relative; overflow: hidden;
+}
+.subscribe-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, var(--blue-bright), var(--purple-bright));
+}
+.subscribe-title { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; margin-bottom:8px; color:#ffffff; }
+.subscribe-sub { color:#ffffff; margin-bottom:24px; font-size:0.9rem; text-align:justify; max-width:500px; margin-left:auto; margin-right:auto; }
+.sub-form { display:flex; gap:10px; max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center; }
+.sub-input {
+  flex:1; min-width:200px; background: var(--obs-800); border:1px solid var(--border);
+  border-radius:8px; color:#ffffff; font-family:'Literata',serif; font-size:0.8rem;
+  padding:11px 16px; outline:none; transition:border-color 0.2s;
+}
+.sub-input:focus { border-color: var(--blue-bright); }
+.sub-btn {
+  background: linear-gradient(135deg, var(--blue-mid), var(--purple-dark));
+  color:white; border:none; padding:11px 24px; border-radius:8px;
+  font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:600;
+  cursor:pointer; transition:all 0.2s; white-space:nowrap;
+}
+.sub-btn:hover { opacity:0.85; transform:translateY(-1px); }
+.sub-note { font-size:0.8rem; color:#ffffff; margin-top:12px; }
+
+
+.share-row { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0; }
+.share-btn {
+  display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:8px;
+  font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:600;
+  border:1px solid var(--border); background: var(--obs-700); color:#ffffff;
+  cursor:pointer; text-decoration:none; transition:all 0.2s;
+}
+.share-btn:hover { transform:translateY(-2px); }
+.share-btn.fb:hover { border-color:#1877f2; background:rgba(24,119,242,0.1); color:#6bb1ff; }
+.share-btn.tw:hover { border-color:#1da1f2; background:rgba(29,161,242,0.1); color:#80ccff; }
+.share-btn.li:hover { border-color:#0a66c2; background:rgba(10,102,194,0.1); color:#6baff5; }
+.share-btn.cp:hover { border-color:var(--yellow); background:var(--yellow-dim); color:var(--yellow); }
+
+
+.outro-card {
+  background: linear-gradient(135deg, var(--obs-600) 0%, var(--obs-700) 100%);
+  border: 1px solid var(--border-pu); border-radius: 14px; padding: 48px 36px;
+  text-align: center; margin: 48px 0; position: relative; overflow: hidden;
+}
+.outro-card::after {
+  content: '</>'; position:absolute; right:32px; bottom:16px;
+  font-family:'JetBrains Mono',monospace; font-size:5rem;
+  color: rgba(189,147,249,0.06); font-weight:700; user-select:none; pointer-events:none;
+}
+.outro-title { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800; color:#ffffff; margin-bottom:14px; }
+.outro-body { color:#ffffff; font-size:0.9rem; max-width:620px; margin:0 auto 14px; line-height:1.8; text-align:justify; }
+
+
+footer { background: var(--obs-800); border-top: 1px solid var(--border); padding: 60px 24px 32px; margin-top: 80px; }
+.footer-inner { max-width: 980px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-brand { font-family:'Syne',sans-serif; font-size:1rem; font-weight:800; margin-bottom:10px; }
+.footer-tagline { font-size: 0.9rem; color: #ffffff; line-height:1.6; text-align:justify; }
+.footer-col-title { font-family:'JetBrains Mono',monospace; font-size:0.8rem; letter-spacing:2px; color: var(--blue-bright); text-transform:uppercase; margin-bottom:14px; }
+.footer-btn {
+  display:flex; align-items:center; gap:8px; background:none; border:1px solid transparent;
+  color:#ffffff; padding:7px 10px; border-radius:6px; font-family:'Syne',sans-serif; font-size:0.8rem;
+  cursor:pointer; text-decoration:none; width:100%; margin-bottom:2px; transition:all 0.2s; text-align:left;
+}
+.footer-btn:hover { border-color: var(--border); color:#ffffff; background: var(--obs-700); }
+.footer-btn .ico { font-size:1.2rem; width:18px; }
+.footer-bottom { border-top:1px solid var(--border); padding-top:24px; display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; }
+.footer-copy { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:#ffffff; }
+.footer-links-row { display:flex; gap:8px; flex-wrap:wrap; }
+.footer-link-btn {
+  background: var(--obs-700); border:1px solid var(--border); color:#ffffff;
+  padding:5px 12px; border-radius:5px; font-family:'JetBrains Mono',monospace;
+  font-size:0.8rem; letter-spacing:0.5px; cursor:pointer; text-decoration:none; transition:all 0.2s;
+}
+.footer-link-btn:hover { border-color: var(--blue-bright); color: var(--blue-bright); }
+
+
+.sticky-share { position:fixed; right:16px; top:50%; transform:translateY(-50%); z-index:200; display:flex; flex-direction:column; gap:8px; }
+.ss-btn {
+  width:40px; height:40px; border-radius:8px; background: var(--obs-700);
+  border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:1.4rem; transition:all 0.2s; text-decoration:none; color:#ffffff;
+}
+.ss-btn:hover { transform:scale(1.12); border-color: var(--blue-bright); background: var(--blue-pale); color: var(--blue-bright); }
+
+
+#progress-bar {
+  position:fixed; top:64px; left:0; height:2px; z-index:1001;
+  background: linear-gradient(90deg, var(--blue-bright), var(--purple-bright));
+  width:0%; transition:width 0.1s linear;
+}
+
+
+.toast {
+  position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(60px);
+  background: var(--obs-600); border:1px solid var(--blue-bright);
+  color:#ffffff; padding:10px 22px; border-radius:8px;
+  font-family:'JetBrains Mono',monospace; font-size:0.8rem;
+  transition:transform 0.3s ease; z-index:2000; pointer-events:none;
+}
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; text-align: center; }
+  .hero-left { align-items: center; }
+  .hero-right { align-items: center; }
+  .hero-title { text-align: center; }
+  .hero-subtitle { text-align: justify; border-left: none; padding-left: 0; border-top: 3px solid var(--blue-dark); padding-top: 16px; }
+  .hero-tags { justify-content: center; }
+  .hero-cta { justify-content: center; }
+  .scroll-indicator { margin-top: 36px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .card-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .navbar { padding: 0 16px; }
+  .hero { padding: 90px 0 60px; }
+  .toc-nav { padding: 0 8px; }
+  .toc-link { font-size: 0.7rem; padding: 10px 8px; letter-spacing: 0.5px; }
+  .container { padding: 0 16px; }
+  .section { margin-top: 48px; }
+  .footer-top { grid-template-columns: 1fr; gap: 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .sticky-share { display: none; }
+  .card-grid { grid-template-columns: 1fr; }
+  .flow-item { min-width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+  .flow-item::after { content: '↓'; right: 50%; bottom: -10px; top: unset; transform: translateX(50%); }
+  .step { gap: 12px; }
+  .step-num { width: 28px; height: 28px; font-size: 11px; }
+  .follow-grid { grid-template-columns: 1fr 1fr; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .reactions { flex-wrap: wrap; gap: 8px; }
+  .share-row { gap: 8px; }
+  .code-body { padding: 14px 12px; }
+  .subscribe-card { padding: 28px 18px; }
+  .sub-form { flex-direction: column; }
+  .sub-input, .sub-btn { width: 100%; }
+  .outro-card { padding: 28px 18px; }
+  .btn-primary, .btn-secondary { width: 100%; max-width: 280px; justify-content: center; }
+}
+@media (max-width: 480px) {
+  .navbar { padding: 0 12px; }
+  .container { padding: 0 12px; }
+  .hero-inner { padding: 0 16px; }
+  .drawer { width: 280px; }
+  .hero-cta { flex-direction: column; align-items: center; }
+  .follow-grid { grid-template-columns: 1fr; }
+  .comment-form { padding: 16px; }
+  .table-wrap { font-size: 0.75rem; }
+  thead th { font-size: 0.75rem; padding: 8px 10px; }
+  tbody td { padding: 8px 10px; font-size: 0.75rem; }
+}
+
+.ai-share-section { background: var(--obs-700); border: 1px solid var(--border-pu); border-radius: 14px; padding: 28px; margin: 28px 0; }
+.ai-share-title { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:#ffffff; margin-bottom:8px; }
+.ai-share-desc { font-size:0.9rem; color:#ffffff; margin-bottom:16px; text-align:justify; }
+.ai-share-input-row { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+.ai-share-select { flex:1; min-width:140px; background:var(--obs-800); border:1px solid var(--border); border-radius:8px; color:#ffffff; font-family:'Syne',sans-serif; font-size:0.8rem; padding:10px 14px; outline:none; cursor:pointer; }
+.ai-share-select:focus { border-color:var(--blue-bright); }
+.ai-share-gen-btn { background:linear-gradient(135deg,var(--blue-mid),var(--purple-dark)); color:#ffffff; border:none; padding:10px 22px; border-radius:8px; font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:600; cursor:pointer; transition:all 0.2s; white-space:nowrap; }
+.ai-share-gen-btn:hover { opacity:0.85; transform:translateY(-1px); }
+.ai-share-output { background:var(--obs-800); border:1px solid var(--border); border-radius:8px; padding:16px; min-height:70px; font-size:0.9rem; color:#ffffff; line-height:1.7; white-space:pre-wrap; word-break:break-word; margin-bottom:12px; display:none; text-align:justify; }
+.ai-share-output.visible { display:block; }
+.ai-share-loading { display:none; align-items:center; gap:10px; color:#ffffff; font-size:0.8rem; margin-bottom:12px; }
+.ai-share-loading.visible { display:flex; }
+.ai-share-spinner { width:18px; height:18px; border:2px solid var(--border); border-top-color:var(--blue-bright); border-radius:50%; animation:spin 0.8s linear infinite; }
+@keyframes spin { to{transform:rotate(360deg)} }
+.ai-share-action-row { display:flex; gap:8px; flex-wrap:wrap; }
+.ai-share-action-btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:600; border:1px solid var(--border); background:var(--obs-700); color:#ffffff; cursor:pointer; text-decoration:none; transition:all 0.2s; }
+.ai-share-action-btn:hover { transform:translateY(-1px); }
+.ai-share-action-btn.fb:hover { border-color:#1877f2; background:rgba(24,119,242,0.1); color:#6bb1ff; }
+.ai-share-action-btn.tw:hover { border-color:#1da1f2; background:rgba(29,161,242,0.1); color:#80ccff; }
+.ai-share-action-btn.li:hover { border-color:#0a66c2; background:rgba(10,102,194,0.1); color:#6baff5; }
+.ai-share-action-btn.cp:hover { border-color:var(--yellow); background:var(--yellow-dim); color:var(--yellow); }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav class="navbar">
+  <a href="https://code-sense.pansensoyglenn.workers.dev" class="brand">
+    <span class="brand-valleys">VALLEYS</span>
+    <span class="brand-amp">&amp;</span>
+    <span class="brand-bytes">BYTES</span>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer" role="navigation" aria-label="Site menu">
+  <div class="drawer-section">
+    <div class="drawer-section-label">Navigate</div>
+    <a class="drawer-btn" href="#intro"><span class="ico">📖</span>Introduction</a>
+    <a class="drawer-btn" href="#s1"><span class="ico">🗂️</span>Program Overview</a>
+    <a class="drawer-btn" href="#s2"><span class="ico">⚙️</span>Imports</a>
+    <a class="drawer-btn" href="#s3"><span class="ico">🏷️</span>Product Class</a>
+    <a class="drawer-btn" href="#s4"><span class="ico">🍕</span>Pizza Subclass</a>
+    <a class="drawer-btn" href="#s5"><span class="ico">🍝</span>Pasta Subclass</a>
+    <a class="drawer-btn" href="#s6"><span class="ico">📋</span>Menu Creation</a>
+    <a class="drawer-btn" href="#s7"><span class="ico">🛒</span>Order Flow</a>
+    <a class="drawer-btn" href="#s8"><span class="ico">🔄</span>Polymorphism Deep Dive</a>
+    <a class="drawer-btn" href="#s9"><span class="ico">🔧</span>Method Overriding & super()</a>
+    <a class="drawer-btn" href="#bestpractices"><span class="ico">⚠️</span>Best Practices</a>
+    <a class="drawer-btn" href="#extend"><span class="ico">🧪</span>Challenges</a>
+    <a class="drawer-btn" href="#source"><span class="ico">💻</span>Full Source</a>
+    <a class="drawer-btn" href="#faq"><span class="ico">❓</span>FAQ</a>
+  </div>
+  <div class="drawer-section">
+    <div class="drawer-section-label">Community</div>
+    <a class="drawer-btn" href="#comments"><span class="ico">💬</span>Comments</a>
+    <a class="drawer-btn" href="#follow"><span class="ico">👥</span>Follow</a>
+    <a class="drawer-btn" href="#subscribe"><span class="ico">✉️</span>Subscribe</a>
+  </div>
+  <div class="drawer-section">
+    <div class="drawer-section-label">Site Pages</div>
+    <a class="drawer-btn" href="about-guide.html"><span class="ico">📄</span>About this Page</a>
+    <a class="drawer-btn" href="about-author.html"><span class="ico">🧑‍💻</span>About the Author</a>
+    <a class="drawer-btn" href="oop-contact.html"><span class="ico">📬</span>Contact</a>
+    <a class="drawer-btn" href="oop-privacy.html"><span class="ico">🔒</span>Privacy Policy</a>
+    <a class="drawer-btn" href="oop-terms.html"><span class="ico">📜</span>Terms of Service</a>
+    <a class="drawer-btn" href="oop-cookie.html"><span class="ico">🍪</span>Cookie Policy</a>
+  </div>
+</div>
+<div style="padding:78px 24px 0;position:relative;z-index:1;">
+  <div class="ad-banner">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="4226674403" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+<section class="hero" id="top">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Python · Inheritance · Polymorphism · El Nido</div>
+      <h3 class="hero-title">
+        <span class="hl-blue">Pasta & Pizza</span> <span class="hl-y">Hub</span>
+      </h3>
+      <div class="hero-title-sub">Python OOP · Inheritance & Polymorphism Guide</div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-subtitle">
+        A complete walkthrough of inheritance, polymorphism, method overriding, and super() — explained step by step through a real Italian restaurant ordering system in El Nido, Palawan. Every class, every method, every design decision explained.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">🧱 1 Base + 2 Subclasses</span>
+        <span class="hero-tag">🍕 20 Pizzas</span>
+        <span class="hero-tag">🍝 20 Pastas</span>
+        <span class="hero-tag">🔄 Polymorphism</span>
+        <span class="hero-tag">🔧 Method Overriding</span>
+        <span class="hero-tag">🐍 Python 3</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#intro" class="btn-primary">📖 Start Reading</a>
+        <a href="#source" class="btn-secondary">💻 View Source Code</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>SCROLL TO EXPLORE</span>
+    <span class="arrow">↓</span>
+  </div>
+</section>
+<nav class="toc-nav" id="toc">
+  <a class="toc-link" href="#intro">Intro</a>
+  <a class="toc-link" href="#s1">Overview</a>
+  <a class="toc-link" href="#s2">Imports</a>
+  <a class="toc-link" href="#s3">Product</a>
+  <a class="toc-link" href="#s4">Pizza</a>
+  <a class="toc-link" href="#s5">Pasta</a>
+  <a class="toc-link" href="#s6">Menu</a>
+  <a class="toc-link" href="#s7">Order Flow</a>
+  <a class="toc-link" href="#s8">Polymorphism</a>
+  <a class="toc-link" href="#s9">super()</a>
+  <a class="toc-link" href="#bestpractices">Best Practices</a>
+  <a class="toc-link" href="#extend">Challenges</a>
+  <a class="toc-link" href="#source">Code</a>
+  <a class="toc-link" href="#faq">FAQ</a>
+</nav>
+<div class="container">
+  <div class="section" id="intro">
+    <div class="sec-header">
+      <span class="sec-num">INTRODUCTION</span>
+      <h2 class="sec-title">What Is <span class="accent-blue">Pasta & Pizza Hub</span> and Why Does It Matter?</h2>
+    </div>
+    <p class="prose">
+      Welcome to <strong>Pasta & Pizza Hub</strong> – a Python command-line program that simulates a bustling Italian restaurant in the heart of El Nido, Palawan. Customers can choose from 20 different pizzas and 20 pastas, place an order, see a detailed summary, and watch as the kitchen prepares each item with a unique message. Behind this simple user experience lies a powerful demonstration of object-oriented programming: <strong>inheritance</strong> and <strong>polymorphism</strong>.
+    </p>
+    <p class="prose" style="margin-top:14px;">
+      The program defines a base class <code>Product</code> that holds a name and price, and provides generic methods <code>get_info()</code> and <code>process_order()</code>. Two subclasses, <code>Pizza</code> and <code>Pasta</code>, inherit from <code>Product</code>. Each adds its own attribute (<code>crust_type</code> for pizza, <code>sauce_type</code> for pasta) and overrides the two methods to give them a unique flavour. When the final order is processed, a simple loop calls <code>process_order()</code> on every item – and Python automatically runs the correct version (baking message 🍕 for pizzas, boiling message 🍝 for pastas) thanks to polymorphism.
+    </p>
+    <p class="prose" style="margin-top:14px;">
+      This guide walks through every line of the program, explaining not just <em>what</em> the code does, but <em>why</em> each design choice was made – from using <code>super()</code> in constructors, to storing products in a dictionary with clever codes, to validating user input.
+    </p>
+    <div class="callout callout-blue" style="margin-top:24px;">
+      <span class="callout-icon">🐍</span>
+      <div class="callout-text">
+        <strong>What you will learn from this guide:</strong> Inheritance and polymorphism in action, method overriding, proper use of <code>super()</code>, the DRY principle, dictionary‑based product lookup, input validation with <code>try/except</code>, and a realistic order flow – all in one concise, real‑world program.
+      </div>
+    </div>
+    <div class="callout callout-warn" style="margin-top:16px;">
+      <span class="callout-icon">💡</span>
+      <div class="callout-text">
+        <strong>Who this guide is for:</strong> Python learners comfortable with basic classes and ready to understand how inheritance and polymorphism make code reusable and flexible. No external libraries – only core Python.
+      </div>
+    </div>
+  </div>
+  <div class="ad-banner" style="margin-top:40px;padding:0;">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="4226674403" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s1">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 01</span>
+      <h2 class="sec-title">Program <span class="accent-pu">Overview</span></h2>
+    </div>
+    <p class="prose">
+      The program consists of one base class (<code>Product</code>) and two subclasses (<code>Pizza</code> and <code>Pasta</code>). It creates 20 pizzas and 20 pastas with realistic names and prices, stores them in a dictionary using codes <code>PIZ01</code> to <code>PIZ20</code> and <code>PAS01</code> to <code>PAS20</code>, displays the full menu, lets the user add items to a cart, calculates totals, collects payment details, and finally shows polymorphic preparation messages.
+    </p>
+    <div class="card-grid" style="margin-top:20px;">
+      <div class="card"><div class="card-label">Class 1 — Product</div><div class="card-value">Base class with <code>name</code>, <code>price</code>, <code>calculate_total()</code>, <code>get_info()</code>, and <code>process_order()</code>. Serves as the blueprint for any sellable item.</div></div>
+      <div class="card pu"><div class="card-label">Class 2 — Pizza</div><div class="card-value">Inherits from Product. Adds <code>crust_type</code> (default "Thin"). Overrides <code>get_info()</code> to include crust info and <code>process_order()</code> to print a baking message.</div></div>
+      <div class="card"><div class="card-label">Class 3 — Pasta</div><div class="card-value">Inherits from Product. Adds <code>sauce_type</code> (default "Tomato"). Overrides <code>get_info()</code> to include sauce info and <code>process_order()</code> to print a boiling message.</div></div>
+    </div>
+    <div class="flow" style="margin-top:24px;">
+      <div class="flow-item"><span class="flow-icon">📋</span><span class="flow-lbl">Menu Creation</span><div class="flow-desc">20 pizzas + 20 pastas → dictionary with codes</div></div>
+      <div class="flow-item"><span class="flow-icon">🛒</span><span class="flow-lbl">Cart Input</span><div class="flow-desc">Enter codes, quantities, validate</div></div>
+      <div class="flow-item"><span class="flow-icon">💰</span><span class="flow-lbl">Payment</span><div class="flow-desc">Name, phone, cash/credit, confirmation</div></div>
+      <div class="flow-item"><span class="flow-icon">🍕🍝</span><span class="flow-lbl">Polymorphic Prep</span><div class="flow-desc">item.process_order(qty) → baking 🍕 or boiling 🍝</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s2">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 02</span>
+      <h2 class="sec-title"><span class="accent-blue">import random</span> — Only External Module</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">pizza.py — import random</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">import</span> random</pre></div>
+    </div>
+    <p class="prose">The only module imported is <code>random</code>, which is part of Python’s standard library. It is used at the very end to generate a random 6‑digit order confirmation code (<code>random.randint(100000, 999999)</code>). This adds a realistic touch – after payment, the customer receives a unique code to show at pickup. Everything else (classes, input handling, loops) uses pure Python.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s3">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 03</span>
+      <h2 class="sec-title">The <span class="accent-pu">Product</span> Base Class</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">class Product</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">class</span> <span class="cl">Product</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, name: <span class="cl">str</span>, price: <span class="cl">float</span>):
+        <span class="nm">self</span>.name = name
+        <span class="nm">self</span>.price = price
+
+    <span class="kw">def</span> <span class="fn">calculate_total</span>(<span class="nm">self</span>, quantity: <span class="cl">int</span>) -> <span class="cl">float</span>:
+        <span class="kw">return</span> <span class="nm">self</span>.price * quantity
+
+    <span class="kw">def</span> <span class="fn">get_info</span>(<span class="nm">self</span>) -> <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"</span>{<span class="nm">self</span>.name}<span class="st"> - PHP </span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+    <span class="kw">def</span> <span class="fn">process_order</span>(<span class="nm">self</span>, quantity: <span class="cl">int</span>):
+        <span class="fn">print</span>(<span class="st">f"Preparing </span>{quantity}<span class="st"> x </span>{<span class="nm">self</span>.name}<span class="st">..."</span>)</pre></div>
+    </div>
+    <p class="prose"><code>Product</code> is the foundation. It defines two attributes every product must have: a name and a price. The method <code>calculate_total()</code> returns the price multiplied by quantity – a simple but essential formula. <code>get_info()</code> returns a formatted string for display, and <code>process_order()</code> prints a generic preparation message. This class is intentionally kept minimal; all specialised behaviour will be added by subclasses.</p>
+    <p class="prose" style="margin-top:14px;">Type hints (<code>name: str</code>, <code>price: float</code>) are optional but serve as built‑in documentation. The <code>f"{self.price:.2f}"</code> format ensures prices always show two decimal places.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s4">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 04</span>
+      <h2 class="sec-title"><span class="accent-blue">Pizza</span> — Adding Crust and Overriding Methods</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">class Pizza(Product)</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">class</span> <span class="cl">Pizza</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, name: <span class="cl">str</span>, price: <span class="cl">float</span>, crust_type: <span class="cl">str</span> = <span class="st">"Thin"</span>):
+        <span class="nb">super</span>().<span class="fn">__init__</span>(name, price)
+        <span class="nm">self</span>.crust_type = crust_type
+
+    <span class="kw">def</span> <span class="fn">get_info</span>(<span class="nm">self</span>) -> <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"Pizza: </span>{<span class="nm">self</span>.name}<span class="st"> (</span>{<span class="nm">self</span>.crust_type}<span class="st"> Crust) - PHP </span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+    <span class="kw">def</span> <span class="fn">process_order</span>(<span class="nm">self</span>, quantity: <span class="cl">int</span>):
+        <span class="fn">print</span>(<span class="st">f"Baking </span>{quantity}<span class="st"> x </span>{<span class="nm">self</span>.name}<span class="st"> pizza... 🍕"</span>)</pre></div>
+    </div>
+    <p class="prose">The <code>Pizza</code> class introduces a new attribute, <code>crust_type</code>, with a default value of <code>"Thin"</code>. The constructor uses <code>super().__init__(name, price)</code> to delegate the initialisation of the inherited attributes to the parent class. This is a clean application of the DRY principle – we don’t repeat the assignment of <code>self.name</code> and <code>self.price</code>.</p>
+    <p class="prose" style="margin-top:14px;">Both <code>get_info()</code> and <code>process_order()</code> are overridden. <code>get_info()</code> now includes the crust type in the description, making the menu more informative. <code>process_order()</code> prints a playful baking message with a pizza emoji. The method signatures (parameters and return types) remain identical to the parent’s – this is crucial for polymorphism.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s5">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 05</span>
+      <h2 class="sec-title"><span class="accent-pu">Pasta</span> — Adding Sauce and Overriding Methods</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">class Pasta(Product)</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">class</span> <span class="cl">Pasta</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, name: <span class="cl">str</span>, price: <span class="cl">float</span>, sauce_type: <span class="cl">str</span> = <span class="st">"Tomato"</span>):
+        <span class="nb">super</span>().<span class="fn">__init__</span>(name, price)
+        <span class="nm">self</span>.sauce_type = sauce_type
+
+    <span class="kw">def</span> <span class="fn">get_info</span>(<span class="nm">self</span>) -> <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"Pasta: </span>{<span class="nm">self</span>.name}<span class="st"> (</span>{<span class="nm">self</span>.sauce_type}<span class="st"> Sauce) - PHP </span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+    <span class="kw">def</span> <span class="fn">process_order</span>(<span class="nm">self</span>, quantity: <span class="cl">int</span>):
+        <span class="fn">print</span>(<span class="st">f"Boiling </span>{quantity}<span class="st"> x </span>{<span class="nm">self</span>.name}<span class="st"> pasta... 🍝"</span>)</pre></div>
+    </div>
+    <p class="prose">The <code>Pasta</code> class mirrors <code>Pizza</code> but with a different unique attribute: <code>sauce_type</code>. Again, the parent constructor is called via <code>super()</code>. The overridden <code>get_info()</code> mentions the sauce, and <code>process_order()</code> prints a boiling message with a pasta emoji.</p>
+    <p class="prose" style="margin-top:14px;">This symmetry is intentional – it shows how two different subclasses can each extend the base class in their own way while still conforming to the same interface. This is the essence of polymorphism.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s6">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 06</span>
+      <h2 class="sec-title">Building the <span class="accent-blue">Full Menu</span> (20 Pizzas + 20 Pastas)</h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">Menu creation</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre>pizza_names = [<span class="st">"Margherita"</span>, <span class="st">"Pepperoni"</span>, ...]  <span class="cm"># 20 names</span>
+pizza_prices = [<span class="nm">220</span>, <span class="nm">280</span>, ...]                   <span class="cm"># 20 prices</span>
+
+pasta_names = [<span class="st">"Spaghetti Bolognese"</span>, ...]       <span class="cm"># 20 names</span>
+pasta_prices = [<span class="nm">180</span>, <span class="nm">210</span>, ...]                   <span class="cm"># 20 prices</span>
+
+products = {}
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">20</span>):
+    code = <span class="st">f"PIZ</span>{i+<span class="nm">1</span>:<span class="nm">02d</span>}<span class="st">"</span>
+    products[code] = <span class="cl">Pizza</span>(pizza_names[i], pizza_prices[i])
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">20</span>):
+    code = <span class="st">f"PAS</span>{i+<span class="nm">1</span>:<span class="nm">02d</span>}<span class="st">"</span>
+    products[code] = <span class="cl">Pasta</span>(pasta_names[i], pasta_prices[i])</pre></div>
+    </div>
+    <p class="prose">Two lists hold the names and prices of 20 pizzas and 20 pastas. A dictionary named <code>products</code> maps human‑readable codes (like <code>PIZ05</code>) to the actual product objects. Using a dictionary gives O(1) lookup – when the user enters a code, we can instantly retrieve the corresponding object.</p>
+    <p class="prose" style="margin-top:14px;">The <code>f"PIZ{i+1:02d}"</code> format creates codes with leading zeros, e.g., <code>PIZ01</code>, <code>PIZ02</code>, …, <code>PIZ20</code>. This ensures consistent code length and makes the menu look professional. The same logic is applied to pastas with the prefix <code>PAS</code>.</p>
+    <div class="callout callout-blue" style="margin-top:16px;">
+      <span class="callout-icon">🗂️</span>
+      <div class="callout-text"><strong>Why a dictionary?</strong> If we used a list and searched by code every time, the lookup would be O(n). With a dictionary, it’s constant time. This is a small optimisation, but it also makes the code cleaner: we can directly do <code>if choice in products</code>.</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s7">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 07</span>
+      <h2 class="sec-title">The Order Flow — <span class="accent-pu">Cart, Payment, and Confirmation</span></h2>
+    </div>
+    <p class="prose">The main program displays the menu (by iterating over the dictionary keys in order), then enters a loop where the user can type product codes. The loop continues until the user types <code>done</code>.</p>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">Cart input loop</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre>cart = []
+<span class="kw">while True</span>:
+    choice = <span class="fn">input</span>(<span class="st">"\nProduct code: "</span>).<span class="fn">strip</span>().<span class="fn">upper</span>()
+    <span class="kw">if</span> choice == <span class="st">"DONE"</span>: <span class="kw">break</span>
+    <span class="kw">if</span> choice <span class="kw">in</span> products:
+        <span class="kw">try</span>:
+            qty = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">f"Quantity for </span>{choice}<span class="st">: "</span>))
+            <span class="kw">if</span> qty > <span class="nm">0</span>:
+                cart.<span class="fn">append</span>((products[choice], qty))
+                <span class="fn">print</span>(<span class="st">f"✅ Added </span>{qty}<span class="st"> × </span>{products[choice].name}<span class="st">"</span>)
+            <span class="kw">else</span>:
+                <span class="fn">print</span>(<span class="st">"Quantity must be positive."</span>)
+        <span class="kw">except</span> <span class="cl">ValueError</span>:
+            <span class="fn">print</span>(<span class="st">"Invalid quantity."</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="st">"❌ Invalid code. Please check the menu."</span>)</pre></div>
+    </div>
+    <p class="prose">The input is stripped and converted to uppercase so that <code>piz05</code> works just like <code>PIZ05</code>. The code is checked against the dictionary keys. If valid, the program asks for a quantity, validates it with a <code>try/except</code> to catch non‑numeric input, and ensures the quantity is positive. The product object and quantity are stored as a tuple in the <code>cart</code> list.</p>
+    <p class="prose" style="margin-top:14px;">After ordering, the cart is displayed with itemised totals, the grand total is calculated, and the user enters their name, phone, and payment method. A simple confirmation step follows; if confirmed, a random order code is generated and the polymorphic order processing begins.</p>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">Polymorphic preparation</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="fn">print</span>(<span class="st">"\n🔧 Preparing your order now:"</span>)
+<span class="kw">for</span> item, qty <span class="kw">in</span> cart:
+    item.<span class="fn">process_order</span>(qty)</pre></div>
+    </div>
+    <p class="prose">This loop is the heart of polymorphism. Even though <code>cart</code> contains both <code>Pizza</code> and <code>Pasta</code> objects, calling <code>process_order()</code> on each triggers the correct overridden method – baking 🍕 for pizzas, boiling 🍝 for pastas. No <code>if</code> statements, no type checking – just clean, polymorphic dispatch.</p>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s8">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 08</span>
+      <h2 class="sec-title">Polymorphism <span class="accent-blue">Deep Dive</span></h2>
+    </div>
+    <p class="prose">Polymorphism (from Greek “many forms”) means that the same method call can behave differently depending on the object’s actual class. In Python, this is achieved through inheritance and method overriding.</p>
+    <div class="subsec">
+      <div class="subsec-title">How Python decides which <code>process_order</code> to run</div>
+      <p class="prose">When the loop calls <code>item.process_order(qty)</code>, Python:</p>
+      <ol style="margin-left:20px;color:#ffffff;font-size:0.9rem;">
+        <li>Looks at the class of <code>item</code> (e.g., <code>Pizza</code>).</li>
+        <li>Searches for <code>process_order</code> in that class. Found – so it calls <code>Pizza.process_order(item, qty)</code>.</li>
+        <li>If the method were not found in <code>Pizza</code>, Python would look in the parent class <code>Product</code>.</li>
+      </ol>
+      <p class="prose">This dynamic dispatch happens at runtime, giving you tremendous flexibility. You can add a new subclass (e.g., <code>Salad</code>) with its own <code>process_order</code>, and the loop will handle it without any modifications – that’s the open/closed principle in action.</p>
+    </div>
+    <div class="callout callout-blue" style="margin-top:16px;">
+      <span class="callout-icon">📌</span>
+      <div class="callout-text"><strong>Liskov Substitution Principle:</strong> Any subclass must be usable wherever its parent is expected. Here, both <code>Pizza</code> and <code>Pasta</code> can be placed in the <code>cart</code> and passed to any function that expects a <code>Product</code> – they don’t break the program.</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="s9">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 09</span>
+      <h2 class="sec-title">Method Overriding & <span class="accent-pu">super()</span></h2>
+    </div>
+    <p class="prose">Overriding a method means providing a new implementation in a child class that replaces the parent’s version. In this program, both <code>get_info()</code> and <code>process_order()</code> are overridden.</p>
+    <div class="subsec">
+      <div class="subsec-title">When to use <code>super()</code></div>
+      <p class="prose"><code>super()</code> is used in the constructor to call the parent’s <code>__init__</code> and initialise inherited attributes. This avoids repeating the assignment of <code>self.name</code> and <code>self.price</code>. If you forget <code>super().__init__</code>, those attributes will never be set, leading to an <code>AttributeError</code> later.</p>
+      <p class="prose" style="margin-top:14px;">In the overridden methods themselves, we don’t call <code>super()</code> because we are completely replacing the parent’s behaviour. If we wanted to extend the parent method (e.g., print the generic message <em>and</em> an emoji), we could call <code>super().process_order(quantity)</code> first.</p>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="bestpractices">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 10</span>
+      <h2 class="sec-title">Common <span class="accent-blue">Mistakes</span> &amp; Best Practices</h2>
+    </div>
+    <div class="steps" style="margin-top:20px;">
+      <div class="step">
+        <div class="step-num">✗</div>
+        <div>
+          <div class="step-head">Forgetting to call <code>super().__init__</code></div>
+          <p class="step-body">If you omit the parent constructor call, the base attributes (<code>name</code>, <code>price</code>) are never set. Always call <code>super().__init__(...)</code> when you override the constructor.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">✗</div>
+        <div>
+          <div class="step-head">Changing the method signature when overriding</div>
+          <p class="step-body"><code>process_order</code> in <code>Pizza</code> must accept the same parameters (self, quantity) as in <code>Product</code>. If you add an extra parameter, code that calls the method polymorphically will break.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">✓</div>
+        <div>
+          <div class="step-head">Use dictionaries for fast lookup</div>
+          <p class="step-body">Mapping codes to objects with a dictionary is efficient and clean. It also allows simple membership testing with <code>if code in products</code>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">✓</div>
+        <div>
+          <div class="step-head">Validate user input with <code>try/except</code></div>
+          <p class="step-body">Wrapping <code>int(input())</code> in a try block catches non‑numeric entries gracefully. Always provide a helpful error message and continue the loop.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">✓</div>
+        <div>
+          <div class="step-head">Use <code>.strip()</code> and <code>.upper()</code> on input</div>
+          <p class="step-body">This makes the program more forgiving: <code>" piz05 "</code> becomes <code>"PIZ05"</code> and matches the dictionary key.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="extend">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 11</span>
+      <h2 class="sec-title">Try It <span class="accent-pu">Yourself</span> — Extension Challenges</h2>
+    </div>
+    <p class="prose">Solidify your understanding by extending the program:</p>
+    <div class="card-grid" style="margin-top:20px;">
+      <div class="card">
+        <div class="card-label">🟢 Beginner — Add a third category</div>
+        <div class="card-value">Create a <code>Salad</code> class that inherits from <code>Product</code> and adds a <code>dressing</code> attribute. Override <code>get_info()</code> and <code>process_order()</code> (e.g., "Tossing salad... 🥗"). Add 10 salads to the menu with codes <code>SAL01</code> to <code>SAL10</code>.</div>
+      </div>
+      <div class="card pu">
+        <div class="card-label">🟡 Intermediate — Discount for large orders</div>
+        <div class="card-value">If the total quantity exceeds a threshold (e.g., 10 items), apply a 10% discount. Modify the order summary to show the discount and new total.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">🔴 Advanced — Save order history</div>
+        <div class="card-value">Write each completed order to a JSON file named <code>order_<phone>.json</code>. Include customer details, items with quantities, and total. Use the <code>json</code> module with <code>ensure_ascii=False</code> to preserve emojis.</div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="source">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 12</span>
+      <h2 class="sec-title">Complete <span class="accent-blue">Source Code</span></h2>
+    </div>
+    <div class="code-block">
+      <div class="code-header"><div class="tdk-r"></div><div class="tdk-y"></div><div class="tdk-g"></div><span class="code-lbl">pizza.py — Full Source</span><button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div>
+      <div class="code-body"><pre><span class="kw">import</span> random
+
+<span class="kw">class</span> <span class="cl">Product</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, name: <span class="cl">str</span>, price: <span class="cl">float</span>):
+        <span class="nm">self</span>.name = name
+        <span class="nm">self</span>.price = price
+
+    <span class="kw">def</span> <span class="fn">calculate_total</span>(<span class="nm">self</span>, quantity: <span class="cl">int</span>) -> <span class="cl">float</span>:
+        <span class="kw">return</span> <span class="nm">self</span>.price * quantity
+
+    <span class="kw">def</span> <span class="fn">get_info</span>(<span class="nm">self</span>) -> <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"</span>{<span class="nm">self</span>.name}<span class="st"> - PHP </span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+    <span class="kw">def</span> <span class="fn">process_order</span>(<span class="nm">self</span>, quantity: <span class="cl">int</span>):
+        <span class="fn">print</span>(<span class="st">f"Preparing </span>{quantity}<span class="st"> x </span>{<span class="nm">self</span>.name}<span class="st">..."</span>)
+
+
+<span class="kw">class</span> <span class="cl">Pizza</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, name: <span class="cl">str</span>, price: <span class="cl">float</span>, crust_type: <span class="cl">str</span> = <span class="st">"Thin"</span>):
+        <span class="nb">super</span>().<span class="fn">__init__</span>(name, price)
+        <span class="nm">self</span>.crust_type = crust_type
+
+    <span class="kw">def</span> <span class="fn">get_info</span>(<span class="nm">self</span>) -> <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"Pizza: </span>{<span class="nm">self</span>.name}<span class="st"> (</span>{<span class="nm">self</span>.crust_type}<span class="st"> Crust) - PHP </span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+    <span class="kw">def</span> <span class="fn">process_order</span>(<span class="nm">self</span>, quantity: <span class="cl">int</span>):
+        <span class="fn">print</span>(<span class="st">f"Baking </span>{quantity}<span class="st"> x </span>{<span class="nm">self</span>.name}<span class="st"> pizza... 🍕"</span>)
+
+
+<span class="kw">class</span> <span class="cl">Pasta</span>(<span class="cl">Product</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, name: <span class="cl">str</span>, price: <span class="cl">float</span>, sauce_type: <span class="cl">str</span> = <span class="st">"Tomato"</span>):
+        <span class="nb">super</span>().<span class="fn">__init__</span>(name, price)
+        <span class="nm">self</span>.sauce_type = sauce_type
+
+    <span class="kw">def</span> <span class="fn">get_info</span>(<span class="nm">self</span>) -> <span class="cl">str</span>:
+        <span class="kw">return</span> <span class="st">f"Pasta: </span>{<span class="nm">self</span>.name}<span class="st"> (</span>{<span class="nm">self</span>.sauce_type}<span class="st"> Sauce) - PHP </span>{<span class="nm">self</span>.price:<span class="nm">.2f</span>}<span class="st">"</span>
+
+    <span class="kw">def</span> <span class="fn">process_order</span>(<span class="nm">self</span>, quantity: <span class="cl">int</span>):
+        <span class="fn">print</span>(<span class="st">f"Boiling </span>{quantity}<span class="st"> x </span>{<span class="nm">self</span>.name}<span class="st"> pasta... 🍝"</span>)
+
+
+<span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    <span class="fn">print</span>(<span class="st">"🌟 Welcome to Pasta & Pizza Hub - El Nido's Finest Italian Spot 🌟\n"</span>)
+
+    pizza_names = [
+        <span class="st">"Margherita"</span>, <span class="st">"Pepperoni"</span>, <span class="st">"Hawaiian"</span>, <span class="st">"Meat Lovers"</span>, <span class="st">"Veggie Supreme"</span>,
+        <span class="st">"Four Cheese"</span>, <span class="st">"BBQ Chicken"</span>, <span class="st">"Seafood Delight"</span>, <span class="st">"Supreme"</span>, <span class="st">"Truffle Mushroom"</span>,
+        <span class="st">"Spicy Italian"</span>, <span class="st">"Chicken Tikka"</span>, <span class="st">"Pesto Basil"</span>, <span class="st">"Tuna Mayo"</span>, <span class="st">"Bacon Ranch"</span>,
+        <span class="st">"Mushroom Delight"</span>, <span class="st">"Olive and Feta"</span>, <span class="st">"Pineapple Special"</span>, <span class="st">"Classic Italian"</span>, <span class="st">"Garlic Shrimp"</span>
+    ]
+    pizza_prices = [<span class="nm">220</span>, <span class="nm">280</span>, <span class="nm">250</span>, <span class="nm">320</span>, <span class="nm">260</span>, <span class="nm">290</span>, <span class="nm">310</span>, <span class="nm">340</span>, <span class="nm">300</span>, <span class="nm">350</span>, <span class="nm">270</span>, <span class="nm">295</span>, <span class="nm">265</span>, <span class="nm">240</span>, <span class="nm">305</span>, <span class="nm">255</span>, <span class="nm">275</span>, <span class="nm">285</span>, <span class="nm">230</span>, <span class="nm">315</span>]
+
+    pasta_names = [
+        <span class="st">"Spaghetti Bolognese"</span>, <span class="st">"Fettuccine Alfredo"</span>, <span class="st">"Penne Arrabbiata"</span>, <span class="st">"Classic Lasagna"</span>,
+        <span class="st">"Creamy Carbonara"</span>, <span class="st">"Pesto Genovese"</span>, <span class="st">"Shrimp Scampi"</span>, <span class="st">"Beef Stroganoff"</span>,
+        <span class="st">"Cheese Ravioli"</span>, <span class="st">"Spinach Tortellini"</span>, <span class="st">"Potato Gnocchi"</span>, <span class="st">"Linguine Vongole"</span>,
+        <span class="st">"Farfalle Primavera"</span>, <span class="st">"Rigatoni Amatriciana"</span>, <span class="st">"Fusilli Puttanesca"</span>,
+        <span class="st">"Cannelloni Ricotta"</span>, <span class="st">"Lemon Orzo"</span>, <span class="st">"Tagliatelle Bolognese"</span>, <span class="st">"Bucatini Cacio e Pepe"</span>,
+        <span class="st">"Macaroni Cheese"</span>
+    ]
+    pasta_prices = [<span class="nm">180</span>, <span class="nm">210</span>, <span class="nm">195</span>, <span class="nm">250</span>, <span class="nm">220</span>, <span class="nm">200</span>, <span class="nm">230</span>, <span class="nm">240</span>, <span class="nm">215</span>, <span class="nm">205</span>, <span class="nm">190</span>, <span class="nm">225</span>, <span class="nm">185</span>, <span class="nm">235</span>, <span class="nm">245</span>, <span class="nm">260</span>, <span class="nm">170</span>, <span class="nm">255</span>, <span class="nm">265</span>, <span class="nm">175</span>]
+
+    products = {}
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">20</span>):
+        code = <span class="st">f"PIZ</span>{i+<span class="nm">1</span>:<span class="nm">02d</span>}<span class="st">"</span>
+        products[code] = <span class="cl">Pizza</span>(pizza_names[i], pizza_prices[i])
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">20</span>):
+        code = <span class="st">f"PAS</span>{i+<span class="nm">1</span>:<span class="nm">02d</span>}<span class="st">"</span>
+        products[code] = <span class="cl">Pasta</span>(pasta_names[i], pasta_prices[i])
+
+    <span class="fn">print</span>(<span class="st">"=== FULL MENU (20 Pizzas + 20 Pastas) ==="</span>)
+    <span class="fn">print</span>(<span class="st">"\nPIZZAS:"</span>)
+    <span class="kw">for</span> code <span class="kw">in</span> [<span class="st">f"PIZ</span>{i:<span class="nm">02d</span>}<span class="st">"</span> <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">1</span>, <span class="nm">21</span>)]:
+        <span class="fn">print</span>(<span class="st">f"  </span>{code}<span class="st">: </span>{products[code].<span class="fn">get_info</span>()}<span class="st">"</span>)
+    <span class="fn">print</span>(<span class="st">"\nPASTAS:"</span>)
+    <span class="kw">for</span> code <span class="kw">in</span> [<span class="st">f"PAS</span>{i:<span class="nm">02d</span>}<span class="st">"</span> <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">1</span>, <span class="nm">21</span>)]:
+        <span class="fn">print</span>(<span class="st">f"  </span>{code}<span class="st">: </span>{products[code].<span class="fn">get_info</span>()}<span class="st">"</span>)
+
+    cart = []
+    <span class="fn">print</span>(<span class="st">"\n=== PLACE YOUR ORDER ==="</span>)
+    <span class="fn">print</span>(<span class="st">"Enter product code (e.g. PIZ05 or PAS12). Type 'done' to finish."</span>)
+
+    <span class="kw">while True</span>:
+        choice = <span class="fn">input</span>(<span class="st">"\nProduct code: "</span>).<span class="fn">strip</span>().<span class="fn">upper</span>()
+        <span class="kw">if</span> choice == <span class="st">"DONE"</span>:
+            <span class="kw">break</span>
+        <span class="kw">if</span> choice <span class="kw">in</span> products:
+            <span class="kw">try</span>:
+                qty = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">f"Quantity for </span>{choice}<span class="st">: "</span>))
+                <span class="kw">if</span> qty > <span class="nm">0</span>:
+                    cart.<span class="fn">append</span>((products[choice], qty))
+                    <span class="fn">print</span>(<span class="st">f"✅ Added </span>{qty}<span class="st"> × </span>{products[choice].name}<span class="st">"</span>)
+                <span class="kw">else</span>:
+                    <span class="fn">print</span>(<span class="st">"Quantity must be positive."</span>)
+            <span class="kw">except</span> <span class="cl">ValueError</span>:
+                <span class="fn">print</span>(<span class="st">"Invalid quantity."</span>)
+        <span class="kw">else</span>:
+            <span class="fn">print</span>(<span class="st">"❌ Invalid code. Please check the menu."</span>)
+
+    <span class="kw">if not</span> cart:
+        <span class="fn">print</span>(<span class="st">"\nNo items ordered. Thank you for visiting!"</span>)
+    <span class="kw">else</span>:
+        total = <span class="nm">0.0</span>
+        <span class="fn">print</span>(<span class="st">"\n=== ORDER SUMMARY ==="</span>)
+        <span class="kw">for</span> item, qty <span class="kw">in</span> cart:
+            item_total = item.<span class="fn">calculate_total</span>(qty)
+            total += item_total
+            <span class="fn">print</span>(<span class="st">f"</span>{qty}<span class="st"> × </span>{item.name:<span class="nm">25</span>}<span class="st"> = PHP </span>{item_total:<span class="nm">,.2f</span>}<span class="st">"</span>)
+        <span class="fn">print</span>(<span class="st">f"{'-'*50}"</span>)
+        <span class="fn">print</span>(<span class="st">f"GRAND TOTAL: PHP </span>{total:<span class="nm">,.2f</span>}<span class="st">"</span>)
+
+        name = <span class="fn">input</span>(<span class="st">"\nEnter your full name: "</span>).<span class="fn">strip</span>()
+        phone = <span class="fn">input</span>(<span class="st">"Enter your phone number: "</span>).<span class="fn">strip</span>()
+
+        <span class="kw">while True</span>:
+            payment_method = <span class="fn">input</span>(<span class="st">"Payment method (cash or credit): "</span>).<span class="fn">strip</span>().<span class="fn">lower</span>()
+            <span class="kw">if</span> payment_method <span class="kw">in</span> [<span class="st">"cash"</span>, <span class="st">"credit"</span>]:
+                <span class="kw">break</span>
+            <span class="fn">print</span>(<span class="st">"Please type 'cash' or 'credit'."</span>)
+
+        <span class="kw">if</span> payment_method == <span class="st">"credit"</span>:
+            <span class="fn">input</span>(<span class="st">"Enter card number (demo): "</span>)
+            <span class="fn">print</span>(<span class="st">"✅ Card validated successfully."</span>)
+
+        confirm = <span class="fn">input</span>(<span class="st">f"\nConfirm payment of PHP </span>{total:<span class="nm">,.2f</span>}<span class="st">? (y/n): "</span>).<span class="fn">strip</span>().<span class="fn">lower</span>()
+        <span class="kw">if</span> confirm == <span class="st">"y"</span>:
+            order_code = random.<span class="fn">randint</span>(<span class="nm">100000</span>, <span class="nm">999999</span>)
+            <span class="fn">print</span>(<span class="st">"\n🎉 PAYMENT CONFIRMED! Thank you, "</span> + name + <span class="st">"!"</span>)
+            <span class="fn">print</span>(<span class="st">f"📱 Your order code </span>{order_code}<span class="st"> has been sent via SMS to </span>{phone}<span class="st">"</span>)
+            <span class="fn">print</span>(<span class="st">"\n🔧 Preparing your order now:"</span>)
+            <span class="kw">for</span> item, qty <span class="kw">in</span> cart:
+                item.<span class="fn">process_order</span>(qty)
+            <span class="fn">print</span>(<span class="st">f"\n✅ Your order is being prepared. Please show code "</span> + <span class="fn">str</span>(order_code) + <span class="st">" at the pickup counter."</span>)
+            <span class="fn">print</span>(<span class="st">"We hope to see you again at Pasta & Pizza Hub!"</span>)
+        <span class="kw">else</span>:
+            <span class="fn">print</span>(<span class="st">"\nOrder cancelled. Thank you for visiting Pasta & Pizza Hub!"</span>)</pre></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section visible" id="reactions" style="margin-top:40px;">
+    <div class="reactions">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:#ffffff;">Was this helpful?</span>
+      <button class="reaction-btn love-btn" id="loveBtn" onclick="react('love')" aria-label="Love reaction">❤️ <span class="reaction-count" id="loveCount">23</span> Love</button>
+      <button class="reaction-btn" id="likeBtn" onclick="react('like')" aria-label="Helpful reaction">👍 <span class="reaction-count" id="likeCount">57</span> Helpful</button>
+      <button class="reaction-btn" id="mindBlownBtn" onclick="react('mindBlown')" aria-label="Mind-blown reaction">🤯 <span class="reaction-count" id="mindBlownCount">14</span> Mind-blown</button>
+      <button class="reaction-btn" id="bookmarkBtn" onclick="react('bookmark')" aria-label="Save reaction">🔖 <span class="reaction-count" id="bookmarkCount">29</span> Saved</button>
+    </div>
+  </div>
+  <div class="section visible" style="margin-top:8px;">
+    <div class="subsec-title" style="margin-bottom:14px;">Share This Guide</div>
+    <div class="share-row">
+      <a class="share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=https://code-sense.pansensoyglenn.workers.dev/pizza.html" target="_blank" rel="noopener"><span>📘</span> Facebook</a>
+      <a class="share-btn tw" href="https://twitter.com/intent/tweet?text=Pasta+%26+Pizza+Hub+Python+Inheritance+%26+Polymorphism+Guide&url=https://code-sense.pansensoyglenn.workers.dev/pizza.html&via=GlennPansensoy" target="_blank" rel="noopener"><span>🐦</span> Twitter / X</a>
+      <a class="share-btn li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://code-sense.pansensoyglenn.workers.dev/pizza.html" target="_blank" rel="noopener"><span>💼</span> LinkedIn</a>
+      <button class="share-btn cp" onclick="copyLink()" aria-label="Copy page link"><span>🔗</span> Copy Link</button>
+    </div>
+  </div>
+  <div class="ad-banner" style="margin-top:40px;padding:0;">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="4226674403" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="faq">
+    <div class="sec-header">
+      <span class="sec-num">FAQ</span>
+      <h2 class="sec-title">Frequently Asked <span class="accent-pu">Questions</span></h2>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">What is Pasta & Pizza Hub? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Pasta & Pizza Hub is a Python command-line program that simulates an Italian restaurant ordering system in El Nido, Palawan. It uses a base class Product and two subclasses Pizza and Pasta to demonstrate inheritance, polymorphism, and method overriding. Customers can choose from 20 pizzas and 20 pastas, place an order, and see polymorphic order preparation messages.</div></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">How does polymorphism work in this program? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Both Pizza and Pasta override the process_order method from Product. When the program loops through the cart and calls item.process_order(qty), Python dynamically dispatches to the correct version – for Pizza objects, it prints a baking message 🍕; for Pasta objects, it prints a boiling message 🍝. No type checking is needed.</div></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">Why override get_info in both subclasses? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Each subclass adds a unique attribute (crust_type for Pizza, sauce_type for Pasta). By overriding get_info, they can include these details in the product description while still reusing the base name and price via super() calls in __init__. This keeps the output informative and avoids duplicating code.</div></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">What does super() do in the Pizza and Pasta constructors? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">super().__init__(name, price) calls the parent Product constructor to initialise the common attributes (name and price). This follows the DRY principle – the child classes only need to add their own specific attributes (crust_type or sauce_type) without repeating the base assignment.</div></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">How are product codes generated? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Pizzas get codes PIZ01 to PIZ20, pastas get codes PAS01 to PAS20. They are stored in a dictionary with the code as key, enabling O(1) lookup when the user enters a code. This is a simple and efficient way to manage a menu.</div></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <button class="faq-q">Why use random to generate an order code? <span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">After payment, a random 6-digit order code is generated using random.randint(100000, 999999). This simulates a real‑world order confirmation code that can be shown to the staff when picking up the food. It adds a touch of realism to the simulation.</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="comments">
+    <div class="sec-header">
+      <span class="sec-num">COMMUNITY</span>
+      <h2 class="sec-title">Comments &amp; <span class="accent-blue">Discussion</span></h2>
+    </div>
+    <div class="comments-section">
+      <div class="comment-form">
+        <h3>💬 Leave a Comment</h3>
+        <div class="form-row">
+          <input class="form-input" type="text" id="c-name" placeholder="Your name" maxlength="50">
+          <input class="form-input" type="email" id="c-email" placeholder="Email (not published)" maxlength="100">
+        </div>
+        <textarea class="form-textarea" id="c-body" placeholder="Share your thoughts, questions, or experiences with inheritance and polymorphism..." maxlength="1000"></textarea>
+        <button class="submit-btn" onclick="postComment()" aria-label="Post comment">Post Comment →</button>
+        <p style="font-size:0.8rem;color:#ffffff;margin-top:10px;">💡 Comments are stored locally in this session. Be respectful and constructive.</p>
+      </div>
+      <div class="comment-list" id="commentList">
+        <div class="comment-item">
+          <div class="comment-meta"><div class="comment-avatar">C</div><div><div class="comment-name">Carlo Mendoza</div><div class="comment-date">March 2026</div></div></div>
+          <div class="comment-body">The dictionary lookup with formatted codes is so clean! I used to use lists and search by index, but this is much better. The polymorphism explanation with the baking/boiling messages really made it click for me.</div>
+          <button class="comment-like" onclick="likeComment(this)">❤️ <span>12</span></button>
+        </div>
+        <div class="comment-item">
+          <div class="comment-meta"><div class="comment-avatar" style="background:linear-gradient(135deg,#2d7a35,#1a4d1e)">L</div><div><div class="comment-name">Lea Santos</div><div class="comment-date">March 2026</div></div></div>
+          <div class="comment-body">I added a Salad class with a dressing attribute and it worked perfectly with the existing loop. Polymorphism is awesome! Great tutorial, thanks Glenn.</div>
+          <button class="comment-like" onclick="likeComment(this)">❤️ <span>8</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="follow">
+    <div class="sec-header">
+      <span class="sec-num">CONNECT</span>
+      <h2 class="sec-title">Follow <span class="accent-pu">Glenn Junsay Pansensoy</span></h2>
+    </div>
+    <p class="prose" style="margin-bottom:20px;">Stay connected for more Python guides, OOP tutorials, and tech content from the Philippines. Follow on your preferred platform:</p>
+    <div class="follow-grid">
+      <a class="follow-btn linkedin" href="https://www.linkedin.com/in/glenn-pansensoy-6288453a2" target="_blank" rel="noopener"><span class="follow-icon">💼</span><div class="follow-lbl"><span>Follow</span><span class="follow-platform">LinkedIn</span></div></a>
+      <a class="follow-btn facebook" href="https://www.facebook.com/@Glenn-Junsay-Pansensoy" target="_blank" rel="noopener"><span class="follow-icon">📘</span><div class="follow-lbl"><span>Follow</span><span class="follow-platform">Facebook</span></div></a>
+      <a class="follow-btn twitter" href="https://x.com/@GlennPansensoy" target="_blank" rel="noopener"><span class="follow-icon">🐦</span><div class="follow-lbl"><span>Follow</span><span class="follow-platform">X / Twitter</span></div></a>
+      <a class="follow-btn youtube" href="https://www.youtube.com/c/@GlennPansensoy" target="_blank" rel="noopener"><span class="follow-icon">▶️</span><div class="follow-lbl"><span>Subscribe</span><span class="follow-platform">YouTube</span></div></a>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="subscribe">
+    <div class="subscribe-card">
+      <div class="subscribe-title">📬 Stay in the Loop</div>
+      <p class="subscribe-sub">Get new Python tutorials, OOP guides, and tech articles from Valleys &amp; Bytes delivered to your inbox — no spam, ever.</p>
+      <div class="sub-form">
+        <input class="sub-input" type="email" id="subEmail" placeholder="your@email.com">
+        <button class="sub-btn" onclick="subscribe()" aria-label="Subscribe to newsletter">Subscribe Free →</button>
+      </div>
+      <p class="sub-note">🔒 No spam. Unsubscribe anytime. Your email is never shared.</p>
+    </div>
+  </div>
+  <div class="ad-banner" style="padding:0;margin-top:32px;">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="4226674403" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="divider"></div>
+  <div class="section" id="outro">
+    <div class="outro-card">
+      <div class="outro-title">🎉 You've Mastered Inheritance and Polymorphism — Now Build Your Own Restaurant!</div>
+      <p class="outro-body">You have walked through every line of Pasta & Pizza Hub, from the base class to the polymorphic preparation loop. You now understand how method overriding, <code>super()</code>, and dictionary‑based product lookup work together to create a flexible, realistic ordering system.</p>
+      <p class="outro-body">Inheritance and polymorphism are fundamental tools in any Python developer's toolbox. They allow you to write code that is both reusable and easy to extend. The same principles you learned here appear in web frameworks, game engines, and data science libraries.</p>
+      <p class="outro-body">Your next step? Take the extension challenges seriously. Add a <code>Salad</code> class, implement discounts, or save orders to JSON. Each challenge will deepen your understanding and give you code you can proudly show off.</p>
+      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="#intro" class="btn-primary">🔁 Read Again</a>
+        <a href="#source" class="btn-secondary">💻 Copy Source</a>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="ai-share">
+    <div class="ai-share-section">
+      <div class="ai-share-title">🤖 AI-Powered Social Share</div>
+      <p class="ai-share-desc">Let AI craft the perfect caption for sharing this article. Pick your platform and tone, then generate a ready-to-post message tailored for your audience.</p>
+      <div class="ai-share-input-row">
+        <select class="ai-share-select" id="aiSharePlatform">
+          <option value="Twitter/X">Twitter / X</option>
+          <option value="LinkedIn">LinkedIn</option>
+          <option value="Facebook">Facebook</option>
+          <option value="WhatsApp">WhatsApp</option>
+        </select>
+        <select class="ai-share-select" id="aiShareTone">
+          <option value="enthusiastic">Enthusiastic</option>
+          <option value="professional">Professional</option>
+          <option value="casual">Casual</option>
+          <option value="educational">Educational</option>
+        </select>
+        <button class="ai-share-gen-btn" onclick="generateAIShare()" id="aiShareBtn">✨ Generate Caption</button>
+      </div>
+      <div class="ai-share-loading" id="aiShareLoading"><div class="ai-share-spinner"></div>AI is crafting your caption…</div>
+      <div class="ai-share-output" id="aiShareOutput"></div>
+      <div class="ai-share-action-row" id="aiShareActions" style="display:none;">
+        <button class="ai-share-action-btn cp" onclick="copyAICaption()" id="aiCopyBtn">📋 Copy Caption</button>
+        <a class="ai-share-action-btn fb" id="aiFbBtn" href="#" target="_blank" rel="noopener">📘 Share on Facebook</a>
+        <a class="ai-share-action-btn tw" id="aiTwBtn" href="#" target="_blank" rel="noopener">🐦 Share on X</a>
+        <a class="ai-share-action-btn li" id="aiLiBtn" href="#" target="_blank" rel="noopener">💼 Share on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sticky-share">
+  <a class="ss-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://code-sense.pansensoyglenn.workers.dev/pizza.html" target="_blank" rel="noopener" title="Share on Facebook">📘</a>
+  <a class="ss-btn" href="https://twitter.com/intent/tweet?url=https://code-sense.pansensoyglenn.workers.dev/pizza.html&via=GlennPansensoy" target="_blank" rel="noopener" title="Share on X">🐦</a>
+  <a class="ss-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://code-sense.pansensoyglenn.workers.dev/pizza.html" target="_blank" rel="noopener" title="Share on LinkedIn">💼</a>
+  <button class="ss-btn" onclick="copyLink()" title="Copy link" aria-label="Copy link">🔗</button>
+  <button class="ss-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">↑</button>
+</div>
+<div class="toast" id="toast"></div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><span style="color:var(--blue-bright)">VALLEYS</span><span style="color:#ffffff;font-weight:400"> &amp; </span><span style="color:var(--purple-bright)">BYTES</span></div>
+        <p class="footer-tagline">Python tutorials, OOP guides, and developer content from the Philippines. Written by <strong style="color:#ffffff">Glenn Junsay Pansensoy</strong>.</p>
+        <div class="follow-grid" style="margin-top:16px;gap:8px;">
+          <a class="footer-btn" href="https://www.linkedin.com/in/glenn-pansensoy-6288453a2" target="_blank" rel="noopener"><span class="ico">💼</span>LinkedIn</a>
+          <a class="footer-btn" href="https://www.facebook.com/@Glenn-Junsay-Pansensoy" target="_blank" rel="noopener"><span class="ico">📘</span>Facebook</a>
+          <a class="footer-btn" href="https://x.com/@GlennPansensoy" target="_blank" rel="noopener"><span class="ico">🐦</span>X / Twitter</a>
+          <a class="footer-btn" href="https://www.youtube.com/c/@GlennPansensoy" target="_blank" rel="noopener"><span class="ico">▶️</span>YouTube</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <a class="footer-btn" href="#intro"><span class="ico">📖</span>Introduction</a>
+        <a class="footer-btn" href="#s1"><span class="ico">🗂️</span>Overview</a>
+        <a class="footer-btn" href="#s3"><span class="ico">🏷️</span>Product</a>
+        <a class="footer-btn" href="#s4"><span class="ico">🍕</span>Pizza</a>
+        <a class="footer-btn" href="#s5"><span class="ico">🍝</span>Pasta</a>
+        <a class="footer-btn" href="#s8"><span class="ico">🔄</span>Polymorphism</a>
+        <a class="footer-btn" href="#source"><span class="ico">💻</span>Source Code</a>
+        <a class="footer-btn" href="#faq"><span class="ico">❓</span>FAQ</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Site Pages</div>
+        <a class="footer-btn" href="about-guide.html"><span class="ico">📄</span>About this Page</a>
+        <a class="footer-btn" href="about-author.html"><span class="ico">🧑‍💻</span>About the Author</a>
+        <a class="footer-btn" href="oop-contact.html"><span class="ico">📬</span>Contact</a>
+        <a class="footer-btn" href="oop-privacy.html"><span class="ico">🔒</span>Privacy Policy</a>
+        <a class="footer-btn" href="oop-terms.html"><span class="ico">📜</span>Terms of Service</a>
+        <a class="footer-btn" href="oop-cookie.html"><span class="ico">🍪</span>Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Valleys &amp; Bytes — Glenn Junsay Pansensoy. All rights reserved. Built with data precision and Created through intensive information authentication.<span style="color:var(--blue-bright)">code-sense.pansensoyglenn.workers.dev</span></div>
+      <div class="footer-links-row">
+        <a class="footer-link-btn" href="oop-privacy.html">Privacy</a>
+        <a class="footer-link-btn" href="oop-terms.html">Terms</a>
+        <a class="footer-link-btn" href="oop-cookie.html">Cookies</a>
+        <a class="footer-link-btn" href="oop-contact.html">Contact</a>
+        <button class="footer-link-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Top</button>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  if(!window.matchMedia('(min-width:768px)').matches)return;
+  const c=document.getElementById('particles');
+  if(!c)return;
+  const colors=['rgba(75,139,190,0.6)','rgba(189,147,249,0.5)','rgba(255,212,59,0.4)','rgba(80,250,123,0.4)'];
+  for(let i=0;i<25;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    const s=Math.random()*4+2;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*-20}s;`;
+    c.appendChild(p);
+  }
+})();
+const hamburger=document.getElementById('hamburger');
+const drawer=document.getElementById('drawer');
+const overlay=document.getElementById('drawerOverlay');
+function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');hamburger.classList.add('open');hamburger.setAttribute('aria-expanded','true');}
+function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false');}
+hamburger.addEventListener('click',()=>drawer.classList.contains('open')?closeDrawer():openDrawer());
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeDrawer));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.07});
+document.querySelectorAll('.section').forEach(s=>obs.observe(s));
+const bar=document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';},{passive:true});
+const tocLinks=document.querySelectorAll('.toc-link');
+const sections=document.querySelectorAll('.section[id],section[id]');
+window.addEventListener('scroll',()=>{let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});tocLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});},{passive:true});
+function copyCode(btn){const pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);});}
+function copyLink(){navigator.clipboard.writeText(window.location.href).then(()=>showToast('🔗 Link copied to clipboard!'));}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+function toggleFaq(item){const wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));if(!wasOpen)item.classList.add('open');}
+const reactions={love:23,like:57,mindBlown:14,bookmark:29};const reacted={};
+function react(type){const btn=document.getElementById(type+'Btn');const countEl=document.getElementById(type+'Count');if(reacted[type]){reactions[type]--;btn.classList.remove('active');reacted[type]=false;}else{reactions[type]++;btn.classList.add('active');reacted[type]=true;showToast('Thanks for your reaction! 🙌');}countEl.textContent=reactions[type];}
+function postComment(){const name=document.getElementById('c-name').value.trim();const body=document.getElementById('c-body').value.trim();if(!name||!body){showToast('Please fill in your name and comment.');return;}const list=document.getElementById('commentList');const initial=name.charAt(0).toUpperCase();const colors=['linear-gradient(135deg,#3a6e99,#6a4a9c)','linear-gradient(135deg,#2d7a35,#1a4d1e)','linear-gradient(135deg,#9b72d4,#264d6e)'];const bg=colors[Math.floor(Math.random()*colors.length)];const el=document.createElement('div');el.className='comment-item';el.style.animation='fadeUp 0.4s ease both';el.innerHTML=`<div class="comment-meta"><div class="comment-avatar" style="background:${bg}">${initial}</div><div><div class="comment-name">${name}</div><div class="comment-date">Just now</div></div></div><div class="comment-body">${body}</div><button class="comment-like" onclick="likeComment(this)">❤️ <span>0</span></button>`;list.insertBefore(el,list.firstChild);document.getElementById('c-name').value='';document.getElementById('c-body').value='';showToast('Comment posted! Thank you.');}
+function likeComment(btn){const span=btn.querySelector('span');let n=parseInt(span.textContent);if(btn.dataset.liked){n--;btn.dataset.liked='';}else{n++;btn.dataset.liked='1';}span.textContent=n;}
+function subscribe(){const e=document.getElementById('subEmail').value.trim();if(!e||!e.includes('@')){showToast('Please enter a valid email.');return;}document.getElementById('subEmail').value='';showToast('Subscribed! Welcome to Valleys & Bytes.');}
+
+function generateAIShare(){
+  const platform=document.getElementById('aiSharePlatform').value;
+  const tone=document.getElementById('aiShareTone').value;
+  const btn=document.getElementById('aiShareBtn');
+  const loading=document.getElementById('aiShareLoading');
+  const output=document.getElementById('aiShareOutput');
+  const actions=document.getElementById('aiShareActions');
+  const pageUrl='https://code-sense.pansensoyglenn.workers.dev/pizza.html';
+
+  btn.disabled=true; btn.textContent='Generating…';
+  loading.classList.add('visible');
+  output.classList.remove('visible');
+  actions.style.display='none';
+
+  const templates={
+    'Twitter/X':{
+      enthusiastic:[
+        `🔥 Just discovered the BEST Python inheritance & polymorphism tutorial!\n\nPasta & Pizza Hub breaks down method overriding, super(), and class design through a real Italian restaurant in El Nido 🍕🍝🐍\n\nPerfect for devs leveling up their OOP game 👇\n${pageUrl}\n\n#Python #OOP #Inheritance #Polymorphism #LearnPython #Programming`,
+        `🍕 Polymorphism finally makes SENSE!\n\nThis Pasta & Pizza Hub guide is a game-changer for Python learners. Method overriding, super(), and clean class design — all in one real-world project!\n\n${pageUrl}\n\n#Python #OOP #100DaysOfCode #CodeNewbie`,
+      ],
+      professional:[
+        `Excellent resource for Python developers exploring inheritance and polymorphism.\n\nPasta & Pizza Hub demonstrates method overriding, super() calls, and clean class design through a restaurant ordering system.\n\nHighly recommended for intermediate learners.\n${pageUrl}\n\n#Python #SoftwareEngineering #OOP #PythonDev`,
+        `A well-structured deep dive into Python's inheritance model.\n\nCovers Product base class, Pizza and Pasta subclasses, and polymorphic order processing — with complete source code.\n\n${pageUrl}\n#Python #Programming #TechEducation`,
+      ],
+      casual:[
+        `yo if you're learning Python OOP this one slaps 🐍\n\nPasta & Pizza Hub — inheritance and polymorphism explained with a restaurant in El Nido lol but actually really good\n\n${pageUrl}\n\n#Python #coding`,
+        `ngl this python tutorial lowkey taught me more about super() than my whole bootcamp 😅🍕🍝\n\ncheck it out ${pageUrl}\n\n#Python #LearnToCode #OOP`,
+      ],
+      educational:[
+        `📚 Learning Python OOP? Start here.\n\nPasta & Pizza Hub teaches:\n✅ Inheritance\n✅ Polymorphism\n✅ Method overriding\n✅ super() for parent calls\n\nAll in one real-world project.\n${pageUrl}\n\n#Python #Education #OOP #LearnPython`,
+        `Python inheritance and polymorphism, demystified. 🎓\n\nThis guide walks through every class, every constructor call, and every design decision in an Italian restaurant ordering system.\n\n${pageUrl}\n\n#Python #OOP #PythonTips #Programming`,
+      ],
+    },
+    'LinkedIn':{
+      enthusiastic:[
+        `🚀 Excited to share this incredible Python OOP resource!\n\nPasta & Pizza Hub is a comprehensive guide that teaches inheritance, polymorphism, and method overriding — all through a real Italian restaurant ordering system in El Nido, Palawan.\n\nWhether you're a beginner ready to go beyond simple classes or a developer brushing up on design patterns, this guide explains not just WHAT the code does, but WHY every decision was made.\n\n🍕🍝 Check it out here: ${pageUrl}\n\n#Python #OOP #Inheritance #Polymorphism #SoftwareDevelopment #LearningAndDevelopment #Philippines`,
+        `💡 Found a Python tutorial that actually changed how I think about class design!\n\nPasta & Pizza Hub covers inheritance, polymorphism, method overriding, and super() in one cohesive project. It's the kind of guide I wish I had when I was learning OOP.\n\n${pageUrl}\n\n#Python #Programming #OOP #TechEducation #SoftwareEngineering`,
+      ],
+      professional:[
+        `For developers looking to deepen their understanding of Python's object-oriented model, I recommend this thorough walkthrough of Pasta & Pizza Hub.\n\nThe guide covers inheritance through Product, Pizza, and Pasta classes, proper use of super() in constructors, and polymorphic order processing. Full source code is included.\n\nA valuable reference for anyone building maintainable Python systems.\n\n${pageUrl}\n\n#Python #SoftwareEngineering #OOP #PythonDevelopment #CleanCode`,
+        `Technical deep dive: Python Inheritance and Polymorphism with Pasta & Pizza Hub\n\nThis guide methodically explains how Pizza and Pasta override get_info and process_order, and how the polymorphic loop eliminates type-checking.\n\nRecommended reading for Python developers and engineering teams.\n\n${pageUrl}\n\n#Python #OOP #Engineering #Programming`,
+      ],
+      casual:[
+        `Stumbled across this Python tutorial and couldn't stop reading 😄\n\nIt teaches inheritance and polymorphism using a restaurant in El Nido — sounds niche but the explanations are crystal clear. Method overriding, super(), order flow — all covered step by step.\n\nWorth bookmarking if you're growing your Python skills! 🍕🍝\n\n${pageUrl}\n\n#Python #Learning #Programming #OOP`,
+        `Sometimes the best tutorials come from unexpected places 🇵🇭🍕🍝\n\nThis Pasta & Pizza Hub guide from the Philippines walks through Python OOP in a way that finally made inheritance click for me.\n\n${pageUrl}\n\n#Python #Tech #Coding #OOP`,
+      ],
+      educational:[
+        `📖 Python Inheritance and Polymorphism — A Comprehensive Guide\n\nPasta & Pizza Hub demonstrates how to:\n• Design a base class with common attributes and methods\n• Override methods in subclasses to add unique behaviour\n• Use super() to delegate to the parent constructor\n• Apply polymorphism to eliminate conditional type-checking\n• Validate user input with try/except\n\nFull source code and detailed explanations included.\n\n${pageUrl}\n\n#Python #OOP #Education #SoftwareDevelopment #ProgrammingTutorial`,
+        `Sharing this excellent Python OOP resource for developers and educators.\n\nThe guide uses a Filipino restaurant ordering system to teach 6 core concepts: inheritance, polymorphism, method overriding, super(), dictionary‑based lookup, and input validation — all in one cohesive program.\n\n${pageUrl}\n\n#Python #Education #Programming #OOP #Philippines`,
+      ],
+    },
+    'Facebook':{
+      enthusiastic:[
+        `🍕🍝 OH WOW — this Python tutorial just blew my mind!\n\nPasta & Pizza Hub explains inheritance, polymorphism, and method overriding through a real Italian restaurant in El Nido. I finally understand why and when to use super()!\n\nIf you're learning Python, this is a must-read 👇\n${pageUrl}`,
+        `🔥 Best Python OOP guide I've read this year!\n\nPasta & Pizza Hub walks through EVERY line of a real ordering system — explaining inheritance, polymorphism, and clean class design from scratch.\n\nSharing because it's just that good 🙌\n${pageUrl}`,
+      ],
+      professional:[
+        `Sharing a well-crafted Python OOP tutorial for developers in my network.\n\nPasta & Pizza Hub provides a complete walkthrough of inheritance, polymorphism, and method overriding — with full source code and clear explanations for each design decision.\n\n${pageUrl}`,
+        `For my fellow Python developers — this Pasta & Pizza Hub guide is an excellent reference for understanding inheritance patterns, proper use of super(), and clean class hierarchies in practice.\n\n${pageUrl}`,
+      ],
+      casual:[
+        `sharing this python tutorial because it actually made sense to me 😅🍕🍝\n\ninheritance and polymorphism explained with a restaurant in El Nido — weird but it works! great read if you're learning OOP.\n\n${pageUrl}`,
+        `my friend sent me this python guide and i ended up reading the whole thing 😅\n\nif you're into coding or want to understand how Python classes really work, check it out!\n${pageUrl}`,
+      ],
+      educational:[
+        `📚 For students and self-taught developers learning Python OOP:\n\nPasta & Pizza Hub is a step-by-step guide covering inheritance, polymorphism, method overriding, and super() — all demonstrated through a real command-line application.\n\nFull source code included. Highly recommended!\n${pageUrl}`,
+        `Great learning resource for anyone studying Python Object-Oriented Programming:\n\n✅ Inheritance\n✅ Polymorphism\n✅ Method Overriding\n✅ super() and parent calls\n✅ Input validation\n\nAll in one real-world project: ${pageUrl}`,
+      ],
+    },
+    'WhatsApp':{
+      enthusiastic:[
+        `Hey! 🍕🍝 You HAVE to check out this Python tutorial — it finally made inheritance and polymorphism click for me!\n\nPasta & Pizza Hub teaches OOP through an Italian restaurant ordering system. Method overriding, super(), clean class design — all explained step by step with full source code.\n\n👉 ${pageUrl}`,
+        `Bro/Sis check this out! 🔥 Best Python OOP guide I've found — covers inheritance, polymorphism, and super() through a real restaurant. Super clear explanations!\n\n${pageUrl}`,
+      ],
+      professional:[
+        `Hi — sharing a Python OOP resource you might find useful. Pasta & Pizza Hub is a comprehensive walkthrough of inheritance, polymorphism, and super() with full source code.\n\n${pageUrl}`,
+        `Thought you'd appreciate this — a thorough Python inheritance and polymorphism guide with real-world context and complete source code: ${pageUrl}`,
+      ],
+      casual:[
+        `yo check this python tutorial 😄 explains inheritance and polymorphism with a restaurant in El Nido lol but actually really solid. worth a read!\n\n${pageUrl}`,
+        `sending this python guide your way — it's the one that finally made OOP make sense to me 😅🍕🍝\n\n${pageUrl}`,
+      ],
+      educational:[
+        `Sharing a Python OOP tutorial that covers:\n• Inheritance\n• Polymorphism\n• Method Overriding\n• super()\n\nAll through a real restaurant ordering system with full source code 👇\n${pageUrl}`,
+        `Good learning resource for Python OOP — step-by-step guide through inheritance, polymorphism, and super() with explanations for every design decision.\n\n${pageUrl}`,
+      ],
+    },
+  };
+
+  setTimeout(()=>{
+    const pool=templates[platform][tone];
+    const caption=pool[Math.floor(Math.random()*pool.length)];
+    output.textContent=caption;
+    output.classList.add('visible');
+    loading.classList.remove('visible');
+    const encodedText=encodeURIComponent(caption);
+    document.getElementById('aiFbBtn').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(pageUrl)+'&quote='+encodedText;
+    document.getElementById('aiTwBtn').href='https://twitter.com/intent/tweet?text='+encodedText;
+    document.getElementById('aiLiBtn').href='https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(pageUrl);
+    actions.style.display='flex';
+    btn.disabled=false; btn.textContent='✨ Generate Caption';
+  }, 900);
+}
+function copyAICaption(){
+  const text=document.getElementById('aiShareOutput').textContent;
+  navigator.clipboard.writeText(text).then(()=>showToast('✅ Caption copied to clipboard!'));
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){const href=this.getAttribute('href');if(href==='#'||href==='')return;const target=document.querySelector(href);if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}});});
+</script>
+</body>
+</html>
