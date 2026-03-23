@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Submit an Essay – Poetic Codes</title>
+  <meta name="description" content="Submit your long-form essay to Poetic Codes for review and publication.">
+  <link rel="canonical" href="https://pansensoyglenn-dev.github.io/submit.html">
+  <meta property="og:title" content="Submit an Essay – Poetic Codes">
+  <meta property="og:description" content="Submit your long-form essay to Poetic Codes for review and publication.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://pansensoyglenn-dev.github.io/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--blue:#3a7bd5;--blue-lt:#74b9e8;--teal:#7ec8e3;--python:#306998;--obsidian:#0b0f17;--card:#141e2c;--card-hover:#192537;--border:#253649;--text:#eef4ff;--muted:#b4cef0;--dim:#667fa3;--gold:#c9a84c;--rose:#c46a6a}
+    html{scroll-behavior:smooth}
+    body{background:var(--obsidian);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:1.05rem;line-height:1.8;overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#0d1420}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px}
+    a{color:var(--blue-lt);text-decoration:none;transition:color .2s}a:hover{color:var(--teal)}
+    .gradient-text{background:linear-gradient(90deg,#a8d8f0,#7ec8e3,#5ba3d9);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+    .section-header{text-align:center;margin-bottom:2.5rem}
+    .section-sub{color:var(--muted);font-size:1.05rem;margin-top:.5rem;max-width:560px;margin-left:auto;margin-right:auto}
+    .divider{width:60px;height:2px;background:linear-gradient(90deg,var(--blue),var(--teal));margin:.7rem auto}
+    h2{font-family:'Cinzel Decorative',serif;font-size:clamp(1.4rem,3vw,1.9rem)}
+    h3{font-family:'Cinzel Decorative',serif;font-size:1.05rem;margin-bottom:.4rem}
+    section{padding:4.5rem 0;position:relative;z-index:1}
+    p{text-align:justify}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .fade-up{animation:fadeUp .5s ease both}
+    .btn-primary{background:linear-gradient(135deg,var(--python),var(--blue));border:none;padding:.7rem 1.6rem;border-radius:40px;color:#fff;font-family:'Cinzel Decorative',serif;font-size:.72rem;cursor:pointer;transition:.22s;display:inline-flex;align-items:center;gap:8px;letter-spacing:.03em}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(48,105,152,.5)}
+    .btn-outline{background:transparent;border:1px solid var(--blue);padding:.7rem 1.6rem;border-radius:40px;color:var(--blue-lt);font-family:'Cinzel Decorative',serif;font-size:.72rem;cursor:pointer;transition:.22s;display:inline-flex;align-items:center;gap:8px}
+    .btn-outline:hover{background:rgba(58,123,213,.14);transform:translateY(-2px);border-color:var(--blue-lt)}
+    /* PROGRESS BAR */
+    #progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--teal));width:0;z-index:2000;transition:width .1s linear}
+    /* NAVBAR */
+    #navbar{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:.8rem 2rem;background:rgba(11,15,23,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000}
+    .brand{font-family:'Cinzel Decorative',serif;font-weight:700;letter-spacing:.15em;font-size:.9rem;cursor:pointer;background:linear-gradient(90deg,#fff,#7ec8e3);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;z-index:1100}
+    .hamburger span{width:24px;height:2px;background:#fff;transition:.25s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    #nav-menu{position:fixed;top:0;right:-300px;width:270px;height:100vh;background:rgba(10,17,30,.99);backdrop-filter:blur(24px);border-left:1px solid #2a3b55;padding:4.5rem 1.2rem 2rem;transition:.3s cubic-bezier(.2,.9,.4,1.1);z-index:1050;overflow-y:auto}
+    #nav-menu.open{right:0}
+    .nav-section-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.14em;padding:.5rem .8rem .2rem;margin-top:.8rem}
+    .nav-page-grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:.5rem}
+    .nav-page-btn{display:flex;flex-direction:column;align-items:center;gap:.3rem;padding:.65rem .5rem;background:rgba(20,30,44,.8);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.6rem;cursor:pointer;transition:.2s;text-align:center}
+    .nav-page-btn i{font-size:.9rem;color:var(--blue-lt)}
+    .nav-page-btn:hover{background:rgba(58,123,213,.18);border-color:var(--blue);color:var(--blue-lt)}
+    .nav-divider{height:1px;background:var(--border);margin:.8rem 0}
+    .nav-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+    .nav-cat-btn{display:flex;flex-direction:column;align-items:center;gap:.3rem;padding:.55rem .4rem;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:.55rem;cursor:pointer;transition:.2s;text-align:center}
+    .nav-cat-btn i{font-size:.8rem;color:var(--teal)}
+    .nav-cat-btn:hover{background:rgba(126,200,227,.08);border-color:var(--teal);color:var(--teal)}
+    #nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1040;backdrop-filter:blur(2px)}
+    #nav-overlay.open{display:block}
+    /* WEATHER */
+    #weather-bar{background:linear-gradient(135deg,#0d1826,#0f1d2e);border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.8rem;margin:2.2rem auto 0;max-width:880px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .weather-left{display:flex;align-items:center;gap:1.2rem}
+    .weather-icon-wrap{width:54px;height:54px;border-radius:14px;background:rgba(58,123,213,.14);border:1px solid rgba(58,123,213,.25);display:flex;align-items:center;justify-content:center;font-size:1.75rem}
+    .weather-temp{font-family:'Cinzel Decorative',serif;font-size:1.9rem;background:linear-gradient(90deg,var(--teal),var(--blue-lt));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .weather-desc{font-size:.85rem;color:var(--muted);text-transform:capitalize}
+    .weather-loc{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--dim);margin-top:.2rem}
+    .weather-details{display:flex;gap:1.5rem;flex-wrap:wrap}
+    .weather-detail{text-align:center}
+    .weather-detail-val{font-family:'JetBrains Mono',monospace;font-size:.95rem;color:var(--blue-lt)}
+    .weather-detail-lbl{font-size:.62rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+    .weather-refresh{background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--dim);padding:.35rem .7rem;cursor:pointer;font-size:.72rem;transition:.15s;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap}
+    .weather-refresh:hover{border-color:var(--blue);color:var(--blue-lt)}
+    .weather-city-input{background:#0d1826;border:1px solid var(--border);border-radius:8px;padding:.35rem .8rem;color:var(--text);font-family:'Crimson Pro',serif;font-size:.75rem;outline:none;width:140px}
+    .weather-city-input:focus{border-color:var(--blue)}
+    .weather-loading{color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:.78rem;display:flex;align-items:center;gap:.5rem}
+    /* PAGE HERO */
+    .page-hero{padding:8rem 0 3rem;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,#0a1020 0%,var(--obsidian) 100%)}
+    .page-hero::before{content:'';position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(58,123,213,.08) 0%,transparent 65%);pointer-events:none}
+    .page-hero .container{position:relative;z-index:1}
+    .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--teal);text-transform:uppercase;letter-spacing:.2em;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+    .page-eyebrow span{display:inline-block;width:30px;height:1px;background:var(--teal)}
+    .page-hero h1{font-family:'Cinzel Decorative',serif;font-size:clamp(2rem,6vw,3.2rem);line-height:1.15;animation:fadeUp .7s ease both}
+    .page-hero .hero-sub{font-size:1.15rem;max-width:620px;margin:1.2rem auto 0;color:var(--muted);font-style:italic;line-height:1.75;animation:fadeUp .7s .1s ease both}
+    /* FOOTER */
+    footer{background:#060a10;border-top:1px solid var(--border);padding:0;position:relative;overflow:hidden}
+    footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),var(--teal),var(--blue),transparent)}
+    .footer-top{padding:4.5rem 0 3rem;border-bottom:1px solid #141e2e}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
+    .footer-brand{font-family:'Cinzel Decorative',serif;font-size:1.1rem;letter-spacing:.1em;background:linear-gradient(90deg,#fff,#7ec8e3);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:.8rem}
+    .footer-tagline{font-style:italic;color:var(--muted);font-size:.93rem;margin-bottom:1.2rem;max-width:260px;line-height:1.65}
+    .footer-social{display:flex;gap:.6rem;margin-top:.5rem;flex-wrap:wrap}
+    .social-btn{width:36px;height:36px;border-radius:50%;background:#141e2c;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem;transition:.2s;cursor:pointer}
+    .social-btn:hover{border-color:var(--blue);color:var(--blue-lt);background:rgba(58,123,213,.14)}
+    .footer-col h4{font-family:'Cinzel Decorative',serif;font-size:.72rem;color:var(--text);letter-spacing:.08em;margin-bottom:1rem;text-transform:uppercase;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+    .footer-col ul{list-style:none}
+    .footer-col ul li{margin-bottom:.4rem}
+    .footer-col ul li a{color:var(--muted);font-size:.88rem;transition:.2s;display:flex;align-items:center;gap:.6rem;padding:.32rem .7rem;border-radius:8px;border:1px solid transparent}
+    .footer-col ul li a:hover{color:var(--blue-lt);border-color:var(--border);background:rgba(58,123,213,.07);padding-left:.9rem}
+    .footer-col ul li a i{width:14px;font-size:.73rem;color:var(--dim)}
+    .footer-newsletter{margin-top:1.5rem}
+    .footer-newsletter p{color:var(--muted);font-size:.85rem;margin-bottom:.8rem}
+    .footer-input-row{display:flex;gap:.5rem}
+    .footer-input-row input{flex:1;padding:.5rem .9rem;background:#0d1826;border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Crimson Pro',serif;font-size:.85rem;outline:none;transition:.2s}
+    .footer-input-row input:focus{border-color:var(--blue)}
+    .footer-input-row button{padding:.5rem 1rem;background:linear-gradient(135deg,var(--python),var(--blue));border:none;border-radius:8px;color:#fff;font-size:.78rem;cursor:pointer;transition:.2s;white-space:nowrap}
+    .footer-input-row button:hover{transform:translateY(-1px)}
+    .footer-mid{padding:2rem 0;border-bottom:1px solid #141e2e}
+    .footer-mid-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.4rem}
+    .footer-stat-card{background:#0d1826;border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;display:flex;align-items:center;gap:1rem}
+    .footer-stat-icon{width:38px;height:38px;border-radius:10px;background:rgba(58,123,213,.13);border:1px solid rgba(58,123,213,.22);display:flex;align-items:center;justify-content:center;color:var(--blue-lt);font-size:.95rem;flex-shrink:0}
+    .footer-stat-info .num{font-family:'Cinzel Decorative',serif;font-size:1.05rem;color:var(--text)}
+    .footer-stat-info .lbl{font-size:.7rem;color:var(--dim)}
+    .footer-quote{text-align:center;padding:1.8rem 0;border-bottom:1px solid #141e2e}
+    .footer-quote blockquote{font-style:italic;color:var(--muted);font-size:1rem;max-width:700px;margin:0 auto;border-left:2px solid var(--blue);padding-left:1.2rem;text-align:left}
+    .footer-quote blockquote cite{display:block;margin-top:.5rem;font-style:normal;font-size:.73rem;color:var(--dim);letter-spacing:.06em}
+    .footer-bottom{padding:1.5rem 0}
+    .footer-bottom-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .footer-copyright{color:var(--dim);font-size:.78rem}
+    .footer-copyright strong{color:var(--muted)}
+    .footer-legal{display:flex;gap:.8rem;flex-wrap:wrap}
+    .footer-legal a{color:var(--dim);font-size:.72rem;transition:.2s;background:#0d1826;border:1px solid var(--border);padding:.28rem .75rem;border-radius:20px}
+    .footer-legal a:hover{color:var(--blue-lt);border-color:var(--blue)}
+    .footer-built{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--dim)}
+    .footer-built i{color:var(--blue)}
+    /* TOAST & BACK TOP */
+    .toast{position:fixed;bottom:24px;right:24px;background:var(--blue);padding:.65rem 1.3rem;border-radius:40px;color:#fff;z-index:4000;opacity:0;transition:.25s;pointer-events:none;font-size:.9rem}
+    .toast.show{opacity:1}
+    #back-top{position:fixed;bottom:24px;left:24px;width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:.85rem;display:none;align-items:center;justify-content:center;transition:.2s;z-index:3000}
+    #back-top.show{display:flex}
+    #back-top:hover{border-color:var(--blue);color:var(--blue-lt)}
+    /* RESPONSIVE */
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
+    @media(max-width:640px){
+      #navbar{padding:.7rem 1rem}.brand{font-size:.78rem}
+      section{padding:3rem 0}.container{padding:0 1rem}
+      .page-hero{padding:6rem 0 2rem}.page-hero h1{font-size:clamp(1.8rem,8vw,2.5rem)}
+      .page-hero .hero-sub{font-size:1rem;margin-top:.8rem}
+      #weather-bar{flex-direction:column;align-items:flex-start;padding:1rem;gap:.8rem;border-radius:12px;margin-top:1.2rem}
+      .weather-left{gap:.8rem}.weather-icon-wrap{width:44px;height:44px;font-size:1.4rem}
+      .weather-temp{font-size:1.4rem}.weather-details{gap:1rem}
+      #weather-bar>div:last-child{width:100%;flex-wrap:wrap}.weather-city-input{flex:1;width:auto}
+      .footer-grid{grid-template-columns:1fr;gap:1.5rem}
+      .footer-top{padding:2.5rem 0 1.5rem}
+      .footer-mid-grid{grid-template-columns:1fr 1fr}
+      .footer-bottom-inner{flex-direction:column;align-items:flex-start;gap:.8rem}
+      .footer-legal{flex-wrap:wrap;gap:.4rem}
+      .toast{right:1rem;left:1rem;bottom:1rem;text-align:center;border-radius:12px}
+      #back-top{bottom:16px;left:16px;width:36px;height:36px;font-size:.8rem}
+      #nav-menu{width:100%;right:-100%}
+      #nav-menu.open{right:0}
+    }
+    @media(max-width:380px){.footer-mid-grid{grid-template-columns:1fr}.footer-legal{flex-direction:column;gap:.3rem}}
+  </style>
+<style>
+  .submit-layout{display:grid;grid-template-columns:1fr 360px;gap:3rem;align-items:start}
+  .guidelines-card{background:linear-gradient(145deg,#0f1c30,#101828);border:1px solid var(--border);border-radius:20px;padding:2rem;position:sticky;top:6rem}
+  .guidelines-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);border-radius:20px 20px 0 0}
+  .guidelines-card h3{font-family:'Cinzel Decorative',serif;font-size:.82rem;margin-bottom:1.2rem;color:var(--text)}
+  .guide-item{display:flex;gap:.8rem;margin-bottom:1rem;align-items:flex-start}
+  .guide-item i{color:var(--teal);font-size:.85rem;margin-top:.2rem;flex-shrink:0}
+  .guide-item p{color:var(--muted);font-size:.9rem;line-height:1.65;margin:0}
+  .what-we-seek{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.3rem;margin-top:1.5rem}
+  .what-we-seek h4{font-family:'Cinzel Decorative',serif;font-size:.75rem;color:var(--text);margin-bottom:.8rem}
+  .seek-tag{display:inline-block;background:rgba(58,123,213,.1);border:1px solid rgba(58,123,213,.25);border-radius:4px;padding:.18rem .55rem;font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--blue-lt);margin:.2rem .2rem .2rem 0}
+  .submit-form-box{background:linear-gradient(135deg,#0f1c30,#101828);border:1px solid var(--border);border-radius:22px;padding:2.5rem;position:relative;overflow:hidden}
+  .submit-form-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),var(--teal),var(--blue),transparent)}
+  .form-field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1.2rem}
+  .form-field label{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+  .form-field input,.form-field select,.form-field textarea{background:#0b1520;border:1px solid var(--border);border-radius:10px;color:var(--text);padding:.7rem 1rem;font-family:'Crimson Pro',serif;font-size:.98rem;outline:none;transition:.2s;width:100%}
+  .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(58,123,213,.1)}
+  .form-field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667fa3' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center}
+  .form-field textarea{resize:vertical;line-height:1.65;min-height:200px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .char-count{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--dim);text-align:right;margin-top:.25rem}
+  .submission-progress{display:flex;gap:0;margin-bottom:2rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .sp-step{flex:1;text-align:center;padding:.7rem .5rem;font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--dim);border-right:1px solid var(--border);transition:.2s}
+  .sp-step:last-child{border-right:none}
+  .sp-step.active{background:rgba(58,123,213,.15);color:var(--blue-lt)}
+  .sp-step.done{background:rgba(126,200,227,.08);color:var(--teal)}
+  .sp-step i{display:block;font-size:.9rem;margin-bottom:.3rem}
+  @media(max-width:900px){.submit-layout{grid-template-columns:1fr}.guidelines-card{position:static}}
+  @media(max-width:640px){.form-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div id="navbar">
+  <div class="brand" onclick="location.href='index.html'">POETIC CODES</div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div>
+<div id="nav-overlay"></div>
+<div id="nav-menu">
+  <div class="nav-section-label">Pages</div>
+  <div class="nav-page-grid">
+    <button class="nav-page-btn" onclick="location.href='index.html'"><i class="fas fa-home"></i>Home</button>
+    <button class="nav-page-btn" onclick="location.href='articles.html'"><i class="fas fa-book-open"></i>Essays</button>
+    <button class="nav-page-btn" onclick="location.href='submit.html'"><i class="fas fa-pen-fancy"></i>Submit</button>
+    <button class="nav-page-btn" onclick="location.href='about.html'"><i class="fas fa-user-circle"></i>About</button>
+    <button class="nav-page-btn" onclick="location.href='archive.html'"><i class="fas fa-archive"></i>Archive</button>
+    <button class="nav-page-btn" onclick="location.href='collab.html'"><i class="fas fa-handshake"></i>Collab</button>
+  </div>
+  <div class="nav-divider"></div>
+  <div class="nav-section-label">Topics</div>
+  <div class="nav-cat-grid">
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=culture'"><i class="fas fa-globe-asia"></i>Culture</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=national'"><i class="fas fa-landmark"></i>National</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=international'"><i class="fas fa-satellite-dish"></i>International</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=programming'"><i class="fas fa-code"></i>Programming</button>
+  </div>
+  <div class="nav-divider"></div>
+  <div class="nav-section-label">Legal</div>
+  <div class="nav-cat-grid">
+    <button class="nav-cat-btn" onclick="location.href='privacy.html'"><i class="fas fa-shield-alt"></i>Privacy</button>
+    <button class="nav-cat-btn" onclick="location.href='terms.html'"><i class="fas fa-file-alt"></i>Terms</button>
+  </div>
+</div>
+<div class="page-hero">
+  <div class="container">
+    <div class="page-eyebrow"><span></span>Contribute to the Conversation<span></span></div>
+    <h1 class="gradient-text">Submit an Essay</h1>
+    <p class="hero-sub">Original, unpublished long-form work on culture, national affairs, international conditions, or programming. We read every submission.</p>
+    <div id="weather-bar" style="animation:fadeUp .7s .2s ease both"><div class="weather-loading"><i class="fas fa-spinner fa-spin"></i>&nbsp;Loading weather…</div></div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="submit-layout">
+      <div>
+        <div class="submission-progress">
+          <div class="sp-step active" id="sp1"><i class="fas fa-pen"></i>Write</div>
+          <div class="sp-step" id="sp2"><i class="fas fa-paper-plane"></i>Submit</div>
+          <div class="sp-step" id="sp3"><i class="fas fa-search"></i>Review</div>
+          <div class="sp-step" id="sp4"><i class="fas fa-check-circle"></i>Publish</div>
+        </div>
+        <div class="submit-form-box">
+          <h2 class="gradient-text" style="margin-bottom:.5rem">Your Submission</h2>
+          <div class="divider" style="margin:0 0 1.8rem"></div>
+          <form id="submit-form">
+            <div class="form-row">
+              <div class="form-field"><label>Your Name *</label><input type="text" id="s-name" placeholder="Full name" required></div>
+              <div class="form-field"><label>Email Address *</label><input type="email" id="s-email" placeholder="you@example.com" required></div>
+            </div>
+            <div class="form-field"><label>Essay Title *</label><input type="text" id="s-title" placeholder="A compelling, specific title for your essay…" required></div>
+            <div class="form-row">
+              <div class="form-field"><label>Category *</label>
+                <select id="s-category" required>
+                  <option value="">Choose a category…</option>
+                  <option value="culture">Culture</option>
+                  <option value="national">National Affairs</option>
+                  <option value="international">International Conditions</option>
+                  <option value="programming">Programming</option>
+                  <option value="philosophy">Philosophy</option>
+                  <option value="ai">AI & Technology</option>
+                </select>
+              </div>
+              <div class="form-field"><label>Estimated Word Count</label><input type="number" id="s-wordcount" placeholder="e.g. 1500" min="800"></div>
+            </div>
+            <div class="form-field"><label>Short Excerpt * <span style="font-size:.58rem;color:var(--dim)">(2–3 sentences shown in previews)</span></label><textarea id="s-excerpt" rows="3" placeholder="A brief summary of your essay — what question it asks, what it argues, why it matters…" required></textarea></div>
+            <div class="form-field">
+              <label>Full Essay * <span style="font-size:.58rem;color:var(--dim)">(minimum 800 words)</span></label>
+              <textarea id="s-content" rows="16" placeholder="Paste your complete essay here. You may use Markdown-style formatting — **bold**, *italic*, and paragraph breaks are preserved." required></textarea>
+              <div class="char-count" id="content-count">0 words</div>
+            </div>
+            <div class="form-field"><label>Author Bio <span style="font-size:.58rem;color:var(--dim)">(optional, displayed with essay)</span></label><input type="text" id="s-bio" placeholder="One sentence about yourself…"></div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:.9rem 2rem;font-size:.8rem;margin-top:.5rem"><i class="fas fa-paper-plane"></i> Submit for Review</button>
+            <p style="color:var(--dim);font-size:.7rem;text-align:center;margin-top:.9rem;font-family:'JetBrains Mono',monospace;line-height:1.6"><i class="fas fa-lock" style="margin-right:.3rem"></i>Your email is used only to follow up on your submission. We never publish it or add you to any mailing list without your consent.</p>
+          </form>
+        </div>
+      </div>
+
+      <aside>
+        <div class="guidelines-card">
+          <h3><i class="fas fa-scroll" style="color:var(--teal);margin-right:.5rem"></i>Submission Guidelines</h3>
+          <div class="guide-item"><i class="fas fa-check-circle"></i><p>Essays must be <strong>original, unpublished</strong> work — not previously posted on any blog, publication, or social media.</p></div>
+          <div class="guide-item"><i class="fas fa-check-circle"></i><p>Minimum <strong>800 words</strong>. Most published essays run 1,500–4,000 words. Take the space your argument needs.</p></div>
+          <div class="guide-item"><i class="fas fa-check-circle"></i><p>Write for a <strong>general but intelligent reader</strong>. Define technical terms. Explain your assumptions. Don't condescend, but don't obscure either.</p></div>
+          <div class="guide-item"><i class="fas fa-check-circle"></i><p>We value <strong>intellectual honesty</strong> above everything: cite your sources, acknowledge counterarguments, distinguish what you know from what you believe.</p></div>
+          <div class="guide-item"><i class="fas fa-check-circle"></i><p>All submissions are reviewed within <strong>7–14 days</strong>. You will receive a response either way — we don't ghost contributors.</p></div>
+          <div class="guide-item"><i class="fas fa-info-circle" style="color:var(--gold)"></i><p>By submitting, you grant Poetic Codes the right to publish and promote your essay. You retain full authorship and copyright.</p></div>
+
+          <div class="what-we-seek">
+            <h4><i class="fas fa-star" style="color:var(--gold);margin-right:.4rem"></i>What We Look For</h4>
+            <span class="seek-tag">Original argument</span>
+            <span class="seek-tag">Careful research</span>
+            <span class="seek-tag">Clear prose</span>
+            <span class="seek-tag">Honest uncertainty</span>
+            <span class="seek-tag">Surprising angles</span>
+            <span class="seek-tag">Specific examples</span>
+            <span class="seek-tag">Cultural depth</span>
+            <span class="seek-tag">Ethical seriousness</span>
+          </div>
+        </div>
+
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-top:1.2rem">
+          <h4 style="font-family:'Cinzel Decorative',serif;font-size:.75rem;margin-bottom:1rem;color:var(--text)"><i class="fas fa-question-circle" style="color:var(--teal);margin-right:.4rem"></i>Questions?</h4>
+          <p style="color:var(--muted);font-size:.88rem;line-height:1.65;margin-bottom:1rem">If you're unsure whether your essay fits Poetic Codes, or if you have questions about the process, read the <a href="about.html">About page</a> or reach out directly.</p>
+          <a href="mailto:pansensoyglenn@gmail.com" class="btn-outline" style="width:100%;justify-content:center;font-size:.68rem;padding:.6rem"><i class="fas fa-envelope"></i> Contact the Editor</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div>
+      <div class="footer-brand">Poetic Codes</div>
+      <p class="footer-tagline">"Technology meets thought — essays for the curious mind navigating a world shaped by algorithms and ancient questions alike."</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/GlennJunsayPansensoy" target="_blank" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/@GlennPansensoy" target="_blank" class="social-btn" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/Glenn-Junsay-Pansensoy" target="_blank" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/c/@GlennPansensoy" target="_blank" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/@glennpansensoy" target="_blank" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="feed.xml" class="social-btn" title="RSS Feed"><i class="fas fa-rss"></i></a>
+      </div>
+      <div class="footer-newsletter">
+        <p>Get one carefully chosen essay every week →</p>
+        <div class="footer-input-row">
+          <input type="email" id="footer-email" placeholder="your@email.com">
+          <button id="footer-sub-btn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul>
+      <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+      <li><a href="articles.html"><i class="fas fa-book-open"></i>All Essays</a></li>
+      <li><a href="archive.html"><i class="fas fa-archive"></i>Archive</a></li>
+      <li><a href="submit.html"><i class="fas fa-pen-fancy"></i>Submit Essay</a></li>
+      <li><a href="about.html"><i class="fas fa-user-circle"></i>About</a></li>
+      <li><a href="collab.html"><i class="fas fa-handshake"></i>Collaborate</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Topics</h4><ul>
+      <li><a href="articles.html?cat=culture"><i class="fas fa-globe-asia"></i>Culture</a></li>
+      <li><a href="articles.html?cat=national"><i class="fas fa-landmark"></i>National Affairs</a></li>
+      <li><a href="articles.html?cat=international"><i class="fas fa-satellite-dish"></i>International</a></li>
+      <li><a href="articles.html?cat=programming"><i class="fas fa-code"></i>Programming</a></li>
+      <li><a href="articles.html?cat=philosophy"><i class="fas fa-brain"></i>Philosophy</a></li>
+      <li><a href="articles.html?cat=ai"><i class="fas fa-microchip"></i>AI & Technology</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>More</h4><ul>
+      <li><a href="privacy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a></li>
+      <li><a href="terms.html"><i class="fas fa-file-alt"></i>Terms of Use</a></li>
+      <li><a href="cookies.html"><i class="fas fa-cookie-bite"></i>Cookie Policy</a></li>
+      <li><a href="sitemap.xml"><i class="fas fa-sitemap"></i>Sitemap</a></li>
+      <li><a href="feed.xml"><i class="fas fa-rss"></i>RSS Feed</a></li>
+      <li><a href="mailto:pansensoyglenn@gmail.com"><i class="fas fa-envelope"></i>Contact</a></li>
+    </ul></div>
+  </div></div></div>
+  <div class="footer-mid"><div class="container"><div class="footer-mid-grid">
+    <div class="footer-stat-card"><div class="footer-stat-icon"><i class="fas fa-scroll"></i></div><div class="footer-stat-info"><div class="num" id="footer-stat-essays">—</div><div class="lbl">Essays Published</div></div></div>
+    <div class="footer-stat-card"><div class="footer-stat-icon"><i class="fas fa-users"></i></div><div class="footer-stat-info"><div class="num" id="footer-stat-subs">—</div><div class="lbl">Active Readers</div></div></div>
+    <div class="footer-stat-card"><div class="footer-stat-icon"><i class="fas fa-calendar-alt"></i></div><div class="footer-stat-info"><div class="num">2026</div><div class="lbl">Year Founded</div></div></div>
+    <div class="footer-stat-card"><div class="footer-stat-icon"><i class="fas fa-globe"></i></div><div class="footer-stat-info"><div class="num">50+</div><div class="lbl">Countries Reached</div></div></div>
+  </div></div></div>
+  <div class="footer-quote"><div class="container"><blockquote>The examined life is the only defense against the age of noise.<cite>— Poetic Codes Manifesto</cite></blockquote></div></div>
+  <div class="footer-bottom"><div class="container"><div class="footer-bottom-inner">
+    <div class="footer-copyright">&copy; 2026 <strong>Glenn Junsay Pansensoy</strong>. All rights reserved.</div>
+    <div class="footer-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="cookies.html">Cookies</a><a href="accessibility.html">Accessibility</a></div>
+    <div class="footer-built"><i class="fas fa-fire"></i> Thoughts are heavier than tons of gold. &nbsp;|&nbsp; <i class="fas fa-heart" style="color:var(--rose)"></i> Made with precision.</div>
+  </div></div></div>
+</footer>
+<div id="toast" class="toast"></div>
+<button id="back-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+<script>
+function pageInit(db,col,getDocs,q,orderBy,lim,where,addDoc,showToast){
+  // Word count
+  document.getElementById('s-content')?.addEventListener('input',function(){
+    const words=this.value.trim().split(/\s+/).filter(Boolean).length;
+    const el=document.getElementById('content-count');if(el)el.textContent=words+' words';
+    el.style.color=words<800?'var(--rose)':words<1500?'var(--gold)':'var(--teal)';
+  });
+  document.getElementById('submit-form')?.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const btn=e.target.querySelector('button[type=submit]');
+    btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Submitting…';
+    document.getElementById('sp2').classList.add('active');
+    const data={
+      name:document.getElementById('s-name').value.trim(),
+      email:document.getElementById('s-email').value.trim(),
+      title:document.getElementById('s-title').value.trim(),
+      category:document.getElementById('s-category').value,
+      excerpt:document.getElementById('s-excerpt').value.trim(),
+      content:document.getElementById('s-content').value.trim(),
+      bio:document.getElementById('s-bio').value.trim(),
+      wordCount:parseInt(document.getElementById('s-wordcount').value)||0,
+      status:'pending',date:new Date().toISOString()
+    };
+    if(!data.title||!data.content||!data.email){showToast('Please fill in all required fields.');btn.disabled=false;btn.innerHTML='<i class="fas fa-paper-plane"></i> Submit for Review';return}
+    const wc=data.content.trim().split(/\s+/).filter(Boolean).length;
+    if(wc<800){showToast(`Essay is too short (${wc} words). Minimum is 800.`);btn.disabled=false;btn.innerHTML='<i class="fas fa-paper-plane"></i> Submit for Review';return}
+    try{
+      await addDoc(col(db,'submissions'),data);
+      document.getElementById('sp2').classList.remove('active');document.getElementById('sp2').classList.add('done');
+      document.getElementById('sp3').classList.add('active');
+      showToast('Essay submitted successfully! We will be in touch within 7–14 days. ✨');
+      e.target.reset();document.getElementById('content-count').textContent='0 words';
+    }catch{showToast('Submission failed. Please try again or email pansensoyglenn@gmail.com')}
+    btn.disabled=false;btn.innerHTML='<i class="fas fa-paper-plane"></i> Submit for Review';
+  });
+}
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy, limit, where, addDoc, getCountFromServer } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+  const firebaseConfig={apiKey:"AIzaSyCPW7D8klItn-r6V-hTqNHrYBQFnMcmElE",authDomain:"glennpansensoy-12288.firebaseapp.com",projectId:"glennpansensoy-12288",storageBucket:"glennpansensoy-12288.firebasestorage.app",messagingSenderId:"264252112486",appId:"1:264252112486:web:b6b900fee883f8272377a7"};
+  const app=initializeApp(firebaseConfig);
+  const db=getFirestore(app);
+  window.__db=db;window.__col=collection;window.__getDocs=getDocs;window.__q=query;window.__orderBy=orderBy;window.__limit=limit;window.__where=where;window.__addDoc=addDoc;
+  function showToast(msg,dur=3200){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur)}
+  window.showToast=showToast;
+  async function getCount(col){try{return(await getCountFromServer(collection(db,col))).data().count}catch{return null}}
+  async function loadStats(){const[e,s]=await Promise.all([getCount('articles'),getCount('subscribers')]);const fmt=n=>n!=null?n.toLocaleString():'—';document.querySelectorAll('#footer-stat-essays').forEach(el=>el&&(el.textContent=fmt(e)));document.querySelectorAll('#footer-stat-subs').forEach(el=>el&&(el.textContent=fmt(s)))}
+  async function subUser(name,email){try{const ref=collection(db,'subscribers');const ex=await getDocs(query(ref,where('email','==',email)));if(!ex.empty)return false;await addDoc(ref,{name,email,date:new Date().toISOString()});return true}catch{return null}}
+  document.getElementById('footer-sub-btn')?.addEventListener('click',async()=>{const inp=document.getElementById('footer-email');const em=inp?.value.trim();if(!em)return showToast('Please enter your email.');const r=await subUser('',em);if(r===true){showToast('Subscribed! Welcome.');inp.value=''}else if(r===false)showToast('Already subscribed.');else showToast('Something went wrong.')});
+  loadStats();
+  // Hamburger
+  const hb=document.getElementById('hamburger'),nm=document.getElementById('nav-menu'),ov=document.getElementById('nav-overlay');
+  const closeNav=()=>{nm.classList.remove('open');hb.classList.remove('open');ov.classList.remove('open');document.body.style.overflow=''};
+  hb?.addEventListener('click',()=>{const o=nm.classList.toggle('open');hb.classList.toggle('open',o);ov.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''});
+  ov?.addEventListener('click',closeNav);
+  // Progress + back-top
+  window.addEventListener('scroll',()=>{document.getElementById('back-top')?.classList.toggle('show',scrollY>400);const pct=(scrollY/(document.body.scrollHeight-innerHeight))*100;const bar=document.getElementById('progress-bar');if(bar)bar.style.width=Math.min(pct,100)+'%'});
+  document.getElementById('back-top')?.addEventListener('click',()=>window.scroll(0,0));
+  // Weather
+  const wmoI={0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'🌨',80:'🌦',81:'🌦',82:'🌩',95:'⛈',96:'⛈',99:'⛈'};
+  const wmoD={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Icy fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Slight rain',63:'Moderate rain',65:'Heavy rain',71:'Slight snow',73:'Moderate snow',75:'Heavy snow',80:'Rain showers',81:'Moderate showers',82:'Violent showers',95:'Thunderstorm',96:'Thunderstorm',99:'Severe thunderstorm'};
+  async function loadWeather(city=null){
+    const bar=document.getElementById('weather-bar');if(!bar)return;
+    bar.innerHTML='<div class="weather-loading"><i class="fas fa-spinner fa-spin"></i>&nbsp;Loading weather…</div>';
+    try{
+      let lat,lon,cname='',ctry='';
+      if(city){const g=await(await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(city)}&format=json&limit=1`)).json();if(!g.length)throw new Error('City not found');lat=g[0].lat;lon=g[0].lon;cname=g[0].display_name.split(',')[0]}
+      else{const pos=await new Promise((res,rej)=>{if(!navigator.geolocation)rej(new Error('no-geo'));navigator.geolocation.getCurrentPosition(res,rej,{timeout:10000})});lat=pos.coords.latitude;lon=pos.coords.longitude;const geo=await(await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)).json();cname=geo.address?.city||geo.address?.town||geo.address?.village||'Unknown';ctry=geo.address?.country_code?.toUpperCase()||''}
+      const w=await(await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=relative_humidity_2m,precipitation_probability&timezone=auto`)).json();
+      const cw=w.current_weather;const hi=w.hourly.time.findIndex(t=>t>=cw.time.slice(0,13));
+      const hum=hi>=0?w.hourly.relative_humidity_2m[hi]:'—';const rain=hi>=0?w.hourly.precipitation_probability[hi]:'—';
+      bar.innerHTML=`<div class="weather-left"><div class="weather-icon-wrap">${wmoI[cw.weathercode]||'🌡'}</div><div><div class="weather-temp">${Math.round(cw.temperature)}°C</div><div class="weather-desc">${wmoD[cw.weathercode]||'Unknown'} · ${cw.is_day?'Day':'Night'}</div><div class="weather-loc"><i class="fas fa-map-marker-alt" style="margin-right:.3rem"></i>${cname}${ctry?', '+ctry:''}</div></div></div><div class="weather-details"><div class="weather-detail"><div class="weather-detail-val">${hum}%</div><div class="weather-detail-lbl">Humidity</div></div><div class="weather-detail"><div class="weather-detail-val">${Math.round(cw.windspeed)} km/h</div><div class="weather-detail-lbl">Wind</div></div><div class="weather-detail"><div class="weather-detail-val">${rain}%</div><div class="weather-detail-lbl">Rain</div></div></div><div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap"><button class="weather-refresh" id="w-ref"><i class="fas fa-sync-alt"></i> Refresh</button><input type="text" id="w-city" class="weather-city-input" placeholder="Search city…"><button id="w-go" class="weather-refresh"><i class="fas fa-search"></i> Go</button></div>`;
+      document.getElementById('w-ref')?.addEventListener('click',()=>loadWeather());
+      document.getElementById('w-go')?.addEventListener('click',()=>{const c=document.getElementById('w-city').value.trim();if(c)loadWeather(c)});
+      document.getElementById('w-city')?.addEventListener('keydown',e=>{if(e.key==='Enter'){const c=e.target.value.trim();if(c)loadWeather(c)}});
+    }catch{bar.innerHTML=`<div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap"><div class="weather-loading"><i class="fas fa-exclamation-triangle"></i> Location unavailable.</div><input type="text" id="w-city" class="weather-city-input" placeholder="Enter city name"><button id="w-manual" class="weather-refresh"><i class="fas fa-search"></i> Go</button></div>`;document.getElementById('w-manual')?.addEventListener('click',()=>{const c=document.getElementById('w-city').value.trim();if(c)loadWeather(c)})}
+  }
+  window.loadWeather=loadWeather;
+  loadWeather();
+  if(typeof pageInit==='function')pageInit(db,collection,getDocs,query,orderBy,limit,where,addDoc,showToast,getCountFromServer);
+</script>
+</body>
+</html>
