@@ -1,0 +1,21 @@
+name: Deploy to Firebase Hosting
+on:
+  push:
+    branches:
+      - main  # Change this to 'master' if that is your branch name
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # If you have a build step (like React or Vue), keep the line below. 
+      # If you only have standard HTML/CSS, you can delete the next line.
+      - run: npm ci && npm run build 
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          channelId: live
+          projectId: glennpansensoy-12288
