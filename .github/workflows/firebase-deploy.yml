@@ -1,18 +1,16 @@
-name: Deploy to Firebase Hosting
-on:
-  push:
-    branches:
-      - main
 jobs:
-  deploy:
+  test_connection:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v4
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          channelId: live
-          projectId: glennpansensoy-12288
+          node-version: '20'
+      - name: Install Firebase Admin
+        run: npm install firebase-admin
+      - name: Run Test
+        env:
+          # This assumes you have exported the service account JSON to this env var
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node test-firestore.js
