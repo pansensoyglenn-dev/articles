@@ -1,25 +1,12 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    // Public submissions (anyone can submit an essay)
-    match /articles/{articleId} {
-      allow read: if true;  // public essays
-      allow create: if 
-        request.resource.data.keys().hasAll(['name', 'email', 'title', 'category', 'excerpt', 'content', 'wordCount']) &&
-        request.resource.data.wordCount is number &&
-        request.resource.data.wordCount >= 400 &&
-        request.resource.data.title.size() > 5 &&
-        request.resource.data.email.matches('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
-      
-      allow update, delete: if false;  // no one can edit/delete via client
+    function isCurator() {
+      return request.auth != null && request.auth.token.email == "YOUR_EMAIL@GMAIL.COM";
     }
-
-    // Newsletter subscribers (prevent spam)
-    match /subscribers/{subId} {
-      allow create: if request.resource.data.email is string && 
-                     request.resource.data.email.matches('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
-      allow read, update, delete: if false;
+    match /essays/{essayId} {
+      allow read: if true;
+      allow write: if isCurator();
     }
   }
 }
