@@ -1,12 +1,16 @@
+
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function isCurator() {
-      return request.auth != null && request.auth.token.email == "YOUR_EMAIL@GMAIL.COM";
-    }
-    match /essays/{essayId} {
+    
+    // Allow anyone to read your posts
+    match /{document=**} {
       allow read: if true;
-      allow write: if isCurator();
+    }
+
+    // Only YOU can write, update, or delete
+    match /{document=**} {
+      allow write: if request.auth != null && request.auth.uid == "BoAoVcHcesSe6E6bgeeUMrV4QBC2";
     }
   }
 }
