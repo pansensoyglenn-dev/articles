@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2000/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+    <title>Poetic Codes | Technical Documentation</title>
+    <link>https://pansensoyglenn-dev.github.io/articles</link>
+    <description>Professional Python OOP tutorials and web development insights by Glenn Junsay Pansensoy.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Mar 2026 07:30:00 GMT</lastBuildDate>
+    <atom:link href="https://pansensoyglenn-dev.github.io/articles/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+        <title>Mastering Python OOP: The Four Pillars</title>
+        <link>https://pansensoyglenn-dev.github.io/articles/python-oop-pillars.html</link>
+        <guid isPermaLink="true">https://pansensoyglenn-dev.github.io/articles/python-oop-pillars.html</guid>
+        <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
+        <dc:creator>Glenn Junsay Pansensoy</dc:creator>
+        <description>A high-density guide covering Inheritance, Encapsulation, Polymorphism, and Abstraction in Python.</description>
+    </item>
+
+</channel>
+</rss>
