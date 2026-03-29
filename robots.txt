@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /articles/
+Disallow: /assets/
+Disallow: /temp/
+
+Sitemap: https://pansensoyglenn-dev.github.io/sitemap.xml
