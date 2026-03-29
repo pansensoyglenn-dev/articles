@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Accessibility – Poetic Codes</title>
+  <meta name="description" content="Poetic Codes is committed to making our long-form essays accessible to everyone. Learn about our accessibility features, standards, and how we ensure inclusive reading.">
+  <meta name="author" content="Glenn Junsay Pansensoy">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pansensoyglenn-dev.github.io/articles/accessibility.html">
+  <meta property="og:title" content="Accessibility – Poetic Codes">
+  <meta property="og:description" content="Learn about our commitment to accessibility and inclusive design.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Poetic Codes">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575646748966866" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --blue:#3a7bd5; --blue-lt:#74b9e8; --teal:#7ec8e3; --python:#306998;
+      --obsidian:#0b0f17; --card:#141e2c; --card-hover:#192537;
+      --border:#253649; --text:#eef4ff; --muted:#b4cef0; --dim:#667fa3;
+    }
+    html { scroll-behavior:smooth; }
+    body { 
+      background:var(--obsidian); 
+      color:var(--text); 
+      font-family:'Crimson Pro',Georgia,serif; 
+      font-size:0.92rem; 
+      line-height:1.85; 
+      overflow-x:hidden; 
+      width:100%; 
+    }
+    h1 { font-size:1.05rem !important; }
+    h2, h3 { font-size:0.95rem !important; }
+    p { font-size:0.9rem; text-align:justify; overflow-wrap:break-word; word-break:break-word; }
+
+    ::-webkit-scrollbar { width:4px; } 
+    ::-webkit-scrollbar-track { background:#0d1420; } 
+    ::-webkit-scrollbar-thumb { background:var(--blue); border-radius:4px; }
+
+    a { color:var(--blue-lt); text-decoration:none; transition:color 0.2s; } 
+    a:hover { color:var(--teal); }
+    .gradient-text { background:linear-gradient(90deg,#a8d8f0,#7ec8e3,#5ba3d9); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .container { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
+
+    #progress-bar { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--teal)); width:0; z-index:2000; transition:width 0.1s linear; }
+    
+    #navbar { 
+      position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; 
+      padding:0.8rem 2rem; background:rgba(11,15,23,0.93); backdrop-filter:blur(20px); 
+      border-bottom:1px solid var(--border); z-index:1000; 
+    }
+    .brand { 
+      font-family:'Cinzel Decorative',serif; font-weight:700; letter-spacing:0.15em; 
+      font-size:0.9rem; cursor:pointer; 
+      background:linear-gradient(90deg,#fff,#7ec8e3); -webkit-background-clip:text; background-clip:text; color:transparent; 
+    }
+    .hamburger { display:flex; flex-direction:column; gap:5px; cursor:pointer; z-index:1100; }
+    .hamburger span { width:24px; height:2px; background:#fff; transition:0.25s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+    #nav-menu { 
+      position:fixed; top:0; right:-300px; width:270px; height:100vh; 
+      background:rgba(10,17,30,0.99); backdrop-filter:blur(24px); 
+      border-left:1px solid #2a3b55; padding:4.5rem 1.2rem 2rem; 
+      transition:0.3s; z-index:1050; overflow-y:auto; 
+    }
+    #nav-menu.open { right:0; }
+    #nav-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:1040; }
+    #nav-overlay.open { display:block; }
+
+    .nav-section-label { font-family:'JetBrains Mono',monospace; font-size:0.58rem; color:var(--dim); text-transform:uppercase; letter-spacing:0.14em; padding:0.5rem 0.8rem 0.2rem; margin-top:0.8rem; }
+    .nav-page-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.4rem; }
+    .nav-page-btn { display:flex; align-items:center; gap:0.5rem; padding:0.5rem 0.6rem; background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--muted); cursor:pointer; transition:0.2s; font-size:0.78rem; font-family:'Crimson Pro',serif; }
+    .nav-page-btn i { color:var(--blue-lt); font-size:0.72rem; width:14px; }
+    .nav-page-btn:hover { border-color:var(--blue); color:var(--text); background:rgba(58,123,213,0.1); }
+    .nav-category-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.4rem; }
+    .nav-cat-btn { display:flex; flex-direction:column; align-items:center; gap:0.35rem; padding:0.7rem 0.4rem; background:rgba(58,123,213,0.08); border:1px solid var(--border); border-radius:10px; color:var(--muted); cursor:pointer; transition:0.2s; font-size:0.65rem; font-family:'JetBrains Mono',monospace; text-transform:uppercase; }
+    .nav-cat-btn i { font-size:1rem; color:var(--teal); }
+    .nav-cat-btn:hover { border-color:var(--blue); color:var(--blue-lt); }
+
+    .btn-primary { background:linear-gradient(135deg,var(--python),var(--blue)); border:none; padding:0.7rem 1.6rem; border-radius:40px; color:#fff; font-family:'Cinzel Decorative',serif; font-size:0.7rem; cursor:pointer; transition:0.22s; display:inline-flex; align-items:center; gap:8px; }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(48,105,152,0.5); }
+    .btn-outline { background:transparent; border:1px solid var(--blue); padding:0.7rem 1.6rem; border-radius:40px; color:var(--blue-lt); font-family:'Cinzel Decorative',serif; font-size:0.7rem; cursor:pointer; transition:0.22s; display:inline-flex; align-items:center; gap:8px; }
+    .btn-outline:hover { background:rgba(58,123,213,0.14); transform:translateY(-2px); }
+
+    #page-hero { padding:8rem 0 3.5rem; text-align:center; background:linear-gradient(180deg,#080f1a,#0b1420); border-bottom:1px solid var(--border); }
+    #page-hero h1 { font-family:'Cinzel Decorative',serif; font-size:clamp(1.3rem,3.5vw,2rem) !important; margin-bottom:0.8rem; }
+    #page-hero p { color:var(--muted); max-width:680px; margin:0 auto 2rem; line-height:1.75; }
+
+    .content-layout { display:grid; grid-template-columns:1fr 300px; gap:2.5rem; align-items:start; margin:3rem 0 5rem; }
+    .main-content h2 { font-family:'Cinzel Decorative',serif; font-size:0.98rem !important; margin:2rem 0 1rem; color:var(--text); border-left:3px solid var(--blue); padding-left:0.8rem; }
+    .main-content h3 { font-family:'Cinzel Decorative',serif; font-size:0.88rem !important; margin:1.5rem 0 0.8rem; color:var(--blue-lt); }
+    .main-content p { margin-bottom:1.2rem; color:var(--muted); }
+    .main-content ul, .main-content ol { margin:1rem 0 1.5rem 2rem; color:var(--muted); }
+    .main-content li { margin-bottom:0.5rem; }
+
+    .sidebar-sticky { position:sticky; top:100px; display:flex; flex-direction:column; gap:1.2rem; }
+    .sidebar-widget { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.4rem; }
+    .sidebar-widget h4 { font-family:'Cinzel Decorative',serif; font-size:0.78rem; margin-bottom:1rem; color:var(--text); }
+    .follow-links { display:flex; gap:1rem; justify-content:center; margin-top:0.5rem; }
+    .follow-links a { font-size:1.6rem; color:var(--muted); transition:0.2s; }
+    .follow-links a:hover { color:var(--teal); transform:scale(1.05); }
+
+    footer { background:#060a10; border-top:1px solid var(--border); padding:4rem 0 2.5rem; }
+    .footer-content { max-width:1100px; margin:0 auto; padding:0 1.5rem; display:flex; flex-direction:column; gap:3rem; }
+    .footer-top { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2.8rem; }
+    .footer-col h4 { font-family:'Cinzel Decorative',serif; color:var(--text); margin-bottom:1.2rem; font-size:0.95rem; }
+    .footer-col ul { list-style:none; }
+    .footer-col ul li { margin-bottom:0.8rem; }
+    .footer-col a { color:var(--muted); transition:all 0.2s; display:flex; align-items:center; gap:0.5rem; }
+    .footer-col a:hover { color:var(--teal); padding-left:6px; }
+    .footer-btn { display:inline-flex; align-items:center; gap:8px; background:rgba(58,123,213,0.1); border:1px solid var(--border); color:var(--blue-lt); padding:0.85rem 1.6rem; border-radius:40px; font-size:0.85rem; font-family:'Cinzel Decorative',serif; transition:all 0.25s; width:100%; justify-content:center; }
+    .footer-btn:hover { background:linear-gradient(135deg,var(--python),var(--blue)); color:#fff; border-color:transparent; transform:translateY(-2px); }
+    .footer-bottom { text-align:center; color:var(--dim); font-size:0.78rem; border-top:1px solid var(--border); padding-top:2rem; }
+
+    .breadcrumb { display:flex; align-items:center; gap:0.5rem; font-family:'JetBrains Mono',monospace; font-size:0.62rem; color:var(--dim); margin-bottom:1.2rem; flex-wrap:wrap; justify-content:center; }
+    .toast { position:fixed; bottom:24px; right:24px; background:var(--blue); padding:0.65rem 1.3rem; border-radius:40px; color:#fff; z-index:4000; opacity:0; transition:0.25s; pointer-events:none; font-size:0.82rem; }
+    .toast.show { opacity:1; }
+    #back-top { position:fixed; bottom:24px; left:24px; background:var(--python); border:none; width:44px; height:44px; border-radius:50%; color:#fff; cursor:pointer; opacity:0; transition:0.2s; display:flex; align-items:center; justify-content:center; font-size:0.9rem; z-index:1100; }
+    #back-top.show { opacity:1; }
+    @media(max-width:900px) { .content-layout { grid-template-columns:1fr; } .sidebar-sticky { position:static; } }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div id="navbar">
+  <div class="brand" onclick="location.href='index.html'">POETIC CODES</div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div>
+
+<div id="nav-overlay"></div>
+<div id="nav-menu">
+  <div class="nav-section-label">Pages</div>
+  <div class="nav-page-grid">
+    <button class="nav-page-btn" onclick="location.href='index.html'"><i class="fas fa-home"></i>Home</button>
+    <button class="nav-page-btn" onclick="location.href='articles.html'"><i class="fas fa-book-open"></i>Essays</button>
+    <button class="nav-page-btn" onclick="location.href='archive.html'"><i class="fas fa-archive"></i>Archive</button>
+    <button class="nav-page-btn" onclick="location.href='article.html'"><i class="fas fa-file-alt"></i>Article</button>
+    <button class="nav-page-btn" onclick="location.href='submit.html'"><i class="fas fa-pen-fancy"></i>Submit</button>
+    <button class="nav-page-btn" onclick="location.href='about.html'"><i class="fas fa-user-circle"></i>About</button>
+  </div>
+  <div class="nav-divider"></div>
+  <div class="nav-section-label">Topics</div>
+  <div class="nav-category-grid">
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=culture'"><i class="fas fa-globe-asia"></i>Culture</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=national'"><i class="fas fa-landmark"></i>National</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=international'"><i class="fas fa-satellite-dish"></i>International</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=programming'"><i class="fas fa-code"></i>Programming</button>
+  </div>
+</div>
+
+<div id="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Accessibility</span>
+    </div>
+    <h1 class="gradient-text">Accessibility at Poetic Codes</h1>
+    <p>I believe that thoughtful writing should be available to everyone, regardless of ability. This page outlines my commitment to inclusive design and the accessibility features we provide.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="content-layout">
+    <div class="main-content">
+      <h2>My Commitment</h2>
+      <p>Poetic Codes is dedicated to ensuring that my website and the essays I publish are accessible to people with disabilities. We strive to meet or exceed the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standards. We continuously test and improve our site to provide a seamless experience for all readers.</p>
+
+      <h2>Accessibility Features</h2>
+      <h3>Keyboard Navigation</h3>
+      <p>Every interactive element on this site can be accessed using a keyboard alone. Use the <kbd>Tab</kbd> key to move forward, <kbd>Shift+Tab</kbd> to move backward, and <kbd>Enter</kbd> to activate buttons and links. The hamburger menu, filter buttons, and essay cards all respond to keyboard input.</p>
+
+      <h3>Screen Reader Support</h3>
+      <p>My HTML is semantically structured with proper headings, landmarks, and ARIA labels where needed. All images include descriptive alt text, and dynamic content (like the essay grid) is announced correctly. I recommend using recent versions of NVDA, JAWS, or VoiceOver for the best experience.</p>
+
+      <h3>Color Contrast & Readability</h3>
+      <p>I maintain a high‑contrast color scheme that meets WCAG guidelines. Text is set in a legible serif font (Crimson Pro) with adjustable line height. The background is a dark obsidian, reducing eye strain during long reading sessions.</p>
+
+      <h3>Responsive Design & Text Scaling</h3>
+      <p>The layout adapts to any screen size, from mobile phones to large desktop monitors. You can resize text up to 200% without breaking the layout or losing functionality. Pinch‑to‑zoom is enabled on touch devices.</p>
+
+      <h3>Clear Navigation & Structure</h3>
+      <p>All pages have consistent headers, breadcrumbs, and a table of contents on article pages. The search and filter functions allow you to quickly locate content without scrolling excessively.</p>
+
+      <h2>Assistive Technology Testing</h2>
+      <p>I regularly test our site with the following tools and technologies:</p>
+      <ul>
+        <li>NVDA (Windows)</li>
+        <li>VoiceOver (macOS/iOS)</li>
+        <li>TalkBack (Android)</li>
+        <li>ChromeVox (Chrome)</li>
+        <li>WAVE Web Accessibility Evaluation Tool</li>
+        <li>axe DevTools</li>
+      </ul>
+
+      <h2>Ongoing Improvements</h2>
+      <p>Accessibility is not a one‑time task; it is an ongoing process. As we add new features and essays, we ensure that accessibility remains a priority. If you encounter any barriers while using our site, please let me know.</p>
+
+      <h2>Feedback & Assistance</h2>
+      <p>Your feedback helps me improve. If you have difficulty accessing any part of Poetic Codes, or if you have suggestions for enhancements, please reach out using my <a href="contact.html">contact form</a> or email us directly at <a href="pansensoyglenn@gmail.com">pansensoyglenn@gmail.com</a>. We will respond promptly and work to resolve any accessibility issues.</p>
+    </div>
+
+    <div class="sidebar-sticky">
+      <div class="sidebar-widget">
+        <h4><i class="fas fa-wheelchair" style="color:var(--teal);margin-right:0.4rem"></i> Resources</h4>
+        <p>Learn more about web accessibility standards and tools:</p>
+        <ul style="list-style:none; margin-top:0.5rem;">
+          <li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> WCAG Overview</a></li>
+          <li><a href="https://webaim.org/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> WebAIM</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> MDN Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-widget">
+        <h4><i class="fas fa-users" style="color:var(--teal);margin-right:0.4rem"></i> Follow the Author</h4>
+        <p>Connect with Glenn Junsay Pansensoy across the web.</p>
+        <div class="follow-links">
+          <a href="https://www.facebook.com/@GlennJunsayPansensoy" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.linkedin.com/in/Glenn-Junsay-Pansensoy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.x.com/@GlennPansensoy" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/glennpansensoy" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="sidebar-widget">
+        <h4><i class="fas fa-envelope" style="color:var(--teal);margin-right:0.4rem"></i> Report an Issue</h4>
+        <p>If you encounter any accessibility barriers, please contact me so we can fix it.</p>
+        <a href="contact.html" class="btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Contact Me</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Poetic Codes</h4>
+        <p style="color:var(--muted);max-width:260px;">Long-form essays that explore culture, nation, world, and code.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="articles.html"><i class="fas fa-book-open"></i> All Essays</a></li>
+          <li><a href="archive.html"><i class="fas fa-archive"></i> Archive</a></li>
+          <li><a href="articles.html"><i class="fas fa-pen-fancy"></i> Enjoy Reading My Articles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Topics</h4>
+        <ul>
+          <li><a href="articles.html?cat=culture">Culture</a></li>
+          <li><a href="articles.html?cat=national">National Affairs</a></li>
+          <li><a href="articles.html?cat=international">International</a></li>
+          <li><a href="articles.html?cat=programming">Programming</a></li>
+          <li><a href="articles.html?cat=philosophy">Philosophy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="pansensoyglenn@gmail.com" class="footer-btn"><i class="fas fa-envelope"></i> Email Glenn</a>
+        <a href="articles.html" class="footer-btn" style="margin-top:12px;"><i class="fas fa-feather-alt"></i>Read an Article</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Glenn Junsay Pansensoy. All rights reserved.<br>
+      Built with data precision and Created with intensive information authentication. From Diplahan, Zamboanga Sibugay Province, Philippines.
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<button id="back-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  (function() {
+    const ham = document.getElementById('hamburger');
+    const menu = document.getElementById('nav-menu');
+    const overlay = document.getElementById('nav-overlay');
+    const backTop = document.getElementById('back-top');
+    
+    function toggleNav(open) { 
+      ham.classList.toggle('open', open); 
+      menu.classList.toggle('open', open); 
+      overlay.classList.toggle('open', open); 
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    
+    if (ham && menu && overlay) {
+      ham.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleNav(!menu.classList.contains('open'));
+      });
+      overlay.addEventListener('click', () => toggleNav(false));
+      
+      const menuBtns = document.querySelectorAll('#nav-menu .nav-page-btn, #nav-menu .nav-cat-btn');
+      menuBtns.forEach(btn => btn.addEventListener('click', () => toggleNav(false)));
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('open')) toggleNav(false);
+      });
+    }
+    
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const max = document.body.scrollHeight - window.innerHeight;
+      const progressBar = document.getElementById('progress-bar');
+      if (progressBar) progressBar.style.width = (scrolled / max * 100) + '%';
+      if (backTop) backTop.classList.toggle('show', scrolled > 300);
+    });
+    
+    if (backTop) backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  })();
+</script>
+</body>
+</html>
