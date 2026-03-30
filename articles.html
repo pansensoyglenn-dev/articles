@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>All Essays – Poetic Codes</title>
+  <meta name="description" content="Browse all long-form essays published on Poetic Codes. Filter by category: Culture, National Affairs, International Condition, and Programming.">
+  <meta name="keywords" content="essays, culture essays, national affairs Philippines, international relations essays, programming essays, long-form reading">
+  <meta name="author" content="Glenn Junsay Pansensoy">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pansensoyglenn-dev.github.io/articles/articles.html">
+  <meta property="og:title" content="All Essays – Poetic Codes">
+  <meta property="og:description" content="Browse every published long-form essay on Poetic Codes. Filter by topic and discover writing that makes you think.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pansensoyglenn-dev.github.io/articles/articles.html">
+  <meta property="og:site_name" content="Poetic Codes">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --blue:#3a7bd5; --blue-lt:#74b9e8; --teal:#7ec8e3; --python:#306998;
+      --obsidian:#0b0f17; --card:#141e2c; --card-hover:#192537;
+      --border:#253649; --text:#eef4ff; --muted:#b4cef0; --dim:#667fa3;
+    }
+    html { scroll-behavior:smooth; }
+    body { 
+      background:var(--obsidian); 
+      color:var(--text); 
+      font-family:'Crimson Pro',Georgia,serif; 
+      font-size:0.92rem; 
+      line-height:1.85; 
+      overflow-x:hidden; 
+      width:100%; 
+    }
+    h1 { font-size:1.05rem !important; }
+    h2, h3 { font-size:0.95rem !important; }
+    p, .section-sub, .article-card-body p, .toc-desc, .filter-note { 
+      font-size:0.9rem; 
+      text-align:justify; 
+      overflow-wrap:break-word; 
+      word-break:break-word; 
+    }
+
+    ::-webkit-scrollbar { width:4px; } 
+    ::-webkit-scrollbar-track { background:#0d1420; } 
+    ::-webkit-scrollbar-thumb { background:var(--blue); border-radius:4px; }
+
+    a { color:var(--blue-lt); text-decoration:none; transition:color 0.2s; } 
+    a:hover { color:var(--teal); }
+    .gradient-text { background:linear-gradient(90deg,#a8d8f0,#7ec8e3,#5ba3d9); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .container { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
+
+    #progress-bar { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--teal)); width:0; z-index:2000; transition:width 0.1s linear; }
+    
+    #navbar { 
+      position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; 
+      padding:0.8rem 2rem; background:rgba(11,15,23,0.93); backdrop-filter:blur(20px); 
+      border-bottom:1px solid var(--border); z-index:1000; 
+    }
+    .brand { 
+      font-family:'Cinzel Decorative',serif; font-weight:700; letter-spacing:0.15em; 
+      font-size:0.9rem; cursor:pointer; 
+      background:linear-gradient(90deg,#fff,#7ec8e3); -webkit-background-clip:text; background-clip:text; color:transparent; 
+    }
+    .hamburger { display:flex; flex-direction:column; gap:5px; cursor:pointer; z-index:1100; }
+    .hamburger span { width:24px; height:2px; background:#fff; transition:0.25s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+    #nav-menu { 
+      position:fixed; top:0; right:-300px; width:270px; height:100vh; 
+      background:rgba(10,17,30,0.99); backdrop-filter:blur(24px); 
+      border-left:1px solid #2a3b55; padding:4.5rem 1.2rem 2rem; 
+      transition:0.3s; z-index:1050; overflow-y:auto; 
+    }
+    #nav-menu.open { right:0; }
+    #nav-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:1040; }
+    #nav-overlay.open { display:block; }
+
+    .nav-section-label { font-family:'JetBrains Mono',monospace; font-size:0.58rem; color:var(--dim); text-transform:uppercase; letter-spacing:0.14em; padding:0.5rem 0.8rem 0.2rem; margin-top:0.8rem; }
+    .nav-page-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.4rem; }
+    .nav-page-btn { display:flex; align-items:center; gap:0.5rem; padding:0.5rem 0.6rem; background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--muted); cursor:pointer; transition:0.2s; font-size:0.78rem; font-family:'Crimson Pro',serif; }
+    .nav-page-btn i { color:var(--blue-lt); font-size:0.72rem; width:14px; }
+    .nav-page-btn:hover { border-color:var(--blue); color:var(--text); background:rgba(58,123,213,0.1); }
+    .nav-category-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.4rem; }
+    .nav-cat-btn { display:flex; flex-direction:column; align-items:center; gap:0.35rem; padding:0.7rem 0.4rem; background:rgba(58,123,213,0.08); border:1px solid var(--border); border-radius:10px; color:var(--muted); cursor:pointer; transition:0.2s; font-size:0.65rem; font-family:'JetBrains Mono',monospace; text-transform:uppercase; }
+    .nav-cat-btn i { font-size:1rem; color:var(--teal); }
+    .nav-cat-btn:hover { border-color:var(--blue); color:var(--blue-lt); }
+
+    .btn-primary { background:linear-gradient(135deg,var(--python),var(--blue)); border:none; padding:0.7rem 1.6rem; border-radius:40px; color:#fff; font-family:'Cinzel Decorative',serif; font-size:0.7rem; cursor:pointer; transition:0.22s; display:inline-flex; align-items:center; gap:8px; }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(48,105,152,0.5); }
+    .btn-outline { background:transparent; border:1px solid var(--blue); padding:0.7rem 1.6rem; border-radius:40px; color:var(--blue-lt); font-family:'Cinzel Decorative',serif; font-size:0.7rem; cursor:pointer; transition:0.22s; display:inline-flex; align-items:center; gap:8px; }
+    .btn-outline:hover { background:rgba(58,123,213,0.14); transform:translateY(-2px); }
+
+    /* PAGE HERO */
+    #page-hero { padding:8rem 0 3.5rem; text-align:center; background:linear-gradient(180deg,#080f1a,#0b1420); border-bottom:1px solid var(--border); }
+    #page-hero h1 { font-family:'Cinzel Decorative',serif; font-size:clamp(1.3rem,3.5vw,2rem) !important; margin-bottom:0.8rem; }
+    #page-hero p { color:var(--muted); max-width:620px; margin:0 auto 2rem; line-height:1.75; }
+
+    /* TOC */
+    #toc-section { background:linear-gradient(180deg,#0b1420,#0d1626); padding:2.5rem 0; border-bottom:1px solid var(--border); }
+    .toc-box { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:2rem; max-width:900px; margin:0 auto; }
+    .toc-title { font-family:'Cinzel Decorative',serif; font-size:0.9rem; color:var(--text); margin-bottom:0.4rem; display:flex; align-items:center; gap:0.6rem; }
+    .toc-desc { color:var(--muted); margin-bottom:1.5rem; }
+    .toc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0.8rem; }
+    .toc-item { display:flex; align-items:center; gap:0.7rem; padding:0.7rem 1rem; background:rgba(58,123,213,0.06); border:1px solid rgba(58,123,213,0.15); border-radius:10px; cursor:pointer; transition:0.2s; text-decoration:none; }
+    .toc-item:hover { background:rgba(58,123,213,0.14); border-color:var(--blue-lt); transform:translateX(3px); }
+    .toc-item i { color:var(--teal); width:16px; font-size:0.88rem; }
+    .toc-item-label { font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--text); text-transform:uppercase; letter-spacing:0.06em; }
+    .toc-item-count { font-family:'JetBrains Mono',monospace; font-size:0.58rem; color:var(--dim); margin-left:auto; }
+
+    /* FILTER */
+    #filter-section { padding:2rem 0; background:#090f1a; border-bottom:1px solid var(--border); position:sticky; top:57px; z-index:900; }
+    .filter-row { display:flex; gap:0.8rem; align-items:center; flex-wrap:wrap; }
+    .search-box { display:flex; align-items:center; gap:0.5rem; background:var(--card); border:1px solid var(--border); border-radius:40px; padding:0.5rem 1rem; flex:1; min-width:200px; max-width:360px; }
+    .search-box i { color:var(--dim); font-size:0.85rem; }
+    .search-box input { background:transparent; border:none; outline:none; color:var(--text); font-family:'Crimson Pro',serif; font-size:0.88rem; width:100%; }
+    .search-box input::placeholder { color:var(--dim); }
+    .filter-btns { display:flex; gap:0.5rem; flex-wrap:wrap; }
+    .filter-btn { padding:0.4rem 0.9rem; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; transition:0.18s; font-family:'JetBrains Mono',monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.06em; }
+    .filter-btn:hover { border-color:var(--blue-lt); color:var(--text); }
+    .filter-btn.active { background:linear-gradient(135deg,var(--python),var(--blue)); border-color:transparent; color:#fff; }
+    .sort-select { background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:0.62rem; padding:0.4rem 0.7rem; outline:none; cursor:pointer; }
+
+    /* ESSAYS GRID - Fixed text cutoff */
+    #essays-section { padding:3rem 0 5rem; }
+    .essays-layout { display:grid; grid-template-columns:1fr 300px; gap:2.5rem; align-items:start; }
+    .articles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.8rem; }
+    .article-card { background:var(--card); border-radius:20px; border:1px solid var(--border); overflow:hidden; cursor:pointer; transition:0.25s; }
+    .article-card:hover { transform:translateY(-5px); border-color:var(--blue); box-shadow:0 14px 32px rgba(0,0,0,0.38); }
+    .article-card-img { height:140px; background:linear-gradient(145deg,#1e2a3a,#0f1722); display:flex; align-items:center; justify-content:center; font-size:2.3rem; position:relative; }
+    .rt-badge { position:absolute; bottom:0.5rem; right:0.6rem; font-family:'JetBrains Mono',monospace; font-size:0.57rem; color:var(--dim); background:rgba(11,15,23,0.82); padding:0.12rem 0.45rem; border-radius:4px; }
+    .article-card-body { padding:1.5rem; }
+    .article-card-cat { font-size:0.6rem; font-family:'JetBrains Mono',monospace; color:var(--teal); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.4rem; }
+    .article-card-body h3 { 
+      font-size:0.93rem !important; 
+      margin-bottom:0.5rem; 
+      line-height:1.45; 
+      overflow-wrap:break-word; 
+    }
+    .article-card-body p { 
+      color:var(--muted); 
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .read-more-link { display:inline-flex; align-items:center; gap:0.3rem; margin-top:0.9rem; color:var(--blue-lt); font-size:0.78rem; transition:gap 0.2s; }
+    .read-more-link:hover { gap:0.5rem; }
+    .article-meta { display:flex; gap:0.8rem; align-items:center; flex-wrap:wrap; margin-top:0.6rem; }
+    .article-meta span { font-family:'JetBrains Mono',monospace; font-size:0.58rem; color:var(--dim); }
+
+    /* SIDEBAR */
+    .sidebar-sticky { position:sticky; top:130px; display:flex; flex-direction:column; gap:1.2rem; }
+    .sidebar-widget { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.4rem; }
+    .sidebar-widget h4 { font-family:'Cinzel Decorative',serif; font-size:0.78rem; margin-bottom:1rem; color:var(--text); }
+    .tag-cloud { display:flex; flex-wrap:wrap; gap:0.4rem; }
+    .tag-cloud-item { font-family:'JetBrains Mono',monospace; font-size:0.6rem; padding:0.22rem 0.6rem; border-radius:20px; border:1px solid var(--border); color:var(--muted); transition:0.18s; cursor:pointer; }
+    .tag-cloud-item:hover, .tag-cloud-item.active { border-color:var(--blue-lt); color:var(--blue-lt); background:rgba(58,123,213,0.08); }
+
+    #no-results { text-align:center; padding:4rem 2rem; color:var(--muted); display:none; grid-column:1/-1; }
+    #no-results i { font-size:2.5rem; color:var(--border); display:block; margin-bottom:1rem; }
+    #load-more-row { text-align:center; margin-top:2.5rem; display:none; }
+
+    /* IMPROVED FOOTER - Vertically aligned with interactive buttons */
+    footer { 
+      background:#060a10; 
+      border-top:1px solid var(--border); 
+      padding:4rem 0 2.5rem; 
+    }
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.8rem;
+    }
+    .footer-col h4 {
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col ul li {
+      margin-bottom: 0.8rem;
+    }
+    .footer-col a {
+      color: var(--muted);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-col a:hover {
+      color: var(--teal);
+      padding-left: 6px;
+    }
+    .footer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(58,123,213,0.1);
+      border: 1px solid var(--border);
+      color: var(--blue-lt);
+      padding: 0.85rem 1.6rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-family: 'Cinzel Decorative', serif;
+      transition: all 0.25s;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+    .footer-btn:hover {
+      background: linear-gradient(135deg,var(--python),var(--blue));
+      color: #fff;
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+    .footer-bottom {
+      text-align: center;
+      color: var(--dim);
+      font-size: 0.78rem;
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+    }
+    .social-icons a {
+      font-size: 1.6rem;
+      margin-right: 1.2rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .social-icons a:hover { color: var(--teal); }
+
+    @media(max-width:900px) { 
+      .essays-layout { grid-template-columns:1fr; } 
+      .sidebar-sticky { position:static; } 
+    }
+    @media(max-width:600px) { 
+      #filter-section { position:static; } 
+      .filter-row { flex-direction:column; align-items:stretch; } 
+      .search-box { max-width:100%; } 
+    }
+
+    /* BACK TO TOP */
+    #back-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--python), var(--blue));
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 1500;
+      box-shadow: 0 4px 16px rgba(48,105,152,0.45);
+    }
+    #back-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    #back-top:hover { transform: translateY(-3px); }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.6rem 1.4rem;
+      border-radius: 40px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 2000;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div id="navbar">
+  <div class="brand" onclick="location.href='index.html'">POETIC CODES</div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div>
+
+<div id="nav-overlay"></div>
+<div id="nav-menu">
+  <div class="nav-section-label">Pages</div>
+  <div class="nav-page-grid">
+    <button class="nav-page-btn" onclick="location.href='index.html'"><i class="fas fa-home"></i>Home</button>
+    <button class="nav-page-btn" onclick="location.href='articles.html'"><i class="fas fa-book-open"></i>Essays</button>
+    <button class="nav-page-btn" onclick="location.href='archive.html'"><i class="fas fa-archive"></i>Archive</button>
+    <button class="nav-page-btn" onclick="location.href='article.html'"><i class="fas fa-file-alt"></i>Article</button>
+    <button class="nav-page-btn" onclick="location.href='submit.html'"><i class="fas fa-pen-fancy"></i>Submit</button>
+    <button class="nav-page-btn" onclick="location.href='about.html'"><i class="fas fa-user-circle"></i>About</button>
+  </div>
+  <div class="nav-divider"></div>
+  <div class="nav-section-label">Topics</div>
+  <div class="nav-category-grid">
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=culture'"><i class="fas fa-globe-asia"></i>Culture</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=national'"><i class="fas fa-landmark"></i>National</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=international'"><i class="fas fa-satellite-dish"></i>International</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=programming'"><i class="fas fa-code"></i>Programming</button>
+  </div>
+</div>
+
+<div id="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>All Essays</span>
+    </div>
+    <h1 class="gradient-text">All Essays</h1>
+    <p>Every long-form piece published on Poetic Codes. Thoughtful writing on culture, national affairs, international conditions, programming, and philosophy — always free to read and designed to make you think deeper.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="archive.html" class="btn-outline"><i class="fas fa-archive"></i>Browse Archive</a>
+      <a href="submit.html" class="btn-primary"><i class="fas fa-pen-fancy"></i>Submit an Essay</a>
+    </div>
+  </div>
+</div>
+
+<section id="toc-section">
+  <div class="container">
+    <div class="toc-box">
+      <div class="toc-title"><i class="fas fa-list" style="color:var(--teal)"></i>Table of Contents</div>
+      <p class="toc-desc">Jump directly to any category, or scroll through the full collection below. All essay counts update in real time from the archive.</p>
+      <div class="toc-grid">
+        <a class="toc-item" href="#essays-section" onclick="setFilter('all')">
+          <i class="fas fa-layer-group"></i><span class="toc-item-label">All Essays</span><span class="toc-item-count" id="toc-count-all">—</span>
+        </a>
+        <a class="toc-item" href="#essays-section" onclick="setFilter('culture')">
+          <i class="fas fa-globe-asia"></i><span class="toc-item-label">Culture</span><span class="toc-item-count" id="toc-count-culture">—</span>
+        </a>
+        <a class="toc-item" href="#essays-section" onclick="setFilter('national')">
+          <i class="fas fa-landmark"></i><span class="toc-item-label">National Affairs</span><span class="toc-item-count" id="toc-count-national">—</span>
+        </a>
+        <a class="toc-item" href="#essays-section" onclick="setFilter('international')">
+          <i class="fas fa-satellite-dish"></i><span class="toc-item-label">International</span><span class="toc-item-count" id="toc-count-international">—</span>
+        </a>
+        <a class="toc-item" href="#essays-section" onclick="setFilter('programming')">
+          <i class="fas fa-code"></i><span class="toc-item-label">Programming</span><span class="toc-item-count" id="toc-count-programming">—</span>
+        </a>
+        <a class="toc-item" href="#essays-section" onclick="setFilter('philosophy')">
+          <i class="fas fa-brain"></i><span class="toc-item-label">Philosophy</span><span class="toc-item-count" id="toc-count-philosophy">—</span>
+        </a>
+        <a class="toc-item" href="archive.html">
+          <i class="fas fa-calendar-alt"></i><span class="toc-item-label">Archive by Date</span><span class="toc-item-count">→</span>
+        </a>
+        <a class="toc-item" href="submit.html">
+          <i class="fas fa-pen-fancy"></i><span class="toc-item-label">Submit Essay</span><span class="toc-item-count">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="filter-section">
+  <div class="container">
+    <div class="filter-row">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-input" placeholder="Search essays by title or keyword…">
+      </div>
+      <div class="filter-btns">
+        <button class="filter-btn active" data-cat="all" onclick="setFilter('all')">All</button>
+        <button class="filter-btn" data-cat="culture" onclick="setFilter('culture')">Culture</button>
+        <button class="filter-btn" data-cat="national" onclick="setFilter('national')">National</button>
+        <button class="filter-btn" data-cat="international" onclick="setFilter('international')">International</button>
+        <button class="filter-btn" data-cat="programming" onclick="setFilter('programming')">Programming</button>
+        <button class="filter-btn" data-cat="philosophy" onclick="setFilter('philosophy')">Philosophy</button>
+      </div>
+      <select class="sort-select" id="sort-select">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="az">A – Z</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<section id="essays-section">
+  <div class="container">
+    <div class="essays-layout">
+      <div>
+        <div id="results-label" style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--dim);margin-bottom:1.2rem"></div>
+        <div class="articles-grid" id="main-grid">
+          <p style="color:var(--muted);grid-column:1/-1">Loading essays…</p>
+        </div>
+        <div id="no-results"><i class="fas fa-search"></i><p>No essays match your search. Try a different keyword or category.</p><br><a href="submit.html" class="btn-primary" style="margin:0 auto"><i class="fas fa-pen-fancy"></i>Be the first to write on this topic</a></div>
+        <div id="load-more-row"><button class="btn-outline" id="load-more-btn"><i class="fas fa-plus"></i>Load More Essays</button></div>
+      </div>
+      <div class="sidebar-sticky">
+        <div class="sidebar-widget">
+          <h4><i class="fas fa-fire" style="color:var(--teal);margin-right:0.4rem"></i>Popular Tags</h4>
+          <div class="tag-cloud">
+            <span class="tag-cloud-item" onclick="filterBySearch('AI')">AI</span>
+            <span class="tag-cloud-item" onclick="filterBySearch('philosophy')">Philosophy</span>
+            <span class="tag-cloud-item" onclick="filterBySearch('ethics')">Ethics</span>
+            <span class="tag-cloud-item" onclick="filterBySearch('democracy')">Democracy</span>
+            <span class="tag-cloud-item" onclick="filterBySearch('identity')">Identity</span>
+            <span class="tag-cloud-item" onclick="filterBySearch('code')">Code</span>
+            <span class="tag-cloud-item" onclick="filterBySearch('climate')">Climate</span>
+            <span class="tag-cloud-item" onclick="filterBySearch('language')">Language</span>
+            <span class="tag-cloud-item" onclick="filterBySearch('power')">Power</span>
+            <span class="tag-cloud-item" onclick="filterBySearch('technology')">Technology</span>
+          </div>
+        </div>
+        <div class="sidebar-widget">
+          <h4><i class="fas fa-archive" style="color:var(--teal);margin-right:0.4rem"></i>Monthly Archive</h4>
+          <p>Browse essays organized by month and year in the full archive.</p>
+          <a href="archive.html" class="btn-outline" style="font-size:0.65rem;padding:0.45rem 1rem;width:100%;justify-content:center"><i class="fas fa-calendar-alt"></i>Open Archive</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Poetic Codes</h4>
+        <p style="color:var(--muted);max-width:260px;">Thoughtful long-form writing that explores ideas across culture, nation, world, and code.</p>
+        <div class="social-icons" style="margin-top:1.2rem;">
+          <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="articles.html"><i class="fas fa-book-open"></i> All Essays</a></li>
+          <li><a href="archive.html"><i class="fas fa-archive"></i> Archive</a></li>
+          <li><a href="submit.html"><i class="fas fa-pen-fancy"></i> Submit</a></li>
+          <li><a href="about.html"><i class="fas fa-user-circle"></i> About</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Topics</h4>
+        <ul>
+          <li><a href="articles.html?cat=culture">Culture</a></li>
+          <li><a href="articles.html?cat=national">National Affairs</a></li>
+          <li><a href="articles.html?cat=international">International</a></li>
+          <li><a href="articles.html?cat=programming">Programming</a></li>
+          <li><a href="articles.html?cat=philosophy">Philosophy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="pansensoyglenn@gmail.com" class="footer-btn"><i class="fas fa-envelope"></i> Email the Author</a>
+        <a href="articles.html" class="footer-btn" style="margin-top:12px;"><i class="fas fa-feather-alt"></i> Thank You for a Visit!</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom"style="color:white;">
+      &copy; 2026 Glenn Junsay Pansensoy. All rights reserved.<br>
+      Built with data precision and Created through intensive information authentication. From  Diplahan, Zamboanga Sibugay Province, Philippines.<br>Contact: pansensoyglenn@gmail.com
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<button id="back-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCPW7D8klItn-r6V-hTqNHrYBQFnMcmElE",
+    authDomain: "glennpansensoy-12288.firebaseapp.com",
+    projectId: "glennpansensoy-12288",
+    storageBucket: "glennpansensoy-12288.firebasestorage.app",
+    messagingSenderId: "264252112486",
+    appId: "1:264252112486:web:a7c1d2d001815af22377a7"
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  function esc(s) { if (!s) return ''; return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function showToast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3200); }
+  function readTime(text='') { return Math.max(1, Math.ceil(String(text).trim().split(/\s+/).length/200)); }
+  function fmtDate(ts) { if(!ts) return ''; const d=ts.toDate?ts.toDate():new Date(ts); return d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}); }
+  function catIcon(cat) { const m={culture:'🌏',national:'🏛',international:'🛰',programming:'💻',philosophy:'🧠',ai:'🤖'}; return m[(cat||'').toLowerCase()]||'📄'; }
+
+  let allDocs = [];
+  let currentFilter = 'all';
+  let currentSearch = '';
+  let sortMode = 'newest';
+  const PAGE_SIZE = 12;
+  let visibleCount = PAGE_SIZE;
+
+  async function loadAll() {
+    const q = query(collection(db,'articles'), orderBy('createdAt','desc'));
+    const snap = await getDocs(q);
+    allDocs = snap.docs.map(d => ({id:d.id, ...d.data()}));
+    updateTOCCounts();
+    renderGrid();
+  }
+
+  function updateTOCCounts() {
+    const cats = ['culture','national','international','programming','philosophy'];
+    document.getElementById('toc-count-all').textContent = allDocs.length;
+    cats.forEach(c => {
+      const el = document.getElementById('toc-count-'+c);
+      if (el) el.textContent = allDocs.filter(d=>(d.category||'').toLowerCase()===c).length;
+    });
+  }
+
+  function getFiltered() {
+    let docs = [...allDocs];
+    if (currentFilter !== 'all') docs = docs.filter(d=>(d.category||'').toLowerCase()===currentFilter);
+    if (currentSearch) {
+      const q = currentSearch.toLowerCase();
+      docs = docs.filter(d=>(d.title||'').toLowerCase().includes(q)||(d.content||'').toLowerCase().includes(q)||(d.category||'').toLowerCase().includes(q));
+    }
+    if (sortMode === 'oldest') docs.reverse();
+    else if (sortMode === 'az') docs.sort((a,b)=>(a.title||'').localeCompare(b.title||''));
+    return docs;
+  }
+
+  function renderGrid() {
+    const grid = document.getElementById('main-grid');
+    const noRes = document.getElementById('no-results');
+    const lmRow = document.getElementById('load-more-row');
+    const label = document.getElementById('results-label');
+    const docs = getFiltered();
+    const slice = docs.slice(0, visibleCount);
+    label.textContent = docs.length === allDocs.length
+      ? `Showing all ${docs.length} essays`
+      : `Showing ${Math.min(visibleCount,docs.length)} of ${docs.length} results`;
+    if (docs.length === 0) { 
+      grid.innerHTML=''; 
+      noRes.style.display='block'; 
+      lmRow.style.display='none'; 
+      return; 
+    }
+    noRes.style.display='none';
+    grid.innerHTML = slice.map(d => `
+      <div class="article-card" onclick="location.href='article.html?id=${esc(d.id)}'">
+        <div class="article-card-img">${catIcon(d.category)}<div class="rt-badge">${readTime(d.content)} min read</div></div>
+        <div class="article-card-body">
+          <div class="article-card-cat">${esc(d.category||'Essay')}</div>
+          <h3>${esc(d.title)}</h3>
+          <p>${esc((d.excerpt||d.content||'').substring(0,140))}…</p>
+          <div class="article-meta">
+            <span><i class="fas fa-user-edit"></i> ${esc(d.author||'Poetic Codes')}</span>
+            <span><i class="fas fa-clock"></i> ${readTime(d.content)} min</span>
+            <span><i class="fas fa-calendar"></i> ${fmtDate(d.createdAt)}</span>
+          </div>
+          <a href="article.html?id=${esc(d.id)}" class="read-more-link">Read essay <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    `).join('');
+    lmRow.style.display = visibleCount < docs.length ? 'block' : 'none';
+  }
+
+  window.setFilter = function(cat) {
+    currentFilter = cat;
+    visibleCount = PAGE_SIZE;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat===cat));
+    renderGrid();
+  };
+
+  window.filterBySearch = function(term) {
+    currentSearch = term;
+    document.getElementById('search-input').value = term;
+    visibleCount = PAGE_SIZE;
+    renderGrid();
+  };
+
+  document.getElementById('search-input').addEventListener('input', function() {
+    currentSearch = this.value.trim();
+    visibleCount = PAGE_SIZE;
+    renderGrid();
+  });
+
+  document.getElementById('sort-select').addEventListener('change', function() {
+    sortMode = this.value;
+    visibleCount = PAGE_SIZE;
+    renderGrid();
+  });
+
+  document.getElementById('load-more-btn').addEventListener('click', () => {
+    visibleCount += PAGE_SIZE;
+    renderGrid();
+  });
+
+  const params = new URLSearchParams(location.search);
+  const catParam = params.get('cat');
+  if (catParam) { 
+    currentFilter = catParam; 
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat===catParam)); 
+  }
+
+  loadAll().catch(() => {
+    document.getElementById('main-grid').innerHTML='<p style="color:var(--muted);grid-column:1/-1">Could not load essays. Please try again.</p>';
+  });
+</script>
+
+<script>
+  const ham = document.getElementById('hamburger');
+  const menu = document.getElementById('nav-menu');
+  const overlay = document.getElementById('nav-overlay');
+  function toggleNav(open) { 
+    ham.classList.toggle('open',open); 
+    menu.classList.toggle('open',open); 
+    overlay.classList.toggle('open',open); 
+  }
+  ham.addEventListener('click', ()=>toggleNav(!menu.classList.contains('open')));
+  overlay.addEventListener('click', ()=>toggleNav(false));
+
+  window.addEventListener('scroll',()=>{
+    const scrolled=window.scrollY, max=document.body.scrollHeight-window.innerHeight;
+    document.getElementById('progress-bar').style.width=(scrolled/max*100)+'%';
+    document.getElementById('back-top').classList.toggle('show', scrolled > 300);
+  });
+
+  document.getElementById('back-top').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
