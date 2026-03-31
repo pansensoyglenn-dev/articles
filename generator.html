@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essay Page Generator — Poetic Codes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian:  #0a0c14;
+  --obs-800:   #0f1220;
+  --obs-700:   #141929;
+  --obs-600:   #1a2235;
+  --obs-500:   #212b42;
+  --blue:      #4b8bbe;
+  --blue-lt:   #74afd4;
+  --blue-dim:  #2e5878;
+  --blue-pale: rgba(75,139,190,0.07);
+  --teal:      #5ba3c9;
+  --gold:      #c9a84c;
+  --green:     #4caf80;
+  --text:      #e8f0fa;
+  --muted:     #8aa4c0;
+  --dim:       #506070;
+  --border:    rgba(75,139,190,0.18);
+  --border-md: rgba(75,139,190,0.32);
+  --red:       #c46a6a;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; scroll-behavior:smooth; }
+body {
+  background: var(--obsidian);
+  color: var(--text);
+  font-family: 'Crimson Pro', Georgia, serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(75,139,190,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(75,139,190,0.025) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+/* ── Header ── */
+header {
+  position: relative; z-index:1;
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(75,139,190,0.06) 0%, transparent 100%);
+}
+.site-brand {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.72rem; letter-spacing: 0.2em;
+  background: linear-gradient(90deg, #fff 30%, var(--teal));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  margin-bottom: 1rem; display: block;
+}
+header h1 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  background: linear-gradient(135deg, #fff 0%, var(--blue-lt) 60%, var(--teal));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  margin-bottom: 0.6rem;
+}
+header p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; color: var(--dim);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* ── Main layout ── */
+.wrapper {
+  position: relative; z-index:1;
+  max-width: 860px; margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+/* ── Step labels ── */
+.step-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal);
+  background: rgba(91,163,201,0.08);
+  border: 1px solid rgba(91,163,201,0.2);
+  padding: 0.22rem 0.7rem; border-radius: 20px;
+  display: inline-block; margin-bottom: 0.8rem;
+}
+
+/* ── Form card ── */
+.form-card {
+  background: var(--obs-700);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative; overflow: hidden;
+}
+.form-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, transparent, var(--blue), var(--teal), transparent);
+}
+.form-card h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.85rem; color: var(--text);
+  margin-bottom: 1.4rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.form-card h2 i { color: var(--teal); font-size: 1rem; }
+
+/* ── Fields ── */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.field-row.full { grid-template-columns: 1fr; }
+.field { display: flex; flex-direction: column; gap: 0.35rem; }
+label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; color: var(--muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+label span.req { color: var(--teal); margin-left: 2px; }
+input[type=text], input[type=url], select, textarea {
+  background: var(--obs-800);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.92rem;
+  padding: 0.6rem 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(75,139,190,0.12);
+}
+textarea { resize: vertical; min-height: 180px; line-height: 1.75; }
+select { cursor: pointer; }
+.field-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.56rem; color: var(--dim);
+  letter-spacing: 0.04em;
+}
+
+/* ── Slug preview ── */
+.slug-preview {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; color: var(--gold);
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.18);
+  border-radius: 6px; padding: 0.4rem 0.7rem;
+  margin-top: 0.4rem; display: none;
+}
+
+/* ── Generate button ── */
+.generate-btn {
+  width: 100%; padding: 1rem;
+  background: linear-gradient(135deg, var(--blue-dim), var(--blue));
+  border: none; border-radius: 10px;
+  color: #fff; font-family: 'Cinzel Decorative', serif;
+  font-size: 0.78rem; letter-spacing: 0.1em;
+  cursor: pointer; transition: all 0.25s;
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+.generate-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(75,139,190,0.35); }
+.generate-btn:active { transform: translateY(0); }
+.generate-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ── Output section ── */
+#output-section {
+  display: none;
+  margin-top: 2rem;
+}
+.output-header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.output-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.85rem; color: var(--green);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.output-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.action-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 1rem; border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; font-weight: 500; letter-spacing: 0.04em;
+  cursor: pointer; transition: all 0.2s; border: none;
+}
+.btn-copy {
+  background: var(--obs-500); border: 1px solid var(--border-md);
+  color: var(--muted);
+}
+.btn-copy:hover { color: var(--text); border-color: var(--blue); }
+.btn-download {
+  background: linear-gradient(135deg, #2d7a35, #1a9e5c);
+  color: #fff;
+}
+.btn-download:hover { filter: brightness(1.15); transform: translateY(-1px); }
+
+#output-code {
+  background: var(--obs-800);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; line-height: 1.7;
+  color: var(--muted);
+  overflow-x: auto;
+  white-space: pre;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+/* ── Instructions ── */
+.instructions {
+  background: var(--obs-700);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 12px 12px 0;
+  padding: 1.4rem 1.6rem;
+  margin-top: 1.5rem;
+}
+.instructions h3 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.78rem; color: var(--gold);
+  margin-bottom: 1rem;
+}
+.step {
+  display: flex; gap: 0.8rem; align-items: flex-start;
+  margin-bottom: 0.8rem;
+}
+.step-num {
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue-dim), var(--blue));
+  color: #fff; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; display: flex; align-items: center; justify-content: center;
+}
+.step p {
+  font-size: 0.88rem; color: var(--muted); line-height: 1.6;
+}
+.step code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: var(--blue-lt);
+  background: rgba(75,139,190,0.1);
+  padding: 0.1rem 0.4rem; border-radius: 4px;
+}
+
+/* ── Toast ── */
+#toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: var(--obs-500); border: 1px solid var(--blue);
+  color: var(--text); padding: 0.6rem 1.4rem; border-radius: 40px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+  transition: transform 0.3s; z-index: 3000; pointer-events: none;
+  white-space: nowrap;
+}
+#toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .field-row { grid-template-columns: 1fr; }
+  .wrapper { padding: 2rem 1rem 4rem; }
+  .form-card { padding: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="site-brand">POETIC CODES</span>
+  <h1>Essay Page Generator</h1>
+  <p>Fill in the details → get a ready-to-upload HTML file with correct OG tags</p>
+</header>
+
+<div class="wrapper">
+
+  <!-- Step 1: Essay Details -->
+  <div class="step-label">Step 1 — Essay Details</div>
+  <div class="form-card">
+    <h2>📝 Essay Information</h2>
+
+    <div class="field-row full">
+      <div class="field">
+        <label>Title <span class="req">*</span></label>
+        <input type="text" id="f-title" placeholder="The Illusion of the Gambling Crackdown" oninput="onTitleInput()">
+        <div class="slug-preview" id="slug-preview"></div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Author <span class="req">*</span></label>
+        <input type="text" id="f-author" value="Glenn Junsay Pansensoy">
+      </div>
+      <div class="field">
+        <label>Category <span class="req">*</span></label>
+        <select id="f-category">
+          <option value="National Affairs">National Affairs</option>
+          <option value="Culture">Culture</option>
+          <option value="International">International</option>
+          <option value="Programming">Programming</option>
+          <option value="Philosophy">Philosophy</option>
+          <option value="AI">AI</option>
+          <option value="Society">Society</option>
+          <option value="Ethics">Ethics</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field">
+        <label>Excerpt / Description <span class="req">*</span></label>
+        <textarea id="f-excerpt" rows="3" placeholder="A short summary of the essay (shown as the Facebook/Twitter preview description)…" style="min-height:90px"></textarea>
+        <div class="field-hint">Keep under 160 characters for best OG preview results. <span id="char-count">0</span>/160</div>
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field">
+        <label>Essay Body <span class="req">*</span></label>
+        <textarea id="f-body" placeholder="Paste the full essay text here. You can use basic HTML: &lt;strong&gt;, &lt;em&gt;, &lt;h2&gt;, &lt;blockquote&gt; etc."></textarea>
+        <div class="field-hint">Paragraphs separated by blank lines will be converted automatically.</div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Tags (comma-separated)</label>
+        <input type="text" id="f-tags" placeholder="Duterte, POGOs, Philippines, Politics">
+      </div>
+      <div class="field">
+        <label>Published Date</label>
+        <input type="text" id="f-date" placeholder="e.g. March 31, 2026">
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: OG / Share Settings -->
+  <div class="step-label">Step 2 — Share Settings</div>
+  <div class="form-card">
+    <h2>🔗 Open Graph &amp; Social Share</h2>
+
+    <div class="field-row full">
+      <div class="field">
+        <label>Canonical URL (where this file will live) <span class="req">*</span></label>
+        <input type="url" id="f-url" placeholder="https://pansensoyglenn-dev.github.io/articles/the-illusion-of-the-gambling-crackdown.html">
+        <div class="field-hint">This is the exact URL you will share on Facebook. Must match the filename.</div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>OG Image URL</label>
+        <input type="url" id="f-ogimage" placeholder="https://pansensoyglenn-dev.github.io/articles/og-image.jpg">
+        <div class="field-hint">Leave blank to use the default site image.</div>
+      </div>
+      <div class="field">
+        <label>Twitter Handle</label>
+        <input type="text" id="f-twitter" value="@GlennPansensoy">
+      </div>
+    </div>
+  </div>
+
+  <!-- Generate Button -->
+  <button class="generate-btn" onclick="generate()" id="gen-btn">
+    ✨ Generate Essay HTML File
+  </button>
+
+  <!-- Output -->
+  <div id="output-section">
+    <div class="output-header">
+      <div class="output-title">✅ File Ready</div>
+      <div class="output-actions">
+        <button class="action-btn btn-copy" onclick="copyCode()">📋 Copy HTML</button>
+        <button class="action-btn btn-download" onclick="downloadFile()">⬇ Download .html</button>
+      </div>
+    </div>
+    <div id="output-code"></div>
+
+    <div class="instructions">
+      <h3>📁 How to deploy</h3>
+      <div class="step">
+        <div class="step-num">1</div>
+        <p>Click <strong>Download .html</strong> above to save the file.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <p>Rename it to match the URL — e.g. <code id="inst-filename">the-illusion-of-the-gambling-crackdown.html</code></p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <p>Push it to your GitHub repo under <code>articles/</code> — e.g. <code>pansensoyglenn-dev.github.io/articles/the-illusion-of-the-gambling-crackdown.html</code></p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <p>Share <strong>that exact URL</strong> on Facebook. The OG tags are hardcoded in <code>&lt;head&gt;</code> — Facebook's bot will read the correct title, description, and image immediately.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <p>Test it at <code>developers.facebook.com/tools/debug/</code> — paste the URL and click Debug to confirm.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ── Helpers ──────────────────────────────────────────────────────────────────
+
+function slugify(str) {
+  return str.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+}
+
+function esc(s = '') {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function onTitleInput() {
+  const title = document.getElementById('f-title').value.trim();
+  const slug  = slugify(title);
+  const preview = document.getElementById('slug-preview');
+  if (slug) {
+    preview.textContent = `→ filename: ${slug}.html`;
+    preview.style.display = 'block';
+    // Auto-fill canonical URL if empty
+    const urlField = document.getElementById('f-url');
+    if (!urlField.value) {
+      urlField.value = `https://pansensoyglenn-dev.github.io/articles/${slug}.html`;
+    }
+  } else {
+    preview.style.display = 'none';
+  }
+}
+
+document.getElementById('f-excerpt').addEventListener('input', function() {
+  document.getElementById('char-count').textContent = this.value.length;
+});
+
+// ── Body parser: plain text paragraphs → HTML ────────────────────────────────
+
+function parseBody(raw) {
+  if (!raw.trim()) return '<p>No content available.</p>';
+  // If it already contains HTML tags, use as-is (sanitised lightly)
+  if (/<[a-z][\s\S]*>/i.test(raw)) return raw;
+  // Otherwise: split on double newlines → paragraphs
+  return raw.split(/\n\s*\n/)
+    .map(p => p.trim())
+    .filter(Boolean)
+    .map(p => `<p>${p.replace(/\n/g, ' ')}</p>`)
+    .join('\n      ');
+}
+
+// ── Category icon map ────────────────────────────────────────────────────────
+
+function catIcon(cat) {
+  const m = {
+    'National Affairs': '🏛️',
+    'Culture':          '🌏',
+    'International':    '📡',
+    'Programming':      '💻',
+    'Philosophy':       '🧠',
+    'AI':               '🤖',
+    'Society':          '👥',
+    'Ethics':           '⚖️',
+  };
+  return m[cat] || '✍️';
+}
+
+// ── Main generator ────────────────────────────────────────────────────────────
+
+let generatedHTML = '';
+let generatedSlug = '';
+
+function generate() {
+  const title    = document.getElementById('f-title').value.trim();
+  const author   = document.getElementById('f-author').value.trim() || 'Glenn Junsay Pansensoy';
+  const category = document.getElementById('f-category').value;
+  const excerpt  = document.getElementById('f-excerpt').value.trim();
+  const body     = document.getElementById('f-body').value.trim();
+  const tags     = document.getElementById('f-tags').value.trim();
+  const date     = document.getElementById('f-date').value.trim();
+  const pageUrl  = document.getElementById('f-url').value.trim();
+  const ogImg    = document.getElementById('f-ogimage').value.trim()
+                   || 'https://pansensoyglenn-dev.github.io/articles/og-image.jpg';
+  const twitter  = document.getElementById('f-twitter').value.trim() || '@GlennPansensoy';
+
+  if (!title)   { showToast('⚠️ Title is required'); return; }
+  if (!excerpt) { showToast('⚠️ Excerpt/description is required'); return; }
+  if (!body)    { showToast('⚠️ Essay body is required'); return; }
+  if (!pageUrl) { showToast('⚠️ Canonical URL is required'); return; }
+
+  const slug      = slugify(title);
+  const titleFull = `${title} – Poetic Codes`;
+  const desc160   = excerpt.substring(0, 160);
+  const tagList   = tags ? tags.split(',').map(t => t.trim()).filter(Boolean) : [];
+  const tagStr    = tagList.join(', ');
+  const bodyHtml  = parseBody(body);
+  const readMins  = Math.max(1, Math.ceil(body.replace(/<[^>]+>/g,' ').split(/\s+/).filter(Boolean).length / 200));
+  const enc       = encodeURIComponent;
+  const eUrl      = enc(pageUrl);
+  const eTitle    = enc(titleFull);
+  const eExcerpt  = enc(desc160);
+
+  generatedSlug = slug;
+
+  generatedHTML = `<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#0b0f17">
+
+<title>${esc(titleFull)}</title>
+<meta name="description" content="${esc(desc160)}">
+<meta name="author" content="${esc(author)}">
+${tagStr ? `<meta name="keywords" content="${esc(tagStr)}">` : ''}
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="${esc(pageUrl)}">
+
+<!-- Open Graph — hardcoded so Facebook/Twitter bots read the correct values -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Poetic Codes">
+<meta property="og:title" content="${esc(titleFull)}">
+<meta property="og:description" content="${esc(desc160)}">
+<meta property="og:url" content="${esc(pageUrl)}">
+<meta property="og:image" content="${esc(ogImg)}">
+<meta property="og:image:secure_url" content="${esc(ogImg)}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(titleFull)}">
+<meta property="og:locale" content="en_PH">
+<meta property="og:author" content="${esc(author)}">
+<meta property="article:author" content="${esc(author)}">
+<meta property="article:publisher" content="https://www.facebook.com/GlennJunsayPansensoy">
+<meta property="article:section" content="${esc(category)}">
+${tagStr ? `<meta property="article:tag" content="${esc(tagStr)}">` : ''}
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="${esc(twitter)}">
+<meta name="twitter:creator" content="${esc(twitter)}">
+<meta name="twitter:title" content="${esc(titleFull)}">
+<meta name="twitter:description" content="${esc(desc160)}">
+<meta name="twitter:image" content="${esc(ogImg)}">
+<meta name="twitter:image:alt" content="${esc(titleFull)}">
+<meta name="twitter:url" content="${esc(pageUrl)}">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian:#0a0c14; --obs-800:#0f1220; --obs-700:#141929; --obs-600:#1a2235; --obs-500:#212b42;
+  --blue:#4b8bbe; --blue-lt:#74afd4; --blue-dim:#2e5878; --blue-pale:rgba(75,139,190,0.07);
+  --teal:#5ba3c9; --gold:#c9a84c; --text:#e8f0fa; --muted:#8aa4c0; --dim:#506070;
+  --border:rgba(75,139,190,0.15); --border-med:rgba(75,139,190,0.28);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--obsidian);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:1.08rem;line-height:1.9;overflow-x:hidden;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(75,139,190,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(75,139,190,0.025) 1px,transparent 1px);background-size:52px 52px;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--obs-800);}::-webkit-scrollbar-thumb{background:var(--blue-dim);border-radius:4px;}
+a{color:var(--blue-lt);text-decoration:none;transition:color 0.2s;}a:hover{color:var(--teal);}
+#progress-bar{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--blue-dim),var(--blue),var(--teal));z-index:2000;transition:width 0.1s linear;}
+#navbar{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:0.9rem 2.5rem;background:rgba(10,12,20,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000;}
+.nav-brand{font-family:'Cinzel Decorative',serif;font-size:0.78rem;font-weight:700;letter-spacing:0.18em;background:linear-gradient(90deg,#fff 30%,var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none;cursor:pointer;}
+.nav-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;}
+.hero-glow{position:fixed;top:-180px;left:50%;transform:translateX(-50%);width:700px;height:420px;border-radius:50%;background:radial-gradient(ellipse,rgba(75,139,190,0.09) 0%,transparent 70%);pointer-events:none;z-index:0;}
+.wrapper{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 2rem;}
+#article-header{padding:9rem 0 4rem;position:relative;z-index:1;border-bottom:1px solid var(--border);}
+.cat-badge{display:inline-flex;align-items:center;gap:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);background:rgba(91,163,201,0.08);border:1px solid rgba(91,163,201,0.22);padding:0.28rem 0.8rem;border-radius:20px;margin-bottom:1.4rem;opacity:0;animation:fadeUp 0.7s ease 0.1s forwards;}
+.cat-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.6)}}
+h1.article-title{font-family:'Cinzel Decorative',serif;font-size:clamp(1.4rem,4vw,2.1rem);font-weight:700;line-height:1.25;margin-bottom:1.6rem;background:linear-gradient(135deg,#fff 0%,var(--blue-lt) 60%,var(--teal) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;animation:fadeUp 0.8s ease 0.2s forwards;}
+.article-meta{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem;opacity:0;animation:fadeUp 0.8s ease 0.35s forwards;}
+.meta-item{display:flex;align-items:center;gap:0.45rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--dim);letter-spacing:0.06em;}
+.meta-dot{width:3px;height:3px;border-radius:50%;background:var(--blue-dim);}
+.article-excerpt{font-style:italic;font-size:1rem;color:var(--muted);line-height:1.8;padding:1.1rem 1.4rem;background:var(--blue-pale);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;opacity:0;animation:fadeUp 0.8s ease 0.45s forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+#article-body{padding:3.5rem 0 6rem;position:relative;z-index:1;}
+.prose-block{margin-bottom:2rem;opacity:0;transform:translateY(22px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.prose-block.visible{opacity:1;transform:translateY(0);}
+.prose-block p{font-size:1.05rem;color:var(--text);line-height:1.95;text-align:justify;hyphens:auto;margin-bottom:1.4rem;}
+.prose-block p:last-child{margin-bottom:0;}
+.prose-block strong{color:var(--blue-lt);font-weight:600;}
+.prose-block em{color:var(--gold);font-style:italic;}
+.prose-block h2{font-family:'Cinzel Decorative',serif;font-size:1rem;color:var(--text);margin:2.5rem 0 1rem;padding-top:1.2rem;border-top:1px solid var(--border);}
+.prose-block h3{font-family:'Cinzel Decorative',serif;font-size:0.9rem;color:var(--blue-lt);margin:1.8rem 0 0.8rem;}
+.prose-block blockquote{border-left:3px solid var(--blue);padding:1rem 1.4rem;margin:1.8rem 0;background:var(--blue-pale);border-radius:0 10px 10px 0;font-style:italic;color:var(--muted);}
+.section-divider{height:1px;margin:0.5rem 0 2rem;background:linear-gradient(to right,transparent,var(--blue-dim),transparent);opacity:0.4;}
+.article-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin:3rem 0 1.5rem;padding-top:2rem;border-top:1px solid var(--border);}
+.tag{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.22rem 0.7rem;border-radius:20px;border:1px solid var(--border-med);color:var(--dim);cursor:default;transition:0.2s;}
+.tag:hover{border-color:var(--blue);color:var(--blue-lt);}
+.author-box{display:flex;gap:1.1rem;align-items:flex-start;margin-top:2.5rem;padding:1.5rem;background:var(--obs-700);border:1px solid var(--border);border-radius:14px;}
+.author-avatar{width:48px;height:48px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--blue-dim),var(--teal));display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.author-name{font-family:'Cinzel Decorative',serif;font-size:0.78rem;color:var(--text);margin-bottom:0.3rem;}
+.author-bio{font-size:0.88rem;color:var(--muted);line-height:1.65;}
+.share-section{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--border);}
+.share-title{font-family:'Cinzel Decorative',serif;font-size:0.82rem;color:var(--text);margin-bottom:1rem;}
+.share-col{display:flex;flex-direction:column;gap:0.5rem;max-width:260px;}
+.share-btn{display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.6rem 1rem;border-radius:8px;border:none;font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:500;letter-spacing:0.04em;color:#fff;cursor:pointer;text-decoration:none;transition:filter 0.2s,transform 0.2s;width:100%;}
+.share-btn:hover{filter:brightness(1.2);transform:translateY(-1px);}
+.sb-fb{background:#1877f2;}.sb-x{background:#111;border:1px solid #333 !important;}.sb-li{background:#0a66c2;}.sb-wa{background:#25d366;}.sb-cp{background:var(--obs-500);border:1px solid var(--border-med) !important;color:var(--muted) !important;}
+.sb-cp:hover{color:var(--text) !important;}
+.copy-url-row{display:flex;gap:0.5rem;margin-top:0.8rem;}
+.copy-url-input{flex:1;background:var(--obs-700);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.6rem;padding:0.5rem 0.8rem;outline:none;}
+footer{background:var(--obs-800);border-top:1px solid var(--border);padding:3rem 0 2rem;position:relative;z-index:1;}
+.footer-inner{max-width:760px;margin:0 auto;padding:0 2rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;}
+.footer-brand{font-family:'Cinzel Decorative',serif;font-size:0.72rem;letter-spacing:0.15em;background:linear-gradient(90deg,#fff,var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--dim);}
+.toast-msg{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--obs-500);border:1px solid var(--blue);color:var(--text);padding:0.65rem 1.5rem;border-radius:40px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;transition:transform 0.3s;z-index:3000;pointer-events:none;}
+.toast-msg.show{transform:translateX(-50%) translateY(0);}
+@media(max-width:600px){#navbar{padding:0.8rem 1.2rem;}.wrapper{padding:0 1.2rem;}#article-header{padding:7rem 0 3rem;}.article-meta{gap:0.8rem;}h1.article-title{font-size:1.4rem;}.share-col{max-width:100%;}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="hero-glow"></div>
+
+<nav id="navbar">
+  <a class="nav-brand" href="articles.html">POETIC CODES</a>
+  <span class="nav-label">${esc(category)}</span>
+</nav>
+
+<div id="article-header">
+  <div class="wrapper">
+    <div class="cat-badge">${catIcon(category)} ${esc(category)}</div>
+    <h1 class="article-title">${esc(title)}</h1>
+    <div class="article-meta">
+      <div class="meta-item">${esc(author)}</div>
+      ${date ? `<div class="meta-item"><span class="meta-dot"></span>${esc(date)}</div>` : ''}
+      <div class="meta-item"><span class="meta-dot"></span>${readMins} min read</div>
+      <div class="meta-item"><span class="meta-dot"></span>${esc(category)}</div>
+    </div>
+    ${excerpt ? `<p class="article-excerpt">${esc(excerpt)}</p>` : ''}
+  </div>
+</div>
+
+<div id="article-body">
+  <div class="wrapper">
+    <div class="prose-block">
+      ${bodyHtml}
+    </div>
+
+    ${tagList.length ? `<div class="article-tags">${tagList.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+
+    <div class="author-box">
+      <div class="author-avatar">✍</div>
+      <div>
+        <div class="author-name">${esc(author)}</div>
+        <div class="author-bio">Long-form essayist exploring culture, national identity, international affairs, and the craft of programming. Based in Davao, Philippines.</div>
+      </div>
+    </div>
+
+    <div class="share-section">
+      <div class="share-title">Share This Essay</div>
+      <div class="share-col" id="share-col"></div>
+      <div class="copy-url-row">
+        <input class="copy-url-input" id="copy-url-input" value="${esc(pageUrl)}" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">POETIC CODES</div>
+    <div class="footer-copy">&copy; 2026 Glenn Junsay Pansensoy &middot; All rights reserved</div>
+  </div>
+</footer>
+
+<div class="toast-msg" id="pg-toast"></div>
+
+<script>
+  window.addEventListener('scroll',()=>{
+    const s=window.scrollY,max=document.body.scrollHeight-window.innerHeight;
+    document.getElementById('progress-bar').style.width=(max>0?(s/max*100):0)+'%';
+  },{passive:true});
+
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.08});
+  document.querySelectorAll('.prose-block').forEach(el=>observer.observe(el));
+
+  (function buildShare(){
+    const url=window.location.href;
+    const title=document.title;
+    const enc=encodeURIComponent;
+    const platforms=[
+      {cls:'sb-fb',icon:'📘',label:'Facebook',   href:'https://www.facebook.com/sharer/sharer.php?u='+enc(url)},
+      {cls:'sb-x', icon:'🐦',label:'X / Twitter',href:'https://twitter.com/intent/tweet?text='+enc(title)+'&url='+enc(url)+'&via=${twitter.replace('@','')}'},
+      {cls:'sb-li',icon:'💼',label:'LinkedIn',   href:'https://www.linkedin.com/sharing/share-offsite/?url='+enc(url)},
+      {cls:'sb-wa',icon:'💬',label:'WhatsApp',   href:'https://wa.me/?text='+enc(title+' '+url)},
+    ];
+    document.getElementById('share-col').innerHTML=
+      platforms.map(p=>'<a class="share-btn '+p.cls+'" href="'+p.href+'" target="_blank" rel="noopener noreferrer">'+p.icon+' '+p.label+'</a>').join('')+
+      '<button class="share-btn sb-cp" onclick="copyLink()">🔗 Copy Link</button>';
+    document.getElementById('copy-url-input').value=url;
+  })();
+
+  function copyLink(){
+    navigator.clipboard.writeText(window.location.href).then(()=>showPgToast('🔗 Link copied!'));
+  }
+  function showPgToast(msg){
+    const t=document.getElementById('pg-toast');
+    t.textContent=msg;t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2800);
+  }
+<\/script>
+</body>
+</html>`;
+
+  // Show output
+  document.getElementById('output-code').textContent = generatedHTML;
+  document.getElementById('output-section').style.display = 'block';
+  document.getElementById('inst-filename').textContent = slug + '.html';
+  document.getElementById('output-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  showToast('✅ Essay HTML generated!');
+}
+
+// ── Copy & Download ───────────────────────────────────────────────────────────
+
+function copyCode() {
+  navigator.clipboard.writeText(generatedHTML).then(() => showToast('📋 HTML copied to clipboard!'));
+}
+
+function downloadFile() {
+  if (!generatedHTML) { showToast('Generate first'); return; }
+  const blob = new Blob([generatedHTML], { type: 'text/html' });
+  const a    = document.createElement('a');
+  a.href     = URL.createObjectURL(blob);
+  a.download = (generatedSlug || 'essay') + '.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('⬇ Downloading ' + a.download);
+}
+</script>
+</body>
+</html>
