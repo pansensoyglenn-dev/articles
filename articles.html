@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#0b0f17">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <title>All Essays – Poetic Codes</title>
+  <meta name="description" content="Browse all long-form essays on culture, national affairs, international conditions, programming, and philosophy at Poetic Codes.">
+  <meta name="author" content="Glenn Junsay Pansensoy">
+  <meta name="keywords" content="essays, long-form writing, culture essays, Poetic Codes">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://code-avs.pages.dev/articles.html">
+
+  <meta property="og:title" content="All Essays – Poetic Codes">
+  <meta property="og:description" content="Browse the complete collection of thoughtful long-form essays.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Poetic Codes">
+  <meta property="og:url" content="https://code-avs.pages.dev/articles.html">
+  <meta property="og:image" content="https://code-avs.pages.dev/og-image.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="All Essays – Poetic Codes">
+  <meta name="twitter:description" content="Browse the complete collection of thoughtful long-form essays.">
+  <meta name="twitter:image" content="https://code-avs.pages.dev/og-image.jpg">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575646748966866" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --blue:#3a7bd5; --blue-lt:#74b9e8; --teal:#7ec8e3; --python:#306998;
+      --obsidian:#0b0f17; --card:#141e2c; --card-hover:#192537;
+      --border:#253649; --text:#eef4ff; --muted:#b4cef0; --dim:#667fa3;
+    }
+    html { scroll-behavior:smooth; }
+    body { 
+      background:var(--obsidian); 
+      color:var(--text); 
+      font-family:'Crimson Pro',Georgia,serif; 
+      font-size:0.92rem; 
+      line-height:1.85; 
+      overflow-x:hidden; 
+      width:100%; 
+    }
+    h1 { font-size:1.05rem !important; }
+    h2, h3 { font-size:0.95rem !important; }
+    p { font-size:0.9rem; text-align:justify; overflow-wrap:break-word; word-break:break-word; }
+
+    ::-webkit-scrollbar { width:4px; } 
+    ::-webkit-scrollbar-track { background:#0d1420; } 
+    ::-webkit-scrollbar-thumb { background:var(--blue); border-radius:4px; }
+
+    a { color:var(--blue-lt); text-decoration:none; transition:color 0.2s; } 
+    a:hover { color:var(--teal); }
+    .gradient-text { background:linear-gradient(90deg,#a8d8f0,#7ec8e3,#5ba3d9); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .container { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
+
+    #progress-bar { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--teal)); width:0; z-index:2000; transition:width 0.1s linear; }
+    
+    #navbar { 
+      position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; 
+      padding:0.8rem 2rem; background:rgba(11,15,23,0.93); backdrop-filter:blur(20px); 
+      border-bottom:1px solid var(--border); z-index:1000; 
+    }
+    .brand { 
+      font-family:'Cinzel Decorative',serif; font-weight:700; letter-spacing:0.15em; 
+      font-size:0.9rem; cursor:pointer; 
+      background:linear-gradient(90deg,#fff,#7ec8e3); -webkit-background-clip:text; background-clip:text; color:transparent; 
+    }
+    .hamburger { display:flex; flex-direction:column; gap:5px; cursor:pointer; z-index:1100; }
+    .hamburger span { width:24px; height:2px; background:#fff; transition:0.25s; display:block; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+    #nav-menu { 
+      position:fixed; top:0; right:-300px; width:270px; height:100vh; 
+      background:rgba(10,17,30,0.99); backdrop-filter:blur(24px); 
+      border-left:1px solid #2a3b55; padding:4.5rem 1.2rem 2rem; 
+      transition:0.3s; z-index:1050; overflow-y:auto; 
+    }
+    #nav-menu.open { right:0; }
+    #nav-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:1040; }
+    #nav-overlay.open { display:block; }
+
+    .nav-section-label { font-family:'JetBrains Mono',monospace; font-size:0.58rem; color:var(--dim); text-transform:uppercase; letter-spacing:0.14em; padding:0.5rem 0.8rem 0.2rem; margin-top:0.8rem; }
+    .nav-page-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.4rem; }
+    .nav-page-btn { display:flex; align-items:center; gap:0.5rem; padding:0.5rem 0.6rem; background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--muted); cursor:pointer; transition:0.2s; font-size:0.78rem; font-family:'Crimson Pro',serif; }
+    .nav-page-btn i { color:var(--blue-lt); font-size:0.72rem; width:14px; }
+    .nav-page-btn:hover { border-color:var(--blue); color:var(--text); background:rgba(58,123,213,0.1); }
+    .nav-category-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.4rem; }
+    .nav-cat-btn { display:flex; flex-direction:column; align-items:center; gap:0.35rem; padding:0.7rem 0.4rem; background:rgba(58,123,213,0.08); border:1px solid var(--border); border-radius:10px; color:var(--muted); cursor:pointer; transition:0.2s; font-size:0.65rem; font-family:'JetBrains Mono',monospace; text-transform:uppercase; }
+    .nav-cat-btn i { font-size:1rem; color:var(--teal); }
+    .nav-cat-btn:hover { border-color:var(--blue); color:var(--blue-lt); }
+
+    .btn-primary { background:linear-gradient(135deg,var(--python),var(--blue)); border:none; padding:0.7rem 1.6rem; border-radius:40px; color:#fff; font-family:'Cinzel Decorative',serif; font-size:0.7rem; cursor:pointer; transition:0.22s; display:inline-flex; align-items:center; gap:8px; }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(48,105,152,0.5); }
+    .btn-outline { background:transparent; border:1px solid var(--blue); padding:0.7rem 1.6rem; border-radius:40px; color:var(--blue-lt); font-family:'Cinzel Decorative',serif; font-size:0.7rem; cursor:pointer; transition:0.22s; display:inline-flex; align-items:center; gap:8px; }
+    .btn-outline:hover { background:rgba(58,123,213,0.14); transform:translateY(-2px); }
+
+    #page-hero { padding:8rem 0 3.5rem; text-align:center; background:linear-gradient(180deg,#060c18,#0a1420); border-bottom:1px solid var(--border); }
+    #page-hero h1 { font-family:'Cinzel Decorative',serif; font-size:clamp(1.3rem,3.5vw,2rem) !important; margin-bottom:0.8rem; }
+
+    #search-section { padding:1.8rem 0; background:#090f1a; border-bottom:1px solid var(--border); position:sticky; top:57px; z-index:900; }
+    .search-row { display:flex; gap:0.8rem; align-items:center; flex-wrap:wrap; }
+    .search-box { display:flex; align-items:center; gap:0.5rem; background:var(--card); border:1px solid var(--border); border-radius:40px; padding:0.5rem 1rem; flex:1; max-width:420px; }
+    .search-box i { color:var(--dim); }
+    .search-box input { background:transparent; border:none; outline:none; color:var(--text); font-family:'Crimson Pro',serif; font-size:0.88rem; width:100%; }
+    .search-box input::placeholder { color:var(--dim); }
+
+    #articles-section { padding:3.5rem 0 6rem; }
+    .articles-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1.6rem; }
+    .article-card {
+      background:var(--card); 
+      border:1px solid var(--border); 
+      border-radius:16px; 
+      padding:1.6rem; 
+      transition:0.25s; 
+      cursor:pointer;
+    }
+    .article-card:hover { 
+      border-color:var(--blue); 
+      background:var(--card-hover); 
+      transform:translateY(-6px); 
+    }
+    .article-cat { 
+      font-family:'JetBrains Mono',monospace; 
+      font-size:0.62rem; 
+      color:var(--teal); 
+      text-transform:uppercase; 
+      letter-spacing:0.1em; 
+      margin-bottom:0.6rem; 
+    }
+    .article-title { 
+      font-size:0.95rem; 
+      line-height:1.45; 
+      color:var(--text); 
+      margin-bottom:0.8rem; 
+    }
+    .article-meta { 
+      display:flex; 
+      gap:0.9rem; 
+      font-family:'JetBrains Mono',monospace; 
+      font-size:0.58rem; 
+      color:var(--dim); 
+      flex-wrap:wrap; 
+    }
+
+    .sidebar-sticky { position:sticky; top:130px; display:flex; flex-direction:column; gap:1.6rem; }
+    .sidebar-widget { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.6rem; }
+
+    #no-results { text-align:center; padding:6rem 2rem; color:var(--muted); display:none; }
+    #no-results i { font-size:3rem; color:var(--border); margin-bottom:1rem; }
+
+    footer { 
+      background:#060a10; 
+      border-top:1px solid var(--border); 
+      padding:4rem 0 2.5rem; 
+    }
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.8rem;
+    }
+    .footer-col h4 {
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col ul li {
+      margin-bottom: 0.8rem;
+    }
+    .footer-col a {
+      color: var(--muted);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-col a:hover {
+      color: var(--teal);
+      padding-left: 6px;
+    }
+    .footer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(58,123,213,0.1);
+      border: 1px solid var(--border);
+      color: var(--blue-lt);
+      padding: 0.85rem 1.6rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-family: 'Cinzel Decorative', serif;
+      transition: all 0.25s;
+      width: 100%;
+      justify-content: center;
+    }
+    .footer-btn:hover {
+      background: linear-gradient(135deg,var(--python),var(--blue));
+      color: #fff;
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+    .footer-bottom {
+      text-align: center;
+      color: var(--dim);
+      font-size: 0.78rem;
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+    }
+
+    .ad-banner { max-width:100%; margin:1.8rem 0; overflow:hidden; text-align:center; background:rgba(10,17,30,0.4); border-radius:12px; padding:0.5rem 0; }
+    .ad-label { font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:var(--dim); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem; }
+    .toast { position:fixed; bottom:24px; right:24px; background:var(--blue); padding:0.7rem 1.4rem; border-radius:40px; color:#fff; z-index:4000; opacity:0; transition:0.25s; pointer-events:none; font-family:"JetBrains Mono",monospace; font-size:0.75rem; }
+    .toast.show { opacity:1; }
+    #back-top { position:fixed; bottom:24px; left:24px; background:linear-gradient(135deg,var(--python),var(--blue)); border:none; width:44px; height:44px; border-radius:50%; color:#fff; cursor:pointer; opacity:0; transition:0.25s; display:flex; align-items:center; justify-content:center; font-size:0.9rem; pointer-events:none; z-index:1500; }
+    #back-top.show { opacity:1; pointer-events:auto; }
+    #back-top:hover { transform:translateY(-3px); }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div id="navbar">
+  <div class="brand" onclick="location.href='index.html'">POETIC CODES</div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div>
+
+<div id="nav-overlay"></div>
+<div id="nav-menu">
+  <div class="nav-section-label">Pages</div>
+  <div class="nav-page-grid">
+    <button class="nav-page-btn" onclick="location.href='index.html'"><i class="fas fa-home"></i>Home</button>
+    <button class="nav-page-btn" onclick="location.href='articles.html'"><i class="fas fa-book-open"></i>Essays</button>
+    <button class="nav-page-btn" onclick="location.href='archive.html'"><i class="fas fa-archive"></i>Archive</button>
+    <button class="nav-page-btn" onclick="location.href='submit.html'"><i class="fas fa-pen-fancy"></i>Submit</button>
+    <button class="nav-page-btn" onclick="location.href='about.html'"><i class="fas fa-user-circle"></i>About</button>
+  </div>
+  <div class="nav-divider"></div>
+  <div class="nav-section-label">Topics</div>
+  <div class="nav-category-grid">
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=culture'"><i class="fas fa-globe-asia"></i>Culture</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=national'"><i class="fas fa-landmark"></i>National</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=international'"><i class="fas fa-satellite-dish"></i>International</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=programming'"><i class="fas fa-code"></i>Programming</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=philosophy'"><i class="fas fa-brain"></i>Philosophy</button>
+  </div>
+</div>
+
+<div id="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>All Essays</span>
+    </div>
+    <h1 class="gradient-text">All Essays</h1>
+    <p style="color:var(--muted);max-width:620px;margin:0 auto 2rem">Thoughtful long-form writing on culture, national affairs, international conditions, programming, and philosophy.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="archive.html" class="btn-outline"><i class="fas fa-archive"></i>Browse Archive</a>
+      <a href="submit.html" class="btn-primary"><i class="fas fa-pen-fancy"></i>Submit an Essay</a>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding:0 1.5rem 1.5rem">
+  <div class="ad-banner">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+
+<div id="search-section">
+  <div class="container">
+    <div class="search-row">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-input" placeholder="Search essays by title, category, or keyword…">
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="articles-section">
+  <div class="container">
+    <div class="articles-layout" style="display:grid;grid-template-columns:1fr 300px;gap:2.8rem;align-items:start">
+      <div>
+        <div id="results-info" style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--dim);margin-bottom:1.6rem"></div>
+        <div class="articles-grid" id="articles-grid">
+          <p style="color:var(--muted)">Loading essays…</p>
+        </div>
+        <div id="no-results">
+          <i class="fas fa-search"></i>
+          <p>No essays match your search.</p>
+          <br>
+          <a href="articles.html" class="btn-outline">Clear Search</a>
+        </div>
+      </div>
+
+      <div class="sidebar-sticky">
+        <div class="sidebar-widget">
+          <h4><i class="fas fa-globe-asia" style="color:var(--teal);margin-right:0.4rem"></i>Browse by Category</h4>
+          <div style="display:flex;flex-direction:column;gap:0.6rem">
+            <a href="articles.html?cat=culture" class="btn-outline" style="justify-content:center;font-size:0.72rem"><i class="fas fa-globe-asia"></i>Culture</a>
+            <a href="articles.html?cat=national" class="btn-outline" style="justify-content:center;font-size:0.72rem"><i class="fas fa-landmark"></i>National Affairs</a>
+            <a href="articles.html?cat=international" class="btn-outline" style="justify-content:center;font-size:0.72rem"><i class="fas fa-satellite-dish"></i>International</a>
+            <a href="articles.html?cat=programming" class="btn-outline" style="justify-content:center;font-size:0.72rem"><i class="fas fa-code"></i>Programming</a>
+            <a href="articles.html?cat=philosophy" class="btn-outline" style="justify-content:center;font-size:0.72rem"><i class="fas fa-brain"></i>Philosophy</a>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h4><i class="fas fa-pen-fancy" style="color:var(--teal);margin-right:0.4rem"></i>Contribute</h4>
+          <p style="color:var(--muted);margin-bottom:1.2rem">Have a thoughtful long-form essay? Submit it and become part of the archive.</p>
+          <a href="submit.html" class="btn-primary" style="width:100%;justify-content:center">Submit Essay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container" style="padding:0 1.5rem 1.5rem">
+  <div class="ad-banner">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Poetic Codes</h4>
+        <p style="color:var(--muted);max-width:260px;">A permanent home for thoughtful long-form writing.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+          <li><a href="articles.html"><i class="fas fa-book-open"></i>All Essays</a></li>
+          <li><a href="archive.html"><i class="fas fa-archive"></i>Archive</a></li>
+          <li><a href="submit.html"><i class="fas fa-pen-fancy"></i>Submit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Topics</h4>
+        <ul>
+          <li><a href="articles.html?cat=culture">Culture</a></li>
+          <li><a href="articles.html?cat=national">National Affairs</a></li>
+          <li><a href="articles.html?cat=international">International</a></li>
+          <li><a href="articles.html?cat=programming">Programming</a></li>
+          <li><a href="articles.html?cat=philosophy">Philosophy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="/cdn-cgi/l/email-protection#5222333c21373c213d2b353e373c3c12353f333b3e7c313d3f" class="footer-btn"><i class="fas fa-envelope"></i>Email Glenn</a>
+        <a href="submit.html" class="footer-btn" style="margin-top:12px"><i class="fas fa-feather-alt"></i>Contribute</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Glenn Junsay Pansensoy. All rights reserved.<br>
+    Built with data precision and Created through intensive information authentication. From Diplahan, Zamboanga Sibugay Province, Philippines.
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<button id="back-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, orderBy, query, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCPW7D8klItn-r6V-hTqNHrYBQFnMcmElE",
+    authDomain: "glennpansensoy-12288.firebaseapp.com",
+    projectId: "glennpansensoy-12288",
+    storageBucket: "glennpansensoy-12288.firebasestorage.app",
+    messagingSenderId: "264252112486",
+    appId: "1:264252112486:web:a7c1d2d001815af22377a7"
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  function esc(s) { if(!s) return ''; return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function readTime(text='') { return Math.max(1, Math.ceil(String(text).trim().split(/\s+/).length/200)); }
+  function fmtDate(ts) { if(!ts) return ''; const d=ts.toDate?ts.toDate():new Date(ts); return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }
+  function catIcon(cat) { 
+    const m={culture:'🌏',national:'🏛',international:'🛰',programming:'💻',philosophy:'🧠',ai:'🤖'}; 
+    return m[(cat||'').toLowerCase()]||'📄'; 
+  }
+  function showToast(msg) { 
+    const t=document.getElementById('toast'); 
+    t.textContent=msg; 
+    t.classList.add('show'); 
+    setTimeout(()=>t.classList.remove('show'),3200); 
+  }
+
+  let allDocs = [];
+  let currentSearch = '';
+  let currentCategory = null;
+
+  async function loadAll() {
+    const q = query(collection(db,'articles'), orderBy('createdAt','desc'));
+    const snap = await getDocs(q);
+    allDocs = snap.docs.map(d => {
+      const data = d.data();
+      const date = data.createdAt?.toDate ? data.createdAt.toDate() : new Date(data.createdAt||0);
+      return { id:d.id, ...data, _date: date };
+    });
+    renderArticles();
+  }
+
+  function getFiltered() {
+    let docs = [...allDocs];
+    if (currentCategory) {
+      docs = docs.filter(d => (d.category||'').toLowerCase() === currentCategory.toLowerCase());
+    }
+    if (currentSearch) {
+      const q = currentSearch.toLowerCase();
+      docs = docs.filter(d =>
+        (d.title||'').toLowerCase().includes(q) ||
+        (d.content||'').toLowerCase().includes(q) ||
+        (d.category||'').toLowerCase().includes(q) ||
+        (d.author||'').toLowerCase().includes(q)
+      );
+    }
+    return docs;
+  }
+
+  function renderArticles() {
+    const grid = document.getElementById('articles-grid');
+    const noResults = document.getElementById('no-results');
+    const info = document.getElementById('results-info');
+    const docs = getFiltered();
+
+    info.textContent = docs.length === allDocs.length 
+      ? `${docs.length} essays` 
+      : `\( {docs.length} result \){docs.length === 1 ? '' : 's'} found`;
+
+    if (docs.length === 0) {
+      grid.innerHTML = '';
+      noResults.style.display = 'block';
+      return;
+    }
+    noResults.style.display = 'none';
+
+    grid.innerHTML = docs.map(d => `
+      <div class="article-card" onclick="location.href='article.html?id=${esc(d.id)}'">
+        <div class="article-cat">${catIcon(d.category)} ${esc(d.category||'Essay')}</div>
+        <div class="article-title">${esc(d.title)}</div>
+        <div class="article-meta">
+          <span><i class="fas fa-user-edit"></i> ${esc(d.author||'Poetic Codes')}</span>
+          <span><i class="fas fa-clock"></i> ${readTime(d.content)} min read</span>
+          <span><i class="fas fa-calendar"></i> ${fmtDate(d.createdAt)}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('search-input').addEventListener('input', function() {
+    currentSearch = this.value.trim();
+    renderArticles();
+  });
+
+  // Handle category from URL (?cat=xxx)
+  const params = new URLSearchParams(location.search);
+  currentCategory = params.get('cat');
+  if (currentCategory) {
+    document.getElementById('search-input').placeholder = `Showing ${currentCategory} essays...`;
+  }
+
+  loadAll().catch(() => {
+    document.getElementById('articles-grid').innerHTML = '<p style="color:var(--muted)">Could not load essays. Please try again later.</p>';
+  });
+
+  // Navigation & progress
+  (function() {
+    const ham = document.getElementById('hamburger');
+    const menu = document.getElementById('nav-menu');
+    const overlay = document.getElementById('nav-overlay');
+    function openNav()  { ham.classList.add('open'); menu.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeNav() { ham.classList.remove('open'); menu.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+    ham.addEventListener('click', () => menu.classList.contains('open') ? closeNav() : openNav());
+    overlay.addEventListener('click', closeNav);
+    document.querySelectorAll('#nav-menu button, #nav-menu a').forEach(el => el.addEventListener('click', closeNav));
+
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY;
+      const max = document.body.scrollHeight - window.innerHeight;
+      const pb = document.getElementById('progress-bar');
+      if (pb && max > 0) pb.style.width = (s / max * 100) + '%';
+      document.getElementById('back-top').classList.toggle('show', s > 300);
+    });
