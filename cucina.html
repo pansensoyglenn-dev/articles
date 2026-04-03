@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cucina Povera — The Art of Humble Cooking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:wght@300;400;500&family=Lora:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --obsidian-deepest: #0d0d0f;
+      --obsidian-deep:    #131318;
+      --obsidian-mid:     #1a1a22;
+      --obsidian-surface: #22222e;
+      --obsidian-raised:  #2a2a38;
+      --obsidian-border:  #333344;
+      --python-blue:      #4584b6;
+      --python-blue-bright: #5b9bd5;
+      --python-blue-soft:  #2e5f8a;
+      --python-yellow:    #ffde57;
+      --text-primary:     #e8e8f0;
+      --text-secondary:   #9898b8;
+      --text-muted:       #5a5a78;
+      --accent-glow:      rgba(69, 132, 182, 0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--obsidian-deepest);
+      color: var(--text-primary);
+      font-family: 'Lora', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.85;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(69,132,182,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 85% 90%, rgba(69,132,182,0.05) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(30,30,50,0.4) 0%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    header {
+      padding: 5rem 0 3rem;
+      border-bottom: 1px solid var(--obsidian-border);
+      margin-bottom: 3.5rem;
+      animation: fadeSlideDown 1s ease both;
+    }
+
+    .eyebrow {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--python-blue);
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--python-blue);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 1.4rem;
+      letter-spacing: -0.01em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--python-blue-bright);
+    }
+
+    .subtitle {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 600px;
+      border-left: 2px solid var(--python-blue-soft);
+      padding-left: 1.2rem;
+      text-align: justify;
+    }
+
+    .article-body {
+      animation: fadeSlideUp 1s ease 0.25s both;
+    }
+
+    .intro-para {
+      font-size: 1.12rem;
+      color: #c8c8e0;
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+      text-align: justify;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      text-align: justify;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 3.5rem 0 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--obsidian-border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--python-blue);
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 10px var(--python-blue);
+    }
+
+    .dish-card {
+      background: var(--obsidian-mid);
+      border: 1px solid var(--obsidian-border);
+      border-left: 3px solid var(--python-blue);
+      border-radius: 4px;
+      padding: 1.5rem 1.75rem;
+      margin: 1.8rem 0;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .dish-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 60%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .dish-card:hover {
+      border-color: var(--python-blue-bright);
+      box-shadow: 0 4px 32px rgba(69,132,182,0.12);
+    }
+
+    .dish-card:hover::before { opacity: 1; }
+
+    .dish-card-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--python-blue);
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+
+    .dish-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--python-blue-bright);
+      margin-bottom: 0.6rem;
+    }
+
+    .pullquote {
+      margin: 3rem 0;
+      padding: 2rem 2.5rem;
+      background: var(--obsidian-surface);
+      border-radius: 4px;
+      position: relative;
+      text-align: center;
+    }
+
+    .pullquote::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      line-height: 0.5;
+      color: var(--python-blue-soft);
+      position: absolute;
+      top: 2rem;
+      left: 1.5rem;
+      opacity: 0.6;
+    }
+
+    .pullquote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--text-primary);
+      margin: 0;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .keyword {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.88em;
+      color: var(--python-yellow);
+      background: rgba(255, 222, 87, 0.08);
+      border-radius: 3px;
+      padding: 0.1em 0.35em;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0;
+      color: var(--text-muted);
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--obsidian-border);
+    }
+
+    .divider span {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--obsidian-border);
+      text-align: center;
+      animation: fadeIn 1s ease 0.5s both;
+    }
+
+    .footer-tag {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--obsidian-deepest); }
+    ::-webkit-scrollbar-thumb { background: var(--obsidian-raised); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--python-blue-soft); }
+
+    ::selection {
+      background: var(--python-blue-soft);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="eyebrow">Culinary History &amp; Philosophy</div>
+    <h1>The Kitchen of the<br/><em>Cucina Povera</em></h1>
+    <p class="subtitle">
+      While the wealthy obsessed over banquets now lost to obscurity, the most enduring dishes in the world were born of necessity — crafted by the impoverished.
+    </p>
+  </header>
+
+  <main class="article-body">
+
+    <p class="intro-para">
+      The culinary canon is filled with a delicious irony: while the wealthy spent centuries obsessing over elaborate, performative banquets that have since faded into obscurity, the most enduring and celebrated dishes in the world were born of necessity, crafted by the impoverished.
+    </p>
+
+    <p>
+      This phenomenon, often referred to in Italy as <span class="keyword">cucina povera</span> — or "poor cooking" — is arguably the most influential tradition in gastronomy.
+    </p>
+
+    <h2>From Necessity to Necessity</h2>
+
+    <p>
+      The genesis of these iconic dishes was never about prestige; it was about survival and the ingenious transformation of humble ingredients.
+    </p>
+
+    <div class="dish-card">
+      <div class="dish-card-label">French Resilience</div>
+      <div class="dish-name">Beef Bourguignon</div>
+      <p style="margin:0;">
+        A titan of French fine dining, this dish began in the Middle Ages as a desperate attempt by Burgundian peasants to soften tough, discarded scraps of meat. By slow-cooking these cuts in abundant local wine with whatever seasonal roots were available, they created a masterpiece. It took until 1903 for Auguste Escoffier to elevate it to the Ritz — effectively introducing the aristocracy to a staple of their own country's working class.
+      </p>
+    </div>
+
+    <div class="dish-card">
+      <div class="dish-card-label">Italian Ingenuity</div>
+      <div class="dish-name">Ribollita · Cacio e Pepe · Carbonara</div>
+      <p style="margin:0;">
+        The Italians mastered this art of transformation with remarkable consistency. <em>Ribollita</em> began as a way to salvage leftover bread — often discarded "plates" from noble tables — and wilted vegetables, boiled into a hearty, week-long sustainment. Similarly, the bedrock of Roman cuisine, like <em>cacio e pepe</em>, was the portable fuel of shepherds, relying on shelf-stable ingredients like aged pecorino and dried black pepper. Even <em>Carbonara</em> emerged from the bleak, practical pantry of wartime scarcity.
+      </p>
+    </div>
+
+    <div class="divider"><span>§</span></div>
+
+    <h2>The Philosophy of Flavor</h2>
+
+    <p>
+      Why does this food transcend time while ostentatious displays of wealth vanish?
+    </p>
+
+    <div class="pullquote">
+      <p>Those with very little had no room for error or excess — they engineered their meals to extract the absolute maximum flavor from the minimum number of ingredients.</p>
+    </div>
+
+    <p>
+      The elite historically engineered food for spectacle — a display of capital rather than a pursuit of flavor. Conversely, those with very little had no room for error or excess. They engineered their meals to extract the absolute maximum flavor from the minimum number of ingredients.
+    </p>
+
+    <p>
+      This approach demanded a deep, intimate knowledge of produce, a mastery of patience, and a reliance on refined technique to make the humble taste heroic. Because these dishes were rooted in universal human needs and brilliant resourcefulness, they survived.
+    </p>
+
+    <div class="divider"><span>§</span></div>
+
+    <h2>A Lasting Legacy</h2>
+
+    <p>
+      It is profoundly poetic that the culinary traditions we hold in the highest regard today were not designed by star-studded chefs in white aprons. Instead, they were perfected by anonymous individuals who had little more than their crops and their ingenuity.
+    </p>
+
+    <p>
+      In our search for the "best" food, we inevitably find our way back to the kitchen of the peasant — where the greatest lessons in flavor were learned through necessity.
+    </p>
+
+  </main>
+
+  <footer>
+    <p class="footer-tag">Culinary Philosophy · Cucina Povera · Gastronomy</p>
+  </footer>
+</div>
+
+</body>
+</html>
