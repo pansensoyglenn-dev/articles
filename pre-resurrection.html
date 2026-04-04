@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Poetic Codes – The Three-Day Silence: An Unseen Conquest</title>
+  <meta name="description" content="What truly happened while Yeshua lay in the tomb? A theological exploration of the descent, the proclamation, and the defeat of death.">
+  <meta name="author" content="Poetic Codes">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --blue: #3a7bd5;
+      --blue-lt: #74b9e8;
+      --teal: #7ec8e3;
+      --python: #306998;
+      --obsidian: #0b0f17;
+      --card: #141e2c;
+      --card-hover: #192537;
+      --border: #2c4058;
+      --text: #ffffff;
+      --muted: #ffffff;
+      --dim: #ffffff;
+      --rose: #c46a6a;
+      --green: #3ddc84;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--obsidian);
+      color: white;
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0d1420; }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 4px; }
+    a { color: white; text-decoration: none; transition: opacity 0.2s; }
+    a:hover { color: white; opacity: 0.85; text-decoration: underline; }
+    body, .container, .container-narrow, p, h1, h2, h3, h4, h5, h6, span, div, button, .brand, 
+    .field-label, .stat-label, .stat-val, .check-item, .quick-link, .footer-links a, .footer-about,
+    .recent-title, .recent-meta, .recent-cat, .mode-btn, .guidelines-list li, .tip-item, .sidebar-card, 
+    .preview-header span, .rich-preview, .submit-note, .ad-label, .toast, .nav-cat-btn, .nav-page-btn, 
+    .nav-section-label, .breadcrumb, .eyebrow, .footer-col h3, .contact-info p, .contact-info a, 
+    .category-badge, .success-link, .footer-bottom, .char-count, .field-input, .field-select, .field-textarea,
+    #plain-textarea, #html-textarea, .gradient-text, .mode-btn.active, .mode-btn:not(.active),
+    .btn-submit, .btn-reset, .stat-row span, .breadcrumb-sep, .preview-clear-btn {
+      color: white !important;
+    }
+    .gradient-text, .brand {
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      background-clip: unset !important;
+      color: white !important;
+    }
+    .article-content p, .article-content li, .article-content blockquote, .rich-preview p {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+    #progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--blue), var(--teal)); width: 0; z-index: 2000; transition: width 0.1s linear; }
+    #navbar { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1.5rem; background: rgba(11, 15, 23, 0.96); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
+    .brand { font-family: 'Cinzel Decorative', serif; font-weight: 700; letter-spacing: 0.15em; font-size: 0.9rem; cursor: pointer; }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; padding: 4px; }
+    .hamburger span { width: 24px; height: 2px; background: #fff; transition: 0.25s; display: block; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    #nav-menu { position: fixed; top: 0; right: -300px; width: 280px; height: 100vh; background: rgba(10, 17, 30, 0.98); backdrop-filter: blur(28px); border-left: 1px solid #2a3b55; padding: 5rem 1.2rem 2rem; transition: 0.3s; z-index: 1050; overflow-y: auto; }
+    #nav-menu.open { right: 0; }
+    #nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 1040; }
+    #nav-overlay.open { display: block; }
+    .nav-section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.14em; padding: 0.5rem 0.8rem 0.2rem; margin-top: 0.8rem; opacity: 0.8; }
+    .nav-page-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .nav-page-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.7rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; cursor: pointer; transition: 0.2s; font-size: 0.75rem; font-family: 'Crimson Pro', serif; width: 100%; justify-content: flex-start; }
+    .nav-page-btn i { font-size: 0.8rem; width: 18px; }
+    .nav-page-btn:hover { border-color: var(--blue); background: rgba(58, 123, 213, 0.2); }
+    .nav-divider { height: 1px; background: var(--border); margin: 0.8rem 0; }
+    .nav-category-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      margin-top: 0.4rem;
+    }
+    .nav-cat-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: rgba(58, 123, 213, 0.1);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      width: 100%;
+      min-height: 56px;
+      justify-content: flex-start;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+    }
+    .nav-cat-btn i { font-size: 1.2rem; width: 28px; text-align: center; }
+    .nav-cat-btn:hover { border-color: var(--blue); background: rgba(58, 123, 213, 0.25); transform: translateX(4px); }
+    @media (max-width: 560px) {
+      .nav-cat-btn { padding: 0.9rem 1rem; min-height: 52px; font-size: 0.7rem; }
+      .nav-cat-btn i { font-size: 1.1rem; width: 26px; }
+    }
+    #page-hero { padding: 7rem 0 2rem; text-align: center; background: linear-gradient(180deg, #060c18, #0a1420); border-bottom: 1px solid var(--border); }
+    #page-hero h1 { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.4rem, 4vw, 2.2rem); margin-bottom: 0.6rem; }
+    #page-hero p { opacity: 0.9; font-size: 0.95rem; max-width: 640px; margin: 0 auto; }
+    .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+    .eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--teal); }
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; margin-bottom: 1rem; justify-content: center; }
+    .article-wrapper { padding: 2.5rem 0 4rem; }
+    .article-card {
+      background: linear-gradient(160deg, #0c1825, #0e1a2a);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 2.2rem 2rem;
+      position: relative;
+    }
+    .article-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--blue), var(--teal), var(--blue), transparent); border-radius: 28px 28px 0 0; }
+    .article-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.6rem, 5vw, 2.2rem); margin-bottom: 0.75rem; line-height: 1.3; }
+    .article-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; opacity: 0.7; margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 1rem; }
+    .article-content { font-size: 1.05rem; line-height: 1.85; }
+    .article-content h2 { font-family: 'Cinzel Decorative', serif; font-size: 1.6rem; margin: 1.8rem 0 0.8rem; font-weight: 500; }
+    .article-content h3 { font-family: 'Cinzel Decorative', serif; font-size: 1.3rem; margin: 1.5rem 0 0.6rem; font-weight: 400; }
+    .article-content p { margin-bottom: 1.2rem; text-align: justify; }
+    .article-content blockquote { border-left: 3px solid var(--blue); padding-left: 1.2rem; font-style: italic; margin: 1.2rem 0; color: var(--teal); }
+    .article-content ul, .article-content ol { margin: 1rem 0 1rem 2rem; }
+    .article-content li { margin-bottom: 0.4rem; text-align: justify; }
+    footer { background: #060b14; border-top: 1px solid var(--border); padding: 2.5rem 0 2rem; margin-top: 2rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 2rem; }
+    .footer-col h3 { font-family: 'Cinzel Decorative', serif; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase; border-left: 2px solid var(--blue); padding-left: 0.7rem; }
+    .footer-about { font-size: 0.8rem; line-height: 1.6; opacity: 0.85; text-align: justify; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { font-size: 0.8rem; opacity: 0.85; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .footer-links a:hover { opacity: 1; text-decoration: underline; }
+    .category-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .category-badge { background: rgba(58, 123, 213, 0.15); border: 1px solid var(--border); border-radius: 20px; padding: 0.2rem 0.7rem; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; transition: 0.2s; cursor: pointer; }
+    .category-badge:hover { border-color: var(--blue); background: rgba(58, 123, 213, 0.3); }
+    .social-links { display: flex; gap: 0.8rem; }
+    .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); transition: 0.2s; font-size: 0.9rem; }
+    .social-icon:hover { border-color: var(--blue); transform: translateY(-2px); background: rgba(58, 123, 213, 0.2); }
+    .footer-bottom { border-top: 1px solid rgba(37, 54, 73, 0.5); padding-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; opacity: 0.7; }
+    @media(max-width: 780px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width: 560px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-col h3 { border-left: none; border-bottom: 1px solid var(--border); display: inline-block; padding-left: 0; } .social-links { justify-content: center; } .footer-bottom { flex-direction: column; text-align: center; } .article-card { padding: 1.5rem; } }
+    #back-top { position: fixed; bottom: 24px; left: 24px; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--python), var(--blue)); border: none; color: white; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.25s; z-index: 900; box-shadow: 0 4px 14px rgba(48, 105, 152, 0.4); }
+    #back-top.show { opacity: 1; pointer-events: all; }
+    #back-top:hover { transform: translateY(-3px); }
+    .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #141e2c; border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.2s; white-space: nowrap; }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div id="navbar">
+  <div class="brand" onclick="location.href='index.html'">POETIC CODES</div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div>
+<div id="nav-overlay"></div>
+<div id="nav-menu">
+  <div class="nav-section-label">Pages</div>
+  <div class="nav-page-grid">
+    <button class="nav-page-btn" onclick="location.href='index.html'"><i class="fas fa-home"></i>Home</button>
+    <button class="nav-page-btn" onclick="location.href='articles.html'"><i class="fas fa-book-open"></i>Essays</button>
+    <button class="nav-page-btn" onclick="location.href='archive.html'"><i class="fas fa-archive"></i>Archive</button>
+    <button class="nav-page-btn" onclick="location.href='article.html'"><i class="fas fa-file-alt"></i>Article</button>
+    <button class="nav-page-btn" onclick="location.href='submit.html'"><i class="fas fa-pen-fancy"></i>Submit</button>
+    <button class="nav-page-btn" onclick="location.href='about.html'"><i class="fas fa-user-circle"></i>About</button>
+  </div>
+  <div class="nav-divider"></div>
+  <div class="nav-section-label">Topics · Vertical</div>
+  <div class="nav-category-grid">
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=culture'"><i class="fas fa-globe-asia"></i>Culture</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=national'"><i class="fas fa-landmark"></i>National</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=international'"><i class="fas fa-satellite-dish"></i>International</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=programming'"><i class="fas fa-code"></i>Programming</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=philosophy'"><i class="fas fa-brain"></i>Philosophy</button>
+    <button class="nav-cat-btn" onclick="location.href='articles.html?cat=ai'"><i class="fas fa-microchip"></i>AI</button>
+  </div>
+</div>
+
+<section id="page-hero">
+  <div class="container-narrow" style="max-width:860px; margin:0 auto; padding:0 1.2rem;">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Essay</span></div>
+    <div class="eyebrow"><span></span>Poetic Codes<span></span></div>
+    <h1 class="gradient-text">The Three-Day Silence: An Unseen Conquest</h1>
+    <p>What truly happened while Yeshua lay in the tomb? A theological exploration of the descent, the proclamation, and the defeat of death.</p>
+  </div>
+</section>
+
+<div class="container article-wrapper">
+  <div class="article-card">
+    <div class="article-title">The Three-Day Silence: An Unseen Conquest</div>
+    <div class="article-meta"><span><i class="far fa-calendar-alt"></i> April 4, 2026</span><span><i class="fas fa-user-edit"></i> A Theologian's Reflection</span><span><i class="fas fa-clock"></i> 6 min read</span></div>
+    <div class="article-content">
+      <h2>What Truly Happened While Yeshua Lay in the Tomb?</h2>
+      <p>The crucifixion was a public spectacle of noise; the resurrection was a shout of triumph. Yet, the seventy-two hours between those events—the period Yeshua spent in the grave—is often treated as a silent void. However, Scripture suggests that while the earth was still, the spiritual realm was witnessing a seismic shift.</p>
+      <p>Yeshua’s death was not a tragedy of timing but a divine appointment. He was the Lamb slain precisely according to the YHWH’s calendar (Leviticus 23), buried as Passover transitioned into the Feast of Unleavened Bread. While the stone was rolled into place and the Sabbath began on earth, a deeper mission was unfolding in the unseen.</p>
+      
+      <h2>The Geography of the Soul</h2>
+      <p>When Yeshua committed His spirit to the Father (Luke 23:46), He wasn't merely fading away; He was making an intentional transfer. To understand where "He" was, we have to look at the three layers described in the text:</p>
+      <ul>
+        <li>Body: Resting in the tomb.</li>
+        <li>Spirit: Entrusted to the Father's hands.</li>
+        <li>Soul: Descended into Sheol (Psalm 16:10; Acts 2:27).</li>
+      </ul>
+      <p>In Hebrew thought, Sheol isn't the "hell" of medieval art. It is the realm of the dead—the inescapable "deep place" where both the righteous and unrighteous awaited what was next. Yeshua didn't just hover near its gates; He entered the belly of the beast.</p>
+      
+      <h2>Death: Not a Destination, But a Dominion</h2>
+      <p>In the biblical worldview, death is more than a biological cessation; it is a power.</p>
+      <ul>
+        <li>A Ruler: Paul notes that "death reigned" (Romans 5:14). It has authority.</li>
+        <li>An Armed Enemy: It possesses a "sting" (1 Corinthians 15:56), which is the legal claim of sin.</li>
+        <li>A Shepherd: Psalm 49:14 chillingly describes death as a shepherd leading sheep into Sheol.</li>
+      </ul>
+      <p>Behind this power stands an architect. Hebrews 2:14 clarifies that the devil held the "power of death." Therefore, Yeshua’s descent wasn't a passive wait for a timer to go off. He entered the domain of an enemy who held humanity in "cords" and "chains."</p>
+      <p>He didn't go as a prisoner; He went as the rightful King entering a rebel outpost with a signed eviction notice.</p>
+      
+      <h2>The Proclamation to the Prisoners</h2>
+      <p>One of the most mysterious snapshots of this time is found in 1 Peter 3:18–20, where Yeshua "preached to the spirits in prison."</p>
+      <blockquote>Clarifying the Audience: These "spirits" are likely not general human souls. Peter links them specifically to the rebellion of Noah’s day. Contextually, this connects to Jude 1:6 and 2 Peter 2:4, which describe rebellious angels (the "sons of Elohim" from Genesis 6) who were bound in chains of darkness for crossing foundational boundaries of creation.</blockquote>
+      <p>When Yeshua "preached" (or proclaimed) to them, He wasn't offering a second chance at salvation. These beings were already under a verdict of eternal judgment. Instead, it was a legal proclamation. He was declaring to the very architects of ancient corruption that their plan had failed. The "seed of the woman" had arrived in their own prison cell to show them the scars of victory.</p>
+      
+      <h2>The Feast of Removal</h2>
+      <p>This all occurred during the Feast of Unleavened Bread, the season designated for removing leaven (symbolic of sin and corruption) from the house. While Israel cleared their cupboards, Yeshua was clearing the cosmos. He entered the ultimate source of corruption—death itself—to purge it from the inside out.</p>
+      <p>The Torah provides the blueprint: the High Priest enters the Holy of Holies with blood. The proof of his success isn't just the entry, but his emergence. When Yeshua walked out of the tomb on the Feast of Firstfruits, He proved that the "pangs of death" could not hold Him (Acts 2:24). It wasn't just difficult for death to keep Him; it was impossible.</p>
+      
+      <h2>The Verdict</h2>
+      <p>Yeshua didn't "descend into hell" to negotiate or fight a desperate battle. The battle was won at Golgotha when He said, "It is finished." The three days in the tomb were the enforcement of the victory.</p>
+      <ul>
+        <li>He entered the place no one escapes.</li>
+        <li>He confronted the "Last Enemy" (1 Corinthians 15:26) on its own turf.</li>
+        <li>He stripped the "rulers and authorities," putting them to open shame (Colossians 2:15).</li>
+      </ul>
+      <p>Because He walked out as the "Firstfruits," the grave is no longer a dead end; it is a passageway. He didn't just bypass death—He dismantled its authority. The King didn't whisper His arrival in the depths; He announced the end of an era.</p>
+      <p style="margin-top: 2rem; font-style: italic; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1.5rem;">— Originally written for Poetic Codes. Let this reflection deepen your understanding of the silent victory that changed eternity.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container" style="max-width:1400px;">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Poetic Codes</h3>
+        <div class="footer-about">A digital salon for essays on culture, technology, philosophy, and the human condition. Founded by Glenn Junsay Pansensoy, we publish original voices that provoke thought and awaken wonder.<div class="tagline" style="margin-top:0.5rem;"><i class="fas fa-feather-alt"></i> "Where words become architecture."</div></div>
+      </div>
+      <div class="footer-col">
+        <h3>Navigate</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="articles.html"><i class="fas fa-book-open"></i> All Essays</a></li>
+          <li><a href="archive.html"><i class="fas fa-archive"></i> Archive</a></li>
+          <li><a href="submit.html"><i class="fas fa-pen-fancy"></i> Submit</a></li>
+          <li><a href="about.html"><i class="fas fa-user-circle"></i> About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Topics</h3>
+        <div class="category-list">
+          <span class="category-badge">Culture</span>
+          <span class="category-badge">National</span>
+          <span class="category-badge">International</span>
+          <span class="category-badge">Programming</span>
+          <span class="category-badge">Philosophy</span>
+          <span class="category-badge">AI &amp; Tech</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Connect</h3>
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+          <a href="mailto:pansensoyglenn@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="copyright"><i class="far fa-copyright"></i> <span id="current-year"></span> Poetic Codes — All reflections are our own.</div>
+    </div>
+  </div>
+</footer>
+<div id="toast" class="toast"></div>
+<button id="back-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  (function() {
+    var ham = document.getElementById('hamburger'), menu = document.getElementById('nav-menu'), overlay = document.getElementById('nav-overlay');
+    function openNav() { ham.classList.add('open'); menu.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeNav() { ham.classList.remove('open'); menu.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+    ham.addEventListener('click', function(){ menu.classList.contains('open') ? closeNav() : openNav(); });
+    overlay.addEventListener('click', closeNav);
+    document.querySelectorAll('#nav-menu button, #nav-menu a').forEach(el => el.addEventListener('click', closeNav));
+    window.addEventListener('scroll', function(){
+      var s = window.scrollY, max = document.body.scrollHeight - window.innerHeight;
+      var pb = document.getElementById('progress-bar');
+      if (pb && max > 0) pb.style.width = (s / max * 100) + '%';
+      var bt = document.getElementById('back-top');
+      if (bt) bt.classList.toggle('show', s > 300);
+    });
+    var bt = document.getElementById('back-top');
+    if (bt) bt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  })();
+  function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
+</script>
+</body>
+</html>
