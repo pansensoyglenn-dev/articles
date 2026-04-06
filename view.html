@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poetic Codes</title>
+  <script>
+    // Preserve ?id= and redirect to article.html
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id') || '';
+      if (id) {
+        window.location.replace('article.html?id=' + encodeURIComponent(id));
+      } else {
+        window.location.replace('articles.html');
+      }
+    })();
+  </script>
+</head>
+<body></body>
+</html>
