@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build": "node generate-essays.js && cp -r assets articles/ && cp index.html articles/ && ..."
+  }
+}
