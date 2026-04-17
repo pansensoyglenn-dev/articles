@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poetic Codes — Static Article Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,400;0,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --blue:#3a7bd5;--blue-lt:#74b9e8;--teal:#7ec8e3;--python:#306998;
+      --obsidian:#0b0f17;--card:#141e2c;--border:#253649;
+      --text:#eef4ff;--muted:#b4cef0;--dim:#667fa3;
+      --green:#3ddc84;--rose:#c46a6a;--gold:#c9a84c;
+    }
+    body{background:var(--obsidian);color:var(--text);font-family:'Crimson Pro',serif;line-height:1.75;padding:2rem 1rem 5rem;min-height:100vh;}
+    h1{font-family:'Cinzel Decorative',serif;font-size:clamp(1rem,4vw,1.6rem);background:linear-gradient(90deg,#a8d8f0,#7ec8e3);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:0.4rem;}
+    .sub{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--dim);margin-bottom:2rem;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.2rem;max-width:820px;}
+    .card h2{font-family:'Cinzel Decorative',serif;font-size:0.85rem;color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+    label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:0.3rem;}
+    input{width:100%;background:#060c18;border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:0.78rem;padding:0.6rem 0.9rem;outline:none;margin-bottom:0.8rem;transition:border-color 0.2s;}
+    input:focus{border-color:var(--blue);}
+    .btn{background:linear-gradient(135deg,var(--python),var(--blue));border:none;padding:0.75rem 1.8rem;border-radius:40px;color:#fff;font-family:'Cinzel Decorative',serif;font-size:0.7rem;cursor:pointer;transition:0.22s;display:inline-flex;align-items:center;gap:8px;}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(48,105,152,0.5);}
+    .btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+    .btn-sm{background:rgba(58,123,213,0.15);border:1px solid var(--border);padding:0.4rem 1rem;border-radius:20px;color:var(--blue-lt);font-family:'JetBrains Mono',monospace;font-size:0.6rem;cursor:pointer;transition:0.2s;display:inline-flex;align-items:center;gap:0.4rem;}
+    .btn-sm:hover{border-color:var(--blue);background:rgba(58,123,213,0.25);}
+    #log{background:#060c18;border:1px solid var(--border);border-radius:10px;padding:1rem;font-family:'JetBrains Mono',monospace;font-size:0.65rem;line-height:1.9;max-height:320px;overflow-y:auto;margin-top:1rem;}
+    .log-ok{color:var(--green);}
+    .log-warn{color:var(--gold);}
+    .log-err{color:var(--rose);}
+    .log-info{color:var(--dim);}
+    .article-list{display:flex;flex-direction:column;gap:0.5rem;margin-top:1rem;max-height:400px;overflow-y:auto;}
+    .article-item{display:flex;align-items:center;justify-content:space-between;padding:0.65rem 0.9rem;background:#060c18;border:1px solid var(--border);border-radius:8px;gap:1rem;}
+    .article-item-title{font-size:0.88rem;color:var(--text);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .article-item-cat{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--teal);background:rgba(126,200,227,0.1);padding:0.15rem 0.5rem;border-radius:4px;white-space:nowrap;}
+    .progress-bar-wrap{background:#060c18;border:1px solid var(--border);border-radius:8px;height:8px;margin-top:0.8rem;overflow:hidden;}
+    .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--python),var(--blue));border-radius:8px;width:0%;transition:width 0.3s;}
+    .stat-row{display:flex;gap:1.5rem;margin-top:0.8rem;flex-wrap:wrap;}
+    .stat-box{background:rgba(58,123,213,0.07);border:1px solid rgba(37,54,73,0.6);border-radius:10px;padding:0.7rem 1rem;text-align:center;}
+    .stat-n{font-family:'Cinzel Decorative',serif;font-size:1.4rem;color:var(--blue-lt);}
+    .stat-l{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--dim);text-transform:uppercase;}
+    .info-box{background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.25);border-radius:10px;padding:0.9rem 1rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--gold);line-height:1.7;margin-bottom:1rem;}
+    .info-box i{margin-right:0.4rem;}
+    .step{display:flex;align-items:flex-start;gap:0.8rem;margin-bottom:0.8rem;}
+    .step-num{font-family:'Cinzel Decorative',serif;font-size:1rem;color:var(--blue-lt);min-width:28px;line-height:1.3;}
+    .step-text{font-size:0.88rem;color:var(--muted);line-height:1.6;}
+    .step-text strong{color:var(--text);}
+  </style>
+</head>
+<body>
+<h1><i class="fas fa-file-export" style="font-size:0.85em;"></i> Static Article Generator</h1>
+<p class="sub">Poetic Codes — Fixes Google AdSense "thin content" by generating static HTML files for every article in Firebase</p>
+
+<div class="card">
+  <h2><i class="fas fa-info-circle"></i> Why This Tool Exists</h2>
+  <div class="info-box">
+    <i class="fas fa-exclamation-triangle"></i> <strong>The Problem:</strong> Your articles live at URLs like <code>article.html?id=abc123</code>. Google's crawler visits that URL and sees a blank page — the content only appears after JavaScript fetches it from Firebase. Google cannot read it, so it calls every article "thin content."
+  </div>
+  <div class="step"><div class="step-num">1</div><div class="step-text">This tool connects to <strong>your Firebase</strong>, reads all your articles, and generates a proper static <code>.html</code> file for each one with the full content baked directly into the HTML.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">Each file is named after the article's slug (e.g. <code>why-clean-code-matters.html</code>) — a real URL that Google can fully crawl and index.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-text">Upload all generated files to your <strong>Cloudflare Pages repo</strong> alongside your existing files. Each article becomes a proper standalone page.</div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-text">Submit a <strong>sitemap.xml</strong> (also generated here) to Google Search Console listing all article URLs. Google will crawl and index them.</div></div>
+</div>
+
+<div class="card">
+  <h2><i class="fas fa-database"></i> Step 1 — Connect to Firebase & Fetch Articles</h2>
+  <p style="font-size:0.88rem;color:var(--muted);margin-bottom:1rem;">Your Firebase config is pre-filled. Just click Fetch.</p>
+  <label>Firebase Project ID</label>
+  <input id="cfg-project" value="glennpansensoy-12288">
+  <label>Firebase API Key</label>
+  <input id="cfg-apikey" value="AIzaSyCPW7D8klItn-r6V-hTqNHrYBQFnMcmElE">
+  <label>Firestore Collection Name</label>
+  <input id="cfg-collection" value="articles">
+  <button class="btn" id="fetch-btn" onclick="fetchArticles()"><i class="fas fa-cloud-download-alt"></i> Fetch All Articles from Firebase</button>
+  <div class="progress-bar-wrap" id="fetch-progress-wrap" style="display:none"><div class="progress-bar-fill" id="fetch-bar"></div></div>
+  <div id="fetch-stats" style="display:none" class="stat-row">
+    <div class="stat-box"><div class="stat-n" id="s-total">0</div><div class="stat-l">Articles Found</div></div>
+    <div class="stat-box"><div class="stat-n" id="s-with-content">0</div><div class="stat-l">With Full Content</div></div>
+    <div class="stat-box"><div class="stat-n" id="s-slugs">0</div><div class="stat-l">Unique Slugs</div></div>
+  </div>
+  <div id="article-list" class="article-list" style="display:none"></div>
+  <div id="log"></div>
+</div>
+
+<div class="card" id="generate-card" style="display:none">
+  <h2><i class="fas fa-cogs"></i> Step 2 — Generate Static HTML Files</h2>
+  <p style="font-size:0.88rem;color:var(--muted);margin-bottom:1rem;">This will create one <code>.html</code> file per article with the full content baked in, plus a <code>sitemap.xml</code>. Each file downloads automatically.</p>
+  <label>Site Base URL (no trailing slash)</label>
+  <input id="cfg-base-url" value="https://code-avs.pages.dev">
+  <label>AdSense Publisher ID</label>
+  <input id="cfg-adsense" value="ca-pub-4575646748966866">
+  <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+    <button class="btn" id="gen-btn" onclick="generateAll()"><i class="fas fa-file-export"></i> Generate & Download All Static Files</button>
+    <button class="btn-sm" id="sitemap-btn" onclick="generateSitemap()" style="display:none"><i class="fas fa-sitemap"></i> Download Sitemap Only</button>
+  </div>
+  <div class="progress-bar-wrap" id="gen-progress-wrap" style="display:none"><div class="progress-bar-fill" id="gen-bar"></div></div>
+  <div id="gen-log"></div>
+</div>
+
+<div class="card" id="deploy-card" style="display:none">
+  <h2><i class="fas fa-rocket"></i> Step 3 — Deploy to Cloudflare Pages</h2>
+  <div class="step"><div class="step-num">1</div><div class="step-text">All files were downloaded to your <strong>Downloads folder</strong>. Create a folder called <code>poetic-articles</code> and move them all there.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">Go to your <strong>GitHub repo</strong> (<code>pansensoyglenn-dev/articles</code> or wherever your Cloudflare Pages deploys from) and upload all the <code>.html</code> files plus the <code>sitemap.xml</code> to the root.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-text">Cloudflare Pages will auto-deploy. Each article will now be live at its own URL: <code>https://code-avs.pages.dev/why-clean-code-matters.html</code></div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-text">Go to <strong>Google Search Console</strong> → Sitemaps → Submit <code>https://code-avs.pages.dev/sitemap.xml</code>. Google will discover and crawl every article.</div></div>
+  <div class="step"><div class="step-num">5</div><div class="step-text">In <strong>Google AdSense</strong> → Policy Center → click <strong>Request Review</strong>. With 50 fully-crawlable articles, the thin content rejection will be resolved.</div></div>
+</div>
+
+<script type="module">
+// ── Firebase SDK ──────────────────────────────────────────────────────────────
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, getDocs, orderBy, query } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+let db = null;
+let allArticles = [];
+
+function log(msg, type='info') {
+  const el = document.getElementById('log');
+  const div = document.createElement('div');
+  div.className = 'log-' + type;
+  div.textContent = msg;
+  el.appendChild(div);
+  el.scrollTop = el.scrollHeight;
+}
+
+function genLog(msg, type='info') {
+  const el = document.getElementById('gen-log');
+  if (!el) return;
+  const div = document.createElement('div');
+  div.className = 'log-' + type;
+  div.textContent = msg;
+  el.appendChild(div);
+  el.scrollTop = el.scrollHeight;
+}
+
+window.fetchArticles = async function() {
+  const btn = document.getElementById('fetch-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting…';
+  document.getElementById('log').innerHTML = '';
+
+  const projectId  = document.getElementById('cfg-project').value.trim();
+  const apiKey     = document.getElementById('cfg-apikey').value.trim();
+  const colName    = document.getElementById('cfg-collection').value.trim();
+
+  try {
+    log('▸ Initializing Firebase…', 'info');
+    const app = initializeApp({ apiKey, authDomain: `${projectId}.firebaseapp.com`, projectId }, 'generator-' + Date.now());
+    db = getFirestore(app);
+    log('✓ Firebase connected: ' + projectId, 'ok');
+
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching articles…';
+    log(`▸ Fetching collection "${colName}"…`, 'info');
+
+    document.getElementById('fetch-progress-wrap').style.display = 'block';
+    document.getElementById('fetch-bar').style.width = '30%';
+
+    const q = query(collection(db, colName), orderBy('createdAt', 'desc'));
+    const snap = await getDocs(q);
+
+    document.getElementById('fetch-bar').style.width = '80%';
+
+    allArticles = [];
+    snap.forEach(doc => {
+      allArticles.push({ id: doc.id, ...doc.data() });
+    });
+
+    document.getElementById('fetch-bar').style.width = '100%';
+
+    const withContent = allArticles.filter(a => a.content && a.content.length > 100).length;
+    const slugs = new Set(allArticles.map(a => a.slug || slugify(a.title || a.id))).size;
+
+    document.getElementById('s-total').textContent = allArticles.length;
+    document.getElementById('s-with-content').textContent = withContent;
+    document.getElementById('s-slugs').textContent = slugs;
+    document.getElementById('fetch-stats').style.display = 'flex';
+
+    log(`✓ Found ${allArticles.length} articles`, 'ok');
+    if (withContent < allArticles.length) {
+      log(`⚠ ${allArticles.length - withContent} articles have no content body — they will still generate but may be short`, 'warn');
+    }
+
+    // Render list
+    const listEl = document.getElementById('article-list');
+    listEl.style.display = 'flex';
+    listEl.innerHTML = allArticles.map(a => `
+      <div class="article-item">
+        <span class="article-item-cat">${esc(a.category || '—')}</span>
+        <span class="article-item-title">${esc(a.title || 'Untitled')}</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--dim);white-space:nowrap;">${wordCount(a.content)} words</span>
+      </div>`).join('');
+
+    document.getElementById('generate-card').style.display = 'block';
+    document.getElementById('sitemap-btn').style.display = 'inline-flex';
+    log('▸ Ready to generate static files. Scroll down to Step 2.', 'info');
+
+  } catch(err) {
+    log('✗ Error: ' + err.message, 'err');
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-cloud-download-alt"></i> Re-Fetch Articles';
+  }
+};
+
+window.generateAll = async function() {
+  if (!allArticles.length) { alert('Fetch articles first.'); return; }
+  const btn = document.getElementById('gen-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating…';
+  document.getElementById('gen-log').innerHTML = '';
+  document.getElementById('gen-progress-wrap').style.display = 'block';
+
+  const baseURL    = document.getElementById('cfg-base-url').value.trim().replace(/\/$/, '');
+  const adsenseId  = document.getElementById('cfg-adsense').value.trim();
+
+  let ok = 0, skipped = 0;
+  const sitemapURLs = [];
+
+  for (let i = 0; i < allArticles.length; i++) {
+    const art = allArticles[i];
+    const pct = Math.round(((i + 1) / allArticles.length) * 100);
+    document.getElementById('gen-bar').style.width = pct + '%';
+
+    const slug = art.slug || slugify(art.title || art.id);
+    const filename = slug + '.html';
+    const pageURL = baseURL + '/' + filename;
+    sitemapURLs.push({ url: pageURL, title: art.title, date: art.createdAt?.toDate?.()?.toISOString?.() || new Date().toISOString() });
+
+    try {
+      const html = buildArticleHTML(art, slug, pageURL, baseURL, adsenseId);
+      downloadFile(filename, html, 'text/html');
+      genLog(`✓ [${i+1}/${allArticles.length}] ${filename} (${wordCount(art.content)} words)`, 'ok');
+      ok++;
+      // Small delay to avoid browser blocking downloads
+      await sleep(120);
+    } catch(e) {
+      genLog(`✗ Failed: ${filename} — ${e.message}`, 'err');
+      skipped++;
+    }
+  }
+
+  // Generate sitemap
+  await sleep(300);
+  const sitemapXML = buildSitemap(sitemapURLs, baseURL);
+  downloadFile('sitemap.xml', sitemapXML, 'application/xml');
+  genLog('✓ sitemap.xml generated', 'ok');
+
+  await sleep(300);
+  // Update article.html to also link to static pages
+  genLog(`\n✓ Done! ${ok} static articles + sitemap.xml downloaded.`, 'ok');
+  genLog(`▸ Upload all files to your Cloudflare Pages GitHub repo root.`, 'info');
+  genLog(`▸ Then submit sitemap.xml to Google Search Console.`, 'info');
+
+  document.getElementById('deploy-card').style.display = 'block';
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fas fa-file-export"></i> Regenerate All';
+};
+
+window.generateSitemap = async function() {
+  if (!allArticles.length) { alert('Fetch articles first.'); return; }
+  const baseURL = document.getElementById('cfg-base-url').value.trim().replace(/\/$/, '');
+  const urls = allArticles.map(a => ({
+    url: baseURL + '/' + (a.slug || slugify(a.title || a.id)) + '.html',
+    title: a.title,
+    date: a.createdAt?.toDate?.()?.toISOString?.() || new Date().toISOString()
+  }));
+  downloadFile('sitemap.xml', buildSitemap(urls, baseURL), 'application/xml');
+};
+
+// ── HTML builder ─────────────────────────────────────────────────────────────
+function buildArticleHTML(art, slug, pageURL, baseURL, adsenseId) {
+  const title    = art.title   || 'Untitled';
+  const author   = art.author  || 'Glenn Junsay Pansensoy';
+  const category = art.category || 'Essay';
+  const excerpt  = art.excerpt || '';
+  const content  = art.content || '<p>Content not available.</p>';
+  const tags     = Array.isArray(art.tags) ? art.tags : [];
+  const date     = art.createdAt?.toDate?.() ? art.createdAt.toDate() : new Date();
+  const dateStr  = date.toLocaleDateString('en-PH', { year:'numeric', month:'long', day:'numeric' });
+  const dateISO  = date.toISOString().split('T')[0];
+  const rt       = Math.max(1, Math.ceil(wordCount(content) / 200));
+  const tagBadges = tags.map(t => `<span style="display:inline-block;background:rgba(58,123,213,0.1);border:1px solid #253649;border-radius:20px;padding:0.18rem 0.65rem;font-size:0.67rem;font-family:'JetBrains Mono',monospace;color:#667fa3;margin:0.2rem 0.15rem;">${escHtml(t)}</span>`).join('');
+  const eTitle   = encodeURIComponent(title);
+  const eURL     = encodeURIComponent(pageURL);
+  const metaExcerpt = excerpt.length > 155 ? excerpt.slice(0, 152) + '…' : excerpt;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${escHtml(title)} — Poetic Codes</title>
+  <meta name="description" content="${escHtml(metaExcerpt || excerpt.slice(0,155))}">
+  <meta name="author" content="${escHtml(author)}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="${pageURL}">
+  <meta property="og:title" content="${escHtml(title)}">
+  <meta property="og:description" content="${escHtml(metaExcerpt)}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="${pageURL}">
+  <meta property="og:site_name" content="Poetic Codes">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escHtml(title)}">
+  <meta name="twitter:description" content="${escHtml(metaExcerpt)}">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "${escHtml(title)}",
+    "description": "${escHtml(metaExcerpt)}",
+    "author": {"@type": "Person", "name": "${escHtml(author)}", "url": "${baseURL}/about.html"},
+    "publisher": {"@type": "Organization", "name": "Poetic Codes", "url": "${baseURL}"},
+    "datePublished": "${dateISO}",
+    "dateModified": "${dateISO}",
+    "url": "${pageURL}",
+    "articleSection": "${escHtml(category)}",
+    "keywords": "${escHtml(tags.join(', '))}",
+    "inLanguage": "en",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "${pageURL}"}
+  }
+  <\/script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}" crossorigin="anonymous"><\/script>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    :root{--blue:#3a7bd5;--blue-lt:#74b9e8;--teal:#7ec8e3;--python:#306998;--obsidian:#0b0f17;--card:#141e2c;--card-hover:#192537;--border:#253649;--text:#eef4ff;--muted:#b4cef0;--dim:#667fa3;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--obsidian);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:1.05rem;line-height:1.85;overflow-x:hidden;}
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:#0d1420;}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px;}
+    a{color:var(--blue-lt);text-decoration:none;transition:color 0.2s;}a:hover{color:var(--teal);}
+    .container{max-width:820px;margin:0 auto;padding:0 1.2rem;}
+    #progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--teal));width:0;z-index:2000;transition:width 0.1s linear;}
+    #navbar{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1.5rem;background:rgba(11,15,23,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000;}
+    .brand{font-family:'Cinzel Decorative',serif;font-weight:700;font-size:0.85rem;background:linear-gradient(90deg,#fff,#7ec8e3);-webkit-background-clip:text;background-clip:text;color:transparent;cursor:pointer;}
+    .nav-link{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);padding:0.3rem 0.8rem;border:1px solid var(--border);border-radius:20px;transition:0.2s;}
+    .nav-link:hover{border-color:var(--blue);color:var(--blue-lt);}
+    .nav-links{display:flex;gap:0.6rem;}
+    @media(max-width:560px){.nav-links{display:none;}}
+    #article-wrap{padding:6.5rem 0 4rem;}
+    .breadcrumb{display:flex;align-items:center;gap:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--dim);margin-bottom:1.2rem;flex-wrap:wrap;}
+    .breadcrumb a{color:var(--dim);transition:0.15s;}.breadcrumb a:hover{color:var(--blue-lt);}
+    .breadcrumb-sep{color:var(--border);}
+    .article-cat{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--teal);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.7rem;display:flex;align-items:center;gap:0.4rem;}
+    h1{font-family:'Cinzel Decorative',serif;font-size:clamp(1.2rem,4vw,2rem);line-height:1.3;margin-bottom:1rem;background:linear-gradient(90deg,#a8d8f0,#7ec8e3,#5ba3d9);-webkit-background-clip:text;background-clip:text;color:transparent;}
+    .meta{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--dim);display:flex;flex-wrap:wrap;gap:0.5rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0.7rem 0;margin-bottom:1.5rem;}
+    .meta span{display:flex;align-items:center;gap:0.35rem;}
+    .meta i{color:var(--teal);}
+    .meta-sep{color:var(--border);}
+    .excerpt-block{background:linear-gradient(135deg,#0d1a2a,#0a1520);border-left:3px solid var(--blue);padding:1rem 1.2rem;margin-bottom:2rem;border-radius:0 8px 8px 0;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.75;}
+    .article-content{font-size:1.02rem;color:var(--muted);line-height:1.9;}
+    .article-content p{text-align:justify;text-justify:inter-word;hyphens:auto;margin-bottom:1.4rem;}
+    .article-content h2{font-family:'Cinzel Decorative',serif;font-size:1.05rem;color:var(--text);margin:2rem 0 0.8rem;border-left:3px solid var(--teal);padding-left:0.75rem;}
+    .article-content h3{font-size:1rem;color:var(--blue-lt);margin:1.5rem 0 0.6rem;}
+    .article-content blockquote{border-left:3px solid var(--blue);padding:0.6rem 1.2rem;margin:1.5rem 0;background:rgba(58,123,213,0.06);border-radius:0 8px 8px 0;font-style:italic;color:var(--muted);}
+    .article-content ul,.article-content ol{padding-left:1.5rem;margin-bottom:1.4rem;color:var(--muted);}
+    .article-content li{margin-bottom:0.5rem;line-height:1.75;}
+    .article-content code{background:#0d1620;border:1px solid var(--border);padding:0.1em 0.4em;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:0.88em;color:var(--teal);}
+    .article-content pre{background:#060c18;border:1px solid var(--border);border-radius:10px;padding:1.2rem;overflow-x:auto;margin:1.5rem 0;}
+    .article-content img{max-width:100%;border-radius:10px;margin:1rem 0;border:1px solid var(--border);}
+    .article-content strong{color:var(--text);}
+    .ad-wrap{margin:2rem 0;text-align:center;}
+    .tags-section{margin:2rem 0 1rem;}
+    .tags-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.6rem;}
+    .share-section{background:linear-gradient(160deg,#0a1520,#0d1b2a);border:1px solid var(--border);border-radius:14px;padding:1.3rem 1.5rem;margin-top:2.5rem;}
+    .share-title{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.9rem;display:flex;align-items:center;gap:0.4rem;}
+    .share-btns{display:flex;flex-wrap:wrap;gap:0.5rem;}
+    .share-btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.4rem 0.9rem;border-radius:30px;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#fff;transition:0.2s;text-decoration:none;}
+    .share-btn:hover{transform:translateY(-2px);opacity:0.9;}
+    .back-link{display:inline-flex;align-items:center;gap:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--dim);margin-top:2rem;padding:0.5rem 0;border-top:1px solid var(--border);transition:0.2s;width:100%;}
+    .back-link:hover{color:var(--blue-lt);}
+    footer{background:#060b14;border-top:1px solid var(--border);padding:2.5rem 0 1.5rem;font-family:'Crimson Pro',serif;margin-top:4rem;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .footer-brand{font-family:'Cinzel Decorative',serif;font-size:0.8rem;background:linear-gradient(90deg,#fff,#7ec8e3);-webkit-background-clip:text;background-clip:text;color:transparent;}
+    .footer-copy{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--dim);}
+    .footer-nav{display:flex;gap:1rem;flex-wrap:wrap;}
+    .footer-nav a{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--dim);transition:0.15s;}.footer-nav a:hover{color:var(--blue-lt);}
+    #back-top{position:fixed;bottom:24px;left:24px;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--python),var(--blue));border:none;color:#fff;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:0.25s;z-index:900;}
+    #back-top.show{opacity:1;pointer-events:all;}
+    @media(max-width:600px){#article-wrap{padding:5.5rem 0 3rem;}.share-btns{gap:0.35rem;}.share-btn{padding:0.35rem 0.7rem;font-size:0.58rem;}}
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav id="navbar">
+  <div class="brand" onclick="location.href='${baseURL}/index.html'">POETIC CODES</div>
+  <div class="nav-links">
+    <a href="${baseURL}/index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+    <a href="${baseURL}/articles.html" class="nav-link"><i class="fas fa-book-open"></i> Essays</a>
+    <a href="${baseURL}/archive.html" class="nav-link"><i class="fas fa-archive"></i> Archive</a>
+    <a href="${baseURL}/about.html" class="nav-link"><i class="fas fa-user-circle"></i> About</a>
+  </div>
+</nav>
+
+<div id="article-wrap">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="${baseURL}/index.html">Home</a><span class="breadcrumb-sep">/</span>
+      <a href="${baseURL}/articles.html">Essays</a><span class="breadcrumb-sep">/</span>
+      <a href="${baseURL}/articles.html?cat=${encodeURIComponent(category.toLowerCase())}">${escHtml(category)}</a><span class="breadcrumb-sep">/</span>
+      <span>${escHtml(title.length > 50 ? title.slice(0,50) + '…' : title)}</span>
+    </nav>
+
+    <div class="article-cat"><i class="fas fa-tag"></i> ${escHtml(category)}</div>
+    <h1>${escHtml(title)}</h1>
+    <div class="meta">
+      <span><i class="fas fa-user-edit"></i> ${escHtml(author)}</span>
+      <span class="meta-sep">·</span>
+      <span><i class="fas fa-calendar-alt"></i> ${escHtml(dateStr)}</span>
+      <span class="meta-sep">·</span>
+      <span><i class="fas fa-clock"></i> ${rt} min read</span>
+      <span class="meta-sep">·</span>
+      <span><i class="fas fa-folder-open"></i> ${escHtml(category)}</span>
+    </div>
+
+    ${excerpt ? `<div class="excerpt-block">${escHtml(excerpt)}</div>` : ''}
+
+    <div class="ad-wrap">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="${adsenseId}" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+    </div>
+
+    <article class="article-content">
+      ${content}
+    </article>
+
+    <div class="ad-wrap">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="${adsenseId}" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+    </div>
+
+    ${tags.length ? `<div class="tags-section"><div class="tags-label"><i class="fas fa-tags"></i> Tags</div>${tagBadges}</div>` : ''}
+
+    <div class="share-section">
+      <div class="share-title"><i class="fas fa-share-alt"></i> Share this essay</div>
+      <div class="share-btns">
+        <a href="https://twitter.com/intent/tweet?text=${eTitle}&url=${eURL}" target="_blank" rel="noopener" class="share-btn" style="background:#000;"><i class="fa-brands fa-x-twitter"></i> X / Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=${eURL}" target="_blank" rel="noopener" class="share-btn" style="background:#1877f2;"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=${eURL}" target="_blank" rel="noopener" class="share-btn" style="background:#0a66c2;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <a href="https://wa.me/?text=${eTitle}%20${eURL}" target="_blank" rel="noopener" class="share-btn" style="background:#25d366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://t.me/share/url?url=${eURL}&text=${eTitle}" target="_blank" rel="noopener" class="share-btn" style="background:#229ed9;"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="https://www.reddit.com/submit?url=${eURL}&title=${eTitle}" target="_blank" rel="noopener" class="share-btn" style="background:#ff4500;"><i class="fab fa-reddit-alien"></i> Reddit</a>
+      </div>
+    </div>
+
+    <a href="${baseURL}/articles.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Essays</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">POETIC CODES</div>
+        <div class="footer-copy" style="margin-top:0.3rem;">© ${date.getFullYear()} Poetic Codes · By Glenn Junsay Pansensoy</div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="${baseURL}/index.html">Home</a>
+        <a href="${baseURL}/articles.html">Essays</a>
+        <a href="${baseURL}/archive.html">Archive</a>
+        <a href="${baseURL}/about.html">About</a>
+        <a href="${baseURL}/privacy-policy.html">Privacy</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  window.addEventListener('scroll', function() {
+    var s = window.scrollY, max = document.body.scrollHeight - window.innerHeight;
+    var pb = document.getElementById('progress-bar');
+    if (pb && max > 0) pb.style.width = (s/max*100)+'%';
+    document.getElementById('back-top').classList.toggle('show', s > 300);
+  });
+<\/script>
+</body>
+</html>`;
+}
+
+// ── Sitemap builder ───────────────────────────────────────────────────────────
+function buildSitemap(urls, baseURL) {
+  const items = urls.map(u => `
+  <url>
+    <loc>${u.url}</loc>
+    <lastmod>${u.date ? u.date.slice(0,10) : new Date().toISOString().slice(0,10)}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`).join('');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${baseURL}/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${baseURL}/articles.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${baseURL}/about.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>${baseURL}/privacy-policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>${items}
+</urlset>`;
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function esc(s) { return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escHtml(s) { return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function slugify(s) { return String(s||'').toLowerCase().trim().replace(/[\s\W-]+/g,'-').replace(/^-+|-+$/g,'')||'article'; }
+function wordCount(html) { return ((html||'').replace(/<[^>]+>/g,' ').trim().split(/\s+/).filter(Boolean).length); }
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function downloadFile(filename, content, mimeType) {
+  const blob = new Blob([content], { type: mimeType + ';charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); document.body.removeChild(a); }, 200);
+}
+</script>
+</body>
+</html>
