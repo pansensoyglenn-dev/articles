@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Padrino System – Poetic Bytes</title>
+  <meta name="description" content="The padrino system breeds poverty">
+  <meta name="author" content="Glenn Junsay Pansensoy">
+  <link rel="canonical" href="https://pansensoyglenn-dev.github.io/articles/padrino-system.html">
+  <meta property="og:title" content="Padrino System">
+  <meta property="og:description" content="The padrino system breeds poverty">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://pansensoyglenn-dev.github.io/articles/padrino-system.html">
+  <meta property="og:site_name" content="Poetic Bytes">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Padrino System">
+  <meta name="twitter:description" content="The padrino system breeds poverty">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575646748966866" crossorigin="anonymous"></script>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    :root{--blue:#3a7bd5;--teal:#7ec8e3;--obsidian:#0b0f17;--card:#141e2c;--border:#253649;--text:#eef4ff;--muted:#b4cef0;--dim:#667fa3;}
+    body{background:var(--obsidian);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:1rem;line-height:1.85;max-width:820px;margin:0 auto;padding:5rem 1.2rem 4rem;}
+    ::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px;}
+    a{color:#74b9e8;text-decoration:none;} a:hover{color:var(--teal);}
+    nav{position:fixed;top:0;left:0;right:0;background:rgba(11,15,23,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0.8rem 1.5rem;display:flex;justify-content:space-between;align-items:center;z-index:100;}
+    .brand{font-family:'Cinzel Decorative',serif;font-size:0.85rem;background:linear-gradient(90deg,#fff,#7ec8e3);-webkit-background-clip:text;background-clip:text;color:transparent;}
+    .nav-links{display:flex;gap:0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;}
+    .nav-links a{color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:0.25rem 0.65rem;transition:0.2s;}
+    .nav-links a:hover{border-color:var(--blue);color:#74b9e8;}
+    .article-cat{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--teal);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.6rem;}
+    h1{font-family:'Cinzel Decorative',serif;font-size:clamp(1.2rem,4vw,2rem);line-height:1.3;margin-bottom:1rem;background:linear-gradient(90deg,#a8d8f0,#7ec8e3,#5ba3d9);-webkit-background-clip:text;background-clip:text;color:transparent;}
+    .meta{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--dim);display:flex;flex-wrap:wrap;gap:0.5rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0.7rem 0;margin-bottom:1.5rem;}
+    .meta span{display:flex;align-items:center;gap:0.35rem;}
+    .meta i{color:var(--teal);}
+    .meta-sep{color:var(--dim);font-weight:300;margin:0 0.25rem;}
+    .excerpt{background:linear-gradient(135deg,#0d1a2a,#0a1520);border-left:3px solid var(--blue);padding:1rem 1.2rem;margin-bottom:2rem;border-radius:0 8px 8px 0;font-style:italic;color:var(--muted);}
+    .content p{text-align:justify;text-justify:inter-word;hyphens:auto;margin-bottom:1.4rem;color:var(--muted);}
+    .content h2{font-family:'Cinzel Decorative',serif;font-size:1.1rem;color:var(--text);margin:2rem 0 0.8rem;border-left:3px solid var(--teal);padding-left:0.75rem;}
+    .content h3{font-size:1rem;color:#74b9e8;margin:1.5rem 0 0.6rem;}
+    .content blockquote{border-left:3px solid var(--blue);padding:0.6rem 1.2rem;margin:1.5rem 0;background:rgba(58,123,213,0.06);border-radius:0 8px 8px 0;font-style:italic;}
+    .content code{background:#0d1620;border:1px solid var(--border);padding:0.1em 0.4em;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:0.88em;color:var(--teal);}
+    .content pre{background:#060c18;border:1px solid var(--border);border-radius:10px;padding:1.2rem;overflow-x:auto;margin:1.5rem 0;}
+    .content img{max-width:100%;border-radius:10px;margin:1rem 0;border:1px solid var(--border);}
+    .share-section{background:linear-gradient(160deg,#0a1520,#0d1b2a);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;margin-top:2.5rem;}
+    .share-title{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.9rem;display:flex;align-items:center;gap:0.4rem;}
+    .share-btns{display:flex;flex-wrap:wrap;gap:0.5rem;}
+    .share-btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.4rem 0.9rem;border-radius:30px;font-family:'JetBrains Mono',monospace;font-size:0.6rem;text-decoration:none;color:#fff;transition:0.2s;}
+    .share-btn:hover{transform:translateY(-2px);opacity:0.9;}
+    .also-on{margin-top:1.5rem;padding:0.8rem 1rem;background:rgba(58,123,213,0.08);border:1px solid rgba(58,123,213,0.2);border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);}
+    .also-on a{color:#74b9e8;}
+    footer{margin-top:3rem;border-top:1px solid var(--border);padding-top:1.5rem;font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--dim);text-align:center;}
+    @media(max-width:600px){body{padding:4.5rem 1rem 3rem;} .nav-links{display:none;}}
+  </style>
+</head>
+<body>
+<nav>
+  <span class="brand">POETIC BYTES</span>
+  <div class="nav-links">
+    <a href="https://pansensoyglenn-dev.github.io/articles/index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="https://poetic-bytes.blogspot.com" target="_blank"><i class="fab fa-blogger-b"></i> Blog</a>
+  </div>
+</nav>
+
+<article>
+  <div class="article-cat"><i class="fas fa-tag"></i> National Affairs</div>
+  <h1>Padrino System</h1>
+  <div class="meta">
+    <span><i class="fas fa-user-edit"></i> Glenn Junsay Pansensoy</span>
+    <span class="meta-sep">·</span>
+    <span><i class="fas fa-calendar-alt"></i> April 25, 2026</span>
+    <span class="meta-sep">·</span>
+    <span><i class="fas fa-clock"></i> 7 min read</span>
+    <span class="meta-sep">·</span>
+    <span><i class="fas fa-folder-open"></i> National Affairs</span>
+  </div>
+  <div class="excerpt">The padrino system breeds poverty</div>
+  <ins class="adsbygoogle" style="display:block;margin-bottom:1.5rem;" data-ad-client="ca-pub-4575646748966866" data-ad-slot="8844498658" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <div class="content"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Padrino Perpetuum | Philippines: Glitch or Feature?</title>
+  <meta name="description" content="Deep dive into class exploitation, political dynasties, and the Padrino System fueling endless poverty in the Philippines.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f2ef;
+      font-family: 'Georgia', 'Times New Roman', 'Palatino', 'Charter', serif;
+      color: #1e1a17;
+      line-height: 1.55;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      background: #fffef7;
+      border-radius: 28px;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    /* main content padding */
+    .article-content {
+      padding: 2.2rem 2rem 2.8rem;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      .article-content {
+        padding: 1.8rem 1.3rem;
+      }
+    }
+
+    /* typography */
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin: 0.5rem 0 0.75rem 0;
+      color: #8b2c1c;
+      border-left: 5px solid #b0452c;
+      padding-left: 1.25rem;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin: 1.75rem 0 0.75rem 0;
+      color: #2d2a26;
+      letter-spacing: -0.3px;
+      border-bottom: 2px solid #e6ddd0;
+      padding-bottom: 0.35rem;
+    }
+
+    h3 {
+      font-size: 1.55rem;
+      font-weight: 600;
+      margin: 1.6rem 0 0.65rem 0;
+      color: #3a2c28;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .subhead {
+      font-size: 1.2rem;
+      color: #4c443e;
+      margin-bottom: 1rem;
+      font-style: italic;
+      border-left: 3px solid #d4b995;
+      padding-left: 1rem;
+    }
+
+    .kicker-quote {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #1f2a3a 0%, #4c2f27 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin: 0.25rem 0 0.5rem 0;
+    }
+
+    .hero-text {
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      font-weight: 450;
+    }
+
+    .byline {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6c5b4d;
+      margin-bottom: 2rem;
+      border-top: 1px solid #ece3d8;
+      padding-top: 1rem;
+    }
+
+    .stat-highlight {
+      background: #faece3;
+      padding: 0.15rem 0.35rem;
+      border-radius: 8px;
+      font-weight: 700;
+      color: #a33c21;
+      display: inline-block;
+      font-size: 1em;
+    }
+
+    .stats-badge {
+      font-weight: 800;
+      font-size: 1.05rem;
+      background: #fff2e4;
+      border-left: 4px solid #c2542c;
+      padding: 0.2rem 0.7rem;
+      margin: 0.7rem 0;
+      display: inline-block;
+      border-radius: 0 12px 12px 0;
+    }
+
+    ul, .custom-list {
+      margin: 1rem 0 1.2rem 1.5rem;
+    }
+
+    li {
+      margin: 0.5rem 0;
+    }
+
+    .hashtag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.5rem 0 1.2rem 0;
+    }
+
+    .hashtag {
+      background: #efe6dd;
+      color: #3d2c24;
+      font-family: monospace, 'SF Mono', 'Courier New', Courier;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 40px;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+      transition: 0.1s;
+    }
+
+    .callout-card {
+      background: #faf3ea;
+      border-radius: 24px;
+      padding: 1.4rem 1.8rem;
+      margin: 2rem 0;
+      border: 1px solid #e7dacf;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .verdict-box {
+      background: #2f2c27;
+      color: #fef2e5;
+      border-radius: 28px;
+      padding: 1.6rem 2rem;
+      margin: 2rem 0 1rem;
+    }
+
+    .verdict-box h3 {
+      color: #fad4b3;
+      margin-top: 0;
+      border-bottom: none;
+    }
+
+    .btn-comment-mock {
+      background: #f0e2d6;
+      border: 1px solid #ddd0c2;
+      border-radius: 60px;
+      padding: 0.7rem 1.6rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-comment-mock:hover {
+      background: #e4d3c4;
+      transform: scale(0.98);
+    }
+
+    .comment-section {
+      margin-top: 2rem;
+      background: #fefbf7;
+      border-radius: 28px;
+      border: 1px solid #ece2d8;
+      padding: 1.4rem 1.6rem;
+    }
+
+    textarea {
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid #dccfc3;
+      padding: 12px 16px;
+      font-family: inherit;
+      background: white;
+      resize: vertical;
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    .fake-submit {
+      background: #9e4a32;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 0.5rem 1.3rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .fake-submit:hover {
+      background: #7c3925;
+    }
+
+    hr {
+      margin: 2rem 0 1rem;
+      border: none;
+      border-top: 2px dotted #e1d5ca;
+    }
+
+    footer {
+      font-size: 0.75rem;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      color: #9b897b;
+      border-top: 1px solid #ede3d9;
+      margin-top: 1rem;
+    }
+
+    .impact-number {
+      font-size: 1.6rem;
+      font-weight: 800;
+      display: inline-block;
+      background: none;
+      color: #bd583b;
+      letter-spacing: -0.5px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    @media (max-width: 560px) {
+      h1 {
+        font-size: 1.9rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="article-content">
+
+    <!-- opening glitch/feature kicker -->
+    <div class="kicker-quote" style="font-size: 2rem;">🇵🇭📉</div>
+    <h1 style="font-size: 2.3rem; border-left: none; padding-left: 0; margin: 0 0 0.25rem 0; color: #2b2c2c;">Is poverty in the Philippines a <em>“glitch”</em> or a <strong>feature of the system</strong>?</h1>
+    
+    <p class="hero-text"><strong>While skyscrapers rise in Makati, 20 million Filipinos remain below the poverty line.</strong> In this deep dive, <strong>Glenn Junsay Pansensoy</strong> argues that the <em>“Padrino System”</em> isn’t just culture—it’s a calculated machine of class exploitation.</p>
+    
+    <p>From political dynasties controlling <span class="stat-highlight">80% of Congress</span> to the rising desperation driving our youth toward radicalization, it's time to pull back the veil on the <strong>“Padrino Perpetuum.”</strong></p>
+    
+    <p><strong>👇 Read the full analysis below.</strong></p>
+    
+    <!-- first hashtag set -->
+    <div class="hashtag-row">
+      <span class="hashtag">#Philippines2026</span>
+      <span class="hashtag">#PoliticalEconomy</span>
+      <span class="hashtag">#ClassStruggle</span>
+      <span class="hashtag">#PadrinoSystem</span>
+      <span class="hashtag">#SocialJustice</span>
+      <span class="hashtag">#PhilippinePolitics</span>
+      <span class="hashtag">#Marxism</span>
+      <span class="hashtag">#EndPoverty</span>
+    </div>
+    
+    <hr style="margin: 0.5rem 0 1.2rem 0;">
+
+    <!-- main article title -->
+    <h1 style="font-size: 2.4rem; margin-bottom: 0.3rem;">The Padrino Perpetuum:<br> How Class Exploitation Fuels Endless Poverty</h1>
+    <div class="byline">By: Glenn Junsay Pansensoy | Diplahan, Zamboanga Sibugay</div>
+    
+    <p>In a nation of gleaming towers and sprawling slums, a paradox endures: a democracy on paper, but grinding poverty for over <strong class="stat-highlight">20 million Filipinos</strong>. This isn't bad luck—it's the predictable output of a political machine designed for elite exploitation.</p>
+    
+    <!-- Section 1: Dynasties -->
+    <h3>🏛️ 1. Dynasties: The Family Business of Power</h3>
+    <p>The state serves the ruling class. In the Philippines, <strong>“political dynasties” dominate 80% of congressional seats</strong>.</p>
+    <ul>
+      <li><strong>The Padrino Logic:</strong> Power flows through personal ties, not merit.</li>
+      <li><strong>The Feudal Graft:</strong> Families like the Marcoses, Dutertes, and Aquinos use infrastructure and relief goods to buy loyalty, treating public office like a family firm.</li>
+      <li><strong>The Gap:</strong> While GDP grew at 6%, the top <strong>1% hold 17% of national income</strong>. Corruption isn't a bug; it’s the system's logic.</li>
+    </ul>
+    
+    <!-- Section 2: Youth Trap -->
+    <h3>🚩 2. The Youth Trap: Why Desperation Leads to Rebellion</h3>
+    <p>The “Padrino” promise of trickle-down wealth has evaporated.</p>
+    <ul>
+      <li><strong>Unemployment:</strong> <span class="stat-highlight">49% youth unemployment</span> in informal sectors (2025 SWS data).</li>
+      <li><strong>The Breaking Point:</strong> Graduates face a job market dominated by cronies, with wages (<span class="stat-highlight">₱20k</span>) failing to meet living costs.</li>
+      <li><strong>The Radical Alternative:</strong> This despair is fueling CPP-NPA recruitment. In places like Negros Occidental, where <span class="stat-highlight">70% of youth are landless</span>, the state offers nothing, while revolutionary groups offer land and a sense of purpose.</li>
+    </ul>
+    
+    <!-- Section 3: Export of People -->
+    <h3>✈️ 3. The “Export” of People</h3>
+    <p>We rely on <strong class="stat-highlight">$37 billion in OFW remittances</strong> to mask the fact that we are exporting our best labor because the local economy is a <em>“debt trap,”</em> with <strong class="stat-highlight">40% of the budget</strong> servicing foreign loans. Neoliberal policies privatize our resources (mining, telecom) while the profits flee abroad.</p>
+    
+    <!-- callout box: stark data -->
+    <div class="callout-card">
+      <span style="font-weight: 800;">⚡ STRUCTURAL REALITY</span><br>
+      While GDP grows, wealth concentrates. The Padrino system ensures every government project, license, and contract becomes a reward for loyalty, strangling genuine competition. <strong>Poverty is not accidental — it's the grease of patronage politics.</strong>
+    </div>
+    
+    <!-- Verdict: Reform or Rupture -->
+    <h3>⚡ The Verdict: Reform or Rupture?</h3>
+    <p>Bills to ban political dynasties fail because they ask the elite to vote against their own bank accounts.</p>
+    <p>True change requires more than “tweaks.” It requires a <strong>rupture of the capitalist property relations</strong> that keep the majority in chains. Until the <strong>Padrino Veil</strong> is torn, poverty will remain the price of elite rule—and our youth will continue to pay that price in blood.</p>
+    
+    <div class="verdict-box">
+      <h3 style="margin-top: 0;">🧠 What do you think?</h3>
+      <p style="font-size: 1.1rem; margin-bottom: 0;">Is the system fixable, or does it need to be rebuilt from the ground up?</p>
+      <p style="margin-top: 12px;"><strong>💬 Drop your thoughts in the comments.</strong></p>
+    </div>
+    
+    <!-- final hashtags (UPD, Ateneo, DLSU solidarity) -->
+    <div class="hashtag-row" style="margin-top: 1rem;">
+      <span class="hashtag">#UP</span>
+      <span class="hashtag">#Pahinungod</span>
+      <span class="hashtag">#ServeThePeople</span>
+      <span class="hashtag">#IsangUP</span>
+      <span class="hashtag">#Ateneo</span>
+      <span class="hashtag">#AMDG</span>
+      <span class="hashtag">#MenAndWomenForOthers</span>
+      <span class="hashtag">#OneBigFight</span>
+      <span class="hashtag">#DLSU</span>
+      <span class="hashtag">#AnimoLaSalle</span>
+      <span class="hashtag">#LaallianSocialJustice</span>
+      <span class="hashtag">#GreenAndWhite</span>
+    </div>
+    
+    <!-- interactive comment placeholder (respects the call to action) -->
+    <div class="comment-section">
+      <p style="font-weight: 600; margin-bottom: 0.5rem;">🗣️ Join the conversation — <em>“End the Padrino machine”</em></p>
+      <textarea rows="2" placeholder="Share your analysis, personal experience, or call for action..."></textarea>
+      <div style="display: flex; justify-content: flex-end;">
+        <button class="fake-submit" id="demoCommentBtn">💬 Post as demo (reflection)</button>
+      </div>
+      <p style="font-size: 0.7rem; margin-top: 0.7rem; color: #8f7c6b;">*This is a static demonstration — your voice matters beyond this page. #PolitikaNgMasa</p>
+    </div>
+    
+    <hr>
+    <p style="font-size: 0.85rem; text-align: center; color: #6f5a48;"><strong>Glenn Junsay Pansensoy</strong> — from Diplahan, Zamboanga Sibugay. Extract from grassroots political economy series. The Padrino Perpetuum: unmasking class exploitation in the 2026 Philippine landscape.</p>
+  </div>
+  <footer>
+    📢 Analysis for critical solidarity | Share widely — #EndPoverty #Philippines2026
+  </footer>
+</div>
+
+<!-- tiny JS just for demo comment feedback -->
+<script>
+  document.getElementById('demoCommentBtn')?.addEventListener('click', function() {
+    const textarea = document.querySelector('textarea');
+    const msg = textarea.value.trim();
+    if (msg === "") {
+      alert("✍️ Write your perspective before posting. Let's keep the discourse going — what's your stand on the Padrino system?");
+    } else {
+      alert("💡 '“Change will not come if we wait for the elite.” — Your voice fuels the rupture. Thank you for engaging (demo mode).'");
+      textarea.value = "";
+    }
+  });
+</script>
+</body>
+</html></div>
+  <div style="margin:1.5rem 0;"><span style="display:inline-block;background:#e8f0fe;color:#3a7bd5;border-radius:20px;padding:0.15rem 0.6rem;font-size:0.68rem;margin:0.2rem;font-family:monospace;">padrino</span><span style="display:inline-block;background:#e8f0fe;color:#3a7bd5;border-radius:20px;padding:0.15rem 0.6rem;font-size:0.68rem;margin:0.2rem;font-family:monospace;">povert</span><span style="display:inline-block;background:#e8f0fe;color:#3a7bd5;border-radius:20px;padding:0.15rem 0.6rem;font-size:0.68rem;margin:0.2rem;font-family:monospace;">Philippines</span><span style="display:inline-block;background:#e8f0fe;color:#3a7bd5;border-radius:20px;padding:0.15rem 0.6rem;font-size:0.68rem;margin:0.2rem;font-family:monospace;">politics</span></div>
+  <!-- Legal footer (relative links) -->
+  
+  <div style="margin:2rem 0; padding:1rem 1.2rem; border-top:1px solid var(--border); text-align:center; font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--dim);">
+    <a href="about.html" style="color:var(--blue-lt); text-decoration:none; margin:0 0.6rem;">About</a>
+    <a href="privacy.html" style="color:var(--blue-lt); text-decoration:none; margin:0 0.6rem;">Privacy Policy</a>
+    <a href="terms.html" style="color:var(--blue-lt); text-decoration:none; margin:0 0.6rem;">Terms of Service</a>
+    <a href="cookies.html" style="color:var(--blue-lt); text-decoration:none; margin:0 0.6rem;">Cookie Policy</a>
+  </div>
+  <!-- /Legal footer -->
+
+  <div class="share-section">
+    <div class="share-title"><i class="fas fa-share-alt"></i> Share this essay</div>
+    <div class="share-btns">
+      <a href="https://twitter.com/intent/tweet?text=Padrino%20System&url=https%3A%2F%2Fpansensoyglenn-dev.github.io%2Farticles%2Fpadrino-system.html" target="_blank" class="share-btn" style="background:#000;"><i class="fa-brands fa-x-twitter"></i> X</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpansensoyglenn-dev.github.io%2Farticles%2Fpadrino-system.html" target="_blank" class="share-btn" style="background:#1877f2;"><i class="fab fa-facebook-f"></i> Facebook</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fpansensoyglenn-dev.github.io%2Farticles%2Fpadrino-system.html" target="_blank" class="share-btn" style="background:#0a66c2;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <a href="https://wa.me/?text=Padrino%20System%20https%3A%2F%2Fpansensoyglenn-dev.github.io%2Farticles%2Fpadrino-system.html" target="_blank" class="share-btn" style="background:#25d366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://t.me/share/url?url=https%3A%2F%2Fpansensoyglenn-dev.github.io%2Farticles%2Fpadrino-system.html&text=Padrino%20System" target="_blank" class="share-btn" style="background:#229ed9;"><i class="fab fa-telegram"></i> Telegram</a>
+      <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fpansensoyglenn-dev.github.io%2Farticles%2Fpadrino-system.html&title=Padrino%20System" target="_blank" class="share-btn" style="background:#ff4500;"><i class="fab fa-reddit-alien"></i> Reddit</a>
+    </div>
+    <div class="also-on" style="margin-top:1rem;"><i class="fab fa-blogger-b"></i> Also published on <a href="https://poetic-bytes.blogspot.com/2026/04/padrino-system.html" target="_blank">Blogspot</a></div>
+  </div>
+</article>
+
+<footer>
+  <i class="far fa-copyright"></i> 2026 Poetic Bytes · By Glenn Junsay Pansensoy · Published on GitHub Pages &amp; Blogspot
+</footer>
+</body>
+</html>
