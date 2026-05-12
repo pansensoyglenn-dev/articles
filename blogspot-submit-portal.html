@@ -173,7 +173,6 @@
 }
 .token-help a { color:#e8c46a; }
 .token-help code { background:rgba(0,0,0,0.3); padding:0.1em 0.35em; border-radius:3px; font-size:0.9em; }
-```
 
   </style>
 </head>
@@ -204,7 +203,7 @@
 <main id="main">
   <div class="container">
 
-```
+
 <div id="form-state">
   <div class="editor-layout">
 
@@ -446,7 +445,7 @@
     <div id="dist-result-box"></div>
   </div>
 </div>
-```
+
 
   </div>
 </main>
@@ -1099,7 +1098,7 @@ function buildGitHubPage(title, author, category, excerpt, bodyHTML, slug) {
     +'footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #253649;font-size:0.72rem;color:#667fa3;text-align:center;font-family:monospace;line-height:2;}'
     +'</style>\n'
 
-```
+
 +'</head>\n<body>\n'
 +'<h1>'+esc(title)+'</h1>\n'
 +'<div class="meta">'+esc(author)+' · '+esc(category)+' · '+pubDate+'</div>\n'
@@ -1112,7 +1111,7 @@ function buildGitHubPage(title, author, category, excerpt, bodyHTML, slug) {
 +'&copy; '+new Date().getFullYear()+' Glenn Junsay Pansensoy'
 +'</footer>\n'
 +'</body>\n</html>';
-```
+
 
 }
 
@@ -1158,7 +1157,7 @@ bloggerURL   = blogPost.url || BLOGGER_BLOG_URL;
 distLines.push(’✓ Blogspot: ’ + bloggerURL);
 setProgress(55);
 
-```
+
 // Rebuild body with actual URL
 var finalBodyHTML = buildBloggerBody(title, author, category, excerpt, content, tags, bloggerURL);
 
@@ -1218,7 +1217,7 @@ document.getElementById('dist-result-box').innerHTML =
 document.getElementById('form-state').style.display   = 'none';
 document.getElementById('success-state').style.display = 'block';
 window.scrollTo({ top:0, behavior:'smooth' });
-```
+
 
 } catch(err) {
 setProgress(0);
