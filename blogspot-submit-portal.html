@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor Portal – Poetic Bytes</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --blue:#3a7bd5; --blue-lt:#74b9e8; --teal:#7ec8e3; --python:#306998;
+      --obsidian:#0b0f17; --card:#141e2c; --card-hover:#192537;
+      --border:#253649; --text:#eef4ff; --muted:#b4cef0; --dim:#667fa3;
+      --rose:#c46a6a; --green:#3ddc84; --gold:#c9a84c;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--obsidian); color:var(--text); font-family:'Crimson Pro',Georgia,serif; font-size:1rem; line-height:1.8; overflow-x:hidden; }
+    ::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-track { background:#0d1420; } ::-webkit-scrollbar-thumb { background:var(--blue); border-radius:4px; }
+    a { color:var(--blue-lt); text-decoration:none; } a:hover { color:var(--teal); }
+    .gradient-text { background:linear-gradient(90deg,#a8d8f0,#7ec8e3,#5ba3d9); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .container { max-width:1000px; margin:0 auto; padding:0 1.2rem; }
+
+    #navbar { position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; padding:0.8rem 1.5rem; background:rgba(11,15,23,0.97); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); z-index:1000; }
+    .brand { font-family:'Cinzel Decorative',serif; font-weight:700; font-size:0.85rem; background:linear-gradient(90deg,#fff,#7ec8e3); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .nav-link { font-family:'JetBrains Mono',monospace; font-size:0.62rem; color:var(--muted); padding:0.3rem 0.7rem; border:1px solid var(--border); border-radius:20px; transition:0.2s; }
+    .nav-link:hover { border-color:var(--blue); color:var(--blue-lt); }
+
+    #page-hero { padding:7rem 0 3rem; text-align:center; background:linear-gradient(180deg,#060c18,#0a1420); border-bottom:1px solid var(--border); }
+    #page-hero h1 { font-family:'Cinzel Decorative',serif; font-size:clamp(1.1rem,4vw,2rem); margin-bottom:0.6rem; }
+    #page-hero p { color:var(--muted); font-size:0.88rem; max-width:560px; margin:0 auto 1rem; }
+    .blog-badge { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(58,123,213,0.12); border:1px solid rgba(58,123,213,0.3); border-radius:30px; padding:0.3rem 0.9rem; font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:var(--teal); margin-top:0.5rem; }
+
+    #main { padding:3rem 0 6rem; }
+    .editor-layout { display:grid; grid-template-columns:1fr 270px; gap:1.8rem; align-items:start; }
+    @media(max-width:768px) { .editor-layout { grid-template-columns:1fr; } }
+
+    .submit-box { background:linear-gradient(160deg,#0c1825,#0e1a2a); border:1px solid var(--border); border-radius:20px; padding:1.8rem; }
+    .section-title { font-family:'Cinzel Decorative',serif; font-size:0.85rem; color:var(--text); margin-bottom:1.2rem; display:flex; align-items:center; gap:0.6rem; }
+    .section-title i { color:var(--teal); }
+
+    .field-group { margin-bottom:1.1rem; }
+    .field-label { font-family:'JetBrains Mono',monospace; font-size:0.58rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.3rem; display:block; }
+    .field-input, .field-select, .field-textarea {
+      width:100%; background:#060c18; border:1px solid var(--border); border-radius:10px;
+      color:var(--text); font-family:'Crimson Pro',serif; font-size:0.92rem;
+      padding:0.65rem 0.9rem; outline:none; transition:border-color 0.2s;
+    }
+    .field-input:focus, .field-select:focus, .field-textarea:focus { border-color:var(--blue); }
+    .field-select { cursor:pointer; }
+    .field-select option { background:#0b0f17; }
+    .field-textarea { min-height:400px; resize:vertical; line-height:1.9; }
+
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media(max-width:600px) { .field-row { grid-template-columns:1fr; } }
+
+    /* ── FIX: mode tabs must be clickable, no pointer-events blocking ── */
+    .mode-tabs { display:flex; gap:0.5rem; margin-bottom:0.8rem; flex-wrap:wrap; position:relative; z-index:10; }
+    .mode-tab {
+      padding:0.35rem 0.9rem; border-radius:20px; border:1px solid var(--border);
+      background:transparent; color:var(--muted); cursor:pointer;
+      font-family:'JetBrains Mono',monospace; font-size:0.6rem; text-transform:uppercase;
+      transition:0.2s; position:relative; z-index:10; pointer-events:auto;
+      /* prevent any overlay from swallowing clicks */
+      -webkit-user-select:none; user-select:none;
+    }
+    .mode-tab:hover { border-color:var(--blue); color:var(--blue-lt); }
+    .mode-tab.active { background:linear-gradient(135deg,var(--python),var(--blue)); border-color:transparent; color:#fff; }
+
+    .btn-primary { background:linear-gradient(135deg,var(--python),var(--blue)); border:none; padding:0.75rem 1.8rem; border-radius:40px; color:#fff; font-family:'Cinzel Decorative',serif; font-size:0.7rem; cursor:pointer; transition:0.22s; display:inline-flex; align-items:center; gap:8px; }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(48,105,152,0.5); }
+    .btn-primary:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+    .btn-outline { background:transparent; border:1px solid var(--blue); padding:0.7rem 1.4rem; border-radius:40px; color:var(--blue-lt); font-family:'Cinzel Decorative',serif; font-size:0.7rem; cursor:pointer; transition:0.22s; display:inline-flex; align-items:center; gap:8px; }
+    .btn-outline:hover { background:rgba(58,123,213,0.14); }
+    .submit-actions { display:flex; gap:0.8rem; flex-wrap:wrap; margin-top:1.5rem; padding-top:1.2rem; border-top:1px solid var(--border); }
+
+    .sidebar { display:flex; flex-direction:column; gap:1.2rem; }
+    .sidebar-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.2rem; }
+    .sidebar-card-title { font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.8rem; display:flex; align-items:center; gap:0.4rem; }
+
+    .auth-status { display:flex; align-items:center; gap:0.6rem; padding:0.6rem 0.9rem; border-radius:10px; font-family:'JetBrains Mono',monospace; font-size:0.62rem; }
+    .auth-status.connected { background:rgba(61,184,122,0.1); border:1px solid rgba(61,184,122,0.3); color:#3ddc84; }
+    .auth-status.disconnected { background:rgba(224,82,82,0.08); border:1px solid rgba(224,82,82,0.25); color:var(--rose); }
+    .auth-status.pending { background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.25); color:var(--gold); }
+
+    .dist-item { display:flex; align-items:center; gap:0.6rem; padding:0.5rem 0; border-bottom:1px solid rgba(37,54,73,0.4); }
+    .dist-item:last-child { border-bottom:none; }
+    .dist-item input[type=checkbox] { accent-color:var(--blue); width:14px; height:14px; cursor:pointer; }
+    .dist-item label { font-family:'JetBrains Mono',monospace; font-size:0.62rem; color:var(--muted); cursor:pointer; display:flex; align-items:center; gap:0.4rem; flex:1; }
+    .dist-item label i { width:14px; color:var(--teal); }
+
+    .webhook-input-row { display:flex; gap:0.4rem; margin-top:0.5rem; }
+    .webhook-input { flex:1; background:#060c18; border:1px solid var(--border); border-radius:8px; color:var(--text); font-family:'JetBrains Mono',monospace; font-size:0.58rem; padding:0.5rem 0.7rem; outline:none; transition:0.2s; }
+    .webhook-input:focus { border-color:var(--blue); }
+    .btn-save-hook { background:linear-gradient(135deg,var(--python),var(--blue)); border:none; border-radius:8px; color:#fff; font-family:'JetBrains Mono',monospace; font-size:0.58rem; padding:0.5rem 0.8rem; cursor:pointer; white-space:nowrap; }
+    #webhook-status { font-family:'JetBrains Mono',monospace; font-size:0.55rem; margin-top:0.3rem; min-height:0.8rem; }
+
+    #toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(20px); background:var(--card); border:1px solid var(--border); border-radius:30px; padding:0.6rem 1.4rem; font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--text); z-index:9999; opacity:0; transition:0.3s; pointer-events:none; white-space:nowrap; }
+    #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+    #toast.success { border-color:rgba(61,184,122,0.5); color:#3ddc84; }
+    #toast.error { border-color:rgba(224,82,82,0.4); color:var(--rose); }
+
+    #success-state { display:none; }
+    .success-box { background:linear-gradient(160deg,#0a1e14,#0b1a10); border:1px solid rgba(61,184,122,0.3); border-radius:20px; padding:2.5rem; text-align:center; }
+    .success-icon { font-size:2.5rem; margin-bottom:1rem; }
+    .success-title { font-family:'Cinzel Decorative',serif; font-size:1.1rem; color:#3ddc84; margin-bottom:0.6rem; }
+    .success-msg { color:var(--muted); font-size:0.88rem; margin-bottom:1.5rem; line-height:1.7; }
+    .success-links { display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap; }
+    .success-link { display:inline-flex; align-items:center; gap:0.5rem; padding:0.6rem 1.2rem; border-radius:30px; font-family:'JetBrains Mono',monospace; font-size:0.62rem; transition:0.2s; }
+    .success-link.primary { background:linear-gradient(135deg,var(--python),var(--blue)); color:#fff; }
+    .success-link.secondary { border:1px solid var(--border); color:var(--muted); }
+    .success-link:hover { transform:translateY(-2px); }
+
+    .dist-result { margin-top:1rem; padding:0.7rem 1rem; border-radius:10px; font-family:'JetBrains Mono',monospace; font-size:0.6rem; line-height:1.8; text-align:left; white-space:pre-wrap; }
+    .dist-result.ok { background:rgba(61,184,122,0.08); border:1px solid rgba(61,184,122,0.25); color:#3ddc84; }
+    .dist-result.fail { background:rgba(224,82,82,0.08); border:1px solid rgba(224,82,82,0.25); color:var(--rose); }
+
+    .info-note { background:rgba(58,123,213,0.07); border-left:3px solid var(--blue); border-radius:8px; padding:0.7rem 1rem; font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:var(--muted); line-height:1.7; margin-bottom:1rem; }
+    .info-note a { color:var(--blue-lt); }
+
+    #progress-bar { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--teal)); width:0; z-index:2000; transition:width 0.3s; pointer-events:none; }
+
+    /* ── FIX: modal must NOT block clicks when hidden ── */
+    #preview-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:1500; overflow-y:auto; padding:2rem 1rem; }
+    .preview-inner { max-width:760px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:20px; padding:2.5rem; position:relative; }
+    .preview-close { position:absolute; top:1rem; right:1rem; background:transparent; border:1px solid var(--border); border-radius:8px; color:var(--muted); padding:0.3rem 0.7rem; cursor:pointer; font-size:0.8rem; font-family:'JetBrains Mono',monospace; }
+    .preview-close:hover { border-color:var(--rose); color:var(--rose); }
+    .preview-content h1 { font-family:'Cinzel Decorative',serif; font-size:1.1rem; margin-bottom:1rem; }
+    .preview-content h2 { font-size:0.9rem; margin:1.5rem 0 0.8rem; border-top:1px solid var(--border); padding-top:0.8rem; }
+    .preview-content p { font-size:0.88rem; text-align:justify; margin-bottom:1.2rem; line-height:1.85; }
+
+    /* ── Video upload zone ── */
+    .vid-upload-zone {
+      border:2px dashed rgba(201,168,76,0.45); border-radius:12px;
+      padding:1.4rem 1rem; text-align:center; cursor:pointer;
+      transition:border-color 0.2s, background 0.2s;
+      background:rgba(7,13,24,0.6); position:relative; overflow:hidden;
+    }
+    .vid-upload-zone:hover, .vid-upload-zone.dragover { border-color:var(--gold); background:rgba(201,168,76,0.07); }
+    .vid-upload-zone input[type=file] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+    .vid-upload-icon { font-size:1.8rem; color:var(--gold); margin-bottom:0.5rem; }
+    .vid-upload-label { font-family:'JetBrains Mono',monospace; font-size:0.62rem; color:var(--dim); }
+    .vid-upload-label strong { color:#e8c46a; }
+    .vid-preview-grid { display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:0.8rem; }
+    .vid-preview-item { position:relative; width:160px; border-radius:10px; overflow:hidden; border:1px solid var(--border); flex-shrink:0; background:#060c18; }
+    .vid-preview-item video { width:100%; height:90px; object-fit:cover; display:block; background:#000; }
+    .vid-preview-name { font-family:'JetBrains Mono',monospace; font-size:0.55rem; color:var(--muted); padding:0.25rem 0.4rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .vid-preview-size { font-family:'JetBrains Mono',monospace; font-size:0.5rem; color:var(--dim); padding:0 0.4rem 0.25rem; }
+    .vid-preview-remove { position:absolute; top:3px; right:3px; width:20px; height:20px; background:rgba(196,106,106,0.92); border:none; border-radius:50%; color:#fff; font-size:0.65rem; cursor:pointer; line-height:20px; text-align:center; padding:0; z-index:5; }
+    .vid-preview-status { font-family:'JetBrains Mono',monospace; font-size:0.52rem; position:absolute; bottom:38px; left:0; right:0; background:rgba(0,0,0,0.7); color:#fff; text-align:center; padding:2px 0; }
+    .vid-preview-status.ok  { background:rgba(61,220,132,0.85); color:#003; }
+    .vid-preview-status.err { background:rgba(196,106,106,0.85); }
+
+    .vid-size-warning { display:none; font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:var(--gold); background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.3); border-radius:8px; padding:0.5rem 0.8rem; margin-top:0.5rem; }
+
+    /* ── Video embed method picker ── */
+    .vid-method-tabs { display:flex; gap:0.4rem; margin-bottom:0.8rem; flex-wrap:wrap; }
+    .vid-method-tab { padding:0.3rem 0.75rem; border-radius:16px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:0.58rem; transition:0.2s; }
+    .vid-method-tab.active { background:rgba(201,168,76,0.2); border-color:var(--gold); color:var(--gold); }
+    .vid-method-panel { display:none; }
+    .vid-method-panel.active { display:block; }
+
+    .vid-url-note { font-family:'JetBrains Mono',monospace; font-size:0.58rem; color:var(--dim); line-height:1.7; margin-bottom:0.6rem; }
+    .vid-url-note a { color:var(--blue-lt); }
+
+    .token-help { background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.25); border-radius:8px; padding:0.6rem 0.8rem; margin-top:0.6rem; font-family:'JetBrains Mono',monospace; font-size:0.55rem; color:var(--gold); line-height:1.7; }
+    .token-help a { color:#e8c46a; }
+    .token-help code { background:rgba(0,0,0,0.3); padding:0.1em 0.35em; border-radius:3px; font-size:0.9em; }
+
+    #publish-error-box { display:none; margin-top:1rem; padding:0.8rem 1rem; background:rgba(224,82,82,0.08); border:1px solid rgba(224,82,82,0.3); border-radius:10px; font-family:'JetBrains Mono',monospace; font-size:0.62rem; color:#e05252; line-height:1.7; white-space:pre-wrap; }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="toast"></div>
+
+<nav id="navbar">
+  <span class="brand">Poetic Codes</span>
+  <div style="display:flex;gap:0.6rem;align-items:center;">
+    <a href="https://poetic-bytes.blogspot.com" target="_blank" class="nav-link"><i class="fas fa-external-link-alt"></i> Poetic Bytes Blog</a>
+    <a href="https://code-avs.pages.dev" target="_blank" class="nav-link"><i class="fas fa-globe"></i> Main Site</a>
+  </div>
+</nav>
+
+<section id="page-hero">
+  <div class="container">
+    <h1 class="gradient-text">Editor Portal</h1>
+    <p>Write once. Publish to Blogspot + GitHub Pages + distribute everywhere. Legal footer automatically injected.</p>
+    <div class="blog-badge">
+      <i class="fab fa-blogger-b"></i>
+      Publishing to: poetic-bytes.blogspot.com
+    </div>
+  </div>
+</section>
+
+<main id="main">
+  <div class="container">
+
+    <div id="form-state">
+      <div class="editor-layout">
+
+        <!-- ══ LEFT: EDITOR ══════════════════════════════════════ -->
+        <div class="submit-box">
+          <div class="section-title"><i class="fas fa-pen-nib"></i> Write Your Essay</div>
+
+          <div class="info-note">
+            <i class="fas fa-info-circle" style="color:var(--blue-lt);margin-right:0.4rem"></i>
+            This portal publishes directly to <strong>poetic-bytes.blogspot.com</strong> via the Blogger API.
+            Legal information is <strong>automatically injected</strong> into every article.
+            You need to <a href="#" id="sign-in-link">sign in with Google</a> once to authorize.
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Essay Title *</label>
+              <input type="text" id="f-title" class="field-input" placeholder="Enter your essay title...">
+            </div>
+            <div class="field-group">
+              <label class="field-label">Author</label>
+              <input type="text" id="f-author" class="field-input" value="Glenn Junsay Pansensoy">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Category / Label *</label>
+              <select id="f-category" class="field-select">
+                <option value="">— Select category —</option>
+                <option value="Culture">Culture</option>
+                <option value="National Affairs">National Affairs</option>
+                <option value="International Condition">International Condition</option>
+                <option value="Programming">Programming</option>
+                <option value="Philosophy">Philosophy</option>
+                <option value="History">History</option>
+                <option value="Christian">Christian</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Tags (comma-separated)</label>
+              <input type="text" id="f-tags" class="field-input" placeholder="e.g. python, culture, essay">
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Publish As *</label>
+            <select id="f-publish-type" class="field-select">
+              <option value="post">Post (appears in blog feed)</option>
+              <option value="page">Page (standalone static page)</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Excerpt / Meta Description *</label>
+            <input type="text" id="f-excerpt" class="field-input" placeholder="A short summary of this essay (160 chars max)..." maxlength="160">
+          </div>
+
+          <!-- ── Content tabs ── -->
+          <div class="field-group">
+            <label class="field-label">Content</label>
+            <div class="mode-tabs" id="mode-tabs">
+              <button class="mode-tab active" id="tab-text" type="button">Plain Text</button>
+              <button class="mode-tab" id="tab-html" type="button">Raw HTML</button>
+              <button class="mode-tab" id="tab-video" type="button"><i class="fas fa-film"></i> Video</button>
+              <button class="mode-tab" id="tab-preview" type="button"><i class="fas fa-eye"></i> Preview</button>
+            </div>
+
+            <textarea id="plain-textarea" class="field-textarea" placeholder="Write your essay here. Plain text paragraphs are auto-formatted."></textarea>
+            <textarea id="html-textarea" class="field-textarea" style="display:none;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:#7ec8e3;" placeholder="Paste raw HTML content here... e.g. &lt;p&gt;Your paragraph&lt;/p&gt;"></textarea>
+
+            <!-- ── VIDEO PANEL ── -->
+            <div id="video-textarea-area" style="display:none;">
+
+              <!-- Method picker -->
+              <div class="vid-method-tabs">
+                <button class="vid-method-tab active" data-method="upload" type="button"><i class="fas fa-upload"></i> Upload File</button>
+                <button class="vid-method-tab" data-method="url" type="button"><i class="fas fa-link"></i> YouTube / URL</button>
+              </div>
+
+              <!-- Panel A: File upload -->
+              <div class="vid-method-panel active" id="panel-upload">
+                <div class="vid-upload-zone" id="vid-upload-zone">
+                  <input type="file" id="vid-file-input" multiple accept="video/mp4,video/webm,video/ogg,video/mov,video/avi,video/quicktime">
+                  <div class="vid-upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                  <div class="vid-upload-label">
+                    <strong>Click or drag &amp; drop</strong> video files here<br>
+                    MP4, WebM, OGG, MOV · Max 100 MB each
+                  </div>
+                </div>
+                <div class="vid-size-warning" id="vid-size-warning"><i class="fas fa-exclamation-triangle"></i> Files over 100 MB were skipped.</div>
+                <div class="vid-preview-grid" id="vid-preview-grid"></div>
+                <div style="margin-top:0.8rem;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:0.7rem 0.9rem;font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--gold);line-height:1.7;">
+                  <i class="fas fa-info-circle"></i> <strong>How video embedding works:</strong><br>
+                  Videos are embedded as <code>&lt;video&gt;</code> tags using a base64 data URI for Blogspot, or a direct URL if you host the file externally (recommended for large files). Blogspot posts have no file size limit on the HTML side, but very large base64 content may slow page load. For best results, host videos on YouTube or a CDN and use the URL tab.
+                </div>
+              </div>
+
+              <!-- Panel B: URL / YouTube -->
+              <div class="vid-method-panel" id="panel-url">
+                <div class="vid-url-note">
+                  Paste a <strong>YouTube</strong>, <strong>Vimeo</strong>, or <strong>direct video URL</strong> (mp4, webm, etc.).<br>
+                  YouTube and Vimeo will be embedded as iframes. Direct links use a &lt;video&gt; player.
+                </div>
+                <input type="text" id="vid-url-input" class="field-input" placeholder="https://www.youtube.com/watch?v=... or https://example.com/video.mp4" style="margin-bottom:0.6rem;">
+                <div id="vid-url-preview" style="display:none;margin-top:0.6rem;border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9;"></div>
+              </div>
+
+              <!-- Shared caption/intro -->
+              <div style="margin-top:1rem;">
+                <label class="field-label">Video Caption <span style="opacity:0.5">(optional)</span></label>
+                <input type="text" id="vid-caption" class="field-input" placeholder="Short description shown below the video..." maxlength="200">
+              </div>
+              <div style="margin-top:0.8rem;">
+                <label class="field-label">Intro Text <span style="opacity:0.5">(shown above the video)</span></label>
+                <textarea id="vid-intro" class="field-textarea" style="min-height:100px;" placeholder="Write a short intro paragraph to accompany the video..."></textarea>
+              </div>
+            </div>
+            <!-- end video panel -->
+
+          </div>
+
+          <div class="field-group">
+            <label class="field-label"><i class="fas fa-lock"></i> Editor Password *</label>
+            <input type="password" id="f-password" class="field-input" placeholder="Enter editor password to publish...">
+          </div>
+
+          <div class="submit-actions">
+            <button class="btn-primary" id="submit-btn" type="button">
+              <i class="fas fa-paper-plane"></i> Publish to Blogspot + GitHub
+            </button>
+            <button class="btn-outline" id="preview-btn" type="button">
+              <i class="fas fa-eye"></i> Preview
+            </button>
+            <button class="btn-outline" id="reset-btn" type="button" style="border-color:var(--rose);color:var(--rose);">
+              <i class="fas fa-redo"></i> Reset
+            </button>
+          </div>
+          <div id="publish-error-box"></div>
+        </div>
+
+        <!-- ══ RIGHT: SIDEBAR ════════════════════════════════════ -->
+        <div class="sidebar">
+
+          <div class="sidebar-card">
+            <div class="sidebar-card-title"><i class="fab fa-blogger-b"></i> Blogger Connection</div>
+            <div id="auth-status-box" class="auth-status disconnected">
+              <i class="fas fa-circle" style="font-size:0.5rem"></i>
+              Not connected — click Sign In
+            </div>
+            <button id="signin-btn" class="btn-primary" type="button" style="margin-top:0.8rem;width:100%;justify-content:center;font-size:0.62rem;padding:0.6rem;">
+              <i class="fab fa-google"></i> Sign in with Google
+            </button>
+            <button id="signout-btn" class="btn-outline" type="button" style="margin-top:0.5rem;width:100%;justify-content:center;font-size:0.62rem;padding:0.55rem;display:none;">
+              <i class="fas fa-sign-out-alt"></i> Sign Out
+            </button>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--dim);margin-top:0.7rem;line-height:1.6;">
+              Sign in once. Token saved in browser. Required to publish to Blogspot.
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-card-title"><i class="fas fa-share-alt"></i> Auto-Distribution</div>
+            <div class="dist-item">
+              <input type="checkbox" id="dist-blogger" checked disabled>
+              <label for="dist-blogger"><i class="fab fa-blogger-b"></i> Blogspot (always on)</label>
+            </div>
+            <div class="dist-item">
+              <input type="checkbox" id="dist-facebook" checked>
+              <label for="dist-facebook"><i class="fab fa-facebook"></i> Facebook</label>
+            </div>
+            <div class="dist-item">
+              <input type="checkbox" id="dist-twitter" checked>
+              <label for="dist-twitter"><i class="fab fa-twitter"></i> Twitter / X</label>
+            </div>
+            <div class="dist-item">
+              <input type="checkbox" id="dist-linkedin" checked>
+              <label for="dist-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</label>
+            </div>
+            <div class="dist-item">
+              <input type="checkbox" id="dist-telegram" checked>
+              <label for="dist-telegram"><i class="fab fa-telegram"></i> Telegram</label>
+            </div>
+            <div class="dist-item">
+              <input type="checkbox" id="dist-whatsapp">
+              <label for="dist-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</label>
+            </div>
+            <div class="dist-item">
+              <input type="checkbox" id="dist-reddit">
+              <label for="dist-reddit"><i class="fab fa-reddit"></i> Reddit</label>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-card-title"><i class="fas fa-project-diagram"></i> Make.com Webhook</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--dim);margin-bottom:0.5rem;line-height:1.6;">
+              Fires on every publish to handle social media distribution.
+            </div>
+            <div class="webhook-input-row">
+              <input type="text" id="sidebar-webhook-input" class="webhook-input" placeholder="https://hook.eu1.make.com/...">
+              <button class="btn-save-hook" id="save-webhook-btn" type="button">Save</button>
+            </div>
+            <div id="webhook-status"></div>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-card-title"><i class="fas fa-comments"></i> Disqus Shortname</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--dim);margin-bottom:0.5rem;line-height:1.6;">
+              Powers comments on every article. Sign up at <a href="https://disqus.com" target="_blank">disqus.com</a>.
+            </div>
+            <input type="text" id="disqus-shortname-input" class="webhook-input" style="width:100%;margin-top:0.3rem;" placeholder="e.g. poetic-codes">
+            <button class="btn-save-hook" id="save-disqus-btn" type="button" style="margin-top:0.4rem;width:100%;">Save</button>
+            <div id="disqus-status" style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;margin-top:0.3rem;"></div>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-card-title"><i class="fas fa-key"></i> Blogger Blog ID</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--dim);margin-bottom:0.5rem;line-height:1.6;">
+              Find it in Blogger → Settings → Basic.
+            </div>
+            <input type="text" id="blog-id-input" class="webhook-input" style="width:100%;margin-top:0.3rem;" placeholder="e.g. 1234567890123456789">
+            <button class="btn-save-hook" id="save-blogid-btn" type="button" style="margin-top:0.4rem;width:100%;">Save Blog ID</button>
+            <div id="blogid-status" style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;margin-top:0.3rem;"></div>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-card-title"><i class="fab fa-github"></i> GitHub Pages</div>
+            <div id="gh-status-box" class="auth-status disconnected" style="margin-bottom:0.7rem;">
+              <i class="fas fa-circle" style="font-size:0.5rem"></i> Not configured
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--dim);margin-bottom:0.5rem;line-height:1.6;">
+              Articles publish to:<br>
+              <span style="color:var(--teal);">pansensoyglenn-dev.github.io/articles/</span>
+            </div>
+            <input type="password" id="gh-token-input" class="webhook-input" style="width:100%;margin-bottom:0.5rem;" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+            <div style="display:flex;gap:0.4rem;">
+              <button class="btn-save-hook" id="save-gh-btn" type="button" style="flex:1;">Save Token</button>
+              <button class="btn-save-hook" id="test-gh-btn" type="button" style="flex:1;">Test</button>
+            </div>
+            <div id="gh-config-status" style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;margin-top:0.4rem;min-height:0.8rem;line-height:1.6;"></div>
+            <div class="token-help" id="gh-token-help" style="display:none;">
+              <strong>Token checklist:</strong><br>
+              · Must start with <code>ghp_</code> or <code>github_pat_</code><br>
+              · Needs <code>repo</code> scope (classic) or Contents + Pages (fine-grained)<br>
+              · <a href="https://github.com/settings/tokens/new?scopes=repo&description=PoeticCodes" target="_blank">Generate a new classic token →</a>
+            </div>
+            <div class="dist-item" style="margin-top:0.8rem;">
+              <input type="checkbox" id="dist-github" checked>
+              <label for="dist-github"><i class="fab fa-github"></i> Publish to GitHub Pages</label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SUCCESS STATE ═══════════════════════════════════════ -->
+    <div id="success-state">
+      <div class="success-box">
+        <div class="success-icon">✦</div>
+        <div class="success-title">Essay Published!</div>
+        <div class="success-msg" id="success-msg">Your essay is now live on Blogspot.</div>
+        <div class="success-links" id="success-links">
+          <a href="https://poetic-bytes.blogspot.com" target="_blank" class="success-link primary">
+            <i class="fab fa-blogger-b"></i> View on Blogspot
+          </a>
+          <a href="#" target="_blank" class="success-link secondary" id="gh-success-link" style="display:none;">
+            <i class="fab fa-github"></i> View on GitHub
+          </a>
+          <button id="submit-another-btn" class="success-link secondary" type="button" style="background:transparent;border:1px solid var(--border);cursor:pointer;">
+            <i class="fas fa-plus"></i> Publish Another
+          </button>
+        </div>
+        <div id="dist-result-box"></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ══ PREVIEW MODAL ═══════════════════════════════════════════ -->
+<div id="preview-modal">
+  <div class="preview-inner">
+    <button class="preview-close" id="preview-close-btn" type="button">✕ Close</button>
+    <div id="preview-content" class="preview-content"></div>
+  </div>
+</div>
+
+<!-- ══ FIREBASE ════════════════════════════════════════════════ -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+  import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+  const firebaseConfig = {
+    apiKey: "AIzaSyCPW7D8klItn-r6V-hTqNHrYBQFnMcmElE",
+    authDomain: "glennpansensoy-12288.firebaseapp.com",
+    databaseURL: "https://glennpansensoy-12288-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "glennpansensoy-12288",
+    storageBucket: "glennpansensoy-12288.firebasestorage.app",
+    messagingSenderId: "264252112486",
+    appId: "1:264252112486:web:a7c1d2d001815af22377a7",
+    measurementId: "G-HL0W8ERCSB"
+  };
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+  window.saveToFirebase = async function({ title, author, category, excerpt, content, tags, slug, coverImage }) {
+    try {
+      const docRef = await addDoc(collection(db, 'articles'), {
+        title, author, category, excerpt, content, tags, slug, coverImage,
+        createdAt: serverTimestamp()
+      });
+      return { ok: true, id: docRef.id };
+    } catch(err) {
+      console.error('Firebase error:', err);
+      return { ok: false, error: err.message };
+    }
+  };
+</script>
+
+<!-- ══ GOOGLE IDENTITY ══════════════════════════════════════════ -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<!-- ══ MAIN SCRIPT ══════════════════════════════════════════════ -->
+<script>
+/* ─── Constants ─────────────────────────────────────────── */
+const EDITOR_PASSWORD   = 'poetic2024';
+const BLOGGER_CLIENT_ID = '790965276439-flja0u6tel45rqbg47p6l8fp6aua1tch.apps.googleusercontent.com';
+const BLOGGER_BLOG_URL  = 'https://poetic-bytes.blogspot.com';
+const ADSENSE_PUBLISHER = 'ca-pub-4575646748966866';
+const BLOGSPOT_ABOUT_URL   = 'https://poetic-bytes.blogspot.com/2026/04/about_01131455884.html';
+const BLOGSPOT_PRIVACY_URL = 'https://poetic-bytes.blogspot.com/2026/04/privacy-policy_01328570854.html';
+const BLOGSPOT_TERMS_URL   = 'https://poetic-bytes.blogspot.com/2026/04/terms-of-service_01797605838.html';
+const BLOGSPOT_COOKIES_URL = 'https://poetic-bytes.blogspot.com/2026/04/cookie-policy.html';
+
+/* ─── State ─────────────────────────────────────────────── */
+let currentMode      = 'text';
+let currentVidMethod = 'upload';
+let uploadedVideoFiles = []; // stores { file, dataURL } objects
+let accessToken  = localStorage.getItem('blogger_access_token') || '';
+let tokenExpiry  = parseInt(localStorage.getItem('blogger_token_expiry') || '0');
+
+/* ─── Helpers ───────────────────────────────────────────── */
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function slugify(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+}
+function formatBytes(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/1048576).toFixed(1) + ' MB';
+}
+function showToast(msg, type, duration) {
+  duration = duration || 3500;
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show' + (type ? ' ' + type : '');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function(){ t.className = ''; }, duration);
+}
+function setProgress(pct) {
+  document.getElementById('progress-bar').style.width = pct + '%';
+}
+function looksLikeHTML(text) {
+  return /<\s*(p|h[1-6]|div|span|br|ul|ol|li|blockquote|pre|code|strong|em|a|img|figure|video|table|thead|tbody|tr|td|th)\b[^>]*>/i.test(text);
+}
+function plainToHTML(text) {
+  if (!text) return '';
+  if (looksLikeHTML(text)) return text;
+  return text.split(/\n\n+/)
+    .map(function(para){ return para.trim(); })
+    .filter(Boolean)
+    .map(function(para){
+      if (/^#{1,3}\s/.test(para)) {
+        var level = para.match(/^(#+)/)[1].length;
+        return '<h'+level+'>'+para.replace(/^#+\s/,'')+'</h'+level+'>';
+      }
+      return '<p style="text-align:justify;margin-bottom:1.4rem;line-height:1.85;">'+para.replace(/\n/g,' ')+'</p>';
+    }).join('\n');
+}
+
+/* ─── YouTube / Vimeo URL helpers ───────────────────────── */
+function getYouTubeId(url) {
+  var m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+function getVimeoId(url) {
+  var m = url.match(/vimeo\.com\/(\d+)/);
+  return m ? m[1] : null;
+}
+function isDirectVideoUrl(url) {
+  return /\.(mp4|webm|ogg|mov|avi)(\?|$)/i.test(url);
+}
+
+function buildVideoEmbedHTML(caption) {
+  var capHTML = caption
+    ? '<p style="text-align:center;font-size:0.82rem;color:#b4cef0;font-style:italic;margin-top:0.5rem;">'+esc(caption)+'</p>'
+    : '';
+
+  if (currentVidMethod === 'url') {
+    var url = (document.getElementById('vid-url-input').value || '').trim();
+    if (!url) return '';
+    var ytId = getYouTubeId(url);
+    var vmId = getVimeoId(url);
+    var wrapStyle = 'position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin:1.5rem 0;';
+    var frameStyle = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:12px;';
+    if (ytId) {
+      return '<div style="'+wrapStyle+'">'
+        +'<iframe src="https://www.youtube.com/embed/'+ytId+'?rel=0" style="'+frameStyle+'" allowfullscreen loading="lazy"></iframe>'
+        +'</div>'+capHTML;
+    }
+    if (vmId) {
+      return '<div style="'+wrapStyle+'">'
+        +'<iframe src="https://player.vimeo.com/video/'+vmId+'" style="'+frameStyle+'" allowfullscreen loading="lazy"></iframe>'
+        +'</div>'+capHTML;
+    }
+    if (isDirectVideoUrl(url)) {
+      return '<div style="margin:1.5rem 0;">'
+        +'<video controls style="width:100%;border-radius:12px;background:#000;" preload="metadata">'
+        +'<source src="'+esc(url)+'" type="video/mp4">'
+        +'Your browser does not support the video tag.</video>'
+        +'</div>'+capHTML;
+    }
+    // fallback: treat as direct link
+    return '<div style="margin:1.5rem 0;text-align:center;">'
+      +'<a href="'+esc(url)+'" target="_blank" style="color:#74b9e8;">▶ Watch Video</a>'
+      +'</div>'+capHTML;
+  }
+
+  // Upload method: embed base64
+  if (uploadedVideoFiles.length === 0) return '';
+  var parts = uploadedVideoFiles.map(function(item) {
+    var ext = item.file.name.split('.').pop().toLowerCase();
+    var mime = ext === 'webm' ? 'video/webm' : ext === 'ogg' ? 'video/ogg' : 'video/mp4';
+    return '<div style="margin:1.5rem 0;">'
+      +'<video controls style="width:100%;border-radius:12px;background:#000;" preload="metadata">'
+      +'<source src="'+item.dataURL+'" type="'+mime+'">'
+      +'Your browser does not support the video tag.</video>'
+      +'</div>';
+  });
+  return parts.join('\n') + capHTML;
+}
+
+/* ─── Get content HTML ──────────────────────────────────── */
+function getContentHTML() {
+  if (currentMode === 'html') {
+    return document.getElementById('html-textarea').value.trim();
+  }
+  if (currentMode === 'video') {
+    var intro   = document.getElementById('vid-intro').value.trim();
+    var caption = document.getElementById('vid-caption').value.trim();
+    var html    = intro ? plainToHTML(intro) : '';
+    html += buildVideoEmbedHTML(caption);
+    return html;
+  }
+  var raw = document.getElementById('plain-textarea').value.trim();
+  return looksLikeHTML(raw) ? raw : plainToHTML(raw);
+}
+
+/* ─── Tab switching ─────────────────────────────────────── */
+function setMode(mode) {
+  currentMode = mode;
+  var plainTA   = document.getElementById('plain-textarea');
+  var htmlTA    = document.getElementById('html-textarea');
+  var videoArea = document.getElementById('video-textarea-area');
+
+  plainTA.style.display   = (mode === 'text')  ? 'block' : 'none';
+  htmlTA.style.display    = (mode === 'html')  ? 'block' : 'none';
+  videoArea.style.display = (mode === 'video') ? 'block' : 'none';
+
+  if (mode === 'html' && plainTA.value.trim() && !htmlTA.value.trim()) {
+    var v = plainTA.value.trim();
+    htmlTA.value = looksLikeHTML(v) ? v : plainToHTML(v);
+  }
+  if (mode === 'text' && htmlTA.value.trim() && !plainTA.value.trim()) {
+    plainTA.value = htmlTA.value.replace(/<[^>]+>/g,'').trim();
+  }
+
+  ['text','html','video'].forEach(function(m) {
+    var tab = document.getElementById('tab-' + m);
+    if (tab) tab.classList.toggle('active', m === mode);
+  });
+  var prevTab = document.getElementById('tab-preview');
+  if (prevTab) prevTab.classList.remove('active');
+}
+
+/* ─── Video method switching ────────────────────────────── */
+function setVidMethod(method) {
+  currentVidMethod = method;
+  document.querySelectorAll('.vid-method-tab').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.method === method);
+  });
+  document.querySelectorAll('.vid-method-panel').forEach(function(panel) {
+    panel.classList.remove('active');
+  });
+  var active = document.getElementById('panel-' + method);
+  if (active) active.classList.add('active');
+}
+
+/* ─── URL video preview ─────────────────────────────────── */
+function updateUrlPreview() {
+  var url = (document.getElementById('vid-url-input').value || '').trim();
+  var previewBox = document.getElementById('vid-url-preview');
+  if (!url) { previewBox.style.display = 'none'; previewBox.innerHTML = ''; return; }
+
+  var ytId = getYouTubeId(url);
+  var vmId = getVimeoId(url);
+  if (ytId) {
+    previewBox.style.display = 'block';
+    previewBox.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/'+ytId+'?rel=0" frameborder="0" allowfullscreen style="border-radius:10px;"></iframe>';
+  } else if (vmId) {
+    previewBox.style.display = 'block';
+    previewBox.innerHTML = '<iframe width="100%" height="100%" src="https://player.vimeo.com/video/'+vmId+'" frameborder="0" allowfullscreen style="border-radius:10px;"></iframe>';
+  } else if (isDirectVideoUrl(url)) {
+    previewBox.style.display = 'block';
+    previewBox.innerHTML = '<video controls style="width:100%;height:100%;border-radius:10px;background:#000;"><source src="'+esc(url)+'"></video>';
+  } else {
+    previewBox.style.display = 'none';
+    previewBox.innerHTML = '';
+  }
+}
+
+/* ─── Preview modal ─────────────────────────────────────── */
+function openPreview() {
+  var title   = document.getElementById('f-title').value.trim() || 'Preview';
+  var excerpt = document.getElementById('f-excerpt').value.trim();
+  var html    = getContentHTML();
+  document.getElementById('preview-content').innerHTML =
+    '<h1>'+esc(title)+'</h1>'
+    + (excerpt ? '<p style="color:var(--muted);font-size:0.82rem;font-style:italic;">'+esc(excerpt)+'</p>' : '')
+    + '<hr style="border:none;border-top:1px solid var(--border);margin:1.2rem 0;">'
+    + (html || '<p style="color:var(--dim);">No content yet.</p>');
+  document.getElementById('preview-modal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closePreview() {
+  document.getElementById('preview-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+/* ─── Form reset ────────────────────────────────────────── */
+function resetForm() {
+  ['f-title','f-excerpt','f-tags','f-password'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.getElementById('f-author').value       = 'Glenn Junsay Pansensoy';
+  document.getElementById('f-category').value     = '';
+  document.getElementById('f-publish-type').value = 'post';
+  document.getElementById('plain-textarea').value  = '';
+  document.getElementById('html-textarea').value   = '';
+  document.getElementById('vid-intro').value       = '';
+  document.getElementById('vid-caption').value     = '';
+  document.getElementById('vid-url-input').value   = '';
+  document.getElementById('vid-url-preview').style.display = 'none';
+  document.getElementById('vid-url-preview').innerHTML = '';
+  document.getElementById('vid-preview-grid').innerHTML = '';
+  document.getElementById('vid-size-warning').style.display = 'none';
+  uploadedVideoFiles = [];
+  document.getElementById('publish-error-box').style.display = 'none';
+  setMode('text');
+  setVidMethod('upload');
+  showToast('Form cleared.', '', 2000);
+}
+
+function submitAnother() {
+  document.getElementById('success-state').style.display = 'none';
+  document.getElementById('form-state').style.display    = 'block';
+  resetForm();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+/* ─── Video file handling with base64 encoding ──────────── */
+function handleVideoFiles(files) {
+  var grid     = document.getElementById('vid-preview-grid');
+  var warning  = document.getElementById('vid-size-warning');
+  var hasLarge = false;
+  var MAX_BYTES = 100 * 1024 * 1024; // 100 MB
+
+  Array.from(files).forEach(function(file) {
+    if (file.size > MAX_BYTES) { hasLarge = true; return; }
+
+    // Create card immediately
+    var item = document.createElement('div');
+    item.className = 'vid-preview-item';
+
+    var vid = document.createElement('video');
+    var objectURL = URL.createObjectURL(file);
+    vid.src = objectURL;
+    vid.controls = false;
+    vid.muted    = true;
+
+    var statusEl = document.createElement('div');
+    statusEl.className = 'vid-preview-status';
+    statusEl.textContent = 'Reading…';
+
+    var name = document.createElement('div');
+    name.className = 'vid-preview-name';
+    name.textContent = file.name;
+
+    var size = document.createElement('div');
+    size.className = 'vid-preview-size';
+    size.textContent = formatBytes(file.size);
+
+    var remove = document.createElement('button');
+    remove.className = 'vid-preview-remove';
+    remove.type = 'button';
+    remove.innerHTML = '✕';
+    remove.addEventListener('click', function() {
+      // Remove from uploadedVideoFiles array too
+      uploadedVideoFiles = uploadedVideoFiles.filter(function(f){ return f.file !== file; });
+      item.remove();
+    });
+
+    item.appendChild(vid);
+    item.appendChild(statusEl);
+    item.appendChild(name);
+    item.appendChild(size);
+    item.appendChild(remove);
+    grid.appendChild(item);
+
+    // Read as base64 data URL
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var dataURL = e.target.result;
+      uploadedVideoFiles.push({ file: file, dataURL: dataURL });
+      statusEl.textContent = '✓ Ready';
+      statusEl.classList.add('ok');
+      URL.revokeObjectURL(objectURL);
+    };
+    reader.onerror = function() {
+      statusEl.textContent = '✗ Error';
+      statusEl.classList.add('err');
+    };
+    reader.readAsDataURL(file);
+  });
+
+  warning.style.display = hasLarge ? 'block' : 'none';
+}
+
+/* ─── Auth ──────────────────────────────────────────────── */
+function signInBlogger() {
+  if (typeof google === 'undefined' || !google.accounts) {
+    showToast('Google Sign-In loading, retrying…', 'error', 3000);
+    setTimeout(signInBlogger, 1500);
+    return;
+  }
+  try {
+    var client = google.accounts.oauth2.initTokenClient({
+      client_id: BLOGGER_CLIENT_ID,
+      scope: 'https://www.googleapis.com/auth/blogger',
+      callback: function(response) {
+        if (response.error) { showToast('Sign-in failed: '+response.error, 'error', 5000); updateAuthUI(false); return; }
+        accessToken = response.access_token;
+        tokenExpiry = Date.now() + (response.expires_in * 1000);
+        localStorage.setItem('blogger_access_token', accessToken);
+        localStorage.setItem('blogger_token_expiry', String(tokenExpiry));
+        updateAuthUI(true);
+        showToast('Connected to Blogger!', 'success');
+      }
+    });
+    client.requestAccessToken();
+  } catch(e) {
+    showToast('Sign-in error: '+e.message, 'error', 5000);
+  }
+}
+function signOutBlogger() {
+  accessToken = ''; tokenExpiry = 0;
+  localStorage.removeItem('blogger_access_token');
+  localStorage.removeItem('blogger_token_expiry');
+  updateAuthUI(false);
+  showToast('Signed out from Blogger.');
+}
+function isTokenValid() {
+  return !!(accessToken && Date.now() < tokenExpiry - 60000);
+}
+function updateAuthUI(connected) {
+  var box     = document.getElementById('auth-status-box');
+  var signIn  = document.getElementById('signin-btn');
+  var signOut = document.getElementById('signout-btn');
+  if (connected) {
+    box.className = 'auth-status connected';
+    box.innerHTML = '<i class="fas fa-circle" style="font-size:0.5rem"></i> Connected to Blogger ✓';
+    signIn.style.display  = 'none';
+    signOut.style.display = 'block';
+  } else {
+    box.className = 'auth-status disconnected';
+    box.innerHTML = '<i class="fas fa-circle" style="font-size:0.5rem"></i> Not connected — click Sign In';
+    signIn.style.display  = 'block';
+    signOut.style.display = 'none';
+  }
+}
+
+/* ─── Sidebar persistence ───────────────────────────────── */
+function loadWebhookUrl() {
+  var saved = localStorage.getItem('pc_webhook_url') || '';
+  var input = document.getElementById('sidebar-webhook-input');
+  if (input && saved) input.value = saved;
+}
+function saveWebhookUrl() {
+  var input  = document.getElementById('sidebar-webhook-input');
+  var status = document.getElementById('webhook-status');
+  var url    = input ? input.value.trim() : '';
+  if (!url) {
+    localStorage.removeItem('pc_webhook_url');
+    status.style.color = 'var(--dim)'; status.textContent = 'Webhook cleared.';
+  } else if (!url.startsWith('http')) {
+    status.style.color = 'var(--rose)'; status.textContent = 'Must start with https://'; return;
+  } else {
+    localStorage.setItem('pc_webhook_url', url);
+    status.style.color = '#3ddc84'; status.textContent = 'Saved!';
+  }
+  setTimeout(function(){ status.textContent = ''; }, 3000);
+}
+function loadDisqusShortname() {
+  var saved = localStorage.getItem('pc_disqus') || 'poetic-codes';
+  var input = document.getElementById('disqus-shortname-input');
+  if (input) input.value = saved;
+}
+function saveDisqusShortname() {
+  var input  = document.getElementById('disqus-shortname-input');
+  var status = document.getElementById('disqus-status');
+  var val    = input ? input.value.trim() : '';
+  if (!val) { status.style.color='var(--rose)'; status.textContent='Enter a shortname.'; return; }
+  localStorage.setItem('pc_disqus', val);
+  status.style.color = '#3ddc84'; status.textContent = 'Saved!';
+  setTimeout(function(){ status.textContent = ''; }, 3000);
+}
+function loadBlogId() {
+  var saved = localStorage.getItem('pc_blog_id') || '';
+  var input = document.getElementById('blog-id-input');
+  if (input && saved) input.value = saved;
+}
+function saveBlogId() {
+  var input  = document.getElementById('blog-id-input');
+  var status = document.getElementById('blogid-status');
+  var id     = input ? input.value.trim() : '';
+  if (!id) { status.style.color='var(--rose)'; status.textContent='Enter a Blog ID.'; return; }
+  localStorage.setItem('pc_blog_id', id);
+  status.style.color = '#3ddc84'; status.textContent = 'Saved!';
+  setTimeout(function(){ status.textContent = ''; }, 3000);
+}
+function getBlogId() {
+  return localStorage.getItem('pc_blog_id') || '7625070921264099003';
+}
+
+/* ─── GitHub config ─────────────────────────────────────── */
+function getGitHubConfig() {
+  return { token:'', username:'pansensoyglenn-dev', repo:'articles', branch:'main',
+    ...{ token: localStorage.getItem('pc_gh_token') || '' } };
+}
+function updateGitHubStatusUI(connected, username, repo) {
+  var box = document.getElementById('gh-status-box');
+  if (!box) return;
+  if (connected && username) {
+    box.className = 'auth-status connected';
+    box.innerHTML = '<i class="fas fa-circle" style="font-size:0.5rem"></i> '+esc(username)+'/'+esc(repo)+' 🔐';
+  } else {
+    box.className = 'auth-status disconnected';
+    box.innerHTML = '<i class="fas fa-circle" style="font-size:0.5rem"></i> Not configured';
+  }
+}
+function saveGitHubConfig() {
+  var tokenInput = document.getElementById('gh-token-input');
+  var status     = document.getElementById('gh-config-status');
+  var helpEl     = document.getElementById('gh-token-help');
+  var token      = tokenInput ? tokenInput.value.trim() : '';
+  if (!token) {
+    if (status) { status.style.color='var(--rose)'; status.textContent='Please enter a token.'; }
+    if (helpEl) helpEl.style.display = 'block';
+    return null;
+  }
+  if (!token.startsWith('ghp_') && !token.startsWith('github_pat_') && !token.startsWith('gho_')) {
+    if (status) { status.style.color='var(--gold)'; status.textContent='Unusual token format — expected ghp_ or github_pat_'; }
+    if (helpEl) helpEl.style.display = 'block';
+  } else {
+    if (helpEl) helpEl.style.display = 'none';
+  }
+  localStorage.setItem('pc_gh_token', token);
+  if (status) { status.style.color='#3ddc84'; status.textContent='Token saved!'; }
+  updateGitHubStatusUI(true, 'pansensoyglenn-dev', 'articles');
+  setTimeout(function(){ if (status) status.textContent=''; }, 3000);
+  return token;
+}
+async function testGitHubConnection() {
+  var status = document.getElementById('gh-config-status');
+  var helpEl = document.getElementById('gh-token-help');
+  var savedToken = saveGitHubConfig();
+  if (!savedToken) return;
+  var cfg = getGitHubConfig();
+  if (status) { status.style.color='var(--gold)'; status.textContent='Testing connection…'; }
+  try {
+    var res = await fetch('https://api.github.com/repos/'+cfg.username+'/'+cfg.repo, {
+      headers: { 'Authorization':'Bearer '+cfg.token, 'Accept':'application/vnd.github+json', 'X-GitHub-Api-Version':'2022-11-28' }
+    });
+    if (res.ok) {
+      var data = await res.json();
+      if (status) { status.style.color='#3ddc84'; status.textContent='Repo found: '+data.full_name; }
+      if (helpEl) helpEl.style.display = 'none';
+      updateGitHubStatusUI(true, cfg.username, cfg.repo);
+    } else {
+      var err = await res.json().catch(function(){ return {}; });
+      if (status) { status.style.color='var(--rose)'; status.textContent=(err.message||'HTTP '+res.status); }
+      if (helpEl) helpEl.style.display = 'block';
+    }
+  } catch(e) {
+    if (status) { status.style.color='var(--rose)'; status.textContent='Network error: '+e.message; }
+  }
+}
+
+/* ─── Cover image ────────────────────────────────────────── */
+function generateCoverImage(title, category) {
+  var canvas = document.createElement('canvas');
+  canvas.width = 1200; canvas.height = 630;
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#0b0f17'; ctx.fillRect(0,0,1200,630);
+  var grad = ctx.createLinearGradient(0,0,1200,0);
+  grad.addColorStop(0,'#306998'); grad.addColorStop(1,'#4b8bbe');
+  ctx.fillStyle = grad; ctx.fillRect(0,0,1200,8); ctx.fillRect(0,622,1200,8);
+  ctx.strokeStyle='#7ec8e3'; ctx.lineWidth=1; ctx.strokeRect(40,40,1120,550);
+  var icons = {culture:'🎭','national affairs':'🇵🇭','international condition':'🌍',programming:'💻',philosophy:'🧠',history:'📜',christian:'✝️'};
+  var icon = icons[(category||'').toLowerCase()] || '✦';
+  ctx.font='80px serif'; ctx.fillStyle='#7ec8e3'; ctx.textAlign='center'; ctx.fillText(icon,600,240);
+  ctx.fillStyle='#eef4ff'; ctx.font='bold 52px Georgia,serif';
+  var words=title.split(' '), line='', y=360, maxW=1000;
+  words.forEach(function(word){
+    var test=line+word+' ';
+    if (ctx.measureText(test).width>maxW && line){ ctx.fillText(line,600,y); line=word+' '; y+=60; }
+    else { line=test; }
+  });
+  ctx.fillText(line,600,y);
+  ctx.fillStyle='#b4cef0'; ctx.font='28px Georgia,serif';
+  ctx.fillText((category||'Essay')+' · Poetic Bytes',600,520);
+  return canvas.toDataURL('image/png');
+}
+
+/* ─── SEO helpers ───────────────────────────────────────── */
+function readTime(html) {
+  var words = (html||'').replace(/<[^>]+>/g,' ').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words/220));
+}
+function autoSEO(title, excerpt, content, tags, category) {
+  var words = (content||'').replace(/<[^>]+>/g,' ').split(/\s+/).filter(Boolean);
+  var freq = {};
+  words.forEach(function(w){ var k=w.toLowerCase().replace(/[^a-z]/g,''); if(k.length>4) freq[k]=(freq[k]||0)+1; });
+  var topWords = Object.entries(freq).sort(function(a,b){return b[1]-a[1];}).slice(0,8).map(function(e){return e[0];});
+  var autoTags = Array.from(new Set([].concat(tags,[category]).concat(topWords))).slice(0,10);
+  var metaDesc = excerpt.length>155 ? excerpt.slice(0,152)+'…' : excerpt;
+  return { metaDesc:metaDesc, autoTags:autoTags, readingTime:readTime(content) };
+}
+
+/* ─── Blogger body builder ──────────────────────────────── */
+function buildBloggerBody(title, author, category, excerpt, content, tags, articleURL) {
+  var seo        = autoSEO(title, excerpt, content, tags, category);
+  var articleUrl = articleURL || BLOGGER_BLOG_URL;
+  var eURL       = encodeURIComponent(articleUrl);
+  var eTitle     = encodeURIComponent(title);
+
+  var AD = '<div style="margin:2rem 0;text-align:center;">'
+    +'<scr'+'ipt async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+ADSENSE_PUBLISHER+'" crossorigin="anonymous"></scr'+'ipt>'
+    +'<ins class="adsbygoogle" style="display:block" data-ad-client="'+ADSENSE_PUBLISHER+'" data-ad-slot="9585168014" data-ad-format="auto" data-full-width-responsive="true"></ins>'
+    +'<scr'+'ipt>(adsbygoogle=window.adsbygoogle||[]).push({});</scr'+'ipt>'
+    +'</div>';
+
+  var P_STYLE = 'text-align:justify;text-justify:inter-word;hyphens:auto;margin-bottom:1.4rem;line-height:1.85;font-size:1rem;color:#eef4ff;';
+  var processedContent = content
+    .replace(/<p>/gi,'<p style="'+P_STYLE+'">')
+    .replace(/<p (?!style=)/gi,'<p style="'+P_STYLE+'" ');
+
+  var paragraphs = processedContent.split('</p>');
+  var midPoint   = Math.floor(paragraphs.length / 2);
+  var mainContent = paragraphs.map(function(p,i){
+    if (!p.trim()) return p;
+    var ad = (i===midPoint) ? AD : '';
+    return p + (i < paragraphs.length-1 ? '</p>' : '') + ad;
+  }).join('');
+
+  var tagBadges = seo.autoTags.map(function(t){
+    return '<span style="display:inline-block;background:rgba(48,105,152,0.2);color:#7ec8e3;border-radius:20px;padding:0.2rem 0.7rem;font-size:0.68rem;margin:0.2rem;font-family:monospace;">'+esc(t)+'</span>';
+  }).join('');
+
+  var btnS = 'display:inline-flex;align-items:center;padding:0.45rem 1rem;border-radius:30px;font-size:0.72rem;font-family:monospace;text-decoration:none;margin:0.2rem;color:#fff;';
+  var socialHTML =
+    '<a href="https://www.facebook.com/sharer/sharer.php?u='+eURL+'" target="_blank" rel="noopener" style="'+btnS+'background:#1877f2;">📘 Facebook</a>'
+    +'<a href="https://twitter.com/intent/tweet?text='+eTitle+'&url='+eURL+'" target="_blank" rel="noopener" style="'+btnS+'background:#000;">𝕏 Twitter/X</a>'
+    +'<a href="https://www.linkedin.com/shareArticle?mini=true&url='+eURL+'&title='+eTitle+'" target="_blank" rel="noopener" style="'+btnS+'background:#0077b5;">💼 LinkedIn</a>'
+    +'<a href="https://api.whatsapp.com/send?text='+eTitle+'%20'+eURL+'" target="_blank" rel="noopener" style="'+btnS+'background:#25d366;">💬 WhatsApp</a>'
+    +'<a href="https://telegram.me/share/url?url='+eURL+'&text='+eTitle+'" target="_blank" rel="noopener" style="'+btnS+'background:#229ed9;">✈️ Telegram</a>'
+    +'<a href="https://www.reddit.com/submit?url='+eURL+'&title='+eTitle+'" target="_blank" rel="noopener" style="'+btnS+'background:#ff4500;">🔴 Reddit</a>'
+    +'<a href="mailto:?subject='+eTitle+'&body=Read%20this%3A%20'+eURL+'" style="'+btnS+'background:#555;">📧 Email</a>';
+
+  var disqusBlock =
+    '<div style="margin:2rem 0;background:rgba(48,105,152,0.1);border:1px solid rgba(48,105,152,0.3);border-radius:16px;padding:1.4rem;">'
+    +'<div style="font-family:monospace;font-size:0.72rem;color:#7ec8e3;margin-bottom:1rem;">💬 <strong>Comments</strong></div>'
+    +'<div id="disqus_thread"></div>'
+    +'<scr'+'ipt>'
+    +'var disqus_config=function(){this.page.url="'+articleUrl+'";this.page.identifier="'+encodeURIComponent(title)+'";};'
+    +'(function(){var d=document,s=d.createElement("scr"+"ipt");'
+    +'s.src="https://"+(localStorage.getItem("pc_disqus")||"poetic-codes")+".disqus.com/embed.js";'
+    +'s.setAttribute("data-timestamp",+new Date());(d.head||d.body).appendChild(s);})();'
+    +'</scr'+'ipt>'
+    +'<noscript>Please enable JavaScript to view comments.</noscript>'
+    +'</div>';
+
+  var legalFooter =
+    '<div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(48,105,152,0.3);text-align:center;font-family:monospace;font-size:0.7rem;color:#667fa3;line-height:2.2;">'
+    +'<div style="margin-bottom:0.5rem;">'
+    +'<a href="'+BLOGSPOT_ABOUT_URL+'" style="color:#667fa3;text-decoration:none;margin:0 0.5rem;" target="_blank">About</a> | '
+    +'<a href="'+BLOGSPOT_PRIVACY_URL+'" style="color:#667fa3;text-decoration:none;margin:0 0.5rem;" target="_blank">Privacy Policy</a> | '
+    +'<a href="'+BLOGSPOT_TERMS_URL+'" style="color:#667fa3;text-decoration:none;margin:0 0.5rem;" target="_blank">Terms of Service</a> | '
+    +'<a href="'+BLOGSPOT_COOKIES_URL+'" style="color:#667fa3;text-decoration:none;margin:0 0.5rem;" target="_blank">Cookie Policy</a>'
+    +'</div>'
+    +'<div style="font-size:0.62rem;opacity:0.7;">&copy; '+new Date().getFullYear()+' Glenn Junsay Pansensoy. All rights reserved.</div>'
+    +'</div>';
+
+  var tLine = seo.autoTags.slice(0,5).map(function(t){ return '#'+t.replace(/\s+/g,''); }).join(' ');
+
+  return '<div style="font-family:Georgia,serif;max-width:100%;margin:0 auto;line-height:1.85;color:#eef4ff;">'
+    +AD
+    +'<div style="background:linear-gradient(135deg,rgba(48,105,152,0.15),rgba(48,105,152,0.05));border-left:4px solid #306998;padding:1.2rem 1.4rem;margin-bottom:2rem;border-radius:0 10px 10px 0;">'
+    +'<p style="margin:0 0 0.5rem;font-size:0.92rem;color:#b4cef0;font-style:italic;text-align:justify;">'+esc(seo.metaDesc)+'</p>'
+    +'<div style="font-size:0.72rem;color:#667fa3;margin-top:0.4rem;">✏️ <strong>'+esc(author)+'</strong> &nbsp;·&nbsp; 📁 '+esc(category)+' &nbsp;·&nbsp; ⏱️ '+seo.readingTime+' min read</div>'
+    +'</div>'
+    +'<div style="font-size:1rem;line-height:1.85;color:#eef4ff;">'+mainContent+'</div>'
+    +AD
+    +'<hr style="border:none;border-top:2px solid rgba(48,105,152,0.3);margin:2.5rem 0;">'
+    +'<div style="margin-bottom:1.5rem;"><span style="font-size:0.72rem;color:#667fa3;font-family:monospace;">Tags: </span>'+tagBadges+'</div>'
+    +disqusBlock
+    +'<div style="background:rgba(48,105,152,0.1);border:1px solid rgba(48,105,152,0.3);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:2rem;">'
+    +'<div style="font-family:monospace;font-size:0.7rem;color:#7ec8e3;margin-bottom:0.8rem;">Share this essay</div>'
+    +'<div style="display:flex;flex-wrap:wrap;">'+socialHTML+'</div>'
+    +'</div>'
+    +legalFooter
+    +'<div style="text-align:center;font-size:0.75rem;color:#667fa3;font-family:monospace;padding:1rem 0;">'
+    +'Published on <a href="'+BLOGGER_BLOG_URL+'" style="color:#74b9e8;">poetic-bytes.blogspot.com</a> &nbsp;·&nbsp; '+tLine
+    +'</div></div>';
+}
+
+/* ─── Blogger API publish ────────────────────────────────── */
+async function publishToBlogger(title, bodyHTML, labels, publishType) {
+  var blogId = getBlogId();
+  if (!blogId) throw new Error('Blog ID not set. Enter it in the sidebar and click Save.');
+  if (!isTokenValid()) throw new Error('Not signed in to Blogger. Click "Sign in with Google" first.');
+  var isPage   = publishType === 'page';
+  var endpoint = isPage
+    ? 'https://www.googleapis.com/blogger/v3/blogs/'+blogId+'/pages/'
+    : 'https://www.googleapis.com/blogger/v3/blogs/'+blogId+'/posts/';
+  var payload = isPage
+    ? { kind:'blogger#page', title:title, content:bodyHTML }
+    : { kind:'blogger#post', title:title, content:bodyHTML, labels:labels };
+  var res = await fetch(endpoint, {
+    method:'POST',
+    headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) {
+    var err  = await res.json().catch(function(){ return {}; });
+    var msg  = (err.error && err.error.message) || ('HTTP '+res.status);
+    var info = 'Status: '+res.status+' | Blog ID: '+blogId;
+    if (res.status===401) throw new Error('Blogger token expired. Sign out and sign in again.\n'+info);
+    if (res.status===403) throw new Error('Access denied (403). Make sure this Google account owns poetic-bytes.blogspot.com.\n'+info);
+    if (res.status===404) throw new Error('Blog not found (404). Check your Blog ID.\n'+info);
+    throw new Error('Blogger API error: '+msg+'\n'+info);
+  }
+  return await res.json();
+}
+
+/* ─── GitHub publish ─────────────────────────────────────── */
+async function publishToGitHub(slug, htmlContent) {
+  var cfg = getGitHubConfig();
+  if (!cfg.token) throw new Error('No GitHub token saved.');
+  var path   = 'articles/'+slug+'.html';
+  var apiURL = 'https://api.github.com/repos/'+cfg.username+'/'+cfg.repo+'/contents/'+path;
+  var headers = {
+    'Authorization':'Bearer '+cfg.token,
+    'Accept':'application/vnd.github+json',
+    'Content-Type':'application/json',
+    'X-GitHub-Api-Version':'2022-11-28'
+  };
+  var sha = null;
+  try {
+    var check = await fetch(apiURL, { headers:headers });
+    if (check.ok) { var existing = await check.json(); sha = existing.sha; }
+  } catch(e) { /* new file */ }
+  var encoder = new TextEncoder();
+  var bytes = encoder.encode(htmlContent);
+  var binary = '';
+  bytes.forEach(function(b){ binary += String.fromCharCode(b); });
+  var b64 = btoa(binary);
+  var body = { message:'Publish: '+slug, content:b64, branch:cfg.branch };
+  if (sha) body.sha = sha;
+  var res = await fetch(apiURL, { method:'PUT', headers:headers, body:JSON.stringify(body) });
+  if (!res.ok) {
+    var err = await res.json().catch(function(){ return {}; });
+    throw new Error('GitHub error: '+((err.message)||'HTTP '+res.status));
+  }
+  return 'https://'+cfg.username+'.github.io/'+cfg.repo+'/'+slug+'.html';
+}
+
+/* ─── Webhook ────────────────────────────────────────────── */
+async function fireWebhook(payload) {
+  var url = localStorage.getItem('pc_webhook_url') || '';
+  if (!url) return { skipped:true };
+  try {
+    var res = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    return { ok:res.ok, status:res.status };
+  } catch(e) {
+    return { ok:false, error:e.message };
+  }
+}
+
+/* ─── GitHub static page builder ───────────────────────── */
+function buildGitHubPage(title, author, category, excerpt, bodyHTML, slug) {
+  var pubDate = new Date().toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'});
+  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
+    +'<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
+    +'<title>'+esc(title)+' – Poetic Bytes</title>\n'
+    +'<meta name="description" content="'+esc(excerpt)+'">\n'
+    +'<meta property="og:title" content="'+esc(title)+'">\n'
+    +'<meta property="og:description" content="'+esc(excerpt)+'">\n'
+    +'<meta property="og:type" content="article">\n'
+    +'<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet">\n'
+    +'<style>'
+    +'body{background:#0b0f17;color:#eef4ff;font-family:"Crimson Pro",Georgia,serif;max-width:760px;margin:0 auto;padding:2rem 1.2rem;line-height:1.85;}'
+    +'h1{font-family:"Cinzel Decorative",serif;font-size:clamp(1rem,4vw,1.8rem);margin-bottom:1rem;}'
+    +'.meta{font-size:0.78rem;color:#667fa3;margin-bottom:2rem;font-family:monospace;}'
+    +'p{text-align:justify;margin-bottom:1.4rem;}'
+    +'a{color:#74b9e8;}'
+    +'video{max-width:100%;border-radius:12px;}'
+    +'iframe{max-width:100%;border-radius:12px;}'
+    +'footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #253649;font-size:0.72rem;color:#667fa3;text-align:center;font-family:monospace;line-height:2;}'
+    +'</style>\n'
+    +'</head>\n<body>\n'
+    +'<h1>'+esc(title)+'</h1>\n'
+    +'<div class="meta">'+esc(author)+' · '+esc(category)+' · '+pubDate+'</div>\n'
+    +bodyHTML+'\n'
+    +'<footer>'
+    +'<a href="'+BLOGSPOT_ABOUT_URL+'" target="_blank">About</a> | '
+    +'<a href="'+BLOGSPOT_PRIVACY_URL+'" target="_blank">Privacy</a> | '
+    +'<a href="'+BLOGSPOT_TERMS_URL+'" target="_blank">Terms</a> | '
+    +'<a href="'+BLOGSPOT_COOKIES_URL+'" target="_blank">Cookies</a><br>'
+    +'&copy; '+new Date().getFullYear()+' Glenn Junsay Pansensoy'
+    +'</footer>\n'
+    +'</body>\n</html>';
+}
+
+/* ─── Main submit ────────────────────────────────────────── */
+async function submitArticle() {
+  var title       = document.getElementById('f-title').value.trim();
+  var author      = document.getElementById('f-author').value.trim() || 'Glenn Junsay Pansensoy';
+  var category    = document.getElementById('f-category').value;
+  var tagsRaw     = document.getElementById('f-tags').value;
+  var publishType = document.getElementById('f-publish-type').value;
+  var excerpt     = document.getElementById('f-excerpt').value.trim();
+  var password    = document.getElementById('f-password').value;
+  var content     = getContentHTML();
+  var errorBox    = document.getElementById('publish-error-box');
+
+  errorBox.style.display = 'none';
+
+  if (!title)    { showToast('Title is required.', 'error'); return; }
+  if (!category) { showToast('Select a category.', 'error'); return; }
+  if (!excerpt)  { showToast('Excerpt is required.', 'error'); return; }
+  if (!content)  { showToast('Content is empty.', 'error'); return; }
+  if (password !== EDITOR_PASSWORD) { showToast('Wrong editor password.', 'error'); return; }
+
+  // Video mode: warn if no video attached
+  if (currentMode === 'video') {
+    if (currentVidMethod === 'upload' && uploadedVideoFiles.length === 0) {
+      showToast('Upload at least one video file.', 'error'); return;
+    }
+    if (currentVidMethod === 'url' && !document.getElementById('vid-url-input').value.trim()) {
+      showToast('Enter a video URL.', 'error'); return;
+    }
+  }
+
+  var tags = tagsRaw.split(',').map(function(t){ return t.trim(); }).filter(Boolean);
+  var slug = slugify(title);
+
+  var btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing…';
+  setProgress(15);
+
+  var bloggerURL = '', githubURL = '', distLines = [];
+
+  try {
+    // 1. Blogger
+    var bodyHTML = buildBloggerBody(title, author, category, excerpt, content, tags, '');
+    setProgress(30);
+    var blogPost = await publishToBlogger(title, bodyHTML, tags, publishType);
+    bloggerURL = blogPost.url || BLOGGER_BLOG_URL;
+    distLines.push('✓ Blogspot: '+bloggerURL);
+    setProgress(55);
+
+    var finalBodyHTML = buildBloggerBody(title, author, category, excerpt, content, tags, bloggerURL);
+
+    // 2. Firebase
+    if (typeof window.saveToFirebase === 'function') {
+      var cover = generateCoverImage(title, category);
+      var fbRes = await window.saveToFirebase({ title, author, category, excerpt, content:finalBodyHTML, tags, slug, coverImage:cover });
+      distLines.push(fbRes.ok ? '✓ Firebase: saved (id:'+fbRes.id+')' : '⚠ Firebase: '+fbRes.error);
+    }
+    setProgress(70);
+
+    // 3. GitHub
+    var doGitHub = document.getElementById('dist-github') && document.getElementById('dist-github').checked;
+    if (doGitHub) {
+      try {
+        var ghPage = buildGitHubPage(title, author, category, excerpt, finalBodyHTML, slug);
+        githubURL  = await publishToGitHub(slug, ghPage);
+        distLines.push('✓ GitHub: '+githubURL);
+      } catch(ghErr) {
+        distLines.push('⚠ GitHub skipped: '+ghErr.message);
+      }
+    } else {
+      distLines.push('– GitHub: skipped (unchecked)');
+    }
+    setProgress(85);
+
+    // 4. Webhook
+    var hookRes = await fireWebhook({
+      title, author, category, excerpt, tags, slug, bloggerURL, githubURL, publishType,
+      distribution: {
+        facebook: document.getElementById('dist-facebook').checked,
+        twitter : document.getElementById('dist-twitter').checked,
+        linkedin: document.getElementById('dist-linkedin').checked,
+        telegram: document.getElementById('dist-telegram').checked,
+        whatsapp: document.getElementById('dist-whatsapp').checked,
+        reddit  : document.getElementById('dist-reddit').checked
+      }
+    });
+    if (hookRes.skipped)   distLines.push('– Webhook: not configured');
+    else if (hookRes.ok)   distLines.push('✓ Webhook fired (HTTP '+hookRes.status+')');
+    else                   distLines.push('⚠ Webhook error: '+(hookRes.error||'HTTP '+hookRes.status));
+
+    setProgress(100);
+    setTimeout(function(){ setProgress(0); }, 800);
+
+    document.getElementById('success-msg').textContent =
+      '"'+title+'" is now live on Blogspot'+(githubURL ? ' and GitHub Pages.' : '.');
+    if (githubURL) {
+      var ghLink = document.getElementById('gh-success-link');
+      ghLink.href = githubURL; ghLink.style.display = 'inline-flex';
+    }
+    document.getElementById('dist-result-box').innerHTML =
+      '<div class="dist-result ok">'+distLines.join('\n')+'</div>';
+    document.getElementById('form-state').style.display   = 'none';
+    document.getElementById('success-state').style.display = 'block';
+    window.scrollTo({ top:0, behavior:'smooth' });
+
+  } catch(err) {
+    setProgress(0);
+    errorBox.textContent = err.message;
+    errorBox.style.display = 'block';
+    showToast('Publish failed — see error below.', 'error', 6000);
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish to Blogspot + GitHub';
+  }
+}
+
+/* ─── DOMContentLoaded ──────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function() {
+
+  setMode('text');
+  setVidMethod('upload');
+  loadWebhookUrl();
+  loadBlogId();
+  loadDisqusShortname();
+  updateAuthUI(isTokenValid());
+
+  // GitHub token restore
+  var savedToken = localStorage.getItem('pc_gh_token') || '';
+  var tokenInput = document.getElementById('gh-token-input');
+  var statusEl   = document.getElementById('gh-config-status');
+  var helpEl     = document.getElementById('gh-token-help');
+  if (savedToken && tokenInput) {
+    tokenInput.value = savedToken;
+    updateGitHubStatusUI(true, 'pansensoyglenn-dev', 'articles');
+    if (statusEl) { statusEl.style.color='#3ddc84'; statusEl.textContent='Token loaded.'; setTimeout(function(){ statusEl.textContent=''; },3000); }
+  } else {
+    updateGitHubStatusUI(false,'','');
+    // FIX: was var(–gold) with en-dash — corrected to var(--gold)
+    if (statusEl) { statusEl.style.color='var(--gold)'; statusEl.textContent='No token saved yet.'; }
+    if (helpEl) helpEl.style.display = 'block';
+  }
+
+  /* ── Content mode tabs ── */
+  document.getElementById('tab-text').addEventListener('click',    function(){ setMode('text'); });
+  document.getElementById('tab-html').addEventListener('click',    function(){ setMode('html'); });
+  document.getElementById('tab-video').addEventListener('click',   function(){ setMode('video'); });
+  document.getElementById('tab-preview').addEventListener('click', function(){ openPreview(); });
+
+  /* ── Video method tabs ── */
+  document.querySelectorAll('.vid-method-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() { setVidMethod(this.dataset.method); });
+  });
+
+  /* ── URL video preview ── */
+  document.getElementById('vid-url-input').addEventListener('input', function() {
+    clearTimeout(this._debounce);
+    this._debounce = setTimeout(updateUrlPreview, 600);
+  });
+
+  /* ── Action buttons ── */
+  document.getElementById('submit-btn').addEventListener('click',  submitArticle);
+  document.getElementById('preview-btn').addEventListener('click', openPreview);
+  document.getElementById('reset-btn').addEventListener('click',   resetForm);
+  document.getElementById('submit-another-btn').addEventListener('click', submitAnother);
+
+  /* ── Sidebar buttons ── */
+  document.getElementById('signin-btn').addEventListener('click',       signInBlogger);
+  document.getElementById('signout-btn').addEventListener('click',      signOutBlogger);
+  document.getElementById('save-webhook-btn').addEventListener('click', saveWebhookUrl);
+  document.getElementById('save-disqus-btn').addEventListener('click',  saveDisqusShortname);
+  document.getElementById('save-blogid-btn').addEventListener('click',  saveBlogId);
+  document.getElementById('save-gh-btn').addEventListener('click',      saveGitHubConfig);
+  document.getElementById('test-gh-btn').addEventListener('click',      testGitHubConnection);
+  document.getElementById('sign-in-link').addEventListener('click',     function(e){ e.preventDefault(); signInBlogger(); });
+
+  /* ── Preview modal ── */
+  document.getElementById('preview-close-btn').addEventListener('click', closePreview);
+  document.getElementById('preview-modal').addEventListener('click', function(e){ if (e.target === this) closePreview(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closePreview(); });
+
+  /* ── Video file upload ── */
+  var vidInput = document.getElementById('vid-file-input');
+  if (vidInput) {
+    vidInput.addEventListener('change', function(){ handleVideoFiles(this.files); this.value=''; });
+  }
+  var vidZone = document.getElementById('vid-upload-zone');
+  if (vidZone) {
+    vidZone.addEventListener('dragover',  function(e){ e.preventDefault(); this.classList.add('dragover'); });
+    vidZone.addEventListener('dragleave', function(){ this.classList.remove('dragover'); });
+    vidZone.addEventListener('drop', function(e){
+      e.preventDefault(); this.classList.remove('dragover');
+      handleVideoFiles(e.dataTransfer.files);
+    });
+  }
+
+});
+</script>
+</body>
+</html>
